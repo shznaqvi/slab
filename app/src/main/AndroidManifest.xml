@@ -54,7 +54,7 @@
         <service android:name="edu.aku.hassannaqvi.slab.DownloadFileService" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.SectionInfoActivity"
+            android:name="edu.aku.hassannaqvi.slab.ui.EligibilityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="edu.aku.hassannaqvi.slab.ui.SectionInfoActivity">
+    tools:context="edu.aku.hassannaqvi.slab.ui.EligibilityActivity">
 
     <data>
 
@@ -10,11 +10,11 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.slab.ui.SectionInfoActivity" />
+            type="edu.aku.hassannaqvi.slab.ui.EligibilityActivity" />
 
         <variable
             name="checkFlag"
-            type="edu.aku.hassannaqvi.slab.ui.SectionInfoActivity.checking" />
+            type="edu.aku.hassannaqvi.slab.ui.EligibilityActivity" />
     </data>
 
     <ScrollView

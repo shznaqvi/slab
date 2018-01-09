@@ -52,8 +52,6 @@ import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.slab.sync.SyncForms;
-import edu.aku.hassannaqvi.slab.ui.PregnancyFollowUp.SectionPFBActivity;
-import edu.aku.hassannaqvi.slab.ui.Recruitment.SecRBActivity;
 
 public class MainActivity extends Activity {
 
@@ -237,7 +235,7 @@ public class MainActivity extends Activity {
     public void openForm(int check) {
 
 //        if (spAreas.getSelectedItemPosition() != 0) {
-        final Intent oF = new Intent(MainActivity.this, SectionInfoActivity.class);
+        final Intent oF = new Intent(MainActivity.this, EligibilityActivity.class);
         switch (check) {
             case 1:
                 oF.putExtra("check", 1);
@@ -298,19 +296,19 @@ public class MainActivity extends Activity {
 
 
     public void openA(View v) {
-        Intent iA = new Intent(this, SectionInfoActivity.class);
+        Intent iA = new Intent(this, EligibilityActivity.class);
         startActivity(iA);
     }
 
     public void openB(View v) {
-        Intent iB = new Intent(this, SecRBActivity.class);
-        startActivity(iB);
+        /*Intent iB = new Intent(this, SecRBActivity.class);
+        startActivity(iB);*/
     }
 
 
     public void openC(View v) {
-        Intent iC = new Intent(this, SectionPFBActivity.class);
-        startActivity(iC);
+        /*Intent iC = new Intent(this, SectionPFBActivity.class);
+        startActivity(iC);*/
     }
 
     /*public void openD(View v) {
