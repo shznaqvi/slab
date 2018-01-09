@@ -12,9 +12,9 @@
             name="callback"
             type="edu.aku.hassannaqvi.slab.ui.EligibilityActivity" />
 
-        <variable
+        <!--<variable
             name="checkFlag"
-            type="edu.aku.hassannaqvi.slab.ui.EligibilityActivity" />
+            type="edu.aku.hassannaqvi.slab.ui.EligibilityActivity" />-->
     </data>
 
     <ScrollView
@@ -105,8 +105,7 @@
                 android:id="@+id/fldGrpAge"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 2 ? View.GONE : View.VISIBLE}">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -124,8 +123,7 @@
                     android:digits="0123456789"
                     android:hint="@string/age"
                     android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{checkFlag.check == 2 ? age.getText.toString : ""}' />
+                    android:maxLength="2" />
 
             </LinearLayout>
 
@@ -170,8 +168,7 @@
                 android:id="@+id/fldGrpDFA06"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 1 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -188,8 +185,7 @@
                     android:layout_height="wrap_content"
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/dfa06"
-                    android:maxLength="25"
-                    android:text='@{checkFlag.check == 1 ? dfa06.getText.toString : ""}' />
+                    android:maxLength="25" />
 
             </LinearLayout>
 
@@ -259,8 +255,7 @@
                 android:id="@+id/fldGrpDA07"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 2 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <!--da07-->
                 <TextView
@@ -279,7 +274,6 @@
                     android:layout_marginTop="1dp"
                     android:focusable="true"
                     android:hint="@string/da07"
-                    android:text='@{checkFlag.check == 2 ? da07.getText.toString : ""}'
                     android:textColor="@android:color/black"
                     app:dateFormat="dd-MM-yyyy" />
 
@@ -308,8 +302,7 @@
                 android:id="@+id/fldGrpDFA10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 1 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <!--dfa10-->
                 <TextView
@@ -328,7 +321,6 @@
                     android:layout_marginTop="1dp"
                     android:focusable="true"
                     android:hint="@string/dfa10"
-                    android:text='@{checkFlag.check == 1 ? dfa10.getText.toString : ""}'
                     android:textColor="@android:color/black"
                     app:dateFormat="dd-MM-yyyy" />
 
@@ -354,8 +346,7 @@
                 android:id="@+id/fldGrpPFA10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 3 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <!--pfa10-->
                 <TextView
@@ -394,8 +385,7 @@
                 android:id="@+id/fldGrpRA10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 4 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <!--ra10-->
                 <TextView
@@ -528,8 +518,7 @@
                 android:id="@+id/fldGrpDFA15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 1 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <!--dfa15-->
                 <TextView
@@ -549,7 +538,7 @@
                     android:enabled="@{dfa1599.checked || dfa15888.checked ? false : true}"
                     android:focusable="true"
                     android:hint="@string/dfa15"
-                    android:text='@{checkFlag.check == 1 ? (dfa1599.checked || dfa15888.checked  ? "" : dfa15.getText.toString) : ""}'
+
                     android:textColor="@android:color/black"
                     app:dateFormat="dd-MM-yyyy" />
 
@@ -577,8 +566,7 @@
                 android:id="@+id/fldGrpPFA14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="@{checkFlag.check == 3 ? View.VISIBLE : View.GONE}">
+                android:orientation="vertical">
 
                 <!--pfa14-->
                 <TextView
@@ -598,7 +586,6 @@
                     android:enabled="@{pfa1499.checked || pfa14888.checked ? false : true}"
                     android:focusable="true"
                     android:hint="@string/pfa14"
-                    android:text='@{checkFlag.check == 3 ?(pfa1499.checked || pfa14888.checked  ? "" : pfa14.getText.toString) : ""}'
                     android:textColor="@android:color/black"
                     app:dateFormat="dd-MM-yyyy" />
 
@@ -743,7 +730,7 @@
                     android:enabled="@{pfa1799.checked || pfa17888.checked ? false : true}"
                     android:focusable="true"
                     android:hint="@string/pfa17"
-                    android:text='@{checkFlag.check == 3 ? (pfa1799.checked || pfa17888.checked  ? "" : pfa17.getText.toString) : ""}'
+
                     android:textColor="@android:color/black"
                     app:dateFormat="dd-MM-yyyy" />
 
@@ -781,8 +768,7 @@
                     android:digits="0123456789"
                     android:hint="@string/month"
                     android:inputType="number"
-                    android:maxLength="9"
-                    android:text='@{checkFlag.check == 3 ? pfa18.getText.toString : ""}' />
+                    android:maxLength="9" />
 
                 <!--pfa19-->
                 <TextView
@@ -802,8 +788,7 @@
                     android:enabled="@{pfa19888.checked ? false : true}"
                     android:hint="@string/pfa19"
                     android:inputType="number"
-                    android:maxLength="9"
-                    android:text='@{checkFlag.check == 3 ? (pfa19888.checked ? "" : pfa19.getText.toString) : ""}' />
+                    android:maxLength="9" />
 
                 <CheckBox
                     android:id="@+id/pfa19888"
