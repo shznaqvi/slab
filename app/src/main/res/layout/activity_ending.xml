@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<layout>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="edu.aku.hassannaqvi.slab.ui.EndingActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.slab.ui.EndingActivity" />
+
+        <!--<variable
+            name="checkFlag"
+            type="edu.aku.hassannaqvi.slab.ui.EligibilityActivity" />-->
+    </data>
+
 
     <ScrollView
         android:id="@+id/scrollView01"
@@ -39,73 +55,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/istatusa" />
+                    android:text="@string/istatus01" />
 
                 <RadioButton
                     android:id="@+id/istatusb"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/istatusb" />
+                    android:text="@string/istatus02" />
 
-                <RadioButton
-                    android:id="@+id/istatusc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/istatusc" />
-
-                <RadioButton
-                    android:id="@+id/istatusd"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/istatusd" />
-
-                <RadioButton
-                    android:id="@+id/istatuse"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/istatuse" />
-
-                <RadioButton
-                    android:id="@+id/istatusf"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/istatusf" />
-
-                <RadioButton
-                    android:id="@+id/istatusg"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/istatusg" />
-
-                <RadioButton
-                    android:id="@+id/istatush"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/istatush" />
-
-                <RadioButton
-                    android:id="@+id/istatus88"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="1dp"
-                    android:text="@string/other" />
 
             </RadioGroup>
 
-            <EditText
-                android:id="@+id/istatus88x"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                android:maxLength="40"
-                android:text="@string/other" />
 
             <Button
                 android:id="@+id/btn_End"
@@ -120,3 +81,5 @@
 
     </ScrollView>
 </RelativeLayout>
+
+</layout>
