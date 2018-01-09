@@ -17,14 +17,14 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="edu.aku.hassannaqvi.slab.core.MainApp"
+        android:name=".core.MainApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.SplashscreenActivity"
+            android:name=".ui.SplashscreenActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,58 +33,60 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.LoginActivity"
+            android:name=".ui.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="stateVisible|adjustPan" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.MainActivity"
+            android:name=".ui.MainActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.core.AndroidDatabaseManager"
+            android:name=".core.AndroidDatabaseManager"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.EndingActivity"
+            android:name=".ui.EndingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name="edu.aku.hassannaqvi.slab.FormsList" />
+        <activity android:name=".FormsList" />
 
-        <service android:name="edu.aku.hassannaqvi.slab.DownloadFileService" />
+        <service android:name=".DownloadFileService" />
 
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.EligibilityActivity"
+            android:name=".ui.EligibilityActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.Recruitment.SecRBActivity"
+            android:name=".ui.Recruitment.SecRBActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.PregnancyFollowUp.SectionPFBActivity"
+            android:name=".ui.PregnancyFollowUp.SectionPFBActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.Outcome.SectionOBActivity"
+            android:name=".ui.Outcome.SectionOBActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.Outcome.SectionOCActivity"
+            android:name=".ui.Outcome.SectionOCActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.DeliveryFollowUp.SectionDFBActivity"
+            android:name=".ui.DeliveryFollowUp.SectionDFBActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.hassannaqvi.slab.ui.Recruitment.SecRCActivity"
+            android:name=".ui.Recruitment.SecRCActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name="edu.aku.hassannaqvi.slab.ui.DeliveryFollowUp.SectionDFDActivity" />
-        <activity android:name="edu.aku.hassannaqvi.slab.ui.DeliveryFollowUp.SectionDFCActivity"></activity>
+        <activity android:name=".ui.DeliveryFollowUp.SectionDFDActivity" />
+        <activity android:name=".ui.DeliveryFollowUp.SectionDFCActivity" />
+        <activity android:name=".ui.BaselineActivity" />
+        <activity android:name=".ui.FollowupActivity"></activity>
     </application>
 
 </manifest>
