@@ -86,7 +86,10 @@
         <activity android:name=".ui.DeliveryFollowUp.SectionDFDActivity" />
         <activity android:name=".ui.DeliveryFollowUp.SectionDFCActivity" />
         <activity android:name=".ui.BaselineActivity" />
-        <activity android:name=".ui.FollowupActivity"></activity>
+        <activity android:name=".ui.FollowupActivity" />
+        <activity android:name=".ui.AnthropometryActivity" />
+        <activity android:name=".ui.PhysicalExaminationActivity" />
+        <activity android:name=".ui.LabInvestigationsActivity"></activity>
     </application>
 
 </manifest>

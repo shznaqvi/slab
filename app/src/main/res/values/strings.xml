@@ -128,7 +128,7 @@
   <string name="sfu1201a"> Gauge tube </string>
   <string name="sfu1201b"> Cup and Spoon </string>
   <string name="sfu1201c"> bottle feed </string>
-  <string name="suf1202"> Methods to give Formula Feed </string>
+  <string name="sfu1202"> Methods to give Formula Feed </string>
   <string name="sfu1202a"> bottle feed </string>
   <string name="sfu1202b"> cup and spoon </string>
   <string name="sfu1202c"> Gauge feed </string>
@@ -224,9 +224,6 @@
   <string name="istatus">Interview status </string>
   <string name="istatus01">Complete</string>
   <string name="istatus02">In - Complete</string>
-
-
-
 
 
 </resources>
