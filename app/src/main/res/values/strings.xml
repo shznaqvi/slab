@@ -1,5 +1,5 @@
 <resources>
-  <string name="app_name">SLAB</string>
+    <string name="app_name">SLAB</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -13,9 +13,9 @@
     completions."
   </string>
 
-  <string name="end_interview"> End Interview </string>
-  <string name="start_interview"> Start Interview </string>
-  <string name="nextSection"> Next Section</string>
+    <string name="end_interview"> End Interview </string>
+    <string name="start_interview"> Start Interview </string>
+    <string name="nextSection"> Next Section</string>
     <string name="addMember"> افراد کا اندراج </string>
     <string name="dcstatus"> انٽرويو جو نتيجو</string>
     <string name="complete"> مکمل</string>
@@ -27,76 +27,76 @@
     <string name="title_activity_splashscreen">SplashscreenActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-  <string name="yes"> Yes </string>
-  <string name="no"> No </string>
-  <string name="na"> Not Applicable </string>
-  <string name="dkn"> Don’t know </string>
-  <string name="kg"> kg </string>
-  <string name="weeks"> Weeks </string>
-  <string name="days"> Days </string>
-  <string name="min"> Minutes </string>
-  <string name="hours"> Hours </string>
-  <string name="cm"> cm </string>
-  <string name="grams"> Grams </string>
-  <string name="others"> Other </string>
+    <string name="yes"> Yes </string>
+    <string name="no"> No </string>
+    <string name="na"> Not Applicable </string>
+    <string name="dkn"> Don’t know </string>
+    <string name="kg"> kg </string>
+    <string name="weeks"> Weeks </string>
+    <string name="days"> Days </string>
+    <string name="min"> Minutes </string>
+    <string name="hours"> Hours </string>
+    <string name="cm"> cm </string>
+    <string name="grams"> Grams </string>
+    <string name="others"> Other </string>
 
 
-  <!-- Strings related to Sections Below -->
+    <!-- Strings related to Sections Below -->
 
-  <!-- Eligibility-->
+    <!-- Eligibility-->
 
-  <string name="selheading"> Eligibility Criteria </string>
-  <string name="sel01"> Neonate Birth weight ( less than 2.5 kg and more than 1.0 k) </string>
-  <string name="sel02"> Gestational age (more than or equal to 28 +0 weeks to 36+6 ) </string>
-  <string name="sel03"> Family planned on staying in the study area for at least 1 month </string>
-  <string name="sel04"> Parents/ caretaker willing to provide consent </string>
-  <string name="sel05"> Newborn initiated enteral feeding via (gavage feeding with expressed breast milk or formula, direct breast feeding or cup and spoon feeding at or within 48 hours of birth.) </string>
-  <string name="sel06"> Neonate with congenital anomalies </string>
-  <string name="sel07"> Neonates with early-onset sepsis </string>
-  <string name="sel08"> Neonate with history of Chorioamnionitis or Maternal GBS colonization </string>
-  <string name="sel09"> CHILD ELIGIBLE FOR ENROLMENT: </string>
-  <string name="sel10"> CONSENT FORM SIGNED? </string>
-  <string name="sel11"> Study ID: </string>
-  <string name="sel12"> Randomization code: </string>
-  <string name="sel13"> Date of enrolment: </string>
-  <string name="sel14"> Hospital No: </string>
-  <string name="sel15"> Father’s name: </string>
-  <string name="sel16"> Mother’s name: </string>
-  <string name="sel17"> Complete home address: </string>
-  <string name="sel18"> Contact details: </string>
-  <string name="sel18a"> Mother phone no: </string>
-  <string name="sel18b"> Father phone no: </string>
-  <string name="sel18c"> office number if any </string>
+    <string name="selheading"> Eligibility Criteria </string>
+    <string name="sel01"> Neonate Birth weight ( less than 2.5 kg and more than 1.0 k) </string>
+    <string name="sel02"> Gestational age (more than or equal to 28 +0 weeks to 36+6 ) </string>
+    <string name="sel03"> Family planned on staying in the study area for at least 1 month </string>
+    <string name="sel04"> Parents/ caretaker willing to provide consent </string>
+    <string name="sel05"> Newborn initiated enteral feeding via (gavage feeding with expressed breast milk or formula, direct breast feeding or cup and spoon feeding at or within 48 hours of birth.) </string>
+    <string name="sel06"> Neonate with congenital anomalies </string>
+    <string name="sel07"> Neonates with early-onset sepsis </string>
+    <string name="sel08"> Neonate with history of Chorioamnionitis or Maternal GBS colonization </string>
+    <string name="sel09"> CHILD ELIGIBLE FOR ENROLMENT: </string>
+    <string name="sel10"> CONSENT FORM SIGNED? </string>
+    <string name="sel11"> Study ID: </string>
+    <string name="sel12"> Randomization code: </string>
+    <string name="sel13"> Date of enrolment: </string>
+    <string name="sel14"> Hospital No: </string>
+    <string name="sel15"> Father’s name: </string>
+    <string name="sel16"> Mother’s name: </string>
+    <string name="sel17"> Complete home address: </string>
+    <string name="sel18"> Contact details: </string>
+    <string name="sel18a"> Mother phone no: </string>
+    <string name="sel18b"> Father phone no: </string>
+    <string name="sel18c"> office number if any </string>
 
-  <!-- Baseline-->
+    <!-- Baseline-->
 
-  <string name="sblheading"> Baseline information </string>
-  <string name="sbl01"> Date of birth of neonate: </string>
-  <string name="sbl02"> Age of neonate (in hours): (within 72 hrs) </string>
-  <string name="sbl03"> Birth weight of neonate (in grams): </string>
-  <string name="sbl04"> Birth length of neonate (in cms): </string>
-  <string name="sbl05"> Birth head circumference (in cms): </string>
-  <string name="sbl06"> Mode of delivery </string>
-  <string name="sbl06a"> Spontaneous vaginal delivery </string>
-  <string name="sbl06b"> Caesarean section </string>
-  <string name="sbl06c"> Instrumental </string>
-  <string name="sbl07"> Place of delivery </string>
-  <string name="sbl07a"> AKUH </string>
-  <string name="sbl07b"> AKUH outreach </string>
-  <string name="sbl07c"> Other hospital </string>
-  <string name="sbl08"> bLF given within 72hrs of baby birth </string>
-  <string name="sbl09"> baby has taken the medication: </string>
-  <string name="sbl10"> if NO reason: spill/ vomit/ refuse to take/ drop the drug/ other </string>
-  <string name="sbl10a"> Spill </string>
-  <string name="sbl10b"> Vomit </string>
-  <string name="sbl10c"> Drop the Drug </string>
-  <string name="sbl11"> Neonate discharged. </string>
-  <string name="sbl12"> If discharge write date </string>
-  <string name="sbl13"> Total capsules given at discharge </string>
-  <string name="sbl14"> If not discharge, visit to baby and give bLF </string>
+    <string name="sblheading"> Baseline information </string>
+    <string name="sbl01"> Date of birth of neonate: </string>
+    <string name="sbl02"> Age of neonate (in hours): (within 72 hrs) </string>
+    <string name="sbl03"> Birth weight of neonate (in grams): </string>
+    <string name="sbl04"> Birth length of neonate (in cms): </string>
+    <string name="sbl05"> Birth head circumference (in cms): </string>
+    <string name="sbl06"> Mode of delivery </string>
+    <string name="sbl06a"> Spontaneous vaginal delivery </string>
+    <string name="sbl06b"> Caesarean section </string>
+    <string name="sbl06c"> Instrumental </string>
+    <string name="sbl07"> Place of delivery </string>
+    <string name="sbl07a"> AKUH </string>
+    <string name="sbl07b"> AKUH outreach </string>
+    <string name="sbl07c"> Other hospital </string>
+    <string name="sbl08"> bLF given within 72hrs of baby birth </string>
+    <string name="sbl09"> baby has taken the medication: </string>
+    <string name="sbl10"> if NO reason: spill/ vomit/ refuse to take/ drop the drug/ other </string>
+    <string name="sbl10a"> Spill </string>
+    <string name="sbl10b"> Vomit </string>
+    <string name="sbl10c"> Drop the Drug </string>
+    <string name="sbl11"> Neonate discharged. </string>
+    <string name="sbl12"> If discharge write date </string>
+    <string name="sbl13"> Total capsules given at discharge </string>
+    <string name="sbl14"> If not discharge, visit to baby and give bLF </string>
 
 
-  <!-- Follow up-->
+    <!-- Follow up-->
 
   <string name="sfuheading"> Follow up information </string>
   <string name="mrno"> MR # </string>
@@ -221,9 +221,12 @@
   <string name="sfu23c"> Follow up </string>
   <string name="sfu2301"> If follow up number of capsule given </string>
 
-  <string name="istatus">Interview status </string>
-  <string name="istatus01">Complete</string>
-  <string name="istatus02">In - Complete</string>
+    <string name="istatus">Interview status </string>
+    <string name="istatus01">Complete</string>
+    <string name="istatus02">In - Complete</string>
+
+
+
 
 
 </resources>

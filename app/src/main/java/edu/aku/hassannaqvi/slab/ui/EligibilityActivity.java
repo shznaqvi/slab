@@ -22,6 +22,7 @@ import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityBinding;
+import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class EligibilityActivity extends AppCompatActivity {
 
@@ -55,6 +56,102 @@ public class EligibilityActivity extends AppCompatActivity {
     }
 
     public Boolean formValidation() {
+
+        Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel01, getString(R.string.sel01))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel02w, getString(R.string.weeks))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel02d, getString(R.string.days))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel03, binding.sel03b, getString(R.string.sel03))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel04, binding.sel04b, getString(R.string.sel04))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel05, binding.sel05b, getString(R.string.sel05))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel06, binding.sel06b, getString(R.string.sel06))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel07, binding.sel07b, getString(R.string.sel07))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel08, binding.sel08b, getString(R.string.sel08))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyRadioButton(this, binding.sel10, binding.sel10b, getString(R.string.sel10))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel11, getString(R.string.sel11))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel14, getString(R.string.sel14))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel15, getString(R.string.sel15))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel16, getString(R.string.sel16))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel17, getString(R.string.sel17))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel18a, getString(R.string.sel18a))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel18b, getString(R.string.sel18b))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel18c, getString(R.string.sel18c))) {
+            return false;
+        }
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sel18c, getString(R.string.sel18c))) {
+            return false;
+        }
 
 
         return true;
@@ -118,6 +215,30 @@ public class EligibilityActivity extends AppCompatActivity {
         setGPS(); //Set GPS
 
         JSONObject sa = new JSONObject();
+
+
+        sa.put("sel01", binding.sel01.getText().toString());
+        sa.put("sel02w", binding.sel02w.getText().toString());
+        sa.put("sel02d", binding.sel02d.getText().toString());
+
+        sa.put("sel03", binding.sel03a.isChecked() ? "1" : binding.sel03b.isChecked() ? "2" : "0");
+        sa.put("sel04", binding.sel04a.isChecked() ? "1" : binding.sel04b.isChecked() ? "2" : "0");
+        sa.put("sel05", binding.sel05a.isChecked() ? "1" : binding.sel05b.isChecked() ? "2" : "0");
+        sa.put("sel06", binding.sel06a.isChecked() ? "1" : binding.sel06b.isChecked() ? "2" : "0");
+        sa.put("sel07", binding.sel07a.isChecked() ? "1" : binding.sel07b.isChecked() ? "2" : "0");
+        sa.put("sel08", binding.sel08a.isChecked() ? "1" : binding.sel08b.isChecked() ? "2" : "0");
+        sa.put("sel10", binding.sel10a.isChecked() ? "1" : binding.sel10b.isChecked() ? "2" : "0");
+
+        sa.put("sel11", binding.sel11.getText().toString());
+        sa.put("sel12", binding.sel12.getText().toString());
+        sa.put("sel14", binding.sel14.getText().toString());
+        sa.put("sel15", binding.sel15.getText().toString());
+        sa.put("sel16", binding.sel16.getText().toString());
+        sa.put("sel17", binding.sel17.getText().toString());
+        sa.put("sel18a", binding.sel18a.getText().toString());
+        sa.put("sel18b", binding.sel18b.getText().toString());
+        sa.put("sel18c", binding.sel18c.getText().toString());
+
 
         MainApp.fc.setsA(String.valueOf(sa));
 
