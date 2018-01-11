@@ -1,12 +1,12 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
-import android.util.Log;
+import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,8 +27,7 @@ public class BaselineActivity extends AppCompatActivity {
     private static final String TAG = BaselineActivity.class.getName();
 
     ActivityBaselineBinding binding;
-    int check = 0;
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+    String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
 
     DatabaseHelper db;
 
@@ -37,6 +36,62 @@ public class BaselineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baseline);
+        setUpViews();
+
+    }
+
+    public void setUpViews() {
+
+        binding.sbl01.setManager(getSupportFragmentManager());
+        binding.sbl12.setManager(getSupportFragmentManager());
+        binding.sbl01.setMaxDate(dateToday);
+        binding.sbl12.setMaxDate(dateToday);
+        binding.sbl08.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (binding.sbl08a.isChecked()) {
+                    binding.fldGrpsbl09.setVisibility(View.VISIBLE);
+                } else {
+                    binding.fldGrpsbl09.setVisibility(View.GONE);
+                    binding.sbl09.clearCheck();
+                    binding.sbl10.clearCheck();
+                    binding.sbl1088x.setText(null);
+                    binding.sbl11.clearCheck();
+                    binding.sbl12.setText(null);
+                    binding.sbl13.setText(null);
+                    binding.sbl14.clearCheck();
+                }
+            }
+        });
+
+        binding.sbl09.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (binding.sbl09a.isChecked()) {
+                    binding.fldGrpsbl10.setVisibility(View.GONE);
+                    binding.sbl10.clearCheck();
+                    binding.sbl1088x.setText(null);
+                } else {
+                    binding.fldGrpsbl10.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        binding.sbl11.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (binding.sbl11a.isChecked()) {
+                    binding.fldGrpsbl12.setVisibility(View.VISIBLE);
+                    binding.fldGrpsbl14.setVisibility(View.GONE);
+                    binding.sbl14.clearCheck();
+                } else {
+                    binding.fldGrpsbl12.setVisibility(View.GONE);
+                    binding.fldGrpsbl14.setVisibility(View.VISIBLE);
+                    binding.sbl12.setText(null);
+                    binding.sbl13.setText(null);
+                }
+            }
+        });
     }
 
 
@@ -84,7 +139,7 @@ public class BaselineActivity extends AppCompatActivity {
         }
 
 
-        if (!validatorClass.EmptyTextBox(this, binding.sbl0788x, getString(R.string.others))) {
+        if (!validatorClass.EmptyRadioButton(this, binding.sbl07, binding.sbl0788, binding.sbl0788x, getString(R.string.sbl07))) {
             return false;
         }
 
@@ -94,33 +149,41 @@ public class BaselineActivity extends AppCompatActivity {
         }
 
 
-        if (!validatorClass.EmptyRadioButton(this, binding.sbl09, binding.sbl09b, getString(R.string.sbl09))) {
-            return false;
-        }
+        if (binding.sbl08a.isChecked()) {
+            if (!validatorClass.EmptyRadioButton(this, binding.sbl09, binding.sbl09b, getString(R.string.sbl09))) {
+                return false;
+            }
 
 
-        if (!validatorClass.EmptyRadioButton(this, binding.sbl10, binding.sbl10c, getString(R.string.sbl10))) {
-            return false;
-        }
+            if (binding.sbl09a.isChecked()) {
+
+                if (!validatorClass.EmptyRadioButton(this, binding.sbl10, binding.sbl10c, getString(R.string.sbl10))) {
+                    return false;
+                }
+            }
 
 
-        if (!validatorClass.EmptyRadioButton(this, binding.sbl11, binding.sbl11b, getString(R.string.sbl11))) {
-            return false;
-        }
+            if (!validatorClass.EmptyRadioButton(this, binding.sbl11, binding.sbl11b, getString(R.string.sbl11))) {
+                return false;
+            }
 
 
-        if (!validatorClass.EmptyTextBox(this, binding.sbl12, getString(R.string.sbl12))) {
-            return false;
-        }
+            if (binding.sbl11a.isChecked()) {
+                if (!validatorClass.EmptyTextBox(this, binding.sbl12, getString(R.string.sbl12))) {
+                    return false;
+                }
 
 
-        if (!validatorClass.EmptyTextBox(this, binding.sbl13, getString(R.string.sbl13))) {
-            return false;
-        }
+                if (!validatorClass.EmptyTextBox(this, binding.sbl13, getString(R.string.sbl13))) {
+                    return false;
+                }
+            } else {
+                if (!validatorClass.EmptyRadioButton(this, binding.sbl14, binding.sbl14b, getString(R.string.sbl14))) {
+                    return false;
+                }
+            }
 
 
-        if (!validatorClass.EmptyRadioButton(this, binding.sbl14, binding.sbl14b, getString(R.string.sbl14))) {
-            return false;
         }
 
 
@@ -135,12 +198,12 @@ public class BaselineActivity extends AppCompatActivity {
         MainApp.fc = new FormsContract();
 
         MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.fc.setFormDate(dtToday);
+        MainApp.fc.setFormDate(new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()));
         MainApp.fc.setUser(MainApp.userName);
         MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-        setGPS(); //Set GPS
+
 
         JSONObject sa = new JSONObject();
 
@@ -199,34 +262,39 @@ public class BaselineActivity extends AppCompatActivity {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
-
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            MainApp.fc.setGpsLat(lat);
-            MainApp.fc.setGpsLng(lang);
-            MainApp.fc.setGpsAcc(acc);
-            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
-
-            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
+    public void BtnEnd() {
+        finish();
+        Toast.makeText(this, "complete Section", Toast.LENGTH_SHORT).show();
+        Intent endSec = new Intent(this, EndingActivity.class);
+        endSec.putExtra("complete", false);
+        startActivity(endSec);
     }
+
+    public void BtnContinue() {
+
+        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        if (formValidation()) {
+            try {
+                SaveDraft();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //if (UpdateDB()) {
+            Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+
+            finish();
+
+
+            } else {
+            Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+        }
+        // }
+    }
+
+
+
+
+
 
 
 }

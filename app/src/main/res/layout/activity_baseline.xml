@@ -354,7 +354,26 @@
                             android:layout_marginBottom="1dp"
                             android:text="@string/sbl10c" />
 
+                        <RadioButton
+                            android:id="@+id/sbl1088"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="1dp"
+                            android:text="@string/others" />
+
+
                     </RadioGroup>
+
+                    <EditText
+                        android:id="@+id/sbl1088x"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:hint="@string/others"
+                        android:inputType="textCapWords"
+                        android:text='@{sbl1088.checked ? sbl1088.getText.toString : ""}'
+                        android:visibility="@{sbl1088.checked ? View.VISIBLE : View.GONE}" />
+
 
                 </LinearLayout>
 
