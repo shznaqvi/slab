@@ -29,6 +29,7 @@ public class BaselineActivity extends AppCompatActivity {
 
     ActivityBaselineBinding binding;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
+    int check = 0;
 
     DatabaseHelper db;
 
@@ -37,7 +38,7 @@ public class BaselineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_baseline);
         db = new DatabaseHelper(this);
 
 //        Get data from Main Activity
@@ -51,7 +52,6 @@ public class BaselineActivity extends AppCompatActivity {
 
 //        Main Working from here
 //        Skip Patterns
-        setContentView(R.layout.activity_baseline);
         setUpViews();
 
     }
@@ -301,16 +301,11 @@ public class BaselineActivity extends AppCompatActivity {
             finish();
 
 
-            } else {
+        } else {
             Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
         }
         // }
     }
-
-
-
-
-
 
 
     public class checking {

@@ -21,7 +21,6 @@ import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
-import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityBinding;
 import edu.aku.hassannaqvi.slab.databinding.ActivityPhysicalExaminationBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
@@ -40,7 +39,7 @@ public class PhysicalExaminationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_physical_examination);
         db = new DatabaseHelper(this);
 
 //        Get data from Main Activity
