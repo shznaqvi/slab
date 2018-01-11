@@ -20,7 +20,6 @@ import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityBaselineBinding;
-import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class BaselineActivity extends AppCompatActivity {
