@@ -303,7 +303,6 @@
                     android:layout_weight="1"
                     android:text="@string/sfu22a" />
 
-
                 <RadioButton
                     android:id="@+id/sfu22b"
                     android:layout_width="match_parent"
@@ -352,7 +351,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sfu23a" />
-
 
                 <RadioButton
                     android:id="@+id/sfu23b"

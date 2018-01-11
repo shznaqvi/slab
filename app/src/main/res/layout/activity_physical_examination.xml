@@ -156,7 +156,6 @@
                         android:layout_weight="1"
                         android:text="@string/sfu1701a" />
 
-
                     <RadioButton
                         android:id="@+id/sfu1701b"
                         android:layout_width="match_parent"
@@ -198,7 +197,6 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimaryDark" />
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,7 +205,6 @@
                 android:text="@string/sfu1801"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
-
 
             <RadioGroup
                 android:id="@+id/sfu1801"
@@ -221,7 +218,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sfu1801a" />
-
 
                 <RadioButton
                     android:id="@+id/sfu1801b"
@@ -286,7 +282,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sfu1802a" />
-
 
                 <RadioButton
                     android:id="@+id/sfu1802b"
@@ -366,7 +361,6 @@
                     android:layout_weight="1"
                     android:text="@string/sfu1803a" />
 
-
                 <RadioButton
                     android:id="@+id/sfu1803b"
                     android:layout_width="match_parent"
@@ -408,7 +402,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sfu1804a" />
-
 
                 <RadioButton
                     android:id="@+id/sfu1804b"
@@ -460,7 +453,6 @@
                     android:layout_weight="1"
                     android:text="@string/sfu1805a" />
 
-
                 <RadioButton
                     android:id="@+id/sfu1805b"
                     android:layout_width="match_parent"
@@ -474,7 +466,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sfu1805c" />
-
 
             </RadioGroup>
 
@@ -550,7 +541,6 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/sfu1807a" />
-
 
                 <RadioButton
                     android:id="@+id/sfu1807b"

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.text.format.DateFormat;
@@ -38,7 +39,21 @@ public class AnthropometryActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_anthropometry);
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        db = new DatabaseHelper(this);
+
+//        Get data from Main Activity
+        check = getIntent().getExtras().getInt("check");
+//        Assigning data to UI binding
+        AnthropometryActivity.checking ch = new AnthropometryActivity.checking(check);
+        //binding.setCheckFlag(ch);
+        binding.setCallback(this);
+
+//        Setting DATETIME picker and spinners
+
+//        Main Working from here
+//        Skip Patterns
     }
 
 
@@ -225,6 +240,5 @@ public class AnthropometryActivity extends Activity {
             return check;
         }
     }
-
 
 }

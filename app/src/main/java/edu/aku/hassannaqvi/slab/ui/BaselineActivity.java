@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,21 @@ public class BaselineActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_baseline);
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        db = new DatabaseHelper(this);
+
+//        Get data from Main Activity
+        check = getIntent().getExtras().getInt("check");
+//        Assigning data to UI binding
+        BaselineActivity.checking ch = new BaselineActivity.checking(check);
+        //binding.setCheckFlag(ch);
+        binding.setCallback(this);
+
+//        Setting DATETIME picker and spinners
+
+//        Main Working from here
+//        Skip Patterns
     }
 
 
@@ -226,6 +241,19 @@ public class BaselineActivity extends AppCompatActivity {
             Log.e(TAG, "setGPS: " + e.getMessage());
         }
 
+    }
+
+
+    public class checking {
+        int check;
+
+        public checking(int check) {
+            this.check = check;
+        }
+
+        public int getCheck() {
+            return check;
+        }
     }
 
 
