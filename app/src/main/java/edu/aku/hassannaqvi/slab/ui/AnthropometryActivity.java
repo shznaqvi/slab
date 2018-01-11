@@ -40,7 +40,7 @@ public class AnthropometryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_anthropometry);
         db = new DatabaseHelper(this);
 
 //        Get data from Main Activity
