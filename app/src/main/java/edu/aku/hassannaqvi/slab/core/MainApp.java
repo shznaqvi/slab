@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import edu.aku.hassannaqvi.slab.contracts.BLRandomContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.ui.EndingActivity;
 
@@ -109,7 +108,6 @@ public class MainApp extends Application {
     public static String cluster = "";
     public static String hhno = "";
     public static String billno = "";
-    public static BLRandomContract selectedHead;
     public static int BLRandomSize;
     protected static LocationManager locationManager;
 
