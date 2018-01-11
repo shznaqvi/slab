@@ -38,7 +38,7 @@ public class PhysicalExaminationActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_physical_examination);
         db = new DatabaseHelper(this);
 
         binding.setCallback(this);

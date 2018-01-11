@@ -290,16 +290,11 @@ public class BaselineActivity extends AppCompatActivity {
             finish();
 
 
-            } else {
+        } else {
             Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
         }
         // }
     }
-
-
-
-
-
 
 
     public class checking {
