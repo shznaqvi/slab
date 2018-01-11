@@ -45,6 +45,8 @@ public class PhysicalExaminationActivity extends Activity {
 
 //        Get data from Main Activity
         check = getIntent().getExtras().getInt("check");
+
+
 //        Assigning data to UI binding
         PhysicalExaminationActivity.checking ch = new PhysicalExaminationActivity.checking(check);
         //binding.setCheckFlag(ch);
