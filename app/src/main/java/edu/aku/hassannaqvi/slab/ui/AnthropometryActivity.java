@@ -1,14 +1,11 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -43,17 +40,8 @@ public class AnthropometryActivity extends Activity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
         db = new DatabaseHelper(this);
 
-//        Get data from Main Activity
-        check = getIntent().getExtras().getInt("check");
-//        Assigning data to UI binding
-        AnthropometryActivity.checking ch = new AnthropometryActivity.checking(check);
-        //binding.setCheckFlag(ch);
         binding.setCallback(this);
 
-//        Setting DATETIME picker and spinners
-
-//        Main Working from here
-//        Skip Patterns
     }
 
 
@@ -130,12 +118,7 @@ public class AnthropometryActivity extends Activity {
         }
 
 
-        if (binding.sfu1088.isChecked() && !validatorClass.EmptyTextBox(this, binding.sfu1088x, getString(R.string.others))) {
-            return false;
-        }
-
-
-        return true;
+        return !(binding.sfu1088.isChecked() && !validatorClass.EmptyTextBox(this, binding.sfu1088x, getString(R.string.others)));
     }
 
 
@@ -151,7 +134,7 @@ public class AnthropometryActivity extends Activity {
         MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-        setGPS(); //Set GPS
+
 
         JSONObject sa = new JSONObject();
 
@@ -200,45 +183,5 @@ public class AnthropometryActivity extends Activity {
     }
 
 
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            MainApp.fc.setGpsLat(lat);
-            MainApp.fc.setGpsLng(lang);
-            MainApp.fc.setGpsAcc(acc);
-            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
-
-            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
-
-
-    public class checking {
-        int check;
-
-        public checking(int check) {
-            this.check = check;
-        }
-
-        public int getCheck() {
-            return check;
-        }
-    }
 
 }

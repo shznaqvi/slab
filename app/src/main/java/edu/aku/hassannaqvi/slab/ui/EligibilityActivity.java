@@ -48,7 +48,6 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
 
 
     ActivityEligibilityBinding binding;
-    int check = 0;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
     DatabaseHelper db;
@@ -62,15 +61,9 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
         db = new DatabaseHelper(this);
         ButterKnife.bind(this);
 
-//        Get data from Main Activity
-        check = getIntent().getExtras().getInt("check");
         binding.setCallback(this);
         setUpViews();
 
-//        Setting DATETIME picker and spinners
-
-//        Main Working from here
-//        Skip Patterns
 
     }
 
@@ -426,17 +419,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
     }
 
 
-    public class checking {
-        int check;
 
-        public checking(int check) {
-            this.check = check;
-        }
-
-        public int getCheck() {
-            return check;
-        }
-    }
 
 
 }

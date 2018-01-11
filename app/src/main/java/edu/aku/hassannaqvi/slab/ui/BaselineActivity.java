@@ -37,21 +37,10 @@ public class BaselineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_eligibility);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_baseline);
         db = new DatabaseHelper(this);
 
-//        Get data from Main Activity
-        check = getIntent().getExtras().getInt("check");
-//        Assigning data to UI binding
-        BaselineActivity.checking ch = new BaselineActivity.checking(check);
-        //binding.setCheckFlag(ch);
         binding.setCallback(this);
-
-//        Setting DATETIME picker and spinners
-
-//        Main Working from here
-//        Skip Patterns
-        setContentView(R.layout.activity_baseline);
         setUpViews();
 
     }
