@@ -301,8 +301,8 @@ public class MainActivity extends Activity {
     }
 
     public void openB(View v) {
-        /*Intent iB = new Intent(this, SecRBActivity.class);
-        startActivity(iB);*/
+        Intent iB = new Intent(this, FollowupActivity.class);
+        startActivity(iB);
     }
 
 

@@ -201,7 +201,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (UpdateDB()) {
+            //if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
                 if (isEligibile() && (Double.valueOf(binding.sel01.getText().toString()) > 1.0
@@ -218,7 +218,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        //}
     }
 
     public void BtnEnd() {

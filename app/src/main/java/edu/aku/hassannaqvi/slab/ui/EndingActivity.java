@@ -61,6 +61,7 @@ public class EndingActivity extends Activity {
                 MainApp.imsCount = 1;
                 MainApp.totalImsCount = 0;
                 MainApp.lstChild.clear();
+                MainApp.fupLocation = 0;
 
                 MainApp.counter = 0;
 

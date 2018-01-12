@@ -58,38 +58,20 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+
         <activity
-            android:name=".ui.Recruitment.SecRBActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".ui.PregnancyFollowUp.SectionPFBActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".ui.Outcome.SectionOBActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".ui.Outcome.SectionOCActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".ui.DeliveryFollowUp.SectionDFBActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name=".ui.Recruitment.SecRCActivity"
+            android:name=".ui.BaselineActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".ui.DeliveryFollowUp.SectionDFDActivity" />
-        <activity android:name=".ui.DeliveryFollowUp.SectionDFCActivity" />
-        <activity android:name=".ui.BaselineActivity" />
         <activity android:name=".ui.FollowupActivity" />
         <activity android:name=".ui.AnthropometryActivity" />
         <activity android:name=".ui.PhysicalExaminationActivity" />
-        <activity android:name=".ui.LabInvestigationsActivity"></activity>
+        <activity
+            android:name=".ui.LabInvestigationsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 
 </manifest>

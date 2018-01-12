@@ -160,7 +160,7 @@ public class BaselineActivity extends AppCompatActivity {
             }
 
 
-            if (binding.sbl09a.isChecked()) {
+            if (binding.sbl09b.isChecked()) {
 
                 if (!validatorClass.EmptyRadioButton(this, binding.sbl10, binding.sbl10c, getString(R.string.sbl10))) {
                     return false;
@@ -286,9 +286,8 @@ public class BaselineActivity extends AppCompatActivity {
             }
             //if (UpdateDB()) {
             Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
-
             finish();
-
+            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
 
         } else {
             Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();

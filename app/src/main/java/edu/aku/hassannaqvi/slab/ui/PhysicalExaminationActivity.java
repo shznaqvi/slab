@@ -176,16 +176,18 @@ public class PhysicalExaminationActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            if (UpdateDB()) {
+            //if (UpdateDB()) {
                 Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
                 finish();
+
+            startActivity(new Intent(this, LabInvestigationsActivity.class));
 
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        //}
     }
 
     public void BtnEnd() {

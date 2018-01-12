@@ -86,6 +86,7 @@ public class MainApp extends Application {
     public static int versionCode;
     public static String versionName;
     public static int prevPreg = 0;
+    public static int fupLocation = 0;
 
     public static ArrayList<String> lstChild = new ArrayList<>();
 
