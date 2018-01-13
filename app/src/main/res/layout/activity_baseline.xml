@@ -58,7 +58,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="1dp"
-                android:focusable="true"
+                android:focusable="false"
                 android:hint="@string/sbl01"
                 android:textColor="@android:color/black"
                 app:dateFormat="dd-MM-yyyy" />
@@ -430,7 +430,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
-                        android:focusable="false"
+                        android:focusable="true"
                         android:hint="@string/sbl12"
                         android:textColor="@android:color/black"
                         app:dateFormat="dd-MM-yyyy" />

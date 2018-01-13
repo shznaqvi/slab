@@ -228,30 +228,14 @@ public class MainActivity extends Activity {
         });
 
         ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        mainBinding.setCallback(this);
+        //mainBinding.setCallback(this);
 
     }
 
-    public void openForm(int check) {
+    public void OpenForm(View v) {
 
 //        if (spAreas.getSelectedItemPosition() != 0) {
         final Intent oF = new Intent(MainActivity.this, EligibilityActivity.class);
-        switch (check) {
-            case 1:
-                oF.putExtra("check", 1);
-                break;
-            case 2:
-                oF.putExtra("check", 2);
-                break;
-            case 3:
-                oF.putExtra("check", 3);
-                break;
-            case 4:
-                oF.putExtra("check", 4);
-                break;
-            default:
-                break;
-        }
         if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null && !MainApp.userName.equals("0000")) {
             startActivity(oF);
         } else {
@@ -295,10 +279,53 @@ public class MainActivity extends Activity {
     }
 
 
-    public void openA(View v) {
-        Intent iA = new Intent(this, EligibilityActivity.class);
-        startActivity(iA);
+    public void OpenA(View v) {
+
+//        if (spAreas.getSelectedItemPosition() != 0) {
+        final Intent oF = new Intent(MainActivity.this, FollowupActivity.class);
+        if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null && !MainApp.userName.equals("0000")) {
+            startActivity(oF);
+        } else {
+
+            builder = new AlertDialog.Builder(MainActivity.this);
+            ImageView img = new ImageView(getApplicationContext());
+            img.setImageResource(R.drawable.tagimg);
+            img.setPadding(0, 15, 0, 15);
+            builder.setCustomTitle(img);
+
+            final EditText input = new EditText(MainActivity.this);
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+            builder.setView(input);
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    m_Text = input.getText().toString();
+                    if (!m_Text.equals("")) {
+                        editor.putString("tagName", m_Text);
+                        editor.commit();
+
+                        if (!MainApp.userName.equals("0000")) {
+                            startActivity(oF);
+                        }
+                    }
+                }
+            });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            builder.show();
+        }
+//        } else {
+//            Toast.makeText(getApplicationContext(), "Please select data from combobox!!", Toast.LENGTH_LONG).show();
+//        }
     }
+
+
 
     public void openB(View v) {
         Intent iB = new Intent(this, FollowupActivity.class);

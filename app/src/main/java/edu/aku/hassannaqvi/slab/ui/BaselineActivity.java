@@ -1,10 +1,8 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioGroup;
@@ -17,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityBaselineBinding;
@@ -199,16 +196,6 @@ public class BaselineActivity extends AppCompatActivity {
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for  This Section", Toast.LENGTH_SHORT).show();
 
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-        MainApp.fc = new FormsContract();
-
-        MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.fc.setFormDate(new SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()));
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-
 
         JSONObject sa = new JSONObject();
 
@@ -262,7 +249,7 @@ public class BaselineActivity extends AppCompatActivity {
                 : "0");
 
 
-        MainApp.fc.setsA(String.valueOf(sa));
+        MainApp.fc.setsBl(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
@@ -284,17 +271,33 @@ public class BaselineActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //if (UpdateDB()) {
-            Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
-            finish();
-            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+            if (UpdateDB()) {
+                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+                finish();
 
-        } else {
-            Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+            }
         }
-        // }
     }
 
+    private boolean UpdateDB() {
+        DatabaseHelper db = new DatabaseHelper(this);
+
+
+        int updcount = db.updateSBL();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+    }
 
     public class checking {
         int check;

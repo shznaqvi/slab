@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class FormsContract {
 
-    private final String projectName = "DMU-SRCPREG";
+    private final String projectName = "SLAB";
     //private final String surveyType = "SN";
     private String _ID = "";
     private String _UID = "";
@@ -21,12 +21,13 @@ public class FormsContract {
     private String formtype = "";
 
     private String istatus = ""; // Interview Status
-    private String istatus88x = ""; // Interview Status
 
-    private String sA = "";     // Info Section
-    private String sB = ""; // sB
-    private String sC = ""; //
-    private String sD = "";
+    private String sEl = "";     // Info Section
+    private String sBl = ""; // sB
+    private String sFup = ""; //
+    private String sAnthro = "";
+    private String sExam = "";
+    private String sLab = "";
 
 
     private String gpsLat = "";
@@ -49,12 +50,14 @@ public class FormsContract {
         this.formDate = jsonObject.getString(FormsTable.COLUMN_FORMDATE);
         this.user = jsonObject.getString(FormsTable.COLUMN_USER);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
-        this.istatus88x = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.formtype = jsonObject.getString(FormsTable.COLUMN_FORMTYPE);
-        this.sA = jsonObject.getString(FormsTable.COLUMN_SA);
-        this.sB = jsonObject.getString(FormsTable.COLUMN_SB);
-        this.sC = jsonObject.getString(FormsTable.COLUMN_SC);
-        this.sD = jsonObject.getString(FormsTable.COLUMN_SD);
+        this.sEl = jsonObject.getString(FormsTable.COLUMN_SEL);
+        this.sBl = jsonObject.getString(FormsTable.COLUMN_SBL);
+        this.sFup = jsonObject.getString(FormsTable.COLUMN_SFUP);
+        this.sAnthro = jsonObject.getString(FormsTable.COLUMN_SANTHRO);
+        this.sExam = jsonObject.getString(FormsTable.COLUMN_SEXAM);
+        this.sLab = jsonObject.getString(FormsTable.COLUMN_SLAB);
+
         this.gpsLat = jsonObject.getString(FormsTable.COLUMN_GPSLAT);
         this.gpsLng = jsonObject.getString(FormsTable.COLUMN_GPSLNG);
         this.gpsDT = jsonObject.getString(FormsTable.COLUMN_GPSDATE);
@@ -75,12 +78,14 @@ public class FormsContract {
         this.formDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMDATE));
         this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
-        this.istatus88x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.formtype = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMTYPE));
-        this.sA = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SA));
-        this.sB = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SB));
-        this.sC = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SC));
-        this.sD = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SD));
+        this.sEl = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEL));
+        this.sBl = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SBL));
+        this.sFup = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SFUP));
+        this.sAnthro = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SANTHRO));
+        this.sExam = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEXAM));
+        this.sLab = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SLAB));
+
         this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
         this.gpsDT = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSDATE));
@@ -102,31 +107,47 @@ public class FormsContract {
 
         JSONObject json = new JSONObject();
 
+        json.put(FormsTable.COLUMN_PROJECT_NAME, this.projectName);
         json.put(FormsTable._ID, this._ID == null ? JSONObject.NULL : this._ID);
         json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
         json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
-        json.put(FormsTable.COLUMN_ISTATUS88x, this.istatus88x == null ? JSONObject.NULL : this.istatus88x);
         json.put(FormsTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
 
-        if (!this.sA.equals("")) {
+        if (!this.sEl.equals("")) {
 
-            json.put(FormsTable.COLUMN_SA, this.sA.equals("") ? JSONObject.NULL : new JSONObject(this.sA));
+            json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : this.sEl);
+
         }
-        if (!this.sB.equals("")) {
+        if (!this.sBl.equals("")) {
 
-            json.put(FormsTable.COLUMN_SC, this.sC.equals("") ? JSONObject.NULL : new JSONObject(this.sC));
+            json.put(FormsTable.COLUMN_SBL, this.sBl == null ? JSONObject.NULL : this.sBl);
+
         }
-        if (!this.sC.equals("")) {
+        if (!this.sFup.equals("")) {
 
-            json.put(FormsTable.COLUMN_SC, this.sC.equals("") ? JSONObject.NULL : new JSONObject(this.sC));
+            json.put(FormsTable.COLUMN_SFUP, this.sFup == null ? JSONObject.NULL : this.sFup);
+
             // }
         }
-        if (!this.sD.equals("")) {
+        if (!this.sExam.equals("")) {
 
-            json.put(FormsTable.COLUMN_SD, this.sD.equals("") ? JSONObject.NULL : new JSONObject(this.sD));
+            json.put(FormsTable.COLUMN_SEXAM, this.sExam == null ? JSONObject.NULL : this.sExam);
+
         }
+
+        if (!this.sAnthro.equals("")) {
+
+            json.put(FormsTable.COLUMN_SANTHRO, this.sAnthro == null ? JSONObject.NULL : this.sAnthro);
+
+        }
+
+        if (!this.sLab.equals("")) {
+            json.put(FormsTable.COLUMN_SLAB, this.sLab == null ? JSONObject.NULL : this.sLab);
+
+        }
+
         json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
         json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
         json.put(FormsTable.COLUMN_GPSDATE, this.gpsDT == null ? JSONObject.NULL : this.gpsDT);
@@ -185,24 +206,53 @@ public class FormsContract {
         this.istatus = istatus;
     }
 
-
-    public String getIstatus88x() {
-        return istatus88x;
+    public String getsEl() {
+        return sEl;
     }
 
-    public void setIstatus88x(String istatus88x) {
-        this.istatus88x = istatus88x;
+    public void setsEl(String sEl) {
+        this.sEl = sEl;
     }
 
-
-    public String getsA() {
-        return sA;
+    public String getsBl() {
+        return sBl;
     }
 
-    public void setsA(String sA) {
-        this.sA = sA;
+    public void setsBl(String sBl) {
+        this.sBl = sBl;
     }
 
+    public String getsFup() {
+        return sFup;
+    }
+
+    public void setsFup(String sFup) {
+        this.sFup = sFup;
+    }
+
+    public String getsAnthro() {
+        return sAnthro;
+    }
+
+    public void setsAnthro(String sAnthro) {
+        this.sAnthro = sAnthro;
+    }
+
+    public String getsExam() {
+        return sExam;
+    }
+
+    public void setsExam(String sExam) {
+        this.sExam = sExam;
+    }
+
+    public String getsLab() {
+        return sLab;
+    }
+
+    public void setsLab(String sLab) {
+        this.sLab = sLab;
+    }
 
     public String getFormtype() {
         return formtype;
@@ -210,31 +260,6 @@ public class FormsContract {
 
     public void setFormtype(String formtype) {
         this.formtype = formtype;
-    }
-
-    public String getsD() {
-        return sD;
-    }
-
-    public void setsD(String sD) {
-        this.sD = sD;
-    }
-
-    public String getsB() {
-        return sB;
-    }
-
-    public void setsB(String sB) {
-        this.sB = sB;
-    }
-
-    public String getsC() {
-
-        return sC;
-    }
-
-    public void setsC(String sC) {
-        this.sC = sC;
     }
 
     public String getGpsLat() {
@@ -319,12 +344,14 @@ public class FormsContract {
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_ISTATUS = "istatus";
-        public static final String COLUMN_ISTATUS88x = "istatus88x";
         public static final String COLUMN_FORMTYPE = "formtype";
-        public static final String COLUMN_SA = "sa";
-        public static final String COLUMN_SB = "sb";
-        public static final String COLUMN_SC = "sc";
-        public static final String COLUMN_SD = "sd";
+
+        public static final String COLUMN_SEL = "sel";
+        public static final String COLUMN_SBL = "sbl";
+        public static final String COLUMN_SFUP = "sfup";
+        public static final String COLUMN_SANTHRO = "santhro";
+        public static final String COLUMN_SEXAM = "sexam";
+        public static final String COLUMN_SLAB = "slab";
 
         public static final String COLUMN_GPSLAT = "gpslat";
         public static final String COLUMN_GPSLNG = "gpslng";

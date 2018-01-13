@@ -1,11 +1,11 @@
 package edu.aku.hassannaqvi.slab.ui;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -22,7 +22,7 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowupBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
-public class FollowupActivity extends AppCompatActivity {
+public class FollowupActivity extends Activity {
 
     ActivityFollowupBinding bl;
     DatabaseHelper db;
@@ -310,7 +310,7 @@ public class FollowupActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //if (UpdateDB()) {
+            if (UpdateDB()) {
             Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
             finish();
             if (MainApp.fupLocation == 2) {
@@ -322,7 +322,7 @@ public class FollowupActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
         }
-        //}
+        }
     }
 
     public void BtnEnd() {
@@ -457,7 +457,7 @@ public class FollowupActivity extends AppCompatActivity {
         sa.put("sfu1323", bl.sfu1323.getText().toString());
 
         MainApp.fupLocation = bl.sfu01.indexOfChild(findViewById(bl.sfu01.getCheckedRadioButtonId())) + 1;
-        MainApp.fc.setsA(String.valueOf(sa));
+        MainApp.fc.setsFup(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }

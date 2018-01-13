@@ -2,10 +2,8 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -15,7 +13,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationsBinding;
@@ -120,7 +117,7 @@ public class LabInvestigationsActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //if (UpdateDB()) {
+            if (UpdateDB()) {
                 Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
                 finish();
 
@@ -129,7 +126,7 @@ public class LabInvestigationsActivity extends Activity {
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            //}
+            }
         }
 
 
@@ -159,17 +156,6 @@ public class LabInvestigationsActivity extends Activity {
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for  This Section", Toast.LENGTH_SHORT).show();
-
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-        MainApp.fc = new FormsContract();
-
-        MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.fc.setFormDate(dtToday);
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-
 
         JSONObject sa = new JSONObject();
 
@@ -230,28 +216,25 @@ public class LabInvestigationsActivity extends Activity {
         sa.put("sfu2301", binding.sfu2301.getText().toString());
 
 
-        MainApp.fc.setsA(String.valueOf(sa));
+        MainApp.fc.setsLab(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
     private boolean UpdateDB() {
+        DatabaseHelper db = new DatabaseHelper(this);
 
-        Long updcount = db.addForm(MainApp.fc);
-        MainApp.fc.set_ID(String.valueOf(updcount));
 
-        if (updcount != 0) {
+        int updcount = db.updateSLab();
+
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            MainApp.fc.setUID(
-                    (MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
-            db.updateFormID();
-
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
+
     }
 
 

@@ -225,8 +225,10 @@
     <string name="istatus01">Complete</string>
     <string name="istatus02">In - Complete</string>
 
-
-
+    <string name="reason">If not completed reason: </string>
+    <string name="reasona">Not at home</string>
+    <string name="reasonb">refusal on that day</string>
+    <string name="reasonc">withdrawal from study</string>
 
 
 </resources>

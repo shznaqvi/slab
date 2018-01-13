@@ -201,7 +201,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //if (UpdateDB()) {
+            if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
                 if (isEligibile() && (Double.valueOf(binding.sel01.getText().toString()) > 1.0
@@ -218,7 +218,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        //}
+        }
     }
 
     public void BtnEnd() {
@@ -293,7 +293,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
         sa.put("sel18c", binding.sel18c.getText().toString());
 
 
-        MainApp.fc.setsA(String.valueOf(sa));
+        MainApp.fc.setsEl(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
@@ -301,6 +301,7 @@ public class EligibilityActivity extends AppCompatActivity implements RadioGroup
     private boolean UpdateDB() {
 
         Long updcount = db.addForm(MainApp.fc);
+
         MainApp.fc.set_ID(String.valueOf(updcount));
 
         if (updcount != 0) {

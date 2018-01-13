@@ -91,22 +91,22 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/openFormD"
+                android:id="@+id/OpenForm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
-                android:onClick="@{(v) -> callback.openForm(4)}"
+                android:onClick="OpenForm"
                 android:text="ELIGIBILITY FORM" />
 
 
             <Button
-                android:id="@+id/openFormC"
+                android:id="@+id/OpenA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
-                android:onClick="@{(v) -> callback.openForm(3)}"
+                android:onClick="OpenA"
                 android:text="FOLLOW-UP FORM"
                 android:visibility="visible" />
 
@@ -117,7 +117,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
-                android:onClick="@{(v) -> callback.openForm(2)}"
                 android:text="PREGNANCY OUTCOME"
                 android:visibility="gone" />
 
@@ -127,7 +126,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
-                android:onClick="@{(v) -> callback.openForm(1)}"
                 android:text="FOLLOWUP CHILD"
                 android:visibility="gone" />
 
