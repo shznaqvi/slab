@@ -35,6 +35,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="Anthropometric Measurements"
+                android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
             <View
@@ -170,7 +171,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu1088.checked ? sfu1088.getText.toString : ""}'
+                android:text='@{sfu1088.checked ? sfu1088x.getText.toString : ""}'
                 android:visibility="@{sfu1088.checked ? View.VISIBLE : View.GONE}" />
 
 

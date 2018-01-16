@@ -36,6 +36,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="@string/sfuheading4"
+                android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
             <View
@@ -258,7 +259,7 @@
                     android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="@string/others"
                     android:inputType="textCapWords"
-                    android:text='@{sfu2088.checked ? sfu2088.getText.toString : ""}'
+                    android:text='@{sfu2088.checked ? sfu2088x.getText.toString : ""}'
                     android:visibility="@{sfu2088.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -326,7 +327,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu2288.checked ? sfu2288.getText.toString : ""}'
+                android:text='@{sfu2288.checked ? sfu2288x.getText.toString : ""}'
                 android:visibility="@{sfu2288.checked ? View.VISIBLE : View.GONE}" />
 
 

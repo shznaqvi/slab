@@ -36,6 +36,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="@string/sblheading"
+                android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
             <View
@@ -239,7 +240,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sbl0788.checked ? sbl0788.getText.toString : ""}'
+                android:text='@{sbl0788.checked ? sbl0788x.getText.toString : ""}'
                 android:visibility="@{sbl0788.checked ? View.VISIBLE : View.GONE}" />
 
             <TextView
@@ -371,7 +372,7 @@
                         android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:hint="@string/others"
                         android:inputType="textCapWords"
-                        android:text='@{sbl1088.checked ? sbl1088.getText.toString : ""}'
+                        android:text='@{sbl1088.checked ? sbl1088x.getText.toString : ""}'
                         android:visibility="@{sbl1088.checked ? View.VISIBLE : View.GONE}" />
 
 

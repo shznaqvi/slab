@@ -35,6 +35,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="@string/sfuheading3"
+                android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
             <View
@@ -195,7 +196,8 @@
                 android:background="@color/pink_100"
                 android:text="@string/sfu18"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -256,7 +258,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu180188.checked ? sfu180188.getText.toString : ""}'
+                android:text='@{sfu180188.checked ? sfu180188x.getText.toString : ""}'
                 android:visibility="@{sfu180188.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -334,7 +336,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu180288.checked ? sfu180288.getText.toString : ""}'
+                android:text='@{sfu180288.checked ? sfu180288x.getText.toString : ""}'
                 android:visibility="@{sfu180288.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -377,7 +379,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu1803b.checked ? sfu1803b.getText.toString : ""}'
+                android:text='@{sfu1803b.checked ? sfu1803bx.getText.toString : ""}'
                 android:visibility="@{sfu1803b.checked ? View.VISIBLE : View.GONE}" />
 
             <TextView
@@ -426,7 +428,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu180488.checked ? sfu180488.getText.toString : ""}'
+                android:text='@{sfu180488.checked ? sfu180488x.getText.toString : ""}'
                 android:visibility="@{sfu180488.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -516,7 +518,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu180688.checked ? sfu180688.getText.toString : ""}'
+                android:text='@{sfu180688.checked ? sfu180688x.getText.toString : ""}'
                 android:visibility="@{sfu180688.checked ? View.VISIBLE : View.GONE}" />
 
             <TextView
@@ -565,7 +567,7 @@
                 android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                 android:hint="@string/others"
                 android:inputType="textCapWords"
-                android:text='@{sfu180788.checked ? sfu180788.getText.toString : ""}'
+                android:text='@{sfu180788.checked ? sfu180788x.getText.toString : ""}'
                 android:visibility="@{sfu180788.checked ? View.VISIBLE : View.GONE}" />
 
 

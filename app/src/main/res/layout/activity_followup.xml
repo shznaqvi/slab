@@ -35,6 +35,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="@string/sfuheading"
+                android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
             <View
@@ -105,7 +106,8 @@
                 android:background="@color/pink_100"
                 android:text="@string/sfuheading2"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimaryDark" />
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
 
 
             <TextView
@@ -242,7 +244,7 @@
                         android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:hint="@string/others"
                         android:inputType="textCapWords"
-                        android:text='@{sfu120188.checked ? sfu120188.getText.toString : ""}'
+                        android:text='@{sfu120188.checked ? sfu120188x.getText.toString : ""}'
                         android:visibility="@{sfu120188.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -309,7 +311,7 @@
                     android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="@string/others"
                     android:inputType="textCapWords"
-                    android:text='@{sfu120288.checked ? sfu120288.getText.toString : ""}'
+                    android:text='@{sfu120288.checked ? sfu120288x.getText.toString : ""}'
                     android:visibility="@{sfu120288.checked ? View.VISIBLE : View.GONE}" />
 
             </LinearLayout>
@@ -372,7 +374,7 @@
                     android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="@string/others"
                     android:inputType="textCapWords"
-                    android:text='@{sfu120388.checked ? sfu120388.getText.toString : ""}'
+                    android:text='@{sfu120388.checked ? sfu120388x.getText.toString : ""}'
                     android:visibility="@{sfu120388.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -455,7 +457,7 @@
                     android:hint="@string/sfu1302"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1301a.checked ? sfu1301a.getText.toString : ""}'
+                    android:text='@{sfu1301a.checked ? sfu1302.getText.toString : ""}'
                     android:visibility="@{sfu1301a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -500,7 +502,7 @@
                     android:hint="@string/sfu1304"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1303a.checked ? sfu1303a.getText.toString : ""}'
+                    android:text='@{sfu1303a.checked ? sfu1304.getText.toString : ""}'
                     android:visibility="@{sfu1303a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -545,7 +547,7 @@
                     android:hint="@string/sfu1306"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1305a.checked ? sfu1305a.getText.toString : ""}'
+                    android:text='@{sfu1305a.checked ? sfu1306.getText.toString : ""}'
                     android:visibility="@{sfu1305a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -590,7 +592,7 @@
                     android:hint="@string/sfu1308"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1307a.checked ? sfu1307a.getText.toString : ""}'
+                    android:text='@{sfu1307a.checked ? sfu1308.getText.toString : ""}'
                     android:visibility="@{sfu1307a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -635,7 +637,7 @@
                     android:hint="@string/sfu1310"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1309a.checked ? sfu1309a.getText.toString : ""}'
+                    android:text='@{sfu1309a.checked ? sfu1310.getText.toString : ""}'
                     android:visibility="@{sfu1309a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -680,7 +682,7 @@
                     android:hint="@string/sfu1312"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1311a.checked ? sfu1311a.getText.toString : ""}'
+                    android:text='@{sfu1311a.checked ? sfu1312.getText.toString : ""}'
                     android:visibility="@{sfu1311a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -723,7 +725,7 @@
                     android:hint="@string/sfu1314"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1313a.checked ? sfu1313a.getText.toString : ""}'
+                    android:text='@{sfu1313a.checked ? sfu1314.getText.toString : ""}'
                     android:visibility="@{sfu1313a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -766,7 +768,7 @@
                     android:hint="@string/sfu1316"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1315a.checked ? sfu1315a.getText.toString : ""}'
+                    android:text='@{sfu1315a.checked ? sfu1316.getText.toString : ""}'
                     android:visibility="@{sfu1315a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -809,7 +811,7 @@
                     android:hint="@string/sfu1318"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1317a.checked ? sfu1317a.getText.toString : ""}'
+                    android:text='@{sfu1317a.checked ? sfu1318.getText.toString : ""}'
                     android:visibility="@{sfu1317a.checked ? View.VISIBLE : View.GONE}" />
 
                 <TextView
@@ -851,7 +853,7 @@
                     android:hint="@string/sfu1320"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1319a.checked ? sfu1319a.getText.toString : ""}'
+                    android:text='@{sfu1319a.checked ? sfu1320.getText.toString : ""}'
                     android:visibility="@{sfu1319a.checked ? View.VISIBLE : View.GONE}" />
 
 
@@ -894,7 +896,7 @@
                     android:hint="@string/sfu1322"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:text='@{sfu1321a.checked ? sfu1321a.getText.toString : ""}'
+                    android:text='@{sfu1321a.checked ? sfu1322.getText.toString : ""}'
                     android:visibility="@{sfu1321a.checked ? View.VISIBLE : View.GONE}" />
 
 

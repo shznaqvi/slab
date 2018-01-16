@@ -1,9 +1,9 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -18,13 +18,13 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationsBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
-public class LabInvestigationsActivity extends Activity {
+public class LabInvestigationsActivity extends AppCompatActivity {
 
     private static final String TAG = LabInvestigationsActivity.class.getName();
 
     ActivityLabInvestigationsBinding binding;
     int check = 0;
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+    String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
 
     DatabaseHelper db;
 
@@ -35,6 +35,8 @@ public class LabInvestigationsActivity extends Activity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_lab_investigations);
         db = new DatabaseHelper(this);
+        binding.sfu1904.setManager(getSupportFragmentManager());
+        binding.sfu1904.setMaxDate(dateToday);
 
         binding.setCallback(this);
     }

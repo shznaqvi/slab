@@ -35,6 +35,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="@string/selheading"
+                android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
             <View
@@ -434,8 +435,7 @@
                     android:background="@color/colorPrimary"
                     android:text="@string/sel17"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white"
-                    android:textStyle="bold" />
+                    android:textColor="@android:color/white" />
 
 
                 <EditText
@@ -454,7 +454,8 @@
                     android:background="@color/pink_100"
                     android:text="@string/sel18"
                     android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/colorPrimaryDark" />
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textStyle="bold" />
 
 
                 <TextView
