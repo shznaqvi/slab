@@ -48,6 +48,7 @@ public class BaselineActivity extends AppCompatActivity {
         binding.sbl12.setManager(getSupportFragmentManager());
         binding.sbl01.setMaxDate(dateToday);
         binding.sbl12.setMaxDate(dateToday);
+
         binding.sbl08.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -116,21 +117,21 @@ public class BaselineActivity extends AppCompatActivity {
         }
 
 
-        if (!validatorClass.EmptyTextBox(this, binding.sbl03, getString(R.string.sbl03))) {
+       /* if (!validatorClass.EmptyTextBox(this, binding.sbl03, getString(R.string.sbl03))) {
+            return false;
+        }*/
+
+
+        if (!validatorClass.EmptyTextBox(this, binding.sbl04, getString(R.string.sel04))) {
             return false;
         }
 
 
-        if (!validatorClass.EmptyTextBox(this, binding.sbl04, getString(R.string.sbl04))) {
+        if (!validatorClass.EmptyTextBox(this, binding.sbl05, getString(R.string.sel05))) {
             return false;
         }
 
-
-        if (!validatorClass.EmptyTextBox(this, binding.sbl05, getString(R.string.sbl05))) {
-            return false;
-        }
-
-
+/*
         if (!validatorClass.EmptyRadioButton(this, binding.sbl06, binding.sbl06c, getString(R.string.sbl06))) {
             return false;
         }
@@ -143,7 +144,7 @@ public class BaselineActivity extends AppCompatActivity {
 
         if (!validatorClass.EmptyRadioButton(this, binding.sbl07, binding.sbl0788, binding.sbl0788x, getString(R.string.sbl07))) {
             return false;
-        }
+        }*/
 
 
         if (!validatorClass.EmptyRadioButton(this, binding.sbl08, binding.sbl08b, getString(R.string.sbl08))) {
@@ -152,7 +153,7 @@ public class BaselineActivity extends AppCompatActivity {
 
 
         if (binding.sbl08a.isChecked()) {
-            if (!validatorClass.EmptyRadioButton(this, binding.sbl09, binding.sbl09b, getString(R.string.sbl09))) {
+            if (!validatorClass.EmptyRadioButton(this, binding.sbl09, binding.sbl09b, getString(R.string.sel09))) {
                 return false;
             }
 
@@ -207,7 +208,7 @@ public class BaselineActivity extends AppCompatActivity {
         sa.put("sbl04", binding.sbl04.getText().toString());
         sa.put("sbl05", binding.sbl05.getText().toString());
 
-        sa.put("sbl06", binding.sbl06a.isChecked() ? "1"
+       /* sa.put("sbl06", binding.sbl06a.isChecked() ? "1"
                 : binding.sbl06b.isChecked() ? "2"
                 : binding.sbl06c.isChecked() ? "3" : "0");
 
@@ -216,7 +217,7 @@ public class BaselineActivity extends AppCompatActivity {
                 : binding.sbl07b.isChecked() ? "2"
                 : binding.sbl0788.isChecked() ? "88" : "0");
 
-
+*/
         sa.put("sbl0788x", binding.sbl0788x.getText().toString());
 
 

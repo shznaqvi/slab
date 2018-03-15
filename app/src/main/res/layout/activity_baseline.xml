@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sbl03"
+                android:text="@string/sel03"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
@@ -124,7 +124,7 @@
                 android:inputType="numberDecimal"
                 android:maxLength="3" />
 
-            <TextView
+          <!--  <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -132,7 +132,7 @@
                 android:text="@string/sbl04"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
-
+-->
             <EditText
                 android:id="@+id/sbl04"
                 android:layout_width="match_parent"
@@ -141,14 +141,14 @@
                 android:inputType="numberDecimal"
                 android:maxLength="3" />
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
                 android:text="@string/sbl05"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white" />-->
 
             <EditText
                 android:id="@+id/sbl05"
@@ -163,11 +163,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sbl06"
+                android:text="@string/sel06"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
-            <RadioGroup
+           <RadioGroup
                 android:id="@+id/sbl06"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -177,31 +177,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/sbl06a" />
+                    android:text="@string/sel04a" />
 
                 <RadioButton
                     android:id="@+id/sbl06b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/sbl06b" />
+                    android:text="@string/sel04b" />
 
                 <RadioButton
                     android:id="@+id/sbl06c"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/sbl06c" />
+                    android:text="@string/sel04c" />
 
             </RadioGroup>
-
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sbl07"
+                android:text="@string/sel07"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
@@ -215,21 +214,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/sbl07a" />
+                    android:text="@string/sel04a" />
 
                 <RadioButton
                     android:id="@+id/sbl07b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/sbl07b" />
+                    android:text="@string/sel04b" />
 
                 <RadioButton
                     android:id="@+id/sbl0788"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/sbl07c" />
+                    android:text="@string/sel04c" />
 
             </RadioGroup>
 
@@ -281,12 +280,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
+           <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
-                    android:text="@string/sbl09"
+                    android:text="@string/sel09"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 

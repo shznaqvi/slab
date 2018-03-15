@@ -150,8 +150,6 @@ public class AnthropometryActivity extends Activity {
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
-
-
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 

@@ -235,7 +235,7 @@ public class MainActivity extends Activity {
     public void OpenForm(View v) {
 
 //        if (spAreas.getSelectedItemPosition() != 0) {
-        final Intent oF = new Intent(MainActivity.this, EligibilityActivity.class);
+        final Intent oF = new Intent(MainActivity.this, EligibilityFormActivity.class);
         if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null && !MainApp.userName.equals("0000")) {
             startActivity(oF);
         } else {
@@ -282,7 +282,7 @@ public class MainActivity extends Activity {
     public void OpenA(View v) {
 
 //        if (spAreas.getSelectedItemPosition() != 0) {
-        final Intent oF = new Intent(MainActivity.this, FollowupActivity.class);
+        final Intent oF = new Intent(MainActivity.this, FollowUpFormActivity.class);
         if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null && !MainApp.userName.equals("0000")) {
             startActivity(oF);
         } else {
@@ -328,7 +328,7 @@ public class MainActivity extends Activity {
 
 
     public void openB(View v) {
-        Intent iB = new Intent(this, FollowupActivity.class);
+        Intent iB = new Intent(this, FollowUpFormActivity.class);
         startActivity(iB);
     }
 
@@ -468,10 +468,13 @@ public class MainActivity extends Activity {
     }
 
     public void CheckCluster(View v) {
-        Intent cluster_list = new Intent(getApplicationContext(), FormsList.class);
+        Intent iB = new Intent(this, FeedingPracticeActivity.class);
+        startActivity(iB);
+
+      /*  Intent cluster_list = new Intent(getApplicationContext(), FormsList.class);
         cluster_list.putExtra("dssid", MainApp.regionDss);
         startActivity(cluster_list);
-
+*/
     }
 
     public void syncServer(View view) {
