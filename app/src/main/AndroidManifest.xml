@@ -70,14 +70,19 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".ui.FollowUpFormActivity"
+        <activity
+            android:name=".ui.FollowUpFormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <activity android:name=".ui.FeedingPracticeActivity"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.FeedingPracticeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".ui.OnExaminationActivity" />
+        <activity android:name=".ui.SupplementAdminActivity" />
+        <activity android:name=".ui.LabInvestigationActivity"></activity>
     </application>
 
 </manifest>

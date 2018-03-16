@@ -87,7 +87,6 @@ public class EligibilityFormActivity extends AppCompatActivity {
 
 
     private boolean formValidation() {
-        Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
 
         if (!validatorClass.EmptyTextBox(this, bi.sel01, getString(R.string.mrno))) {
             bi.sel01err.setVisibility(View.VISIBLE);
@@ -299,7 +298,6 @@ public class EligibilityFormActivity extends AppCompatActivity {
     }
 
     private void SaveDraft() throws JSONException {
-        Toast.makeText(this, "Saving Draft for  This Section", Toast.LENGTH_SHORT).show();
 
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         MainApp.fc = new FormsContract();
@@ -386,7 +384,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
                 : bi.sen11b.isChecked() ? "2"
                 : bi.sen11c.isChecked() ? "3"
                 : "0");
-
+        MainApp.fc.setsEl(String.valueOf(ef));
     }
 
     public void setGPS() {

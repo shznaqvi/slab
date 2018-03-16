@@ -1,331 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools"
-tools:context="edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity">
 
-<data>
+    <data>
 
-    <import type="android.view.View" />
+        <import type="android.view.View" />
 
-    <variable
-        name="callback"
-        type="edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity" />
-</data>
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity" />
+    </data>
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-
-    <LinearLayout
-        android:id="@+id/testll"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:layoutDirection="ltr"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:text="@string/sfuheading"
-            android:textColor="@color/colorHeading"
-            android:textSize="40sp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimaryAlpha"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/colorPrimaryDark"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/mrno"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/testll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:animateLayoutChanges="true"
+            android:layoutDirection="ltr"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:text="@string/sfuheading"
+                android:textColor="@color/colorHeading"
+                android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryAlpha"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/mrno"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/sfu001"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="60"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
+                    android:hint="XXX-XX-XX"
+                    android:inputType="text"
+                    android:maxLength="9" />
+
+                <Button
+                    android:id="@+id/btnCheckMrno"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="30"
+                    android:background="@drawable/btn_bg"
+                    android:elevation="5dp"
+                    android:onClick="@{() -> callback.btnCheckMrno()}"
+                    android:text="CHECK"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/studyid"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/sfu002"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="60"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
+                    android:hint="@string/studyid"
+                    android:inputType="text"
+                    android:maxLength="4" />
+
+                <Button
+                    android:id="@+id/btnStudyId"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="30"
+                    android:background="@drawable/btn_bg"
+                    android:elevation="5dp"
+                    android:onClick="@{() -> callback.btnStudyId()}"
+                    android:text="CHECK"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu01"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu01"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/sfu01a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfu01a" />
+
+
+                <RadioButton
+                    android:id="@+id/sfu01b"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfu01b" />
+
+                <RadioButton
+                    android:id="@+id/sfu01c"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfu01c" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu05"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
 
             <EditText
-                android:id="@+id/sfu001"
-                android:layout_width="0dp"
+                android:id="@+id/sfu05"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="60"
-                android:hint="XXX-XX-XX"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-                android:inputType="text"
-                android:maxLength="9" />
+                android:digits="1234567890"
+                android:hint="@string/sfu05"
+                android:inputType="textCapWords"
+                android:maxLength="2" />
 
-            <Button
-                android:id="@+id/btnCheckMrno"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/fldGrpsfu06"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="30"
-                android:background="@drawable/btn_bg"
-                android:elevation="5dp"
-                android:onClick="@{() -> callback.btnCheckMrno()}"
-                android:text="CHECK"
-                android:textColor="@color/white" />
+                android:orientation="vertical">
 
-        </LinearLayout>
-      <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/studyid"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu06"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
 
+                <EditText
+                    android:id="@+id/sfu06"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="1234567890"
+                    android:hint="@string/sfu06"
+                    android:inputType="textCapWords"
+                    android:maxLength="2" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu07"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/sfu07"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="1234567890"
+                    android:hint="@string/sfu07"
+                    android:inputType="textCapWords"
+                    android:maxLength="2" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu08"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/sfu08"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="1234567890"
+                    android:hint="@string/sfu08"
+                    android:inputType="textCapWords"
+                    android:maxLength="2" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:paddingLeft="1dp"
+                android:paddingRight="1dp"
+                android:text="@string/sfusubheading1"
+                android:textColor="@color/colorHeading"
+                android:textSize="32sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu10"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
 
             <EditText
-                android:id="@+id/sfu002"
-                android:layout_width="0dp"
+                android:id="@+id/sfu10"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_weight="60"
-                android:hint="@string/studyid"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-                android:inputType="text"
-                android:maxLength="4" />
+                android:digits="1234567890"
+                android:hint="@string/sfu10"
+                android:inputType="textCapWords"
+                android:maxLength="2" />
 
-            <Button
-                android:id="@+id/btnStudyId"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_weight="30"
-                android:background="@drawable/btn_bg"
-                android:elevation="5dp"
-                android:onClick="@{() -> callback.btnStudyId()}"
-                android:text="CHECK"
-                android:textColor="@color/white" />
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu11a"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfuifqty"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu11a"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/sfu11a01"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfufull" />
+
+
+                <RadioButton
+                    android:id="@+id/sfu11a02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfupartial" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfuifpartial"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu11a00"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/sfu11a11"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfuspill" />
+
+                <RadioButton
+                    android:id="@+id/sfu11a12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfuspit" />
+
+                <RadioButton
+                    android:id="@+id/sfu11a13"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sfuvomit" />
+            </RadioGroup>
+
+
+            <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="80dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_End"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/red"
+                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:text="@string/end_interview"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/btn_Continue"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:backgroundTint="#1ed61e"
+                    android:onClick="@{() -> callback.BtnContinue()}"
+                    android:text="@string/start_interview"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu01"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-        <RadioGroup
-            android:id="@+id/sfu01"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/sfu01a"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfu01a" />
-
-
-            <RadioButton
-                android:id="@+id/sfu01b"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfu01b" />
-
-            <RadioButton
-                android:id="@+id/sfu01c"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfu01c" />
-
-        </RadioGroup>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu05"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-
-        <EditText
-            android:id="@+id/sfu05"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/sfu05"
-            android:inputType="textCapWords"
-            android:digits="1234567890"
-            android:maxLength="2"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu06"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-
-        <EditText
-            android:id="@+id/sfu06"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/sfu06"
-            android:inputType="textCapWords"
-            android:digits="1234567890"
-            android:maxLength="2"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu07"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-
-        <EditText
-            android:id="@+id/sfu07"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/sfu07"
-            android:inputType="textCapWords"
-            android:digits="1234567890"
-            android:maxLength="2"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu08"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-
-        <EditText
-            android:id="@+id/sfu08"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/sfu08"
-            android:inputType="textCapWords"
-            android:digits="1234567890"
-            android:maxLength="2"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
-            android:background="@color/colorPrimaryDark"
-            android:gravity="center"
-            android:text="@string/sfusubheading1"
-            android:textColor="@color/colorHeading"
-            android:textSize="32sp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu10"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-
-        <EditText
-            android:id="@+id/sfu10"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/sfu10"
-            android:inputType="textCapWords"
-            android:digits="1234567890"
-            android:maxLength="2"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfu11a"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfuifqty"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-        <RadioGroup
-            android:id="@+id/sfu11a"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/sfu11a01"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfufull" />
-
-
-            <RadioButton
-                android:id="@+id/sfu11a02"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfupartial" />
-
-        </RadioGroup>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorPrimary"
-            android:text="@string/sfuifpartial"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@android:color/white" />
-        <RadioGroup
-            android:id="@+id/sfu11a00"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:id="@+id/sfu11a11"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfuspill" />
-
-            <RadioButton
-                android:id="@+id/sfu11a12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfuspit" />
-
-            <RadioButton
-                android:id="@+id/sfu11a13"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sfuvomit" />
-        </RadioGroup>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
 </layout>

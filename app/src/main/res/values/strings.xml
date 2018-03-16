@@ -51,9 +51,9 @@
     <string name="studyid"> Study ID </string>
     <string name="childname">Name of Child</string>
     <string name="number">Number</string>
-  <string name="sfu09"> </string>
-  <string name="sfu10a"> </string>
-  <string name="sfu10b"> </string>
+    <string name="sfu09"> </string>
+    <string name="sfu10a"> </string>
+    <string name="sfu10b"> </string>
 
     <!-- Strings related to Sections Below -->
 
@@ -171,35 +171,35 @@
     <string name="howlongdh"> How long (in days /hours) </string>
     <string name="times"> How many times? (in numbers) </string>
 
-  <string name="sfu16"> History of fever </string>
-  <string name="sfu18"> History of reluctance to feed </string>
-  <string name="sfu20"> History of Hypothermia </string>
-  <string name="sfu22"> History of Cyanosis </string>
-  <string name="sfu24"> History of cough </string>
-  <string name="sfu26"> History of difficult breathing </string>
-  <string name="sfu28"> History of rapid breathing </string>
-  <string name="sfu30"> History of vomiting </string>
-  <string name="sfu32"> History of diarrhea </string>
-  <string name="sfu34"> History of poor feeding </string>
-  <string name="sfu36"> History of Lethargy </string>
-  <string name="sfu38"> History of fits </string>
-  <string name="sfu40"> History of feeding intolerance </string>
-  <string name="sfu42"> History of aspirates </string>
-  <string name="sfu44"> History of abdominal distension </string>
-  <string name="sfu46"> History of Apnea </string>
-  <string name="sfu48"> Any other significant history </string>
-  <string name="sfu49"> Has the child been Hospitalized </string>
-  <string name="sfu50"> Date of Admission </string>
-  <string name="sfu51"> Hospital Name</string>
-  <string name="sfu51a">AKU</string>
-  <string name="sfu5196">Other(Specify Name of Hospital)</string>
-  <string name="sfu52"> Diagnosis</string>
-  <string name="sfu53"> Length of Stay</string>
-  <string name="sfu53a"> Still in Hospital</string>
+    <string name="sfu16"> History of fever </string>
+    <string name="sfu18"> History of reluctance to feed </string>
+    <string name="sfu20"> History of Hypothermia </string>
+    <string name="sfu22"> History of Cyanosis </string>
+    <string name="sfu24"> History of cough </string>
+    <string name="sfu26"> History of difficult breathing </string>
+    <string name="sfu28"> History of rapid breathing </string>
+    <string name="sfu30"> History of vomiting </string>
+    <string name="sfu32"> History of diarrhea </string>
+    <string name="sfu34"> History of poor feeding </string>
+    <string name="sfu36"> History of Lethargy </string>
+    <string name="sfu38"> History of fits </string>
+    <string name="sfu40"> History of feeding intolerance </string>
+    <string name="sfu42"> History of aspirates </string>
+    <string name="sfu44"> History of abdominal distension </string>
+    <string name="sfu46"> History of Apnea </string>
+    <string name="sfu48"> Any other significant history </string>
+    <string name="sfu49"> Has the child been Hospitalized </string>
+    <string name="sfu50"> Date of Admission </string>
+    <string name="sfu51"> Hospital Name</string>
+    <string name="sfu51a">AKU</string>
+    <string name="sfu5196">Other(Specify Name of Hospital)</string>
+    <string name="sfu52"> Diagnosis</string>
+    <string name="sfu53"> Length of Stay</string>
+    <string name="sfu53a"> Still in Hospital</string>
 
     <!--<string name="sfu13"> History of any current illness </string>-->
     <string name="sfuheading3"> On examination </string>
-   <!-- <string name="sfu14"> Actual temperature (0F) </string>
+    <!-- <string name="sfu14"> Actual temperature (0F) </string>
     <string name="sfu15"> Respiratory rate (Breaths/ minute) </string>
     <string name="sfu16"> Heart rate (/minute) </string>-->
     <string name="sfu17"> Signs of dehydration present </string>
@@ -259,7 +259,80 @@
     <string name="sfu23c"> Follow up </string>
     <string name="sfu2301"> If follow up number of capsule given </string>
 
+    <!--on examination -->
+    <string name="sfusubheading3"> On examination </string>
+    <string name="sfu54"> Temperature </string>
+    <string name="sfu55"> Respiratory rate (Breaths/ minute) </string>
+    <string name="sfu56"> Heart rate (/minute) </string>
+    <string name="sfu57"> Signs of dehydration present </string>
+    <string name="sfu58"> Signs of dehydration </string>
+    <string name="sfu58a"> lethargy/unconscious </string>
+    <string name="sfu58b"> restless/irritable </string>
+    <string name="sfu58c"> Sunken eyes </string>
+    <string name="sfu58d"> skin pinch goes back slowly( >= 2 seconds) </string>
+    <string name="sfu58e"> unable to drink or drink poorly </string>
+    <string name="sfusubheading4"> Clinical Examination Findings: </string>
+    <string name="sfu59"> Color </string>
+    <string name="sfu59a"> Pink </string>
+    <string name="sfu59b"> pale </string>
+    <string name="sfu59c"> blue </string>
+    <string name="sfu59d"> jaundice </string>
+    <string name="sfu60"> Activity </string>
+    <string name="sfu60a"> active </string>
+    <string name="sfu60b"> dull </string>
 
+    <string name="sfu61"> Chest </string>
+    <string name="sfu61a"> bilateral movement of chest </string>
+    <string name="sfu61b"> Apnea </string>
+    <string name="sfu61c"> Cyanosis </string>
+    <string name="sfu61d"> Retractions </string>
+    <string name="sfu61e"> Tachypnea </string>
+    <string name="sfu61f"> Grunting </string>
+    <string name="sfu62"> Heart sound </string>
+    <string name="sfu62a"> normal </string>
+    <string name="sfu62b"> abnormal (specify) </string>
+    <string name="sfu63"> Peripheral pulses </string>
+    <string name="sfu63a"> Palpable </string>
+    <string name="sfu63b"> Bounding or faint peripheral pulses </string>
+    <string name="sfu64"> Umbilicus </string>
+    <string name="sfu64a"> Normal </string>
+    <string name="sfu64b"> redness </string>
+    <string name="sfu64c"> swelling </string>
+    <string name="sfu64d"> Purulent Discharge </string>
+    <string name="sfu65"> Abdomen </string>
+    <string name="sfu65a"> symmetric contour </string>
+    <string name="sfu65b"> not distended </string>
+    <string name="sfusubheading5"> Supplement Administration </string>
+
+    <string name="sfu66"> Has baby received the supplement?</string>
+    <string name="sfusubheading6"> Outcome </string>
+    <string name="sfu67"> Outcome </string>
+    <string name="sfu67a"> Healthy </string>
+    <string name="sfu67b"> Sick </string>
+    <string name="sfu68"> If Sick.... Diagnosis </string>
+    <string name="sfu68a"> Sepsis </string>
+    <string name="sfu68b"> NEC </string>
+    <string name="sfu6896"> Any Other Disease (Give Details) </string>
+    <string name="sfu69"> Plan of care </string>
+    <string name="sfu69a"> Referred to hospital</string>
+    <string name="sfu69b"> Referred to Physician</string>
+    <string name="sfu69c"> No action taken </string>
+    <string name="sliheading"> Laboratory investigation </string>
+    <string name="sli01"> Laboratory investigation </string>
+    <string name="sli01a"> CBC </string>
+    <string name="sli01b"> CRP </string>
+    <string name="sli01c"> BLOOD C/S </string>
+    <string name="sli01d">None </string>
+    <string name="sli02"> Date of blood collection. </string>
+    <string name="sli03"> Time of blood collection </string>
+    <string name="sli04"> Other investigations: (multiple options allowed) </string>
+    <string name="sli04a"> CSF </string>
+    <string name="sli04b"> chest x-ray </string>
+    <string name="sli05"> Lab ID</string>
+    <!-- <string name="sfu23a"> Admit </string>
+<string name="sfu23b"> Discharge </string>
+<string name="sfu23c"> Follow up </string>
+<string name="sfu2301"> If follow up number of capsule given </string>-->
     <!--End of new Strings-->
     <!-- Baseline-->
 
