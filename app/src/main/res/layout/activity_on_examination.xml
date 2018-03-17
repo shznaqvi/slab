@@ -22,6 +22,8 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:layoutDirection="ltr"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/childname"
@@ -95,7 +97,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
             android:digits="1234567890"
             android:hint="@string/sfu55"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="3" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -111,7 +113,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
             android:digits="1234567890"
             android:hint="@string/sfu56"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="3" />
 
     <TextView
         android:layout_width="match_parent"

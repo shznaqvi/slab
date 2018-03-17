@@ -1,7 +1,9 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,9 +11,12 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
+import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityFormBinding;
 import edu.aku.hassannaqvi.slab.databinding.ActivitySupplementAdminBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
@@ -55,28 +60,28 @@ public class SupplementAdminActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-          /* if (UpdateDB()) {
+          if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                if (isEligibile() && (Double.valueOf(binding.sel01.getText().toString()) > 1.0
-                        && Double.valueOf(binding.sel01.getText().toString()) < 2.5)
-                        && (Integer.valueOf(binding.sel02w.getText().toString()) >= 28
-                        && Integer.valueOf(binding.sel02w.getText().toString()) < 36)) {
-                    startActivity(new Intent(this, BaselineActivity.class));
-                } else {
-                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
-                }
-
-
-
+                    startActivity(new Intent(this, LabInvestigationActivity.class).putExtra("complete", true));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }*/
+            }
         }
     }
 
     private boolean UpdateDB() {
-        return false;
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSLab();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
 
@@ -103,6 +108,39 @@ public class SupplementAdminActivity extends AppCompatActivity {
     }
 
     private void SaveDraft() throws JSONException{
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+        MainApp.fc = new FormsContract();
+        MainApp.fc.setUser(MainApp.userName);
+        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID));
+        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
+
+        JSONObject sa = new JSONObject();
+        sa.put("sfu66",bi.sfu66a.isChecked() ? "1"
+                : bi.sfu66b.isChecked() ? "2"
+                : "0");
+        sa.put("sfu66bx", bi.sfu66bx.getText().toString());
+
+        sa.put("sfu67",bi.sfu67a.isChecked() ? "1"
+                : bi.sfu67b.isChecked() ? "2"
+                : "0");
+        sa.put("sfu68a",bi.sfu68a01.isChecked() ? "1"
+                : bi.sfu68a02.isChecked() ? "2"
+                : "0");
+        sa.put("sfu68b",bi.sfu68b01.isChecked() ? "1"
+                : bi.sfu68b02.isChecked() ? "2"
+                : "0");
+        sa.put("sfu6896",bi.sfu689601.isChecked() ? "1"
+                : bi.sfu689602.isChecked() ? "2"
+                : "0");
+        sa.put("sfu6896x", bi.sfu6896x.getText().toString());
+
+        sa.put("sfu69",bi.sfu69a.isChecked() ? "1"
+                : bi.sfu69b.isChecked() ? "2"
+                : bi.sfu69c.isChecked() ? "3"
+                : bi.sfu6996.isChecked() ? "96"
+                : "0");
+        sa.put("sfu6996x", bi.sfu6996x.getText().toString());
     }
 
     private boolean formValidation() {

@@ -295,7 +295,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         fp.put("sfu53", bi.sfu53.getText().toString());
         fp.put("sfu53a",bi.sfu53a.isChecked() ? "1"
                 : "0");
-
+        MainApp.fc.setsEl(String.valueOf(fp));
     }
 
     private boolean formValidation() {

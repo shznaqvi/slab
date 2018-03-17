@@ -196,13 +196,13 @@
     </style>
 
     <style name="checkbox" parent="android:Widget.Material.Light.CompoundButton.CheckBox">
-        <item name="android:layout_gravity">right</item>
+        <!--<item name="android:layout_gravity">right</item>-->
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:button">@null</item>
+        <!--<item name="android:button">@null</item>-->
         <item name="android:textSize">24sp</item>
         <item name="android:typeface">serif</item>
-        <item name="android:drawableRight">?android:attr/listChoiceIndicatorMultiple</item>
+        <!--<item name="android:drawableRight">?android:attr/listChoiceIndicatorMultiple</item>-->
         <item name="android:background">#efefef</item>
         <item name="android:padding">4dp</item>
 

@@ -22,6 +22,8 @@
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:layoutDirection="ltr"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -59,8 +61,8 @@
                 android:id="@+id/sli01"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="2dp"
-                android:layout_marginRight="2dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:orientation="vertical">
 
                 <CheckBox
@@ -194,20 +196,24 @@
                     android:digits="1234567890"
                     android:hint="@string/sli05"
                     android:inputType="number"
-                    android:maxLength="4" />
-<LinearLayout
-    android:id="@+id/fldGrpchecksli05"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+                    android:maxLength="4"
+                    android:text='@{sli0598.checked ? "" : sli05.getText.toString }'
+                    android:visibility='@{sli0598.checked ? View.GONE : View.VISIBLE}' />
+                />
 
-                <CheckBox
-                    android:id="@+id/sli0596"
+                <LinearLayout
+                    android:id="@+id/fldGrpchecksli05"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/dkn" />
+                    android:orientation="vertical">
 
-</LinearLayout>
+                    <CheckBox
+                        android:id="@+id/sli0598"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/dkn" />
+
+                </LinearLayout>
             </LinearLayout>
 
 

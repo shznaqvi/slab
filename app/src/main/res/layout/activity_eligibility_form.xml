@@ -26,6 +26,8 @@
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:layoutDirection="ltr"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -571,7 +573,7 @@
                         android:digits="0123456789."
                         android:hint="@string/sel10"
                         android:inputType="numberDecimal"
-                        android:maxLength="3" />
+                        android:maxLength="6" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -615,7 +617,7 @@
                         android:digits="0123456789."
                         android:hint="@string/sel11"
                         android:inputType="numberDecimal"
-                        android:maxLength="3" />
+                        android:maxLength="6" />
 
                 </LinearLayout>
             </LinearLayout>

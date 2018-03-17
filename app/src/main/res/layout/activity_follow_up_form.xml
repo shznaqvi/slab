@@ -23,6 +23,8 @@
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:layoutDirection="ltr"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="vertical">
 
             <TextView
@@ -247,7 +249,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="16dp"
-                android:background="@color/colorPrimaryDark"
+                android:background="@color/colorPrimaryBeta"
                 android:gravity="center"
                 android:paddingLeft="1dp"
                 android:paddingRight="1dp"

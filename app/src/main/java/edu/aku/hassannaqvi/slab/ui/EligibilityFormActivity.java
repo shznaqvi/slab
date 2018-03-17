@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -81,11 +82,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
-
-
     private boolean formValidation() {
 
         if (!validatorClass.EmptyTextBox(this, bi.sel01, getString(R.string.mrno))) {
@@ -250,30 +247,29 @@ public class EligibilityFormActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-          /* if (UpdateDB()) {
-                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+         if (UpdateDB()) {
                 finish();
-                if (isEligibile() && (Double.valueOf(binding.sel01.getText().toString()) > 1.0
-                        && Double.valueOf(binding.sel01.getText().toString()) < 2.5)
-                        && (Integer.valueOf(binding.sel02w.getText().toString()) >= 28
-                        && Integer.valueOf(binding.sel02w.getText().toString()) < 36)) {
-                    startActivity(new Intent(this, BaselineActivity.class));
-                } else {
                     startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
-                }
-
-
-
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }*/
+            }
         }
     }
 
     private boolean UpdateDB() {
-        return false;
-    }
+        DatabaseHelper db = new DatabaseHelper(this);
 
+
+        int updcount = db.updateSLab();
+
+        if (updcount == 1) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
 
     public void BtnEnd() {
 

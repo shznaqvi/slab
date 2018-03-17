@@ -1,9 +1,13 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +17,25 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
+import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpFormBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowUpFormActivity extends AppCompatActivity {
     ActivityFollowUpFormBinding bi;
     DatabaseHelper db;
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
     private static final String TAG = FollowUpFormActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +43,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         bi.setCallback(this);
         setupView();
+        Log.d("a1", dtToday);
 
     }
 
@@ -41,13 +51,12 @@ public class FollowUpFormActivity extends AppCompatActivity {
         bi.sfu01.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sfu01c){
+                if (i == R.id.sfu01c) {
                     bi.fldGrpsfu06.setVisibility(View.GONE);
                     bi.sfu06.setText(null);
                     bi.sfu07.setText(null);
                     bi.sfu08.setText(null);
-                }
-                else{
+                } else {
                     bi.fldGrpsfu06.setVisibility(View.VISIBLE);
 
                 }
@@ -55,6 +64,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         });
 
     }
+
     private boolean formValidation() {
         Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
 
@@ -90,7 +100,6 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
 
     public void BtnContinue() {
-
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
@@ -98,38 +107,74 @@ public class FollowUpFormActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-          /* if (UpdateDB()) {
+            if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                if (isEligibile() && (Double.valueOf(binding.sel01.getText().toString()) > 1.0
-                        && Double.valueOf(binding.sel01.getText().toString()) < 2.5)
-                        && (Integer.valueOf(binding.sel02w.getText().toString()) >= 28
-                        && Integer.valueOf(binding.sel02w.getText().toString()) < 36)) {
-                    startActivity(new Intent(this, BaselineActivity.class));
+                if (bi.sfu01c.isChecked()) {
+                    startActivity(new Intent(this, SupplementAdminActivity.class).putExtra("complete", true));
                 } else {
-                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
-                }
+                    startActivity(new Intent(this, OnExaminationActivity.class).putExtra("complete", true));
 
+                }
 
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }*/
+            }
         }
     }
-    public void BtnEnd(){
+
+    private boolean UpdateDB() {
+
+        Long updcount = db.addForm(MainApp.fc);
+        MainApp.fc.set_ID(String.valueOf(updcount));
+
+        if (updcount != 0) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+            MainApp.fc.setUID(
+                    (MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
+            db.updateFormID();
+
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+    }
+
+    public void BtnEnd() {
 
 
     }
 
     private void SaveDraft() throws JSONException {
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+        MainApp.fc = new FormsContract();
+        MainApp.fc.setFormDate(dtToday);
+        MainApp.fc.setUser(MainApp.userName);
+        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID));
+        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
+
+        JSONObject fu = new JSONObject();
+        fu.put("sfudatetime", dtToday);
+        fu.put("sfu01", bi.sfu01a.isChecked() ? "1"
+                : bi.sfu01b.isChecked() ? "2"
+                : bi.sfu01c.isChecked() ? "3"
+                : "0");
+        fu.put("sfu06", bi.sfu06.getText().toString());
+        fu.put("sfu07", bi.sfu07.getText().toString());
+        fu.put("sfu08", bi.sfu08.getText().toString());
 
     }
 
     public void btnCheckMrno() {
 
     }
-    public void btnStudyId(){
+
+    public void btnStudyId() {
 
     }
 }

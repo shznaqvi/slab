@@ -327,8 +327,8 @@ public class MainActivity extends Activity {
 
 
 
-    public void openB(View v) {
-        Intent iB = new Intent(this, FollowUpFormActivity.class);
+    public void OpenB(View v) {
+        Intent iB = new Intent(this, LabInvestigationActivity.class);
         startActivity(iB);
     }
 
