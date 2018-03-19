@@ -73,7 +73,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 
-        int updcount = db.updateSLab();
+        int updcount = db.updateSSUP();
 
         if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
@@ -108,13 +108,6 @@ public class SupplementAdminActivity extends AppCompatActivity {
     }
 
     private void SaveDraft() throws JSONException{
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-        MainApp.fc = new FormsContract();
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-
         JSONObject sa = new JSONObject();
         sa.put("sfu66",bi.sfu66a.isChecked() ? "1"
                 : bi.sfu66b.isChecked() ? "2"
@@ -141,6 +134,8 @@ public class SupplementAdminActivity extends AppCompatActivity {
                 : bi.sfu6996.isChecked() ? "96"
                 : "0");
         sa.put("sfu6996x", bi.sfu6996x.getText().toString());
+
+        MainApp.fc.setsSup(String.valueOf(sa));
     }
 
     private boolean formValidation() {

@@ -28,7 +28,8 @@ public class FormsContract {
     private String sAnthro = "";
     private String sExam = "";
     private String sLab = "";
-
+    private String sSup = "";
+    private String sFeed = "";
 
     private String gpsLat = "";
     private String gpsLng = "";
@@ -57,7 +58,8 @@ public class FormsContract {
         this.sAnthro = jsonObject.getString(FormsTable.COLUMN_SANTHRO);
         this.sExam = jsonObject.getString(FormsTable.COLUMN_SEXAM);
         this.sLab = jsonObject.getString(FormsTable.COLUMN_SLAB);
-
+        this.sSup= jsonObject.getString(FormsTable.COLUMN_SSUP);
+        this.sFeed= jsonObject.getString(FormsTable.COLUMN_SFEED);
         this.gpsLat = jsonObject.getString(FormsTable.COLUMN_GPSLAT);
         this.gpsLng = jsonObject.getString(FormsTable.COLUMN_GPSLNG);
         this.gpsDT = jsonObject.getString(FormsTable.COLUMN_GPSDATE);
@@ -85,6 +87,8 @@ public class FormsContract {
         this.sAnthro = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SANTHRO));
         this.sExam = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEXAM));
         this.sLab = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SLAB));
+        this.sSup = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SSUP));
+        this.sFeed = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SFEED));
 
         this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
@@ -114,6 +118,7 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
         json.put(FormsTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
+
 
         if (!this.sEl.equals("")) {
 
@@ -148,6 +153,15 @@ public class FormsContract {
 
         }
 
+        if (!this.sSup.equals("")) {
+            json.put(FormsTable.COLUMN_SSUP, this.sSup == null ? JSONObject.NULL : this.sSup);
+
+        }
+        if (!this.sFeed.equals("")) {
+            json.put(FormsTable.COLUMN_SFEED, this.sFeed == null ? JSONObject.NULL : this.sFeed);
+        }
+
+
         json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
         json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
         json.put(FormsTable.COLUMN_GPSDATE, this.gpsDT == null ? JSONObject.NULL : this.gpsDT);
@@ -158,9 +172,9 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(FormsTable.COLUMN_APP_VERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
 
-
         return json;
     }
+
 
     public String getProjectName() {
         return projectName;
@@ -254,6 +268,21 @@ public class FormsContract {
         this.sLab = sLab;
     }
 
+    public String getsSup() {
+        return sSup;
+    }
+
+    public void setsSup(String sSup) {
+        this.sSup = sSup;
+    }
+    public String getsFeed() {
+        return sFeed;
+    }
+
+    public void setsFeed(String sFeed) {
+        this.sFeed = sFeed;
+    }
+
     public String getFormtype() {
         return formtype;
     }
@@ -345,14 +374,14 @@ public class FormsContract {
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_FORMTYPE = "formtype";
-
         public static final String COLUMN_SEL = "sel";
         public static final String COLUMN_SBL = "sbl";
         public static final String COLUMN_SFUP = "sfup";
         public static final String COLUMN_SANTHRO = "santhro";
         public static final String COLUMN_SEXAM = "sexam";
         public static final String COLUMN_SLAB = "slab";
-
+        public static final String COLUMN_SSUP = "ssup";
+        public static final String COLUMN_SFEED = "sfeed";
         public static final String COLUMN_GPSLAT = "gpslat";
         public static final String COLUMN_GPSLNG = "gpslng";
         public static final String COLUMN_GPSDATE = "gpsdate";

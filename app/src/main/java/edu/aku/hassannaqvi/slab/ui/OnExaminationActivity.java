@@ -96,13 +96,6 @@ public class OnExaminationActivity extends AppCompatActivity {
     }
 
     private void SaveDraft() throws JSONException {
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-        MainApp.fc = new FormsContract();
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-//        setGPS(); //Set GPS
 
         JSONObject oe = new JSONObject();
         oe.put("sfu54", bi.sfu54.getText().toString());
@@ -161,9 +154,7 @@ public class OnExaminationActivity extends AppCompatActivity {
                 : bi.sfu6596.isChecked() ? "96"
                 : "0");
         oe.put("sfu6596x", bi.sfu6596x.getText().toString());
-        MainApp.fc.setsEl(String.valueOf(oe));
-
-
+        MainApp.fc.setsExam(String.valueOf(oe));
     }
 
     private boolean formValidation() {

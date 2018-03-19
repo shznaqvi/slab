@@ -82,10 +82,11 @@ public class FollowUpFormActivity extends AppCompatActivity {
             bi.sfu001.setError("Invalid length");
             return false;
         }
-
         if (!validatorClass.EmptyTextBox(this, bi.sfu05, getString(R.string.sfu05))) {
             return false;
         }
+        if(!bi.sfu01c.isChecked()){
+
         if (!validatorClass.EmptyTextBox(this, bi.sfu06, getString(R.string.sfu06))) {
             return false;
         }
@@ -94,6 +95,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         }
         if (!validatorClass.EmptyTextBox(this, bi.sfu08, getString(R.string.sfu08))) {
             return false;
+        }
         }
         return true;
     }
@@ -110,12 +112,14 @@ public class FollowUpFormActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
+                Boolean defaultValue = true;
                 if (bi.sfu01c.isChecked()) {
-                    startActivity(new Intent(this, SupplementAdminActivity.class).putExtra("complete", true));
+                    defaultValue = false;
                 } else {
-                    startActivity(new Intent(this, OnExaminationActivity.class).putExtra("complete", true));
-
+                    defaultValue = true;
                 }
+                startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue));
+
 
 
             } else {
@@ -167,6 +171,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
         fu.put("sfu06", bi.sfu06.getText().toString());
         fu.put("sfu07", bi.sfu07.getText().toString());
         fu.put("sfu08", bi.sfu08.getText().toString());
+
+        MainApp.fc.setsFup(String.valueOf(fu));
 
     }
 

@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:digits="1234567890"
                 android:hint="@string/sfu05"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 android:maxLength="2" />
 
             <LinearLayout
@@ -202,10 +202,10 @@
                     android:id="@+id/sfu06"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:digits="1234567890"
+                    android:digits="1234567890."
                     android:hint="@string/sfu06"
-                    android:inputType="textCapWords"
-                    android:maxLength="2" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="5" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -220,10 +220,10 @@
                     android:id="@+id/sfu07"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:digits="1234567890"
+                    android:digits="1234567890."
                     android:hint="@string/sfu07"
-                    android:inputType="textCapWords"
-                    android:maxLength="2" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="5" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -238,10 +238,10 @@
                     android:id="@+id/sfu08"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:digits="1234567890"
+                    android:digits="1234567890."
                     android:hint="@string/sfu08"
-                    android:inputType="textCapWords"
-                    android:maxLength="2" />
+                    android:inputType="numberDecimal"
+                    android:maxLength="5" />
             </LinearLayout>
 
             <TextView
@@ -272,7 +272,7 @@
                 android:layout_height="wrap_content"
                 android:digits="1234567890"
                 android:hint="@string/sfu10"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 android:maxLength="2" />
 
             <TextView

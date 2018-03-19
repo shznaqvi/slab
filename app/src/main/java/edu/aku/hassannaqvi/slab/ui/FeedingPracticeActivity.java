@@ -28,6 +28,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     ActivityFeedingPracticeBinding bi;
     DatabaseHelper db;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
+    Boolean nextExamSec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +36,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_feeding_practice);
         db = new DatabaseHelper(this);
         bi.setCallback(this);
-
+        gettingExamSkip();
         setupView();
+    }
+
+    private void gettingExamSkip() {
+        Bundle bundle = getIntent().getExtras();
+        nextExamSec = bundle.getBoolean("openExamSec");
     }
 
     private void setupView() {
@@ -97,28 +103,37 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-          /* if (UpdateDB()) {
+         if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                if (isEligibile() && (Double.valueOf(binding.sel01.getText().toString()) > 1.0
-                        && Double.valueOf(binding.sel01.getText().toString()) < 2.5)
-                        && (Integer.valueOf(binding.sel02w.getText().toString()) >= 28
-                        && Integer.valueOf(binding.sel02w.getText().toString()) < 36)) {
-                    startActivity(new Intent(this, BaselineActivity.class));
-                } else {
-                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
-                }
+                if (nextExamSec == false)
+                    startActivity(new Intent(this, SupplementAdminActivity.class));
+                else
+                    startActivity(new Intent(this, OnExaminationActivity.class));
 
-
-
-            } else {
+         } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }*/
+            }
         }
     }
 
     private boolean UpdateDB() {
-        return false;
+
+        Long updcount = db.addForm(MainApp.fc);
+        MainApp.fc.set_ID(String.valueOf(updcount));
+
+        if (updcount != 0) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+            MainApp.fc.setUID(
+                    (MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
+            db.updateFormID();
+
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
     }
 
 
@@ -295,18 +310,23 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         fp.put("sfu53", bi.sfu53.getText().toString());
         fp.put("sfu53a",bi.sfu53a.isChecked() ? "1"
                 : "0");
-        MainApp.fc.setsEl(String.valueOf(fp));
+        MainApp.fc.setsFeed(String.valueOf(fp));
     }
 
     private boolean formValidation() {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu12, bi.sfu12a, getString(R.string.sfu12))) {
             return false;
         }
+        if(!bi.sfu12b.isChecked()){
+
         if (!validatorClass.EmptyRadioButton(this, bi.sfu13, bi.sfu13a, getString(R.string.sfu13))) {
             return false;
         }
+        if(bi.sfu13b.isChecked()){
         if (!validatorClass.EmptyRadioButton(this, bi.sfu14, bi.sfu1496, bi.sfu1496x, getString(R.string.sfu14))) {
             return false;
+        }
+        }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu15, bi.sfu1596, bi.sfu1596x, getString(R.string.sfu15))) {
             return false;

@@ -17,21 +17,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:animateLayoutChanges="true"
             android:layoutDirection="ltr"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimaryAlpha"
-                android:gravity="center"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,6 +38,15 @@
                 android:text="@string/sfusubheading2"
                 android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryAlpha"
+                android:gravity="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -63,20 +67,20 @@
                     android:id="@+id/sfu12a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sfu01a" />
+                    android:text="@string/sfu12a" />
 
 
                 <RadioButton
                     android:id="@+id/sfu12b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sfu01b" />
+                    android:text="@string/sfu12b" />
 
                 <RadioButton
                     android:id="@+id/sfu12c"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sfu01c" />
+                    android:text="@string/sfu12c" />
 
             </RadioGroup>
 
@@ -1361,6 +1365,8 @@
                     android:inputType="number"
                     android:maxLength="2"
                     android:visibility='@{sfu53a.checked ? View.GONE :  View.VISIBLE}' />
+                    android:text='@{sfu53a.checked ?  "" : sfu53.getText.toString }'
+                />
 
                 <LinearLayout
                     android:id="@+id/fldGrpchecksfu53"
