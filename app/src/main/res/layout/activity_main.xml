@@ -34,7 +34,8 @@
                 android:background="@color/dullWhile"
                 android:text="Main Menu"
                 android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/lblMainMenu"
@@ -108,7 +109,7 @@
                 android:layout_marginTop="16dp"
                 android:onClick="OpenA"
                 android:text="FOLLOW-UP FORM"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/OpenB"
@@ -118,7 +119,7 @@
                 android:layout_marginTop="16dp"
                 android:onClick="OpenB"
                 android:text="Laboritory Investigation"
-                android:visibility="visible" />
+                android:visibility="gone" />
             <Button
                 android:id="@+id/openFormB"
                 android:layout_width="match_parent"
@@ -147,7 +148,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="CheckCluster"
-                    android:text="Check Block" />
+                    android:text="Check Block"
+                    android:visibility="invisible"/>
             </LinearLayout>
 
             <Button
@@ -172,7 +174,8 @@
                 android:id="@+id/adminsec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <Button
                     android:id="@+id/openMembers"

@@ -72,7 +72,6 @@ public class SupplementAdminActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
-
         int updcount = db.updateSSUP();
 
         if (updcount == 1) {

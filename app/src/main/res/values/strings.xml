@@ -89,7 +89,7 @@
     <string name="sel18"> CHILD ELIGIBLE FOR ENROLMENT: </string>
     <string name="sel19"> CONSENT FORM SIGNED? </string>
 
-    <string name="senheading">Enrollment</string>
+    <string name="senheading">Recruitment</string>
     <!--<string name="sen01"> Study ID: </string>-->
     <string name="sen02"> Randomization code: </string>
     <string name="sen03"> Date of enrolment: </string>
@@ -117,8 +117,6 @@
     <string name="sfu01a"> at hospital </string>
     <string name="sfu01b"> at home </string>
     <string name="sfu01c"> telephone </string>
-    <string name="sfu04"> Discharge date </string>
-    <string name="sfu05"> Total Sachets Given </string>
     <string name="sfu06"> Weight of neonate (in grams) </string>
     <string name="sfu07"> Length of neonate (in cms) </string>
     <string name="sfu08"> Head circumference (in cms) </string>
@@ -479,8 +477,15 @@
     <string name="sfu2301"> If follow up number of capsule given </string>-->
 
     <string name="istatus">Interview status </string>
-    <string name="istatus01">Complete</string>
-    <string name="istatus02">In - Complete</string>
+    <string name="istatusa">Completed</string>
+    <string name="istatusb">Not Completed</string>
+    <string name="istatusc">Not Available for Follow up</string>
+    <string name="istatusd">Not at home</string>
+    <string name="istatuse">Refusal on that day</string>
+    <string name="istatusf">Withdrawal from study</string>
+    <string name="istatusg">Discharged</string>
+    <string name="sfu04"> Discharge date </string>
+    <string name="sfu05"> Total Sachets Given </string>
 
     <!--<string name="reason">If not completed reason: </string>-->
     <string name="reasona">Not at home</string>

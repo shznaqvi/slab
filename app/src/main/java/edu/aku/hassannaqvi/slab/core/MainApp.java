@@ -31,8 +31,8 @@ public class MainApp extends Application {
 
     public static final String _IP = "43.245.131.159"; // Test PHP server
     public static final Integer _PORT = 8080; // Port - with colon (:)
-    public static final String _HOST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/src2/api/";
-    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/src2/app/app-debug.apk";
+    public static final String _HOST_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/slab/api/";
+    public static final String _UPDATE_URL = "http://" + MainApp._IP + ":" + MainApp._PORT + "/slab/app/app-debug.apk";
 
     /*
         public static final String _IP = "43.245.131.159"; // Test server
@@ -295,6 +295,11 @@ public class MainApp extends Application {
             //Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    public static String getTagName(Context mContext) {
+        SharedPreferences sharedPref = mContext.getSharedPreferences("tagName", MODE_PRIVATE);
+        return sharedPref.getString("tagName", null);
     }
 
     protected boolean isBetterLocation(Location location, Location currentBestLocation) {

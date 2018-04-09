@@ -146,7 +146,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
         li.put("sli05", bi.sli05.getText().toString());
         li.put("sli0598",bi.sli0598.isChecked() ? "98" : "0");
 
-//        MainApp.fc.setsLab(String.valueOf(li));
+      MainApp.fc.setsLab(String.valueOf(li));
     }
 
     private boolean formValidation() {

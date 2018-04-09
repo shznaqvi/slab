@@ -217,7 +217,6 @@ public class LabInvestigationsActivity extends AppCompatActivity {
 
         sa.put("sfu2301", binding.sfu2301.getText().toString());
 
-
         MainApp.fc.setsLab(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();

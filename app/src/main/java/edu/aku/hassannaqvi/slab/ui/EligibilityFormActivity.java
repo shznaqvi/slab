@@ -32,6 +32,8 @@ public class EligibilityFormActivity extends AppCompatActivity {
     ActivityEligibilityFormBinding bi;
     DatabaseHelper db;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+
     private static final String TAG = EligibilityFormActivity.class.getName();
 
     @Override
@@ -74,7 +76,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sen10.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sen10b) {
+                if (i != R.id.sen10b) {
                     bi.fldGrpsen11.setVisibility(View.GONE);
                    bi.sen11.clearCheck();
                 } else {
@@ -114,7 +116,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sel04, bi.sel04b, getString(R.string.sel04))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sel05, bi.sel05b, bi.sel0596x, getString(R.string.sel05))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.sel05, bi.sel0596, bi.sel0596x, getString(R.string.sel05))) {
             return false;
         }
         if (!validatorClass.EmptyTextBox(this, bi.sel06, getString(R.string.sel06))) {
@@ -137,19 +139,17 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if (!validatorClass.RangeTextBox(this, bi.sel08d, 0, 6, getString(R.string.sel08) + " - " + getString(R.string.days), " days")) {
             return false;
         }
-        double kg = Double.parseDouble(bi.sel09.getText().toString());
+      /*  double kg = Double.parseDouble(bi.sel09.getText().toString());
         if (!validatorClass.EmptyTextBox(this, bi.sel09, getString(R.string.sel09))) {
-            if (kg > 1 && kg < 2.5) {
+            if (kg > 1.0 && kg < 2.5) {
                 return false;
-
             } else {
                 Toast.makeText(this, "Values Must be between 1 to 2.5: " + getString(R.string.sel09), Toast.LENGTH_SHORT).show();
                 bi.sel09.setError("Invalid length");
                 return false;
             }
 
-
-        }
+        }*/
         if (!validatorClass.EmptyRadioButton(this, bi.sel12, bi.sel12a, getString(R.string.sel12))) {
             return false;
         }
@@ -257,18 +257,25 @@ public class EligibilityFormActivity extends AppCompatActivity {
     }
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
 
 
-        int updcount = db.updateSLab();
 
-        if (updcount == 1) {
+        Long updcount = db.addForm(MainApp.fc);
+
+        MainApp.fc.set_ID(String.valueOf(updcount));
+
+        if (updcount != 0) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+            MainApp.fc.setUID((MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
+            db.updateFormID();
+
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
+
     }
 
     public void BtnEnd() {
@@ -298,8 +305,10 @@ public class EligibilityFormActivity extends AppCompatActivity {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         MainApp.fc = new FormsContract();
         MainApp.fc.setUser(MainApp.userName);
+        MainApp.fc.setFormDate(dtToday);
         MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
+        MainApp.fc.setDevicetagID(MainApp.getTagName(this));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         setGPS(); //Set GPS
 

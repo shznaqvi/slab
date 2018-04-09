@@ -119,16 +119,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
 
-        Long updcount = db.addForm(MainApp.fc);
-        MainApp.fc.set_ID(String.valueOf(updcount));
 
-        if (updcount != 0) {
+        DatabaseHelper db = new DatabaseHelper(this);
+
+        int updcount = db.updateSFEED();
+
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            MainApp.fc.setUID(
-                    (MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
-            db.updateFormID();
-
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
@@ -160,13 +157,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     }
 
     private void SaveDraft() throws JSONException {
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-        MainApp.fc = new FormsContract();
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-//        setGPS(); //Set GPS
 
         JSONObject fp = new JSONObject();
         fp.put("sfu12",bi.sfu12a.isChecked() ? "1"

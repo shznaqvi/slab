@@ -72,6 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_DEVICEID + " TEXT," +
             FormsTable.COLUMN_DEVICETAGID + " TEXT," +
             FormsTable.COLUMN_APP_VERSION + " TEXT," +
+            FormsTable.COLUMN_END_TIME + " TEXT," +
             FormsTable.COLUMN_SYNCED + " TEXT," +
             FormsTable.COLUMN_SYNCED_DATE + " TEXT"
             + " );";
@@ -419,6 +420,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SYNCED, fc.getSynced());
         values.put(FormsTable.COLUMN_SYNCED_DATE, fc.getSynced_date());
         values.put(FormsTable.COLUMN_APP_VERSION, fc.getAppversion());
+        values.put(FormsTable.COLUMN_END_TIME, fc.getEndtime());
 
 
         // Insert the new row, returning the primary key value of the new row
@@ -494,7 +496,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_DEVICEID,
                 FormsTable.COLUMN_SYNCED,
                 FormsTable.COLUMN_SYNCED_DATE,
-                FormsTable.COLUMN_APP_VERSION
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME
 
         };
         String whereClause = null;
@@ -535,6 +538,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
+                FormsTable.COLUMN_PROJECT_NAME,
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_FORMDATE,
@@ -558,9 +562,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_DEVICEID,
                 FormsTable.COLUMN_SYNCED,
                 FormsTable.COLUMN_SYNCED_DATE,
-                FormsTable.COLUMN_APP_VERSION
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME
         };
-        String whereClause = FormsTable.COLUMN_SYNCED + " is null";
+        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR "+FormsTable.COLUMN_SYNCED + "=''";
         String[] whereArgs = null;
         String groupBy = null;
         String having = null;
@@ -749,7 +754,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_SFEED, MainApp.fc.getsSup());
+        values.put(FormsTable.COLUMN_SFEED, MainApp.fc.getsFeed());
 
 // Which row to update, based on the ID
         String selection = FormsTable._ID + " = ?";
@@ -842,6 +847,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_ISTATUS, MainApp.fc.getIstatus());
+        values.put(FormsTable.COLUMN_END_TIME, MainApp.fc.getEndtime());
 
 
 // Which row to update, based on the ID
