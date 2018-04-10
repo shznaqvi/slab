@@ -134,45 +134,47 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
 
 
-        if (this.sEl != null ||!this.sEl.equals("")) {
+        if (!this.sEl.equals("")) {
 
-            json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : this.sEl);
-
-        }
-        if (this.sBl != null ||!this.sBl.equals("")) {
-
-            json.put(FormsTable.COLUMN_SBL, this.sBl == null ? JSONObject.NULL : this.sBl);
+            json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : new JSONObject(this.sEl));
 
         }
-        if (this.sFup != null ||!this.sFup.equals("")) {
+        if (!this.sBl.equals("")) {
 
-            json.put(FormsTable.COLUMN_SFUP, this.sFup == null ? JSONObject.NULL : this.sFup);
+            json.put(FormsTable.COLUMN_SBL, this.sBl.equals("") ? JSONObject.NULL : new JSONObject(this.sBl));
+
+        }
+        if (!this.sFup.equals("")) {
+           // json.put(FormsTable.COLUMN_SBL, this.sBl.equals("") ? JSONObject.NULL : new JSONObject(this.sBl));
+
+            json.put(FormsTable.COLUMN_SFUP, this.sFup.equals("")? JSONObject.NULL : new JSONObject(this.sFup));
 
             // }
         }
-        if (this.sExam != null ||!this.sExam.equals("")) {
+        if (!this.sExam.equals("")) {
 
-            json.put(FormsTable.COLUMN_SEXAM, this.sExam == null ? JSONObject.NULL : this.sExam);
-
-        }
-
-        if (this.sAnthro != null ||!this.sAnthro.equals("")) {
-
-            json.put(FormsTable.COLUMN_SANTHRO, this.sAnthro == null ? JSONObject.NULL : this.sAnthro);
+            json.put(FormsTable.COLUMN_SEXAM,this.sExam.equals("")? JSONObject.NULL : new JSONObject(this.sExam));
 
         }
 
-        if (this.sLab != null ||!this.sLab.equals("")) {
-            json.put(FormsTable.COLUMN_SLAB, this.sLab == null ? JSONObject.NULL : this.sLab);
+        if (!this.sAnthro.equals("")) {
+
+            json.put(FormsTable.COLUMN_SANTHRO, this.sAnthro.equals("")? JSONObject.NULL : new JSONObject(this.sAnthro));
 
         }
 
-        if (this.sSup != null ||!this.sSup.equals("")) {
-            json.put(FormsTable.COLUMN_SSUP, this.sSup == null ? JSONObject.NULL : this.sSup);
+        if (!this.sLab.equals("")) {
+            json.put(FormsTable.COLUMN_SLAB, this.sLab.equals("")? JSONObject.NULL : new JSONObject(this.sLab));
 
         }
-        if (this.sFeed != null || !this.sFeed.equals("")) {
-            json.put(FormsTable.COLUMN_SFEED, this.sFeed == null ? JSONObject.NULL : this.sFeed);
+
+        if (!this.sSup.equals("")) {
+            json.put(FormsTable.COLUMN_SSUP, this.sSup.equals("") ? JSONObject.NULL : new JSONObject(this.sSup));
+
+        }
+        if (!this.sFeed.equals(null) || !this.sFeed.equals("")) {
+            json.put(FormsTable.COLUMN_SFEED, this.sFeed.equals("") ? JSONObject.NULL : new JSONObject(this.sFeed));
+            //json.put(ChildTable.COLUMN_SC1,  ? JSONObject.NULL : new JSONObject(this.sC1));
         }
 
 
