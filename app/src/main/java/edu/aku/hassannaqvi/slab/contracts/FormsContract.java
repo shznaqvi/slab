@@ -49,7 +49,7 @@ public class FormsContract {
     private String devicetagID = "";
     private String synced = "";
     private String synced_date = "";
-    private String appversion;
+    private String appversion = "";
 
     public FormsContract() {
     }
@@ -172,9 +172,9 @@ public class FormsContract {
             json.put(FormsTable.COLUMN_SSUP, this.sSup.equals("") ? JSONObject.NULL : new JSONObject(this.sSup));
 
         }
-        if (!this.sFeed.equals(null) || !this.sFeed.equals("")) {
+        if (!this.sFeed.equals("")) {
             json.put(FormsTable.COLUMN_SFEED, this.sFeed.equals("") ? JSONObject.NULL : new JSONObject(this.sFeed));
-            //json.put(ChildTable.COLUMN_SC1,  ? JSONObject.NULL : new JSONObject(this.sC1));
+
         }
 
 
@@ -292,6 +292,7 @@ public class FormsContract {
     public void setsSup(String sSup) {
         this.sSup = sSup;
     }
+
     public String getsFeed() {
         return sFeed;
     }

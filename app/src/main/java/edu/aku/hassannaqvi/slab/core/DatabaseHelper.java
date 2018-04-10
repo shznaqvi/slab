@@ -61,8 +61,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_SANTHRO + " TEXT," +
             FormsTable.COLUMN_SEXAM + " TEXT," +
             FormsTable.COLUMN_SLAB + " TEXT," +
-            FormsTable.COLUMN_SSUP + " TEXT,"+
-            FormsTable.COLUMN_SFEED + " TEXT,"+
+            FormsTable.COLUMN_SSUP + " TEXT," +
+            FormsTable.COLUMN_SFEED + " TEXT," +
 
             FormsTable.COLUMN_ISTATUS + " TEXT," +
             FormsTable.COLUMN_GPSLAT + " TEXT," +
@@ -410,7 +410,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SEXAM, fc.getsExam());
         values.put(FormsTable.COLUMN_SLAB, fc.getsLab());
         values.put(FormsTable.COLUMN_SSUP, fc.getsSup());
-
+        values.put(FormsTable.COLUMN_SFEED, fc.getsFeed());
         values.put(FormsTable.COLUMN_GPSLAT, fc.getGpsLat());
         values.put(FormsTable.COLUMN_GPSLNG, fc.getGpsLng());
         values.put(FormsTable.COLUMN_GPSDATE, fc.getGpsDT());
@@ -565,7 +565,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_APP_VERSION,
                 FormsTable.COLUMN_END_TIME
         };
-        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR "+FormsTable.COLUMN_SYNCED + "=''";
+        String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + "=''";
         String[] whereArgs = null;
         String groupBy = null;
         String having = null;
@@ -766,6 +766,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+
     public int updateSFup() {
         SQLiteDatabase db = this.getReadableDatabase();
 
