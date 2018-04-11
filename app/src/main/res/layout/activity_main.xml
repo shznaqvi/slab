@@ -66,7 +66,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
 
                 <TextView
                     style="?android:textAppearanceMedium"
@@ -97,8 +98,35 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="16dp"
-                android:onClick="OpenForm"
-                android:text="ELIGIBILITY FORM" />
+                android:onClick="openScreening"
+                android:text="Screening" />
+            <Button
+                android:id="@+id/openRecruitment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:onClick="openRecruitment"
+                android:text="Recruitment" />
+            <Button
+                android:id="@+id/openFollowup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:onClick="openFollowup"
+                android:text="Follow up"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/openLabInvestigation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="16dp"
+                android:onClick="openLabInvestigation"
+                android:text="Lab Investigation up"
+                android:visibility="gone"/>
 
 
             <Button
@@ -175,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <Button
                     android:id="@+id/openMembers"

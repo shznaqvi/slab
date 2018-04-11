@@ -43,7 +43,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         bi.setCallback(this);
         setupView();
-        Log.d("a1", dtToday);
+
 
     }
 

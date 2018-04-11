@@ -80,7 +80,7 @@
     <string name="sel10"> Length of neonate (in cms): </string>
     <string name="sel11">Head of circumference (in cms): </string>
 
-    <string name="sel12"> Neonate with history of Chorioamnionitis or Maternal GBS colonization  </string>
+    <string name="sel12"> Do you have any plans to travel out of Karachi in next one month. </string>
     <string name="sel13"> Newborn initiated feeding within 48 hours of birth. </string>
     <string name="sel14"> Neonate with congenital anomalies </string>
     <string name="sel15"> Neonates with early-onset sepsis </string>

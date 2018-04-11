@@ -19,21 +19,23 @@ public class FormsContract {
     private String formDate = ""; // Date
     private String user = ""; // Interviewer
     private String formtype = "";
-
-    public String getEndtime() {
-        return endtime;
-    }
-
-    public void setEndtime(String endtime) {
-        this.endtime = endtime;
-    }
-
     private String endtime = "";
-
     private String istatus = ""; // Interview Status
+    private String sMrno = "";     // Info Section
+    private String sStudyid = "";     // Info Section
 
+    public String getIsEl() {
+        return isEl;
+    }
+
+    public void setIsEl(String isEl) {
+        this.isEl = isEl;
+    }
+
+    private String isEl = "";     // Info Section
     private String sEl = "";     // Info Section
-    private String sBl = ""; // sB
+    //private String sBl = ""; // sB
+    private String sRecr = ""; // sRecruitment
     private String sFup = ""; //
     private String sAnthro = "";
     private String sExam = "";
@@ -63,8 +65,12 @@ public class FormsContract {
         this.user = jsonObject.getString(FormsTable.COLUMN_USER);
         this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
         this.formtype = jsonObject.getString(FormsTable.COLUMN_FORMTYPE);
+        this.sMrno = jsonObject.getString(FormsTable.COLUMN_MRNO);
+        this.sStudyid = jsonObject.getString(FormsTable.COLUMN_STUDYID);
         this.sEl = jsonObject.getString(FormsTable.COLUMN_SEL);
-        this.sBl = jsonObject.getString(FormsTable.COLUMN_SBL);
+        this.isEl = jsonObject.getString(FormsTable.COLUMN_isEL);
+        //this.sBl = jsonObject.getString(FormsTable.COLUMN_SBL);
+        this.sRecr = jsonObject.getString(FormsTable.COLUMN_SRECR);
         this.sFup = jsonObject.getString(FormsTable.COLUMN_SFUP);
         this.sAnthro = jsonObject.getString(FormsTable.COLUMN_SANTHRO);
         this.sExam = jsonObject.getString(FormsTable.COLUMN_SEXAM);
@@ -94,8 +100,12 @@ public class FormsContract {
         this.user = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USER));
         this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
         this.formtype = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FORMTYPE));
+        this.sMrno = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_MRNO));
+        this.sStudyid = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_STUDYID));
         this.sEl = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEL));
-        this.sBl = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SBL));
+        this.isEl = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_isEL));
+        //this.sBl = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SBL));
+        this.sRecr = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SRECR));
         this.sFup = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SFUP));
         this.sAnthro = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SANTHRO));
         this.sExam = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SEXAM));
@@ -132,6 +142,9 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
         json.put(FormsTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
+        json.put(FormsTable.COLUMN_MRNO, this.sMrno == null ? JSONObject.NULL : this.sMrno);
+        json.put(FormsTable.COLUMN_STUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
+        json.put(FormsTable.COLUMN_isEL, this.isEl == null ? JSONObject.NULL : this.isEl);
 
 
         if (!this.sEl.equals("")) {
@@ -139,11 +152,16 @@ public class FormsContract {
             json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : new JSONObject(this.sEl));
 
         }
+        /*
         if (!this.sBl.equals("")) {
 
             json.put(FormsTable.COLUMN_SBL, this.sBl.equals("") ? JSONObject.NULL : new JSONObject(this.sBl));
 
+        }*/
+        if (!this.sRecr.equals("")) {
+            json.put(FormsTable.COLUMN_SRECR, this.sRecr.equals("") ? JSONObject.NULL : new JSONObject(this.sRecr));
         }
+
         if (!this.sFup.equals("")) {
            // json.put(FormsTable.COLUMN_SBL, this.sBl.equals("") ? JSONObject.NULL : new JSONObject(this.sBl));
 
@@ -156,6 +174,7 @@ public class FormsContract {
             json.put(FormsTable.COLUMN_SEXAM,this.sExam.equals("")? JSONObject.NULL : new JSONObject(this.sExam));
 
         }
+
 
         if (!this.sAnthro.equals("")) {
 
@@ -192,6 +211,37 @@ public class FormsContract {
         return json;
     }
 
+    public String getsMrno() {
+        return sMrno;
+    }
+
+    public void setsMrno(String sMrno) {
+        this.sMrno = sMrno;
+    }
+
+    public String getsStudyid() {
+        return sStudyid;
+    }
+
+    public void setsStudyid(String sStudyid) {
+        this.sStudyid = sStudyid;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    public String getsRecr() {
+        return sRecr;
+    }
+
+    public void setsRecr(String sRecr) {
+        this.sRecr = sRecr;
+    }
 
     public String getProjectName() {
         return projectName;
@@ -244,14 +294,14 @@ public class FormsContract {
     public void setsEl(String sEl) {
         this.sEl = sEl;
     }
-
+/*
     public String getsBl() {
         return sBl;
     }
 
     public void setsBl(String sBl) {
         this.sBl = sBl;
-    }
+    }*/
 
     public String getsFup() {
         return sFup;
@@ -392,8 +442,12 @@ public class FormsContract {
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_FORMTYPE = "formtype";
+        public static final String COLUMN_MRNO = "mrno";
+        public static final String COLUMN_STUDYID = "studyid";
         public static final String COLUMN_SEL = "sel";
-        public static final String COLUMN_SBL = "sbl";
+        public static final String COLUMN_isEL = "isEl";
+       // public static final String COLUMN_SBL = "sbl";
+        public static final String COLUMN_SRECR = "sRecr";
         public static final String COLUMN_SFUP = "sfup";
         public static final String COLUMN_SANTHRO = "santhro";
         public static final String COLUMN_SEXAM = "sexam";

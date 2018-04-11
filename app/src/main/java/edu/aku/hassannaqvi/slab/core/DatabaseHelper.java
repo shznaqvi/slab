@@ -55,15 +55,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_FORMDATE + " TEXT," +
             FormsTable.COLUMN_USER + " TEXT," +
             FormsTable.COLUMN_FORMTYPE + " TEXT," +
+            FormsTable.COLUMN_MRNO + " TEXT," +
+            FormsTable.COLUMN_STUDYID + " TEXT," +
             FormsTable.COLUMN_SEL + " TEXT," +
-            FormsTable.COLUMN_SBL + " TEXT," +
+            FormsTable.COLUMN_isEL + " TEXT," +
+            //FormsTable.COLUMN_SBL + " TEXT," +
+            FormsTable.COLUMN_SRECR + " TEXT," +
             FormsTable.COLUMN_SFUP + " TEXT," +
             FormsTable.COLUMN_SANTHRO + " TEXT," +
             FormsTable.COLUMN_SEXAM + " TEXT," +
             FormsTable.COLUMN_SLAB + " TEXT," +
             FormsTable.COLUMN_SSUP + " TEXT," +
             FormsTable.COLUMN_SFEED + " TEXT," +
-
             FormsTable.COLUMN_ISTATUS + " TEXT," +
             FormsTable.COLUMN_GPSLAT + " TEXT," +
             FormsTable.COLUMN_GPSLNG + " TEXT," +
@@ -390,6 +393,154 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return formList;
     }
 
+    public String isMrNo(String mrNo) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                FormsTable.COLUMN_PROJECT_NAME,
+                FormsTable._ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMDATE,
+                FormsTable.COLUMN_USER,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_FORMTYPE,
+                FormsTable.COLUMN_MRNO,
+                FormsTable.COLUMN_STUDYID,
+                FormsTable.COLUMN_SEL,
+                FormsTable.COLUMN_isEL,
+                //FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
+                FormsTable.COLUMN_SFUP,
+                FormsTable.COLUMN_SANTHRO,
+                FormsTable.COLUMN_SEXAM,
+                FormsTable.COLUMN_SLAB,
+                FormsTable.COLUMN_SSUP,
+                FormsTable.COLUMN_SFEED,
+
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSDATE,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICETAGID,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_SYNCED,
+                FormsTable.COLUMN_SYNCED_DATE,
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME
+
+        };
+
+        String whereClause = FormsTable.COLUMN_MRNO + "=? AND " +
+                FormsTable.COLUMN_isEL + "=?";
+
+        String[] whereArgs = new String[]{mrNo, "1"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FormsTable._ID + " DESC LIMIT 1";
+        FormsContract fc = new FormsContract();
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                fc.Hydrate(c);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return fc.getsMrno();
+    }
+
+    public String isMrnoFound(String mrno) {
+
+//start here
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                FormsTable.COLUMN_PROJECT_NAME,
+                FormsTable._ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMDATE,
+                FormsTable.COLUMN_USER,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_FORMTYPE,
+                FormsTable.COLUMN_MRNO,
+                FormsTable.COLUMN_STUDYID,
+                FormsTable.COLUMN_SEL,
+                FormsTable.COLUMN_isEL,
+                //FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
+                FormsTable.COLUMN_SFUP,
+                FormsTable.COLUMN_SANTHRO,
+                FormsTable.COLUMN_SEXAM,
+                FormsTable.COLUMN_SLAB,
+                FormsTable.COLUMN_SSUP,
+                FormsTable.COLUMN_SFEED,
+
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSDATE,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICETAGID,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_SYNCED,
+                FormsTable.COLUMN_SYNCED_DATE,
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME
+
+        };
+
+        String whereClause = FormsTable.COLUMN_MRNO + " =?";
+        String[] whereArgs = new String[]{mrno};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FormsTable._ID + " DESC LIMIT 1";
+
+        FormsContract fc = new FormsContract();
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                fc.Hydrate(c);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return "";
+
+
+
+    }
+
     public Long addForm(FormsContract fc) {
 
         // Gets the data repository in write mode
@@ -403,8 +554,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_USER, fc.getUser());
         values.put(FormsTable.COLUMN_FORMTYPE, fc.getFormtype());
         values.put(FormsTable.COLUMN_ISTATUS, fc.getIstatus());
+        values.put(FormsTable.COLUMN_MRNO, fc.getsMrno());
+        values.put(FormsTable.COLUMN_STUDYID, fc.getsStudyid());
         values.put(FormsTable.COLUMN_SEL, fc.getsEl());
-        values.put(FormsTable.COLUMN_SBL, fc.getsBl());
+        values.put(FormsTable.COLUMN_isEL, fc.getIsEl());
+        //values.put(FormsTable.COLUMN_SBL, fc.getsBl());
+        values.put(FormsTable.COLUMN_SRECR, fc.getsRecr());
         values.put(FormsTable.COLUMN_SFUP, fc.getsFup());
         values.put(FormsTable.COLUMN_SANTHRO, fc.getsAnthro());
         values.put(FormsTable.COLUMN_SEXAM, fc.getsExam());
@@ -480,7 +635,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_SEL,
-                FormsTable.COLUMN_SBL,
+               // FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
                 FormsTable.COLUMN_SFUP,
                 FormsTable.COLUMN_SANTHRO,
                 FormsTable.COLUMN_SEXAM,
@@ -545,8 +701,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_USER,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_FORMTYPE,
+                FormsTable.COLUMN_MRNO,
+                FormsTable.COLUMN_STUDYID,
                 FormsTable.COLUMN_SEL,
-                FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_isEL,
+                //FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
                 FormsTable.COLUMN_SFUP,
                 FormsTable.COLUMN_SANTHRO,
                 FormsTable.COLUMN_SEXAM,
@@ -711,13 +871,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
-
+/*
     public int updateSBL() {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_SBL, MainApp.fc.getsBl());
+
+// Which row to update, based on the ID
+        String selection = FormsTable._ID + " = ?";
+        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+
+        int count = db.update(FormsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    */
+    public int updateSRecr() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FormsTable.COLUMN_SRECR, MainApp.fc.getsRecr());
 
 // Which row to update, based on the ID
         String selection = FormsTable._ID + " = ?";

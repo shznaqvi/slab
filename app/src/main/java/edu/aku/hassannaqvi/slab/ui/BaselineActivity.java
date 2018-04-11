@@ -250,7 +250,7 @@ public class BaselineActivity extends AppCompatActivity {
                 : "0");
 
 
-        MainApp.fc.setsBl(String.valueOf(sa));
+       // MainApp.fc.setsBl(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
@@ -285,7 +285,7 @@ public class BaselineActivity extends AppCompatActivity {
     }
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
+       /* DatabaseHelper db = new DatabaseHelper(this);
 
 
         int updcount = db.updateSBL();
@@ -297,6 +297,8 @@ public class BaselineActivity extends AppCompatActivity {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
+        */
+       return true;
 
     }
 

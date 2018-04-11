@@ -232,7 +232,7 @@ public class MainActivity extends Activity {
 
     }
 
-    public void OpenForm(View v) {
+    public void openScreening(View v) {
 
 //        if (spAreas.getSelectedItemPosition() != 0) {
         final Intent oF = new Intent(MainActivity.this, EligibilityFormActivity.class);
@@ -277,6 +277,18 @@ public class MainActivity extends Activity {
 //            Toast.makeText(getApplicationContext(), "Please select data from combobox!!", Toast.LENGTH_LONG).show();
 //        }
     }
+    public void openRecruitment(View v){
+        startActivity(new Intent(MainActivity.this, RecruitmentActivity.class));
+
+    }
+    public void openFollowup(View v){
+        startActivity(new Intent(MainActivity.this, FollowUpFormActivity.class));
+
+    }
+    public void openLabInvestigation(View v){
+
+    }
+
 
 
     public void OpenA(View v) {
