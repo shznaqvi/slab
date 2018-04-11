@@ -275,7 +275,7 @@ public class RecruitmentActivity extends AppCompatActivity {
     }
 
     public void BtnEnd() {
-
+        onBackPressed();
     }
 }
 
