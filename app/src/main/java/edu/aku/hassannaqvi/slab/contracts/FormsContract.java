@@ -21,19 +21,10 @@ public class FormsContract {
     private String formtype = "";
     private String endtime = "";
     private String istatus = ""; // Interview Status
-    private String sMrno = "";     // Info Section
-    private String sStudyid = "";     // Info Section
-
-    public String getIsEl() {
-        return isEl;
-    }
-
-    public void setIsEl(String isEl) {
-        this.isEl = isEl;
-    }
-
-    private String isEl = "";     // Info Section
-    private String sEl = "";     // Info Section
+    private String sMrno = "";     // Mr number
+    private String sStudyid = "";     // Study ID
+    private String isEl = "";     // isEligible
+    private String sEl = "";     // Eligible
     //private String sBl = ""; // sB
     private String sRecr = ""; // sRecruitment
     private String sFup = ""; //
@@ -42,7 +33,7 @@ public class FormsContract {
     private String sLab = "";
     private String sSup = "";
     private String sFeed = "";
-
+    private String isinserted = "";     // Child inserted
     private String gpsLat = "";
     private String gpsLng = "";
     private String gpsDT = "";
@@ -87,6 +78,7 @@ public class FormsContract {
         this.synced_date = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
         this.appversion = jsonObject.getString(FormsTable.COLUMN_APP_VERSION);
         this.endtime = jsonObject.getString(FormsTable.COLUMN_END_TIME);
+        this.isinserted = jsonObject.getString(FormsTable.COLUMN_isINSERTED);
 
         return this;
 
@@ -123,6 +115,7 @@ public class FormsContract {
         this.synced_date = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYNCED_DATE));
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APP_VERSION));
         this.endtime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_END_TIME));
+        this.isinserted = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_isINSERTED));
 
         // TODO:
 
@@ -145,6 +138,7 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_MRNO, this.sMrno == null ? JSONObject.NULL : this.sMrno);
         json.put(FormsTable.COLUMN_STUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
         json.put(FormsTable.COLUMN_isEL, this.isEl == null ? JSONObject.NULL : this.isEl);
+        json.put(FormsTable.COLUMN_isINSERTED, this.isinserted == null ? JSONObject.NULL : this.isinserted);
 
 
         if (!this.sEl.equals("")) {
@@ -430,6 +424,23 @@ public class FormsContract {
     public void setAppversion(String appversion) {
         this.appversion = appversion;
     }
+    public String getIsinserted() {
+        return isinserted;
+    }
+
+    public void setIsinserted(String isinserted) {
+        this.isinserted = isinserted;
+    }
+
+
+
+    public String getIsEl() {
+        return isEl;
+    }
+
+    public void setIsEl(String isEl) {
+        this.isEl = isEl;
+    }
 
     public static abstract class FormsTable implements BaseColumns {
 
@@ -464,6 +475,7 @@ public class FormsContract {
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
         public static final String COLUMN_APP_VERSION = "appversion";
+        public static final String COLUMN_isINSERTED = "isinserted";
 
         public static String _URL = "forms.php";
     }

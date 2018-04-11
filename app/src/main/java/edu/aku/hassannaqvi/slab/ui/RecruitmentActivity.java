@@ -90,21 +90,21 @@ public class RecruitmentActivity extends AppCompatActivity {
 
         if (!bi.senmrno.getText().toString().trim().isEmpty()) {
 
-            mrno = db.isMrNo(bi.senmrno.getText().toString());
+                    mrno = db.isMrnoFound(bi.senmrno.getText().toString());
 
             if (!mrno.isEmpty()) {
-
-                Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
-
-
+                if(!db.isInserted(bi.senmrno.getText().toString()).equals("1")){
                 bi.fldGrpsen.setVisibility(View.VISIBLE);
-
+                }else {
+                    Toast.makeText(this, "Child Already Enrolled!", Toast.LENGTH_SHORT).show();
+                }
             } else {
 
                 bi.fldGrpsen.setVisibility(View.GONE);
 
                 Toast.makeText(this, "No MR Number found!", Toast.LENGTH_SHORT).show();
             }
+
 
         } else {
             Toast.makeText(this, "Not found.", Toast.LENGTH_SHORT).show();
@@ -217,6 +217,7 @@ public class RecruitmentActivity extends AppCompatActivity {
         MainApp.fc.setFormtype("2");
         MainApp.fc.setIsEl("1");
         MainApp.fc.setsStudyid(bi.sen01.getText().toString());
+        MainApp.fc.setIsinserted("1");
         setGPS(); //Set GPS
 
         JSONObject rec = new JSONObject();

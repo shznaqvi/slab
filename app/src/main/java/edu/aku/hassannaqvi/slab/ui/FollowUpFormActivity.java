@@ -33,6 +33,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
     ActivityFollowUpFormBinding bi;
     DatabaseHelper db;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+    String mrno, studyID;
 
     private static final String TAG = FollowUpFormActivity.class.getName();
 
@@ -85,17 +86,17 @@ public class FollowUpFormActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sfu05, getString(R.string.sfu05))) {
             return false;
         }
-        if(!bi.sfu01c.isChecked()){
+        if (!bi.sfu01c.isChecked()) {
 
-        if (!validatorClass.EmptyTextBox(this, bi.sfu06, getString(R.string.sfu06))) {
-            return false;
-        }
-        if (!validatorClass.EmptyTextBox(this, bi.sfu07, getString(R.string.sfu07))) {
-            return false;
-        }
-        if (!validatorClass.EmptyTextBox(this, bi.sfu08, getString(R.string.sfu08))) {
-            return false;
-        }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu06, getString(R.string.sfu06))) {
+                return false;
+            }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu07, getString(R.string.sfu07))) {
+                return false;
+            }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu08, getString(R.string.sfu08))) {
+                return false;
+            }
         }
         return true;
     }
@@ -119,7 +120,6 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     defaultValue = true;
                 }
                 startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue));
-
 
 
             } else {
@@ -174,9 +174,88 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
     public void btnCheckMrno() {
 
+        if (!bi.sfu001.getText().toString().trim().isEmpty()) {
+
+           mrno = db.isMrnoFound(bi.sfu001.getText().toString());
+
+            if (!mrno.isEmpty()) {
+
+                Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
+                bi.fldGrpA.setVisibility(View.VISIBLE);
+
+            } else {
+
+                bi.fldGrpA.setVisibility(View.GONE);
+
+                Toast.makeText(this, "No MR Number found!", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            Toast.makeText(this, "Not found.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void btnStudyId() {
 
+        if (!bi.sfu001.getText().toString().trim().isEmpty() && !bi.sfu002.getText().toString().trim().isEmpty()) {
+/*
+            String uid = db.isStudyIDFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+            if (uid != null) {
+
+                members = db.getAllMembersByHH(uid);
+
+                if (members.size() != 0) {
+                    for (FamilyMembersContract fm : members) {
+
+                        if (fm.getsA2() != null) {
+                            json = JSONUtilClass.getModelFromJSON(fm.getsA2(), JSONModelClass.class);
+                            if ((Integer.valueOf(json.getAge()) >= 15 && Integer.valueOf(json.getAge()) < 50) && json.getGender().equals("2")) {
+                                MainApp.mwra_1.add(fm);
+                                MainApp.all_members_1.add(fm);
+                            }
+                            if ((Integer.valueOf(json.getAge()) >= 10 && (Integer.valueOf(json.getAge()) < 20)) && json.getMaritalStatus().equals("5")) {
+                                MainApp.adolescents_1.add(fm);
+                                MainApp.all_members_1.add(fm);
+                            } else if (Integer.valueOf(json.getAge()) < 6) {
+                                MainApp.childUnder5_1.add(fm);
+                                MainApp.all_members_1.add(fm);
+                            } else if (!((Integer.valueOf(json.getAge()) >= 15 && Integer.valueOf(json.getAge()) < 50) && json.getGender().equals("2"))) {
+                                MainApp.otherMembers_1.add(fm);
+                                MainApp.all_members_1.add(fm);
+                            }
+
+                        }
+
+                    }
+
+                    if (MainApp.all_members_1.size() > 0) {
+                        Toast.makeText(this, "Members Found..", Toast.LENGTH_SHORT).show();
+                        binding.btnContinue.setVisibility(View.VISIBLE);
+                        binding.btnEnd.setVisibility(View.GONE);
+                        binding.fldGrpviewlist.setVisibility(View.VISIBLE);
+                        viewWraList();
+                        viewChildList();
+                        viewAdolList();
+                        viewOthList();
+
+                    } else {
+                        binding.fldGrpviewlist.setVisibility(View.GONE);
+                        binding.btnContinue.setVisibility(View.GONE);
+                        binding.btnEnd.setVisibility(View.GONE);
+                        Toast.makeText(this, "No members found, Check another HH.", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            } else {
+                binding.fldGrpviewlist.setVisibility(View.GONE);
+                Toast.makeText(this, "No members found for the HH.", Toast.LENGTH_SHORT).show();
+            }
+
+        } else {
+            Toast.makeText(this, "Not found.", Toast.LENGTH_SHORT).show();
+        }
+        */
+        }
     }
 }
