@@ -32,7 +32,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
     ActivityEligibilityFormBinding bi;
     DatabaseHelper db;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+    String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
 
     private static final String TAG = EligibilityFormActivity.class.getName();
 
@@ -160,7 +160,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!validatorClass.RangeTextBox(this, bi.sel08w, 0, 6, getString(R.string.sel08) + " - " + getString(R.string.weeks), " weeks")) {
+        if (!validatorClass.RangeTextBox(this, bi.sel08w, 28, 36, getString(R.string.sel08) + " - " + getString(R.string.weeks), " weeks")) {
             return false;
         }
 
@@ -168,7 +168,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!validatorClass.RangeTextBox(this, bi.sel08d, 28, 36, getString(R.string.sel08) + " - " + getString(R.string.days), " days")) {
+        if (!validatorClass.RangeTextBox(this, bi.sel08d, 0, 6, getString(R.string.sel08) + " - " + getString(R.string.days), " days")) {
             return false;
         }
 
@@ -183,9 +183,27 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sel10, getString(R.string.sel10))) {
             return false;
         }
+        if(!bi.sel10.getText().toString().contains(".")){
+            Toast.makeText(this,"Length of neonate should be in decimal",Toast.LENGTH_SHORT);
+            bi.sel10.setError("Length of neonate should be in decimal");
+            return false;
+        }else{
+            bi.sel10.setError(null);
+        }
         if (!validatorClass.EmptyTextBox(this, bi.sel11, getString(R.string.sel11))) {
             return false;
         }
+        /*if (!validatorClass.RangeTextBox(this, bi.sel11,1.0,4.0, getString(R.string.sel11)," cm")) {
+            return false;
+        }*/
+        if(!bi.sel11.getText().toString().contains(".")){
+            Toast.makeText(this,"Head of Circumference should be decimal",Toast.LENGTH_SHORT);
+            bi.sel11.setError("Head of Circumference should be decimal");
+            return false;
+        }else{
+            bi.sel11.setError(null);
+        }
+
         if (!validatorClass.EmptyRadioButton(this, bi.sel12, bi.sel12a, getString(R.string.sel12))) {
             return false;
         }

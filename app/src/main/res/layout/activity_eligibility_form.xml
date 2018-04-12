@@ -85,7 +85,7 @@
                         android:hint="XXX-XX-XX"
                         android:layout_weight="60"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
                         android:maxLength="9"/>
 
                 </LinearLayout>

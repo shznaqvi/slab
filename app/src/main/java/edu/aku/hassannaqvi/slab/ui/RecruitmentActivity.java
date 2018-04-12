@@ -19,7 +19,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
@@ -36,6 +38,7 @@ public class RecruitmentActivity extends AppCompatActivity {
     String dateToday;
     String dtToday;
     private static final String TAG = RecruitmentActivity.class.getName();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +47,11 @@ public class RecruitmentActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_recruitment);
         bi.setCallback(this);
         dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
-       dtToday  = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
+        dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
 
         db = new DatabaseHelper(this);
         setupView();
+
 
     }
 
@@ -84,18 +88,40 @@ public class RecruitmentActivity extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    public String convertDateFormat(String dateStr) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        try {
+            Date d = sdf.parse(dateStr);
+            return new SimpleDateFormat("dd/MM/yyyy").format(d);
+        } catch (ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        return "";
     }
 
     public void btnCheckMrno() {
 
         if (!bi.senmrno.getText().toString().trim().isEmpty()) {
 
-                    mrno = db.isMrnoFound(bi.senmrno.getText().toString());
+            mrno = db.isMrnoFound(bi.senmrno.getText().toString());
+            //  MainApp.fc.setsMrno(mrno);
 
             if (!mrno.isEmpty()) {
-                if(!db.isInserted(bi.senmrno.getText().toString()).equals("1")){
-                bi.fldGrpsen.setVisibility(View.VISIBLE);
-                }else {
+                if (!db.isInserted(bi.senmrno.getText().toString()).equals("1")) {
+                    bi.fldGrpsen.setVisibility(View.VISIBLE);
+
+                    bi.sen03.setMaxDate(dateToday);
+                    bi.sen03.setMinDate(dateToday);
+
+                    String currentdate = db.getDateBymrno(mrno);
+                    bi.sen09d.setMinDate(convertDateFormat(currentdate));
+                    bi.sen09d.setMaxDate(dateToday);
+
+                } else {
                     Toast.makeText(this, "Child Already Enrolled!", Toast.LENGTH_SHORT).show();
                 }
             } else {

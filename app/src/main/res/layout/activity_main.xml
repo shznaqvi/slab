@@ -202,10 +202,9 @@
                 android:id="@+id/adminsec"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:orientation="vertical">
 
-                <Button
+            <!--    <Button
                     android:id="@+id/openMembers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -223,7 +222,7 @@
                     android:onClick="openA"
                     android:text="Section A" />
 
-                <!--<Button
+               <Button
                     android:id="@+id/openB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -231,7 +230,7 @@
                     android:layout_marginTop="16dp"
                     android:onClick="openB"
                     android:text="Section B" />
--->
+
                 <Button
                     android:id="@+id/openC"
                     android:layout_width="match_parent"
@@ -340,7 +339,7 @@
                     android:layout_marginTop="16dp"
                     android:onClick="openM"
                     android:text="Section M" />
-
+-->
                 <Button
                     android:id="@+id/downloadApp"
                     android:layout_width="match_parent"
