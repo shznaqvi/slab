@@ -218,7 +218,8 @@
                             android:hint="HH:MM"
                             android:layout_weight="4"
                             android:textColor="@android:color/black"
-                            app:timeFormat="hh:mm" />
+                            app:timeFormat="hh:mm"
+                            app:is24HourView="true"/>
                         </LinearLayout>
                     </LinearLayout>
 

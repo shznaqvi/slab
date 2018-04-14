@@ -562,7 +562,7 @@
                                         android:focusable="false"
                                         android:hint="HH:MM"
                                         android:textColor="@android:color/black"
-                                        app:timeFormat="hh:mm" />
+                                        app:timeFormat="hh:mm"/>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>

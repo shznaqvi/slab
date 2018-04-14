@@ -282,7 +282,7 @@ public class MainActivity extends Activity {
 
     }
     public void openFollowup(View v){
-        startActivity(new Intent(MainActivity.this, FollowUpFormActivity.class));
+        startActivity(new Intent(MainActivity.this, ViewFollowUpActivity.class));
 
     }
     public void openLabInvestigation(View v){

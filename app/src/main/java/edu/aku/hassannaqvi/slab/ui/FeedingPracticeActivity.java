@@ -29,6 +29,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     DatabaseHelper db;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
     Boolean nextExamSec;
+    String childName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +37,28 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_feeding_practice);
         db = new DatabaseHelper(this);
         bi.setCallback(this);
-        gettingExamSkip();
+        gettingIntents();
         setupView();
     }
 
-    private void gettingExamSkip() {
-        Bundle bundle = getIntent().getExtras();
-        nextExamSec = bundle.getBoolean("openExamSec");
+    private void gettingIntents() {
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("openExamSec") && intent.hasExtra("childName")){
+            Bundle bundle = intent.getExtras();
+            nextExamSec = bundle.getBoolean("openExamSec");
+            childName = bundle.getString("childName");
+        }else{
+            // Do something else
+            Toast.makeText(this,"Restart your app or contact your support team!",Toast.LENGTH_SHORT);
+
+        }
     }
 
     private void setupView() {
         bi.sfu50.setManager(getSupportFragmentManager());
         bi.sfu50.setMaxDate(dateToday);
+        bi.childname.setText(childName);
 
         bi.sfu12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

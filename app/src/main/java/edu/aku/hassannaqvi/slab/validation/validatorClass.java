@@ -82,12 +82,13 @@ public abstract class validatorClass {
             rdBtn.setError("This data is Required!");    // Set Error on last radio button
 
             rdBtn.setFocusable(true);
-            rdBtn.setFocusableInTouchMode(true);
-            rdBtn.requestFocus();
+          //  rdBtn.setFocusableInTouchMode(true);
+           // rdBtn.requestFocus();
             Log.i(context.getClass().getName(), context.getResources().getResourceEntryName(rdGrp.getId()) + ": This data is Required!");
             return false;
         } else {
             rdBtn.setError(null);
+            rdBtn.clearFocus();
             return true;
         }
     }

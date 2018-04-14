@@ -1,12 +1,10 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -19,51 +17,47 @@ import java.util.Date;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
-import edu.aku.hassannaqvi.slab.databinding.ActivityEndingBinding;
+import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpEndingBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
-public class EndingActivity extends AppCompatActivity {
-
-    private static final String TAG = EndingActivity.class.getSimpleName();
-    ActivityEndingBinding bl;
-
+public class FollowUpEndingActivity extends AppCompatActivity {
+    ActivityFollowUpEndingBinding bi ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*setContentView(R.layout.activity_ending);
-         ButterKnife.bind(this);*/
+        bi = DataBindingUtil.setContentView(this,R.layout.activity_follow_up_ending);
+        bi.setCallback(this);
 
-        bl = DataBindingUtil.setContentView(this, R.layout.activity_ending);
-        bl.setCallback(this);
         Boolean check = getIntent().getExtras().getBoolean("complete");
         String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
 
-        bl.sfu04.setManager(getSupportFragmentManager());
-        bl.sfu04.setMaxDate(dateToday);
+        bi.sfu04.setManager(getSupportFragmentManager());
+        bi.sfu04.setMaxDate(dateToday);
 
         if (check) {
-            bl.istatusa.setEnabled(true);
-            bl.istatusb.setEnabled(false);
+            bi.istatusa.setEnabled(true);
+            bi.istatusb.setEnabled(false);
 
         } else {
-            bl.istatusa.setEnabled(false);
-            bl.istatusb.setEnabled(true);
+            bi.istatusa.setEnabled(false);
+            bi.istatusb.setEnabled(true);
         }
 
-        bl.istatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        bi.istatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.istatusg){
-                    bl.fldGrpistatus.setVisibility(View.VISIBLE);
+                    bi.fldGrpistatus.setVisibility(View.VISIBLE);
                 }else {
-                    bl.fldGrpistatus.setVisibility(View.GONE);
-                    bl.sfu04.setText(null);
-                    bl.sfu05.setText(null);
+                    bi.fldGrpistatus.setVisibility(View.GONE);
+                    bi.sfu04.setText(null);
+                    bi.sfu05.setText(null);
                 }
             }
         });
 
     }
+
 
     public void BtnEnd() {
 
@@ -77,8 +71,9 @@ public class EndingActivity extends AppCompatActivity {
             if (UpdateDB()) {
 
 
-                MainApp.fupLocation = 0;
 
+
+                MainApp.fupLocation = 0;
 
                 MainApp.selectedPos = -1;
 
@@ -103,16 +98,16 @@ public class EndingActivity extends AppCompatActivity {
 
         JSONObject end = new JSONObject();
 
-        end.put("istatus", bl.istatusa.isChecked() ? "1"
-                : bl.istatusb.isChecked() ? "2"
-                : bl.istatusc.isChecked() ? "3"
-                : bl.istatusd.isChecked() ? "4"
-                : bl.istatuse.isChecked() ? "5"
-                : bl.istatusf.isChecked() ? "6"
-                : bl.istatusg.isChecked() ? "7"
-                : bl.istatus96.isChecked() ? "96"
+        end.put("istatus", bi.istatusa.isChecked() ? "1"
+                : bi.istatusb.isChecked() ? "2"
+                : bi.istatusc.isChecked() ? "3"
+                : bi.istatusd.isChecked() ? "4"
+                : bi.istatuse.isChecked() ? "5"
+                : bi.istatusf.isChecked() ? "6"
+                : bi.istatusg.isChecked() ? "7"
+                : bi.istatus96.isChecked() ? "96"
                 : "0");
-        end.put("istatus96x", bl.istatus96x.getText().toString());
+        end.put("istatus96x", bi.istatus96x.getText().toString());
 
         MainApp.fc.setIstatus(String.valueOf(end));
 
@@ -139,25 +134,19 @@ public class EndingActivity extends AppCompatActivity {
     private boolean formValidation() {
         Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
 
-        if (!validatorClass.EmptyRadioButton(this, bl.istatus, bl.istatusa, getString(R.string.istatus))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.istatus, bi.istatusa, getString(R.string.istatus))) {
             return false;
         }
-        if(bl.istatusg.isChecked()){
-            if (!validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04))) {
+        if(bi.istatusg.isChecked()){
+            if (!validatorClass.EmptyTextBox(this, bi.sfu04, getString(R.string.sfu04))) {
                 return false;
             }
-            if (!validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05))) {
+            if (!validatorClass.EmptyTextBox(this, bi.sfu05, getString(R.string.sfu05))) {
                 return false;
             }
         }
 
         return true;
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(getApplicationContext(), "You Can't go back", Toast.LENGTH_LONG).show();
     }
 
 

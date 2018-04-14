@@ -54,11 +54,6 @@
 
         <service android:name=".DownloadFileService" />
 
-        <activity
-            android:name=".ui.BaselineActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity android:name=".ui.AnthropometryActivity" />
         <activity android:name=".ui.PhysicalExaminationActivity" />
         <activity
@@ -96,10 +91,22 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".ui.RecruitmentActivity"
+        <activity
+            android:name=".ui.RecruitmentActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.FollowUpEndingActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.ViewFollowUpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".Adapter.FollowupAdapter"
             ></activity>
     </application>
 

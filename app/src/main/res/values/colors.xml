@@ -6,10 +6,10 @@
     <color name="colorPrimary">#8d6e63</color>
     <color name="colorPrimaryAlpha">#668d6e63</color>-->
 
-    <color name="colorPrimaryDark">#2B3245</color>
-    <color name="colorPrimary">#383F52</color>
-    <color name="colorPrimaryAlpha">#96A0AA</color>
-    <color name="colorPrimaryBeta">#FF0042</color>
+    <color name="colorPrimaryDark">#263238</color>
+    <color name="colorPrimary">#37474f</color>
+    <color name="colorPrimaryAlpha">#90a4ae</color>
+    <color name="colorPrimaryBeta">#f50057</color>
 
 
     <color name="colorAccent">#0099cc</color>

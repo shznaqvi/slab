@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
@@ -26,6 +27,7 @@ import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityFormBinding;
+import edu.aku.hassannaqvi.slab.other.DateUtils;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class EligibilityFormActivity extends AppCompatActivity {
@@ -45,11 +47,14 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.setCallback(this);
 
         setupView();
+
+
     }
 
     private void setupView() {
         bi.sel03d.setManager(getSupportFragmentManager());
         bi.sel03d.setMaxDate(dateToday);
+        bi.sel03d.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy"));
 
         bi.sel03t.setManager(getSupportFragmentManager());
         bi.sel12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

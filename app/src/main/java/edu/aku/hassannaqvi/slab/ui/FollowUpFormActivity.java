@@ -22,18 +22,23 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
+import edu.aku.hassannaqvi.slab.JsonModelClasses.RecruitmentJSONModel;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpFormBinding;
+import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowUpFormActivity extends AppCompatActivity {
     ActivityFollowUpFormBinding bi;
     DatabaseHelper db;
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
-    String mrno, studyID;
+    String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
+    FormsContract fc, fc_1;
+    EligibilityJSONModel elmodel;
+
 
     private static final String TAG = FollowUpFormActivity.class.getName();
 
@@ -44,8 +49,9 @@ public class FollowUpFormActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
         bi.setCallback(this);
         setupView();
-
-
+        fc = new FormsContract();
+        fc_1 = new FormsContract();
+        elmodel = new EligibilityJSONModel();
     }
 
     private void setupView() {
@@ -63,6 +69,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 }
             }
         });
+
 
     }
 
@@ -83,19 +90,37 @@ public class FollowUpFormActivity extends AppCompatActivity {
             bi.sfu001.setError("Invalid length");
             return false;
         }
-        if (!validatorClass.EmptyTextBox(this, bi.sfu05, getString(R.string.sfu05))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu01,bi.sfu01a, getString(R.string.sfu01c))) {
             return false;
         }
+
         if (!bi.sfu01c.isChecked()) {
 
             if (!validatorClass.EmptyTextBox(this, bi.sfu06, getString(R.string.sfu06))) {
                 return false;
             }
+            if (!validatorClass.RangeTextBox(this, bi.sfu06, 1000, 2500, getString(R.string.sfu06) ," Weight")) {
+                return false;
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu07, getString(R.string.sfu07))) {
                 return false;
             }
+            if(!bi.sfu07.getText().toString().contains(".")){
+                Toast.makeText(this,"Length of neonate should be in decimal",Toast.LENGTH_SHORT);
+                bi.sfu07.setError("Length of neonate should be in decimal");
+                return false;
+            }else{
+                bi.sfu07.setError(null);
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu08, getString(R.string.sfu08))) {
                 return false;
+            }
+            if(!bi.sfu08.getText().toString().contains(".")){
+                Toast.makeText(this,"Head of Circumference should be decimal",Toast.LENGTH_SHORT);
+                bi.sfu08.setError("Head of Circumference should be decimal");
+                return false;
+            }else{
+                bi.sfu08.setError(null);
             }
         }
         return true;
@@ -119,7 +144,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 } else {
                     defaultValue = true;
                 }
-                startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue));
+                startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName",bi.ChildName.getText().toString()));
 
 
             } else {
@@ -131,17 +156,21 @@ public class FollowUpFormActivity extends AppCompatActivity {
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 
-        int updcount = db.updateSFup();
+        Long newrowid = db.addForm(MainApp.fc);
 
-        if (updcount == 1) {
+        MainApp.fc.set_ID(String.valueOf(newrowid));
+
+        if (newrowid != 0) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+            MainApp.fc.setUID((MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
+            db.updateFormID();
+
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
-
-
     }
 
     public void BtnEnd() {
@@ -157,6 +186,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
         MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
+        MainApp.fc.setsMrno(bi.sfu001.getText().toString());
+        MainApp.fc.setsStudyid(bi.sfu002.getText().toString());
 
         JSONObject fu = new JSONObject();
         fu.put("sfudatetime", dtToday);
@@ -176,12 +207,18 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
         if (!bi.sfu001.getText().toString().trim().isEmpty()) {
 
-           mrno = db.isMrnoFound(bi.sfu001.getText().toString());
+            fc = db.getStudyID(bi.sfu001.getText().toString());
+            fc_1 = db.getChildName(bi.sfu001.getText().toString());
+            fc.setsEl(fc_1.getsEl());
 
-            if (!mrno.isEmpty()) {
+            if (!fc.getsMrno().isEmpty()) {
 
                 Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
                 bi.fldGrpA.setVisibility(View.VISIBLE);
+                elmodel = JSONUtilClass.getModelFromJSON(fc.getsEl(), EligibilityJSONModel.class);
+
+                bi.sfu002.setText(fc.getsStudyid());
+                bi.ChildName.setText(elmodel.getSel02());
 
             } else {
 
@@ -196,66 +233,6 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
     }
 
-    public void btnStudyId() {
 
-        if (!bi.sfu001.getText().toString().trim().isEmpty() && !bi.sfu002.getText().toString().trim().isEmpty()) {
-/*
-            String uid = db.isStudyIDFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
-            if (uid != null) {
 
-                members = db.getAllMembersByHH(uid);
-
-                if (members.size() != 0) {
-                    for (FamilyMembersContract fm : members) {
-
-                        if (fm.getsA2() != null) {
-                            json = JSONUtilClass.getModelFromJSON(fm.getsA2(), JSONModelClass.class);
-                            if ((Integer.valueOf(json.getAge()) >= 15 && Integer.valueOf(json.getAge()) < 50) && json.getGender().equals("2")) {
-                                MainApp.mwra_1.add(fm);
-                                MainApp.all_members_1.add(fm);
-                            }
-                            if ((Integer.valueOf(json.getAge()) >= 10 && (Integer.valueOf(json.getAge()) < 20)) && json.getMaritalStatus().equals("5")) {
-                                MainApp.adolescents_1.add(fm);
-                                MainApp.all_members_1.add(fm);
-                            } else if (Integer.valueOf(json.getAge()) < 6) {
-                                MainApp.childUnder5_1.add(fm);
-                                MainApp.all_members_1.add(fm);
-                            } else if (!((Integer.valueOf(json.getAge()) >= 15 && Integer.valueOf(json.getAge()) < 50) && json.getGender().equals("2"))) {
-                                MainApp.otherMembers_1.add(fm);
-                                MainApp.all_members_1.add(fm);
-                            }
-
-                        }
-
-                    }
-
-                    if (MainApp.all_members_1.size() > 0) {
-                        Toast.makeText(this, "Members Found..", Toast.LENGTH_SHORT).show();
-                        binding.btnContinue.setVisibility(View.VISIBLE);
-                        binding.btnEnd.setVisibility(View.GONE);
-                        binding.fldGrpviewlist.setVisibility(View.VISIBLE);
-                        viewWraList();
-                        viewChildList();
-                        viewAdolList();
-                        viewOthList();
-
-                    } else {
-                        binding.fldGrpviewlist.setVisibility(View.GONE);
-                        binding.btnContinue.setVisibility(View.GONE);
-                        binding.btnEnd.setVisibility(View.GONE);
-                        Toast.makeText(this, "No members found, Check another HH.", Toast.LENGTH_SHORT).show();
-                    }
-
-                }
-            } else {
-                binding.fldGrpviewlist.setVisibility(View.GONE);
-                Toast.makeText(this, "No members found for the HH.", Toast.LENGTH_SHORT).show();
-            }
-
-        } else {
-            Toast.makeText(this, "Not found.", Toast.LENGTH_SHORT).show();
-        }
-        */
-        }
-    }
 }

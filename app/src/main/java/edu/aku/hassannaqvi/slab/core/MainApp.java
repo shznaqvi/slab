@@ -68,27 +68,13 @@ public class MainApp extends Application {
     public static String userName = "0000";
     //    Total No of members got from Section A
 
-    public static int TotalMembersCount = 0;
-    public static int mwraCount = 1;
-    public static int TotalMWRACount = 0;
-    public static int TotalChildCount = 0;
-    public static int TotalDeceasedMotherCount = 0;
-    public static int CounterDeceasedMother = 0;
-    public static int TotalDeceasedChildCount = 0;
-    public static int CounterDeceasedChild = 0;
-    public static int counter = 0;
-    public static int mm = 1;
-    public static int womanage = 0;
-    public static int imsCount = 1;
-    public static int totalImsCount = 0;
-    public static int positionIm = 0;
+
     public static boolean flag = true;
     public static int versionCode;
     public static String versionName;
     public static int prevPreg = 0;
     public static int fupLocation = 0;
 
-    public static ArrayList<String> lstChild = new ArrayList<>();
 
     public static int ageRdo = 0;
 
@@ -97,7 +83,6 @@ public class MainApp extends Application {
     public static String regionDss = "";
 
 
-    public static int memFlag = 0;
 
     public static int selectedPos = -1;
     public static int randID = 1;
