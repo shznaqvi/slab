@@ -25,7 +25,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Child Detail"
+            android:text="List Of Follow Up's"
             android:gravity="center_horizontal"/>
 
         <android.support.v7.widget.RecyclerView
@@ -44,7 +44,8 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
             android:layout_height="wrap_content"
             android:text="Add Follow Up"
             android:layout_gravity="right"
-            android:gravity="center_horizontal"/>
+            android:gravity="center_horizontal"
+            android:visibility="gone"/>
     </LinearLayout>
 
 </layout>

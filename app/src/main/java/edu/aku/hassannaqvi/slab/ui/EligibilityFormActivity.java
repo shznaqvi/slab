@@ -297,7 +297,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         MainApp.fc.setDevicetagID(MainApp.getTagName(this));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setsMrno(bi.sel01.getText().toString());
-        MainApp.fc.setFormtype("1");
+        MainApp.fc.setFormtype(MainApp.FORMTYPE_EL);
         if (bi.sel18a.isChecked()){
             MainApp.fc.setIsEl("1");
         }else{

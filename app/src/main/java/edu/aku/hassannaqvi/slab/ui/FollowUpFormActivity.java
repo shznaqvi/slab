@@ -7,6 +7,7 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     FormsContract fc, fc_1;
     EligibilityJSONModel elmodel;
+    String localMrno;
+    String localStudyID ;
 
 
     private static final String TAG = FollowUpFormActivity.class.getName();
@@ -48,10 +51,25 @@ public class FollowUpFormActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_follow_up_form);
         db = new DatabaseHelper(this);
         bi.setCallback(this);
+        checkIntents();
         setupView();
         fc = new FormsContract();
         fc_1 = new FormsContract();
         elmodel = new EligibilityJSONModel();
+    }
+
+    private void checkIntents() {
+            Intent intent = getIntent();
+            if(intent.hasExtra(MainApp.MRNO_TAG) && intent.hasExtra(MainApp.STUDYID_TAG)){
+                Bundle bundle = intent.getExtras();
+                localMrno = bundle.getString(MainApp.MRNO_TAG);
+                localStudyID = bundle.getString(MainApp.STUDYID_TAG);
+            }else{
+                // Do something else
+                Toast.makeText(this,"Restart your app or contact your support team!",Toast.LENGTH_SHORT);
+
+            }
+
     }
 
     private void setupView() {
@@ -186,8 +204,11 @@ public class FollowUpFormActivity extends AppCompatActivity {
         MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-        MainApp.fc.setsMrno(bi.sfu001.getText().toString());
-        MainApp.fc.setsStudyid(bi.sfu002.getText().toString());
+        MainApp.fc.setsMrno(localMrno);
+        MainApp.fc.setsStudyid(localStudyID);
+        MainApp.fc.setFormtype(MainApp.FORMTYPE_Fup);
+        MainApp.fc.setIsinserted("1");
+        setGPS(); //Set GPS
 
         JSONObject fu = new JSONObject();
         fu.put("sfudatetime", dtToday);
@@ -233,6 +254,33 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
     }
 
+    private void setGPS() {
+        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+        try {
+            String lat = GPSPref.getString("Latitude", "0");
+            String lang = GPSPref.getString("Longitude", "0");
+            String acc = GPSPref.getString("Accuracy", "0");
+
+            if (lat == "0" && lang == "0") {
+                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
+            }
+
+            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
+
+            MainApp.fc.setGpsLat(lat);
+            MainApp.fc.setGpsLng(lang);
+            MainApp.fc.setGpsAcc(acc);
+            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
+
+            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.e(TAG, "setGPS: " + e.getMessage());
+        }
+
+    }
 
 
 }

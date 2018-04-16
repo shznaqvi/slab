@@ -240,7 +240,7 @@ public class RecruitmentActivity extends AppCompatActivity {
         MainApp.fc.setDevicetagID(MainApp.getTagName(this));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setsMrno(mrno);
-        MainApp.fc.setFormtype("2");
+        MainApp.fc.setFormtype(MainApp.FORMTYPE_Recr);
         MainApp.fc.setIsEl("1");
         MainApp.fc.setsStudyid(bi.sen01.getText().toString());
         MainApp.fc.setIsinserted("1");

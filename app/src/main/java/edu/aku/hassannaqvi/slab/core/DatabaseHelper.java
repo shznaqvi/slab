@@ -20,6 +20,7 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.slab.contracts.DistrictsContract;
 import edu.aku.hassannaqvi.slab.contracts.DistrictsContract.singleDistrict;
+import edu.aku.hassannaqvi.slab.contracts.FollowupListContract.FollowUpList;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract.FormsTable;
 import edu.aku.hassannaqvi.slab.contracts.TalukasContract;
@@ -81,6 +82,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FormsTable.COLUMN_SYNCED + " TEXT," +
             FormsTable.COLUMN_SYNCED_DATE + " TEXT"
             + " );";
+
+    private static final String SQL_CREATE_FOLLOWUPLIST = "CREATE TABLE "
+            + FollowUpList.TABLE_NAME + "(" +
+            FollowUpList._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            FollowUpList.COLUMN_PROJECT_NAME + " TEXT," +
+            FollowUpList.COLUMN_UID + " TEXT," +
+            FollowUpList.COLUMN_FORMDATE + " TEXT," +
+            FollowUpList.COLUMN_USER + " TEXT," +
+            FollowUpList.COLUMN_FORMTYPE + " TEXT," +
+            FollowUpList.COLUMN_CHILDNAME + " TEXT," +
+            FollowUpList.COLUMN_MOTHERNAME + " TEXT," +
+            FollowUpList.COLUMN_MRNO + " TEXT," +
+            FollowUpList.COLUMN_STUDYID + " TEXT," +
+            FollowUpList.COLUMN_DISCHARGEDATE + " TEXT," +
+            FollowUpList.COLUMN_TYPE + " TEXT," +
+            FollowUpList.COLUMN_STATUS + " TEXT, " +
+
+            FollowUpList.COLUMN_ISTATUS + " TEXT," +
+            FollowUpList.COLUMN_GPSLAT + " TEXT," +
+            FollowUpList.COLUMN_GPSLNG + " TEXT," +
+            FollowUpList.COLUMN_GPSDATE + " TEXT," +
+            FollowUpList.COLUMN_GPSACC + " TEXT," +
+            FollowUpList.COLUMN_DEVICEID + " TEXT," +
+            FollowUpList.COLUMN_DEVICETAGID + " TEXT," +
+            FollowUpList.COLUMN_APP_VERSION + " TEXT," +
+            FollowUpList.COLUMN_END_TIME + " TEXT," +
+            FollowUpList.COLUMN_SYNCED + " TEXT," +
+            FollowUpList.COLUMN_SYNCED_DATE + " TEXT"
+            + " );";
     private static final String SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + UsersContract.UsersTable.TABLE_NAME;
     private static final String SQL_DELETE_FORMS =
@@ -114,6 +144,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_FORMS);
+       db.execSQL(SQL_CREATE_FOLLOWUPLIST);
         db.execSQL(SQL_CREATE_DISTRICT);
         db.execSQL(SQL_CREATE_VILLAGE);
     }
@@ -122,6 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
+        db.execSQL(SQL_CREATE_FOLLOWUPLIST);
         db.execSQL(SQL_DELETE_DISTRICTS);
         db.execSQL(SQL_DELETE_VILLAGES);
     }
@@ -508,7 +540,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         };
 
         String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
-                FormsTable.COLUMN_isEL + " =? AND "+
+                FormsTable.COLUMN_isEL + " =? AND " +
                 FormsTable.COLUMN_FORMTYPE + " =? ";
         String[] whereArgs = new String[]{mrNo, "1", "2"};
         String groupBy = null;
@@ -540,6 +572,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return fc;
     }
+
     public FormsContract getChildName(String mrNo) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -580,7 +613,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         };
 
         String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
-                FormsTable.COLUMN_isEL + " =? AND "+
+                FormsTable.COLUMN_isEL + " =? AND " +
                 FormsTable.COLUMN_FORMTYPE + " =? ";
         String[] whereArgs = new String[]{mrNo, "1", "1"};
         String groupBy = null;
@@ -685,6 +718,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return fc.getFormDate();
     }
+
     public String isInserted(String mrno) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -757,6 +791,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return fc.getIsinserted();
     }
+
     public FormsContract isStudyIDFound(String mrNo, String studyID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -923,7 +958,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_FORMTYPE,
                 FormsTable.COLUMN_SEL,
-               // FormsTable.COLUMN_SBL,
+                // FormsTable.COLUMN_SBL,
                 FormsTable.COLUMN_SRECR,
                 FormsTable.COLUMN_SFUP,
                 FormsTable.COLUMN_SANTHRO,
@@ -1160,25 +1195,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
-/*
-    public int updateSBL() {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_SBL, MainApp.fc.getsBl());
+    /*
+        public int updateSBL() {
+            SQLiteDatabase db = this.getReadableDatabase();
 
-// Which row to update, based on the ID
-        String selection = FormsTable._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+    // New value for one column
+            ContentValues values = new ContentValues();
+            values.put(FormsTable.COLUMN_SBL, MainApp.fc.getsBl());
 
-        int count = db.update(FormsTable.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-    */
+    // Which row to update, based on the ID
+            String selection = FormsTable._ID + " = ?";
+            String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+
+            int count = db.update(FormsTable.TABLE_NAME,
+                    values,
+                    selection,
+                    selectionArgs);
+            return count;
+        }
+        */
     public int updateSRecr() {
         SQLiteDatabase db = this.getReadableDatabase();
 

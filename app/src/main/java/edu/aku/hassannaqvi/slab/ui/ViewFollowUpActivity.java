@@ -1,6 +1,7 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -9,13 +10,15 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.aku.hassannaqvi.slab.Adapter.FollowupAdapter;
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FollowupListModel;
+import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
+import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityViewFollowUpBinding;
 
 public class ViewFollowUpActivity extends AppCompatActivity {
@@ -33,7 +36,6 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
     private void setUpView() {
         new generateFollowupList(this).execute();
-
     }
 
 
@@ -50,19 +52,47 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
                 @Override
                 public void run() {
-                    List<FollowupListModel> list = new ArrayList<>();
-                    FollowupListModel model;
+                    List<FollowupListContract> list = new ArrayList<>();
+                    FollowupListContract model;
                     for (int i = 0; i < 10; i++) {
-                        model = new FollowupListModel();
+                        model = new FollowupListContract();
                         model.setChildname("Child Name " + i);
                         model.setMothername("Mother Name " + i);
                         model.setMrNo("111-22-3" + i);
                         model.setStudyID("123" + i);
-                        model.setDate("12-4-201" + i);
+                        model.setDischargeDate("14-4-201" + i);
+                        model.setEnrolmentDate("10-4-201" + i);
+                        if (i == 0 || i == 3 || i == 6 || i == 9){
+                            model.setType("1");
+                            model.setTypeimg(getDrawable(R.drawable.home));
+                        }
+                        else if (i == 1 || i == 4 || i == 7){
+                            model.setType("2");
+                            model.setTypeimg(getDrawable(R.drawable.hospital));
+                        }
+                        else if (i == 2 || i == 5 || i == 8){
+                            model.setType("3");
+                            model.setTypeimg(getDrawable(R.drawable.phone));
+                        }
+                        else{
+                            model.setType("1");
+                            model.setTypeimg(getDrawable(R.drawable.home));
+                        }
+                        String type = model.getType();
+                        if(type.equals("1"))
+                        model.setStatus("Completed");
+                        else
+                        model.setStatus("In Progress");
                         list.add(model);
                     }
-//              Set Recycler View
-                    adapter = new FollowupAdapter(list);
+//              Setting Adapter to Recycler View
+                    adapter = new FollowupAdapter(list, new FollowupAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(FollowupListContract followupListModel) {
+                            Toast.makeText(getApplicationContext(),"child Name is "+followupListModel.getChildname(),Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), ViewFollowUpActivity.class).putExtra(MainApp.MRNO_TAG,followupListModel.getMrNo()).putExtra(MainApp.STUDYID_TAG,followupListModel.getStudyID()));
+                        }
+                    });
 
 
                     if (adapter.getItemCount() > 0) {
@@ -72,8 +102,9 @@ public class ViewFollowUpActivity extends AppCompatActivity {
                         bi.recylerfollowuplists.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
 
+
                     } else {
-                       // Toast.makeText(this, "No Child Found!", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(this, "No Child Found!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
