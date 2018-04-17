@@ -21,6 +21,7 @@ public class FollowupListContract {
     Drawable typeimg;
     String status;
     String EnrolmentDate;
+    String FollowupRound;
 
     public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
         this.childname = jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
@@ -30,6 +31,7 @@ public class FollowupListContract {
         this.DischargeDate = jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
         this.type = jsonObject.getString(FollowUpList.COLUMN_TYPE);
         this.status = jsonObject.getString(FollowUpList.COLUMN_STATUS);
+        this.FollowupRound = jsonObject.getString(FollowUpList.COLUMN_FOLLOWUP_ROUND);
         return this;
     }
     public FollowupListContract Hydrate(Cursor cursor) {
@@ -40,6 +42,7 @@ public class FollowupListContract {
         this.DischargeDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_DISCHARGEDATE));
         this.type = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_TYPE));
         this.status = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_STATUS));
+        this.FollowupRound = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FOLLOWUP_ROUND));
         return this;
     }
     public JSONObject toJSONObject() throws JSONException {
@@ -52,11 +55,20 @@ public class FollowupListContract {
         json.put(FollowUpList.COLUMN_DISCHARGEDATE, this.DischargeDate == null ? JSONObject.NULL : this.DischargeDate);
         json.put(FollowUpList.COLUMN_TYPE, this.type == null ? JSONObject.NULL : this.type);
         json.put(FollowUpList.COLUMN_STATUS, this.status == null ? JSONObject.NULL : this.status);
+        json.put(FollowUpList.COLUMN_FOLLOWUP_ROUND, this.FollowupRound == null ? JSONObject.NULL : this.FollowupRound);
 
 
         return json;
     }
 
+
+    public String getFollowupRound() {
+        return FollowupRound;
+    }
+
+    public void setFollowupRound(String followupRound) {
+        FollowupRound = followupRound;
+    }
 
     public Drawable getTypeimg() {
         return typeimg;
@@ -164,6 +176,7 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String COLUMN_DISCHARGEDATE = "dischargedate";
     public static final String COLUMN_TYPE = "type";
     public static final String COLUMN_STATUS = "status";
+    public static final String COLUMN_FOLLOWUP_ROUND = "fround";
 
 }
 

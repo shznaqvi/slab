@@ -113,13 +113,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp">
-
-            <EditText
-                android:id="@+id/studyID"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:paddingBottom="1dp"
-                android:layout_weight="2"/>
             <Button
                 android:id="@+id/openFollowup"
                 android:layout_width="0dp"
@@ -127,7 +120,7 @@
                 android:layout_weight="2"
                 android:paddingBottom="1dp"
                 android:onClick="openFollowup"
-                android:text="View FollowUP"/>
+                android:text="View Follow up"/>
             </LinearLayout>
 
             <Button

@@ -217,6 +217,9 @@ public class OnExaminationActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu64, bi.sfu64a, getString(R.string.sfu64))) {
             return false;
         }
-        return !validatorClass.EmptyRadioButton(this, bi.sfu65, bi.sfu6596, bi.sfu6596x, getString(R.string.sfu65));
+        if(!validatorClass.EmptyRadioButton(this, bi.sfu65, bi.sfu6596, bi.sfu6596x, getString(R.string.sfu65))){
+            return false;
+        }
+        return true;
     }
 }

@@ -1,9 +1,5 @@
 package edu.aku.hassannaqvi.slab.sync;
 
-/**
- * Created by hassan.naqvi on 12/2/2016.
- */
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
@@ -28,21 +24,15 @@ import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 
 /**
- * Created by hassan.naqvi on 7/26/2016.
+ * Created by ramsha.ahmed on 4/17/2018.
  */
-public class SyncForms extends AsyncTask<Void, Void, String> {
 
-    private static final String TAG = "SyncForms";
+public class SyncFup extends AsyncTask<Void, Void, String> {
+
+    private static final String TAG = "SyncFup";
     Boolean flag = false;
     private Context mContext;
     private ProgressDialog pd;
-
-
-    public SyncForms(Context context, Boolean flag) {
-        mContext = context;
-        this.flag = flag;
-    }
-
     public static void longInfo(String str) {
         if (str.length() > 4000) {
             Log.i(TAG, str.substring(0, 4000));
@@ -50,7 +40,22 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         } else
             Log.i("TAG: ", str);
     }
+    public SyncFup(Context mContext, Boolean flag) {
+        this.mContext = mContext;
+        this.flag = flag;
+    }
 
+    @Override
+    protected String doInBackground(Void... voids) {
+        String line = "No Response";
+        try {
+            String url = MainApp._HOST_URL + FormsContract.FormsTable._URL.replace(".php", "fup.php");
+            Log.d(TAG, "doInBackground: URL " + url);
+            return downloadUrl(url);
+        } catch (IOException e) {
+            return "Unable to upload data. Server may be down.";
+        }
+    }
 
     @Override
     protected void onPreExecute() {
@@ -60,45 +65,60 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         pd.show();
     }
 
-
     @Override
-    protected String doInBackground(Void... params) {
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        int sSynced = 0;
+        String sSyncedError = "";
+        JSONArray json = null;
         try {
-            String url;
-            if (flag) {
-                url = MainApp._HOST_URL + FormsContract.FormsTable._URL;
-            } else {
-                url = MainApp._HOST_URL + "_" + FormsContract.FormsTable._URL;
+            json = new JSONArray(result);
+            DatabaseHelper db = new DatabaseHelper(mContext);
+            for (int i = 0; i < json.length(); i++) {
+                JSONObject jsonObject = new JSONObject(json.getString(i));
+                if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
+                    db.updateSyncedForms(jsonObject.getString("id"));
+                    sSynced++;
+                } else {
+                    sSyncedError += "\nError: " + jsonObject.getString("message").toString();
+                }
             }
-            Log.d(TAG, "doInBackground: URL " + url);
-            return downloadUrl(url);
-        } catch (IOException e) {
-            return "Unable to upload data. Server may be down.";
+            Toast.makeText(mContext, sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
+            pd.setTitle("Done uploading Forms data");
+            pd.show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(result);
+            pd.setTitle("Forms Sync Failed");
+            pd.show();
+
+
         }
     }
+
 
     private String downloadUrl(String myurl) throws IOException {
         String line = "No Response";
 
         DatabaseHelper db = new DatabaseHelper(mContext);
-        Collection<FormsContract> Forms;
-        Collection<FormsContract> Screening;
-        Collection<FormsContract> Recruitment;
-        Collection<FormsContract> FollowUp;
+
+        Collection<FormsContract> Followup;
+
         //if (flag) {
-        Forms = db.getUnsyncedForms();
-        Screening = db.getUnsyncedScreening();
-        Recruitment = db.getUnsyncedRecruitment();
-        FollowUp = db.getUnsyncedFollowup();
+
+        Followup = db.getUnsyncedFollowup();
+
         //} else {
         //Forms = db.getFormsSg();
         //}
-        Log.d(TAG, String.valueOf(Forms.size()));
-        Log.d(TAG, String.valueOf(Screening.size()));
-        Log.d(TAG, String.valueOf(Recruitment.size()));
-        Log.d(TAG, String.valueOf(FollowUp.size()));
+        Log.d(TAG, String.valueOf(Followup.size()));
 
-        if (Forms.size() > 0) {
+
+        if (Followup.size() > 0) {
 
             HttpURLConnection connection = null;
             try {
@@ -127,7 +147,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
 //            pd.setMessage("Total Forms: " );
 
-                    for (FormsContract fc : Forms) {
+                    for (FormsContract fc : Followup) {
                         //if (fc.getIstatus().equals("1")) {
                         jsonSync.put(fc.toJSONObject());
                         //}
@@ -171,38 +191,4 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         return line;
     }
 
-    @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
-        int sSynced = 0;
-        String sSyncedError = "";
-        JSONArray json = null;
-        try {
-            json = new JSONArray(result);
-            DatabaseHelper db = new DatabaseHelper(mContext);
-            for (int i = 0; i < json.length(); i++) {
-                JSONObject jsonObject = new JSONObject(json.getString(i));
-                if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
-                    db.updateSyncedForms(jsonObject.getString("id"));
-                    sSynced++;
-                } else {
-                    sSyncedError += "\nError: " + jsonObject.getString("message").toString();
-                }
-            }
-            Toast.makeText(mContext, sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
-
-            pd.setMessage(sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
-            pd.setTitle("Done uploading Forms data");
-            pd.show();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
-
-            pd.setMessage(result);
-            pd.setTitle("Forms Sync Failed");
-            pd.show();
-
-
-        }
-    }
 }

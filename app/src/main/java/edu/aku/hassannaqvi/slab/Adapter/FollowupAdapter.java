@@ -60,7 +60,7 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
 
 
 
-        public FollowupHolder(View itemView) {
+        public FollowupHolder(View itemView)  {
             super(itemView);
             followupadapterBinding = DataBindingUtil.bind(itemView);
         }

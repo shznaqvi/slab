@@ -80,17 +80,19 @@ public class ViewFollowUpActivity extends AppCompatActivity {
                         }
                         String type = model.getType();
                         if(type.equals("1"))
-                        model.setStatus("Completed");
+                        model.setStatus("Not Due");
+                        else if(type.equals("2"))
+                        model.setStatus("Due");
                         else
-                        model.setStatus("In Progress");
+                        model.setStatus("Done");
                         list.add(model);
                     }
 //              Setting Adapter to Recycler View
                     adapter = new FollowupAdapter(list, new FollowupAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(FollowupListContract followupListModel) {
-                            Toast.makeText(getApplicationContext(),"child Name is "+followupListModel.getChildname(),Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), ViewFollowUpActivity.class).putExtra(MainApp.MRNO_TAG,followupListModel.getMrNo()).putExtra(MainApp.STUDYID_TAG,followupListModel.getStudyID()));
+                          //  Toast.makeText(getApplicationContext(),"child Name is "+followupListModel.getChildname(),Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), FollowUpFormActivity.class).putExtra(MainApp.MRNO_TAG,followupListModel.getMrNo()).putExtra(MainApp.STUDYID_TAG,followupListModel.getStudyID()).putExtra(MainApp.CHILDNAME_TAG,followupListModel.getChildname()));
                         }
                     });
 

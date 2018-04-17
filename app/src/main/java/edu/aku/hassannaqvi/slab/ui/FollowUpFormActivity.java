@@ -7,6 +7,8 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -41,6 +43,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
     EligibilityJSONModel elmodel;
     String localMrno;
     String localStudyID ;
+    String childName ;
+    int noofsachet ;
 
 
     private static final String TAG = FollowUpFormActivity.class.getName();
@@ -60,11 +64,26 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
     private void checkIntents() {
             Intent intent = getIntent();
-            if(intent.hasExtra(MainApp.MRNO_TAG) && intent.hasExtra(MainApp.STUDYID_TAG)){
+            if(intent.hasExtra(MainApp.MRNO_TAG) && intent.hasExtra(MainApp.STUDYID_TAG) && intent.hasExtra(MainApp.CHILDNAME_TAG)){
                 Bundle bundle = intent.getExtras();
                 localMrno = bundle.getString(MainApp.MRNO_TAG);
                 localStudyID = bundle.getString(MainApp.STUDYID_TAG);
+                childName = bundle.getString(MainApp.CHILDNAME_TAG);
+                bi.sfu001.setText(localMrno);
+                bi.sfu002.setText(localStudyID);
+                bi.ChildName.setText(childName);
+
+                bi.sfu001.setEnabled(false);
+                bi.btnCheckMrno.setVisibility(View.GONE);
+                bi.fldGrpA.setVisibility(View.VISIBLE);
+                bi.fldGrpB.setVisibility(View.VISIBLE);
+
             }else{
+                bi.sfu001.setEnabled(true);
+                bi.btnCheckMrno.setVisibility(View.VISIBLE);
+                bi.fldGrpA.setVisibility(View.GONE);
+                bi.fldGrpB.setVisibility(View.GONE);
+
                 // Do something else
                 Toast.makeText(this,"Restart your app or contact your support team!",Toast.LENGTH_SHORT);
 
@@ -85,6 +104,97 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     bi.fldGrpsfu06.setVisibility(View.VISIBLE);
 
                 }
+            }
+        });
+        bi.sfu10.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                try{
+                    noofsachet = Integer.parseInt(bi.sfu10.getText().toString());
+                }catch (Exception e){
+                }
+
+                if (bi.sfu10.getText().toString().equals("1")){
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.GONE);
+                    bi.sfu11c.setVisibility(View.GONE);
+                    bi.sfu11d.setVisibility(View.GONE);
+                    bi.sfu11e.setVisibility(View.GONE);
+                    bi.sfu11f.setVisibility(View.GONE);
+                    bi.sfu11g.setVisibility(View.GONE);
+                }
+                else if(bi.sfu10.getText().toString().equals("2")){
+
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.VISIBLE);
+                    bi.sfu11c.setVisibility(View.GONE);
+                    bi.sfu11d.setVisibility(View.GONE);
+                    bi.sfu11e.setVisibility(View.GONE);
+                    bi.sfu11f.setVisibility(View.GONE);
+                    bi.sfu11g.setVisibility(View.GONE);
+                }
+                else if(bi.sfu10.getText().toString().equals("3")){
+
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.VISIBLE);
+                    bi.sfu11c.setVisibility(View.VISIBLE);
+                    bi.sfu11d.setVisibility(View.GONE);
+                    bi.sfu11e.setVisibility(View.GONE);
+                    bi.sfu11f.setVisibility(View.GONE);
+                    bi.sfu11g.setVisibility(View.GONE);
+                }
+                else if(bi.sfu10.getText().toString().equals("4")){
+
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.VISIBLE);
+                    bi.sfu11c.setVisibility(View.VISIBLE);
+                    bi.sfu11d.setVisibility(View.VISIBLE);
+                    bi.sfu11e.setVisibility(View.GONE);
+                    bi.sfu11f.setVisibility(View.GONE);
+                    bi.sfu11g.setVisibility(View.GONE);
+                }
+                else if(bi.sfu10.getText().toString().equals("5")){
+
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.VISIBLE);
+                    bi.sfu11c.setVisibility(View.VISIBLE);
+                    bi.sfu11d.setVisibility(View.VISIBLE);
+                    bi.sfu11e.setVisibility(View.VISIBLE);
+                    bi.sfu11f.setVisibility(View.GONE);
+                    bi.sfu11g.setVisibility(View.GONE);
+                }
+                else if(bi.sfu10.getText().toString().equals("6")){
+
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.VISIBLE);
+                    bi.sfu11c.setVisibility(View.VISIBLE);
+                    bi.sfu11d.setVisibility(View.VISIBLE);
+                    bi.sfu11e.setVisibility(View.VISIBLE);
+                    bi.sfu11f.setVisibility(View.VISIBLE);
+                    bi.sfu11g.setVisibility(View.GONE);
+                }
+
+                else if(bi.sfu10.getText().toString().equals("7")){
+
+                    bi.sfu11a.setVisibility(View.VISIBLE);
+                    bi.sfu11b.setVisibility(View.VISIBLE);
+                    bi.sfu11c.setVisibility(View.VISIBLE);
+                    bi.sfu11d.setVisibility(View.VISIBLE);
+                    bi.sfu11e.setVisibility(View.VISIBLE);
+                    bi.sfu11f.setVisibility(View.VISIBLE);
+                    bi.sfu11g.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 
@@ -140,6 +250,198 @@ public class FollowUpFormActivity extends AppCompatActivity {
             }else{
                 bi.sfu08.setError(null);
             }
+        }
+        if (!validatorClass.EmptyTextBox(this, bi.sfu10, getString(R.string.sfu10))) {
+            return false;
+        }
+        switch (noofsachet){
+            case 1:
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                    return false;
+                }
+                break;
+            case 2:
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11b1,bi.sfu11b11, getString(R.string.sfuifqty))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11b2,bi.sfu11b21, getString(R.string.sfuifpartial))) {
+                    return false;
+                }
+                break;
+            case 3:
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11b1,bi.sfu11b11, getString(R.string.sfuifqty))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11b2,bi.sfu11b21, getString(R.string.sfuifpartial))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11c1,bi.sfu11c11, getString(R.string.sfuifqty))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu11c2,bi.sfu11c21, getString(R.string.sfuifpartial))) {
+                    return false;
+                }
+                break;
+
+                case 4:
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b1,bi.sfu11b11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b2,bi.sfu11b21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c1,bi.sfu11c11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c2,bi.sfu11c21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d1,bi.sfu11d11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d2,bi.sfu11d21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    break;
+
+                case 5:
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b1,bi.sfu11b11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b2,bi.sfu11b21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c1,bi.sfu11c11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c2,bi.sfu11c21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d1,bi.sfu11d11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d2,bi.sfu11d21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11e1,bi.sfu11e11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11e2,bi.sfu11e21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    break;
+
+                case 6:
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b1,bi.sfu11b11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b2,bi.sfu11b21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c1,bi.sfu11c11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c2,bi.sfu11c21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d1,bi.sfu11d11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d2,bi.sfu11d21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11e1,bi.sfu11e11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11e2,bi.sfu11e21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11f1,bi.sfu11f11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11f2,bi.sfu11f21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    break;
+
+                case 7:
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1,bi.sfu11a11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2,bi.sfu11a21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b1,bi.sfu11b11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11b2,bi.sfu11b21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c1,bi.sfu11c11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11c2,bi.sfu11c21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d1,bi.sfu11d11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11d2,bi.sfu11d21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11e1,bi.sfu11e11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11e2,bi.sfu11e21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11f1,bi.sfu11f11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11f2,bi.sfu11f21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11g1,bi.sfu11g11, getString(R.string.sfuifqty))) {
+                        return false;
+                    }
+                    if (!validatorClass.EmptyRadioButton(this, bi.sfu11g2,bi.sfu11g21, getString(R.string.sfuifpartial))) {
+                        return false;
+                    }
+                    break;
+
         }
         return true;
     }
@@ -219,7 +521,71 @@ public class FollowUpFormActivity extends AppCompatActivity {
         fu.put("sfu06", bi.sfu06.getText().toString());
         fu.put("sfu07", bi.sfu07.getText().toString());
         fu.put("sfu08", bi.sfu08.getText().toString());
+//        a
+        fu.put("sfu10", bi.sfu10.getText().toString());
+        fu.put("sfu11a1", bi.sfu11a11.isChecked() ? "1"
+                : bi.sfu11a12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11a2", bi.sfu11a21.isChecked() ? "1"
+                : bi.sfu11a22.isChecked() ? "2"
+                : bi.sfu11a23.isChecked() ? "3"
+                : "0");
 
+
+//      b
+
+        fu.put("sfu11b1", bi.sfu11b11.isChecked() ? "1"
+                : bi.sfu11b12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11b2", bi.sfu11b21.isChecked() ? "1"
+                : bi.sfu11b22.isChecked() ? "2"
+                : bi.sfu11b23.isChecked() ? "3"
+                : "0");
+
+
+//      c
+
+        fu.put("sfu11c1", bi.sfu11c11.isChecked() ? "1"
+                : bi.sfu11c12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11c2", bi.sfu11c21.isChecked() ? "1"
+                : bi.sfu11c22.isChecked() ? "2"
+                : bi.sfu11c23.isChecked() ? "3"
+                : "0");
+
+//        d
+
+        fu.put("sfu11d1", bi.sfu11d11.isChecked() ? "1"
+                : bi.sfu11d12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11d2", bi.sfu11d21.isChecked() ? "1"
+                : bi.sfu11d22.isChecked() ? "2"
+                : bi.sfu11d23.isChecked() ? "3"
+                : "0");
+//        e
+        fu.put("sfu11e1", bi.sfu11e11.isChecked() ? "1"
+                : bi.sfu11e12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11e2", bi.sfu11e21.isChecked() ? "1"
+                : bi.sfu11e22.isChecked() ? "2"
+                : bi.sfu11e23.isChecked() ? "3"
+                : "0");
+//        f
+        fu.put("sfu11f1", bi.sfu11f11.isChecked() ? "1"
+                : bi.sfu11f12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11f2", bi.sfu11f21.isChecked() ? "1"
+                : bi.sfu11f22.isChecked() ? "2"
+                : bi.sfu11f23.isChecked() ? "3"
+                : "0");
+//        g
+        fu.put("sfu11g1", bi.sfu11g11.isChecked() ? "1"
+                : bi.sfu11g12.isChecked() ? "2"
+                : "0");
+        fu.put("sfu11g2", bi.sfu11g21.isChecked() ? "1"
+                : bi.sfu11g22.isChecked() ? "2"
+                : bi.sfu11g23.isChecked() ? "3"
+                : "0");
         MainApp.fc.setsFup(String.valueOf(fu));
 
     }

@@ -86,8 +86,8 @@
     <string name="sel15"> Neonates with early-onset sepsis </string>
     <string name="sel16"> Neonate with history of Chorioamnionitis or Maternal GBS colonization </string>
     <string name="sel17"> Doppler ultrasound shows reversed or absent end-diastolic flow on maternal umbilical artery </string>
-    <string name="sel18"> CHILD ELIGIBLE FOR ENROLMENT: </string>
-    <string name="sel19"> CONSENT FORM SIGNED? </string>
+    <string name="sel18"> Child Eligible For Enrolment: </string>
+    <string name="sel19"> Consent Form Signed? </string>
 
     <string name="senheading">Recruitment</string>
     <!--<string name="sen01"> Study ID: </string>-->
@@ -128,9 +128,9 @@
     <string name="sfu11b"> Day 2 (have you given the supplement)</string>
     <string name="sfu11c"> Day 3 (have you given the supplement)</string>
     <string name="sfu11d"> Day 4 (have you given the supplement)</string>
-    <string name="sfu11e"> Day 5  (have you given the supplement)</string>
-    <string name="sfu11f"> Day 6  (have you given the supplement)</string>
-    <string name="sfu11g"> Day 7  (have you given the supplement)</string>
+    <string name="sfu11e"> Day 5 (have you given the supplement)</string>
+    <string name="sfu11f"> Day 6 (have you given the supplement)</string>
+    <string name="sfu11g"> Day 7 (have you given the supplement)</string>
     <string name="sfuifpartial"> If partial, why? </string>
     <string name="sfuifqty"> How much quantity have you given?</string>
 

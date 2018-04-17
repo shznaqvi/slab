@@ -51,7 +51,10 @@ import edu.aku.hassannaqvi.slab.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityMainBinding;
+import edu.aku.hassannaqvi.slab.sync.SyncEl;
 import edu.aku.hassannaqvi.slab.sync.SyncForms;
+import edu.aku.hassannaqvi.slab.sync.SyncFup;
+import edu.aku.hassannaqvi.slab.sync.SyncRecr;
 
 public class MainActivity extends Activity {
 
@@ -140,7 +143,10 @@ public class MainActivity extends Activity {
 
         DatabaseHelper db = new DatabaseHelper(this);
         Collection<FormsContract> todaysForms = db.getTodayForms();
-        Collection<FormsContract> unsyncedForms = db.getUnsyncedForms();
+        //Collection<FormsContract> unsyncedForms = db.getUnsyncedForms();
+        Collection<FormsContract> unsyncedScreening = db.getUnsyncedScreening();
+        Collection<FormsContract> unsyncedRecruitment = db.getUnsyncedRecruitment();
+        Collection<FormsContract> unsyncedFollowup = db.getUnsyncedFollowup();
 
         rSumText += "TODAY'S RECORDS SUMMARY\r\n";
 
@@ -196,7 +202,13 @@ public class MainActivity extends Activity {
             rSumText += "Last Data Upload: \t" + syncPref.getString("LastUpSyncServer", "Never Synced");
             rSumText += "\r\n";
             rSumText += "\r\n";
-            rSumText += "Unsynced Forms: \t" + unsyncedForms.size();
+          /*  rSumText += "Unsynced Forms: \t" + unsyncedForms.size();
+            rSumText += "\r\n";*/
+            rSumText += "Unsynced Forms: \t" + unsyncedScreening.size();
+            rSumText += "\r\n";
+            rSumText += "Unsynced Forms: \t" + unsyncedRecruitment.size();
+            rSumText += "\r\n";
+            rSumText += "Unsynced Forms: \t" + unsyncedFollowup.size();
             rSumText += "\r\n";
         }
         Log.d(TAG, "onCreate: " + rSumText);
@@ -498,7 +510,10 @@ public class MainActivity extends Activity {
         if (networkInfo != null && networkInfo.isConnected()) {
 
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
-            new SyncForms(this, true).execute();
+           // new SyncForms(this, true).execute();
+            new SyncEl(this, true).execute();
+            new SyncRecr(this, true).execute();
+            new SyncFup(this, true).execute();
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();
