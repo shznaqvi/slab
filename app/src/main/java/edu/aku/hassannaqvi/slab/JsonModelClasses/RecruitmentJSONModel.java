@@ -6,6 +6,26 @@ package edu.aku.hassannaqvi.slab.JsonModelClasses;
 
 public class RecruitmentJSONModel {
         private String sen01 = "";
+
+        public String getUuid() {
+                return uuid;
+        }
+
+        public void setUuid(String uuid) {
+                this.uuid = uuid;
+        }
+
+        private String uuid = "";
+
+        public String getChildName() {
+                return childName;
+        }
+
+        public void setChildName(String childName) {
+                this.childName = childName;
+        }
+
+        private String childName = "";
         public String getSen01() {
                 return sen01;
         }

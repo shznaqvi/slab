@@ -133,7 +133,6 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
         json.put(FormsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(FormsTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
-        json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
         json.put(FormsTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
         json.put(FormsTable.COLUMN_MRNO, this.sMrno == null ? JSONObject.NULL : this.sMrno);
         json.put(FormsTable.COLUMN_STUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
@@ -142,9 +141,11 @@ public class FormsContract {
 
 
         if (!this.sEl.equals("")) {
-
             json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : new JSONObject(this.sEl));
+        }
 
+        if (!this.istatus.equals("")) {
+            json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : new JSONObject(this.istatus));
         }
         /*
         if (!this.sBl.equals("")) {

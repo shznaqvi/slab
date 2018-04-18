@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,6 +37,10 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
     private void setUpView() {
         new generateFollowupList(this).execute();
+    }
+
+    public void addFollowUp(View v){
+        startActivity(new Intent(this,FollowUpFormActivity.class));
     }
 
 
@@ -85,7 +90,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
                         model.setStatus("Due");
                         else
                         model.setStatus("Done");
-                        list.add(model);
+                        //list.add(model);
                     }
 //              Setting Adapter to Recycler View
                     adapter = new FollowupAdapter(list, new FollowupAdapter.OnItemClickListener() {
@@ -98,6 +103,8 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
 
                     if (adapter.getItemCount() > 0) {
+                        bi.recylerfollowuplists.setVisibility(View.VISIBLE);
+                        bi.nofup.setVisibility(View.GONE);
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         bi.recylerfollowuplists.setLayoutManager(mLayoutManager);
                         bi.recylerfollowuplists.setItemAnimator(new DefaultItemAnimator());
@@ -106,6 +113,9 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
 
                     } else {
+                        bi.recylerfollowuplists.setVisibility(View.GONE);
+                        bi.nofup.setVisibility(View.VISIBLE);
+
                         // Toast.makeText(this, "No Child Found!", Toast.LENGTH_SHORT).show();
                     }
                 }

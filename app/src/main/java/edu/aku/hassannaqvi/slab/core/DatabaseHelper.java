@@ -48,7 +48,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "slab.db";
     public static final String DB_NAME = DATABASE_NAME.replace(".", "_copy.");
     public static final String PROJECT_NAME = "DMU-SRCPREG";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String SQL_CREATE_FORMS = "CREATE TABLE "
             + FormsTable.TABLE_NAME + "("
             + FormsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -132,6 +132,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             singleVillage.COLUMN_DISTRICT_CODE + " TEXT " +
             ");";
 
+    private static final String SQL_ALTER_FOLLOWUPLIST = "ALTER TABLE " +
+            FollowUpList.TABLE_NAME + " ADD ( COLUMN " +
+            FollowUpList._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            FollowUpList.COLUMN_PROJECT_NAME + " TEXT," +
+            FollowUpList.COLUMN_UID + " TEXT," +
+            FollowUpList.COLUMN_FORMDATE + " TEXT," +
+            FollowUpList.COLUMN_USER + " TEXT," +
+            FollowUpList.COLUMN_FORMTYPE + " TEXT," +
+            FollowUpList.COLUMN_CHILDNAME + " TEXT," +
+            FollowUpList.COLUMN_MOTHERNAME + " TEXT," +
+            FollowUpList.COLUMN_MRNO + " TEXT," +
+            FollowUpList.COLUMN_STUDYID + " TEXT," +
+            FollowUpList.COLUMN_DISCHARGEDATE + " TEXT," +
+            FollowUpList.COLUMN_TYPE + " TEXT," +
+            FollowUpList.COLUMN_STATUS + " TEXT, " +
+            FollowUpList.COLUMN_FOLLOWUP_ROUND + " TEXT, " +
+
+            FollowUpList.COLUMN_ISTATUS + " TEXT," +
+            FollowUpList.COLUMN_GPSLAT + " TEXT," +
+            FollowUpList.COLUMN_GPSLNG + " TEXT," +
+            FollowUpList.COLUMN_GPSDATE + " TEXT," +
+            FollowUpList.COLUMN_GPSACC + " TEXT," +
+            FollowUpList.COLUMN_DEVICEID + " TEXT," +
+            FollowUpList.COLUMN_DEVICETAGID + " TEXT," +
+            FollowUpList.COLUMN_APP_VERSION + " TEXT," +
+            FollowUpList.COLUMN_END_TIME + " TEXT," +
+            FollowUpList.COLUMN_SYNCED + " TEXT," +
+            FollowUpList.COLUMN_SYNCED_DATE + " TEXT);";
+
     private final String TAG = "DatabaseHelper";
 
 
@@ -153,12 +182,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL(SQL_DELETE_USERS);
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    /*    db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_FOLLOUPLIST);
         db.execSQL(SQL_DELETE_DISTRICTS);
-        db.execSQL(SQL_DELETE_VILLAGES);
+        db.execSQL(SQL_DELETE_VILLAGES);*/
+        Log.w(DatabaseHelper.class.getName(),
+                "Upgrading database from version " + oldVersion + " to "
+                        + newVersion + ", which will alter and add new coloumn!");
+        switch (oldVersion) {
+            case 1:
+                db.execSQL(SQL_CREATE_FOLLOWUPLIST);
+        }
     }
 
     public void syncVillages(JSONArray pcList) {
@@ -503,80 +539,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return fc.getsMrno();
     }
 
-    public FormsContract getStudyID(String mrNo) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = null;
-        String[] columns = {
-
-                FormsTable.COLUMN_PROJECT_NAME,
-                FormsTable._ID,
-                FormsTable.COLUMN_UID,
-                FormsTable.COLUMN_FORMDATE,
-                FormsTable.COLUMN_USER,
-                FormsTable.COLUMN_ISTATUS,
-                FormsTable.COLUMN_FORMTYPE,
-                FormsTable.COLUMN_MRNO,
-                FormsTable.COLUMN_STUDYID,
-                FormsTable.COLUMN_isINSERTED,
-                FormsTable.COLUMN_SEL,
-                FormsTable.COLUMN_isEL,
-                //FormsTable.COLUMN_SBL,
-                FormsTable.COLUMN_SRECR,
-                FormsTable.COLUMN_SFUP,
-                FormsTable.COLUMN_SANTHRO,
-                FormsTable.COLUMN_SEXAM,
-                FormsTable.COLUMN_SLAB,
-                FormsTable.COLUMN_SSUP,
-                FormsTable.COLUMN_SFEED,
-
-                FormsTable.COLUMN_GPSLAT,
-                FormsTable.COLUMN_GPSLNG,
-                FormsTable.COLUMN_GPSDATE,
-                FormsTable.COLUMN_GPSACC,
-                FormsTable.COLUMN_DEVICETAGID,
-                FormsTable.COLUMN_DEVICEID,
-                FormsTable.COLUMN_SYNCED,
-                FormsTable.COLUMN_SYNCED_DATE,
-                FormsTable.COLUMN_APP_VERSION,
-                FormsTable.COLUMN_END_TIME
-
-        };
-
-        String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
-                FormsTable.COLUMN_isEL + " =? AND " +
-                FormsTable.COLUMN_FORMTYPE + " =? ";
-        String[] whereArgs = new String[]{mrNo, "1", "2"};
-        String groupBy = null;
-        String having = null;
-
-        String orderBy =
-                FormsTable._ID + " DESC LIMIT 1";
-        FormsContract fc = new FormsContract();
-        try {
-            c = db.query(
-                    FormsTable.TABLE_NAME,  // The table to query
-                    columns,                   // The columns to return
-                    whereClause,               // The columns for the WHERE clause
-                    whereArgs,                 // The values for the WHERE clause
-                    groupBy,                   // don't group the rows
-                    having,                    // don't filter by row groups
-                    orderBy                    // The sort order
-            );
-            while (c.moveToNext()) {
-                fc.Hydrate(c);
-            }
-        } finally {
-            if (c != null) {
-                c.close();
-            }
-            if (db != null) {
-                db.close();
-            }
-        }
-        return fc;
-    }
-
-    public FormsContract getChildName(String mrNo) {
+    public FormsContract getelchild(String mrNo) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -619,6 +582,80 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_isEL + " =? AND " +
                 FormsTable.COLUMN_FORMTYPE + " =? ";
         String[] whereArgs = new String[]{mrNo, "1", "1"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FormsTable._ID + " DESC LIMIT 1";
+        FormsContract fc = new FormsContract();
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                fc.Hydrate(c);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return fc;
+    }
+
+    public FormsContract getChildName(String mrNo, String studyID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                FormsTable.COLUMN_PROJECT_NAME,
+                FormsTable._ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMDATE,
+                FormsTable.COLUMN_USER,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_FORMTYPE,
+                FormsTable.COLUMN_MRNO,
+                FormsTable.COLUMN_STUDYID,
+                FormsTable.COLUMN_isINSERTED,
+                FormsTable.COLUMN_SEL,
+                FormsTable.COLUMN_isEL,
+                //FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
+                FormsTable.COLUMN_SFUP,
+                FormsTable.COLUMN_SANTHRO,
+                FormsTable.COLUMN_SEXAM,
+                FormsTable.COLUMN_SLAB,
+                FormsTable.COLUMN_SSUP,
+                FormsTable.COLUMN_SFEED,
+
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSDATE,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICETAGID,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_SYNCED,
+                FormsTable.COLUMN_SYNCED_DATE,
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME
+
+        };
+
+        String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
+                FormsTable.COLUMN_STUDYID + " =? AND " +
+                FormsTable.COLUMN_isEL + " =? AND " +
+                FormsTable.COLUMN_FORMTYPE + " =? ";
+        String[] whereArgs = new String[]{mrNo,studyID, "1", "2"};
         String groupBy = null;
         String having = null;
 

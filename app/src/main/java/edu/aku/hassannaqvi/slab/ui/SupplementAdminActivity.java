@@ -151,7 +151,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
             if (!validatorClass.EmptyRadioButton(this, bi.sfu68b, bi.sfu68b01, getString(R.string.sfu68)+" - "+getString(R.string.sfu68b))) {
                 return false;
             }
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu6896, bi.sfu689602,bi.sfu6896x, getString(R.string.sfu68)+" - "+getString(R.string.sfu6896))) {
+            if (!validatorClass.EmptyRadioButton(this, bi.sfu6896, bi.sfu689601,bi.sfu6896x, getString(R.string.sfu68)+" - "+getString(R.string.sfu6896))) {
                 return false;
             }
 

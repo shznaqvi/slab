@@ -120,7 +120,7 @@
                 android:layout_weight="2"
                 android:paddingBottom="1dp"
                 android:onClick="openFollowup"
-                android:text="View Follow up"/>
+                android:text="Follow up"/>
             </LinearLayout>
 
             <Button

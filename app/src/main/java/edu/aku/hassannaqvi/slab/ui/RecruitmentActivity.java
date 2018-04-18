@@ -24,19 +24,23 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityRecruitmentBinding;
+import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class RecruitmentActivity extends AppCompatActivity {
     ActivityRecruitmentBinding bi;
     DatabaseHelper db;
-    String mrno;
+    String mrno, childName;
     String dateToday;
     String dtToday;
+    FormsContract formsContract;
+    EligibilityJSONModel elmodel;
     private static final String TAG = RecruitmentActivity.class.getName();
 
     @Override
@@ -50,6 +54,8 @@ public class RecruitmentActivity extends AppCompatActivity {
         dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
 
         db = new DatabaseHelper(this);
+        formsContract = new FormsContract();
+        elmodel = new EligibilityJSONModel();
         setupView();
 
 
@@ -106,12 +112,14 @@ public class RecruitmentActivity extends AppCompatActivity {
     public void btnCheckMrno() {
 
         if (!bi.senmrno.getText().toString().trim().isEmpty()) {
-
             mrno = db.isMrnoFound(bi.senmrno.getText().toString());
+
             //  MainApp.fc.setsMrno(mrno);
 
             if (!mrno.isEmpty()) {
+
                 if (!db.isInserted(bi.senmrno.getText().toString()).equals("1")) {
+                    formsContract =  db.getelchild(mrno);
                     bi.fldGrpsen.setVisibility(View.VISIBLE);
 
                     bi.sen03.setMaxDate(dateToday);
@@ -245,9 +253,10 @@ public class RecruitmentActivity extends AppCompatActivity {
         MainApp.fc.setsStudyid(bi.sen01.getText().toString());
         MainApp.fc.setIsinserted("1");
         setGPS(); //Set GPS
-
+        elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
         JSONObject rec = new JSONObject();
-
+        rec.put("childName", elmodel.getSel02());
+        rec.put("UUID", formsContract.getUID());
 //        recruitment
         rec.put("sen01", bi.sen01.getText().toString());
         rec.put("sen02", bi.sen02.getText().toString());

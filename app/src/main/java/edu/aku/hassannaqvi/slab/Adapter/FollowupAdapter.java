@@ -18,6 +18,7 @@ import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowupAdapterBinding;
 import edu.aku.hassannaqvi.slab.ui.MainActivity;
 import edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity;
+import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.FollowupHolder> {
 
@@ -74,6 +75,7 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
             followupadapterBinding.enrolmentDate.setText(listModel.getEnrolmentDate());
             followupadapterBinding.status.setText(listModel.getStatus());
             //FollowupAdapter.this;
+
             followupadapterBinding.typeimg.setImageDrawable(listModel.getTypeimg());
 
             if (listModel.getType().equals("1")){
