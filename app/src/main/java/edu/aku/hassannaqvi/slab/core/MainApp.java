@@ -21,6 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
+import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
 import edu.aku.hassannaqvi.slab.ui.EndingActivity;
 
 /**
@@ -39,6 +40,7 @@ public class MainApp extends Application {
     public static final String FORMTYPE_EL = "1";
     public static final String FORMTYPE_Recr = "2";
     public static final String FORMTYPE_Fup = "3";
+    public static int hiCount = 1;
 
     /*
         public static final String _IP = "43.245.131.159"; // Test server
@@ -71,6 +73,8 @@ public class MainApp extends Application {
 
     public static Boolean admin = false;
     public static FormsContract fc;
+    public static FormsContract historyForminfo;
+    public static HistoryContract hc;
     public static String userName = "0000";
     //    Total No of members got from Section A
 

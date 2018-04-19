@@ -35,6 +35,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
     DatabaseHelper db;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
+    String tToday = new SimpleDateFormat("HH:mm").format(new Date().getTime());
 
     private static final String TAG = EligibilityFormActivity.class.getName();
 
@@ -54,7 +55,10 @@ public class EligibilityFormActivity extends AppCompatActivity {
     private void setupView() {
         bi.sel03d.setManager(getSupportFragmentManager());
         bi.sel03d.setMaxDate(dateToday);
-        bi.sel03d.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy"));
+        bi.sel03d.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-3));
+        bi.sel03t.setManager(getSupportFragmentManager());
+        bi.sel03t.setTimeFormat("HH:mm");
+        bi.sel03t.setIs24HourView(true);
 
         bi.sel03t.setManager(getSupportFragmentManager());
         bi.sel12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

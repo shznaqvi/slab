@@ -25,7 +25,6 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
 import edu.aku.hassannaqvi.slab.JsonModelClasses.RecruitmentJSONModel;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
@@ -41,8 +40,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     FormsContract fc, fc_1;
     RecruitmentJSONModel recmodel;
-    String localMrno;
-    String localStudyID;
+    public String localMrno;
+    public String localStudyID;
     String childName;
     int noofsachet;
 
@@ -55,6 +54,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_follow_up_form);
         db = new DatabaseHelper(this);
         bi.setCallback(this);
+
         checkIntents();
         setupView();
         fc = new FormsContract();
@@ -195,8 +195,20 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     defaultValue = true;
                 }
                 //startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()));
-                startActivity(new Intent(this, SachetActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()).putExtra("noofSachet",bi.sfu10.getText().toString()));
-
+                if (!bi.sfu10.getText().toString().equals("0")) {
+                    startActivity(new Intent(this, HistoryActivity.class)
+                            .putExtra("openExamSec", defaultValue)
+                            .putExtra("childName", bi.ChildName.getText().toString())
+                            .putExtra("noofSachet", bi.sfu10.getText().toString())
+                            .putExtra("mrno", bi.sfu001.getText().toString())
+                            .putExtra("studyID", bi.sfu002.getText().toString()));
+                } else {
+                    startActivity(new Intent(this, FeedingPracticeActivity.class)
+                            .putExtra("openExamSec", defaultValue)
+                            .putExtra("childName", bi.ChildName.getText().toString())
+                            .putExtra("mrno", bi.sfu001.getText().toString())
+                            .putExtra("studyID", bi.sfu002.getText().toString()));
+                }
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -237,8 +249,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 Settings.Secure.ANDROID_ID));
         MainApp.fc.setDevicetagID(MainApp.getTagName(this));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-        MainApp.fc.setsMrno(localMrno);
-        MainApp.fc.setsStudyid(localStudyID);
+        MainApp.fc.setsMrno(bi.sfu001.getText().toString());
+        MainApp.fc.setsStudyid(bi.sfu002.getText().toString());
         MainApp.fc.setFormtype(MainApp.FORMTYPE_Fup);
         MainApp.fc.setIsinserted("1");
         setGPS(); //Set GPS

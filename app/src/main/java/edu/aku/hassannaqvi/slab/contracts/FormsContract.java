@@ -43,6 +43,33 @@ public class FormsContract {
     private String synced = "";
     private String synced_date = "";
     private String appversion = "";
+    private String isDischarged = "";
+    private String dischargeDate = "";
+    private String totalsachgiven = "";
+
+    public String getIsDischarged() {
+        return isDischarged;
+    }
+
+    public void setIsDischarged(String isDischarged) {
+        this.isDischarged = isDischarged;
+    }
+
+    public String getDischargeDate() {
+        return dischargeDate;
+    }
+
+    public void setDischargeDate(String dischargeDate) {
+        this.dischargeDate = dischargeDate;
+    }
+
+    public String getTotalsachgiven() {
+        return totalsachgiven;
+    }
+
+    public void setTotalsachgiven(String totalsachgiven) {
+        this.totalsachgiven = totalsachgiven;
+    }
 
     public FormsContract() {
     }
@@ -79,6 +106,10 @@ public class FormsContract {
         this.appversion = jsonObject.getString(FormsTable.COLUMN_APP_VERSION);
         this.endtime = jsonObject.getString(FormsTable.COLUMN_END_TIME);
         this.isinserted = jsonObject.getString(FormsTable.COLUMN_isINSERTED);
+        this.isDischarged = jsonObject.getString(FormsTable.COLUMN_ISDISCHARGED);
+        this.dischargeDate = jsonObject.getString(FormsTable.COLUMN_DISCHARGEDATE);
+        this.totalsachgiven = jsonObject.getString(FormsTable.COLUMN_TOTALSACHGIVEN);
+
 
         return this;
 
@@ -116,6 +147,12 @@ public class FormsContract {
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APP_VERSION));
         this.endtime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_END_TIME));
         this.isinserted = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_isINSERTED));
+        this.isDischarged = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISDISCHARGED));
+        this.dischargeDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISCHARGEDATE));
+        this.totalsachgiven = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTALSACHGIVEN));
+
+
+
 
         // TODO:
 
@@ -138,6 +175,9 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_STUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
         json.put(FormsTable.COLUMN_isEL, this.isEl == null ? JSONObject.NULL : this.isEl);
         json.put(FormsTable.COLUMN_isINSERTED, this.isinserted == null ? JSONObject.NULL : this.isinserted);
+        json.put(FormsTable.COLUMN_ISDISCHARGED, this.isDischarged == null ? JSONObject.NULL : this.isDischarged);
+        json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL : this.dischargeDate);
+        json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL : this.totalsachgiven);
 
 
         if (!this.sEl.equals("")) {
@@ -478,6 +518,9 @@ public class FormsContract {
         public static final String COLUMN_APP_VERSION = "appversion";
         public static final String COLUMN_isINSERTED = "isinserted";
 
+        public static final String COLUMN_ISDISCHARGED = "isDischarged";
+        public static final String COLUMN_DISCHARGEDATE = "dischargeDate";
+        public static final String COLUMN_TOTALSACHGIVEN = "totalsachgiven";
         public static String _URL = "forms.php";
     }
 }

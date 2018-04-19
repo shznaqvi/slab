@@ -52,7 +52,9 @@ public class RecruitmentActivity extends AppCompatActivity {
         bi.setCallback(this);
         dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
         dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
-
+        bi.sen09t.setManager(getSupportFragmentManager());
+        bi.sen09t.setTimeFormat("HH:mm");
+        bi.sen09t.setIs24HourView(true);
         db = new DatabaseHelper(this);
         formsContract = new FormsContract();
         elmodel = new EligibilityJSONModel();

@@ -21,6 +21,7 @@ import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationBinding;
+import edu.aku.hassannaqvi.slab.other.DateUtils;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class LabInvestigationActivity extends AppCompatActivity {
@@ -42,8 +43,11 @@ public class LabInvestigationActivity extends AppCompatActivity {
     private void setupView() {
         bi.sli02.setManager(getSupportFragmentManager());
         bi.sli02.setMaxDate(dateToday);
+        bi.sli02.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-7));
 
         bi.sli03.setManager(getSupportFragmentManager());
+        bi.sli03.setTimeFormat("HH:mm");
+        bi.sli03.setIs24HourView(true);
 
         bi.sli01d.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -87,7 +91,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
                 Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
                 finish();
 
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, FollowUpEndingActivity.class).putExtra("complete", true));
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -109,7 +113,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+                startActivity(new Intent(this, FollowUpEndingActivity.class).putExtra("complete", false));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -122,6 +126,10 @@ public class LabInvestigationActivity extends AppCompatActivity {
         int updcount = db.updateSLab();
         if (updcount == 1) {
             //Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            finish();
+
+            startActivity(new Intent(this, FollowUpEndingActivity.class).putExtra("complete", false));
+
             return true;
         } else {
           // Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();

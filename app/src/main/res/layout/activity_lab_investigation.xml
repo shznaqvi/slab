@@ -133,7 +133,9 @@
                     android:focusable="false"
                     android:hint="@string/sli03"
                     android:textColor="@android:color/black"
-                    app:timeFormat="hh:mm" />
+                    app:timeFormat="HH:mm"
+                    app:is24HourView="true"
+                    />
 
                 <TextView
                     android:layout_width="match_parent"

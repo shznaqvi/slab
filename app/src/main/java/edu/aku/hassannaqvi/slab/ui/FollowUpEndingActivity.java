@@ -110,6 +110,16 @@ public class FollowUpEndingActivity extends AppCompatActivity {
         end.put("istatus96x", bi.istatus96x.getText().toString());
 
         MainApp.fc.setIstatus(String.valueOf(end));
+        if(bi.istatusg.isChecked()) {
+
+            MainApp.fc.setIsDischarged("true");
+            MainApp.fc.setDischargeDate(bi.sfu04.getText().toString());
+            MainApp.fc.setTotalsachgiven(bi.sfu05.getText().toString());
+        }else{
+            MainApp.fc.setIsDischarged("");
+            MainApp.fc.setDischargeDate("");
+            MainApp.fc.setTotalsachgiven("");
+        }
 
         MainApp.fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 

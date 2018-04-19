@@ -98,7 +98,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
 
                 finish();
 
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+                startActivity(new Intent(this, FollowUpEndingActivity.class).putExtra("complete", false));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }

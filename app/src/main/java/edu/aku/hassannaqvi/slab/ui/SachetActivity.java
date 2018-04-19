@@ -120,7 +120,6 @@ public class SachetActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-
     }
 
     public void BtnContinue() {
@@ -135,8 +134,6 @@ public class SachetActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", nextExamSec).putExtra("childName", bi.ChildName.getText().toString()));
-                //startActivity(new Intent(this, SachetActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()).putExtra("noofSachet",bi.sfu10.getText().toString()));
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
