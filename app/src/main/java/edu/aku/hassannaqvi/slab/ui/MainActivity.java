@@ -46,11 +46,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.aku.hassannaqvi.slab.FormsList;
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
+import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
+import edu.aku.hassannaqvi.slab.contracts.HistoryContract.HistoryTable;
 import edu.aku.hassannaqvi.slab.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityMainBinding;
+import edu.aku.hassannaqvi.slab.sync.SyncAllData;
 import edu.aku.hassannaqvi.slab.sync.SyncEl;
 import edu.aku.hassannaqvi.slab.sync.SyncForms;
 import edu.aku.hassannaqvi.slab.sync.SyncFup;
@@ -508,12 +512,23 @@ public class MainActivity extends Activity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
-
+            DatabaseHelper db = new DatabaseHelper(this);
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
            // new SyncForms(this, true).execute();
-            new SyncEl(this, true).execute();
-            new SyncRecr(this, true).execute();
-            new SyncFup(this, true).execute();
+            //new SyncEl(this, true).execute();
+            //new SyncRecr(this, true).execute();
+            //new SyncFup(this, true).execute();
+            new SyncForms(this, true).execute();
+           /*Toast.makeText(getApplicationContext(), "Syncing History", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "History",
+                    "updateSyncedHistory",
+                    HistoryContract.class,
+                    MainApp._HOST_URL + HistoryTable._URL,
+                    db.getUnsyncedHistory(), this.findViewById(R.id.syncStatus)
+            ).execute();
+*/
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();

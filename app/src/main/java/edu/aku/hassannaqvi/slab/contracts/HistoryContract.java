@@ -38,8 +38,8 @@ public class HistoryContract {
 
 
     public HistoryContract Sync(JSONObject jsonObject) throws JSONException {
-        this.projectName= jsonObject.getString(HistoryTable.COLUMN_PROJECTNAME);
         this._ID = jsonObject.getString(HistoryTable.COLUMN__ID );
+        this.projectName= jsonObject.getString(HistoryTable.COLUMN_PROJECTNAME);
         this._UID = jsonObject.getString(HistoryTable.COLUMN__UID );
         this.UUID= jsonObject.getString(HistoryTable.COLUMN_UUID);
         this.formDate= jsonObject.getString(HistoryTable.COLUMN_FORMDATE);
@@ -61,8 +61,8 @@ public class HistoryContract {
         return this;
     }
     public HistoryContract Hydrate(Cursor cursor) {
-        this.projectName = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_PROJECTNAME));
         this._ID  = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN__ID ));
+        this.projectName = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_PROJECTNAME));
         this._UID  = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN__UID ));
         this.UUID = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_UUID));
         this.formDate = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_FORMDATE));
@@ -91,9 +91,10 @@ public class HistoryContract {
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
+       // json.put(HistoryTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
 
-        json.put(HistoryTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
         json.put(HistoryTable.COLUMN__ID , this._ID  == null ? JSONObject.NULL : this._ID );
+        json.put(HistoryTable.COLUMN_PROJECTNAME, this.projectName);
         json.put(HistoryTable.COLUMN__UID , this._UID  == null ? JSONObject.NULL : this._UID );
         json.put(HistoryTable.COLUMN_UUID, this.UUID == null ? JSONObject.NULL : this.UUID);
         json.put(HistoryTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
@@ -281,8 +282,8 @@ public class HistoryContract {
         public static final String TABLE_NAME = "history";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECTNAME = "projectname";
-        public static final String COLUMN__ID  = "_id ";
-        public static final String COLUMN__UID  = "_uid ";
+        public static final String COLUMN__ID  = "_id";
+        public static final String COLUMN__UID  = "_uid";
         public static final String COLUMN_UUID = "uuid";
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_USER = "user";
@@ -294,10 +295,10 @@ public class HistoryContract {
         public static final String COLUMN_NOOFDAYS = "noofdays";
         public static final String COLUMN_SFU11 = "sfu11";
         public static final String COLUMN_ISINSERTED = "isinserted";
-        public static final String COLUMN_DEVICEID  = "deviceid ";
-        public static final String COLUMN_DEVICETAGID  = "devicetagid ";
-        public static final String COLUMN_SYNCED  = "synced ";
-        public static final String COLUMN_SYNCED_DATE  = "synced_date ";
+        public static final String COLUMN_DEVICEID  = "deviceid";
+        public static final String COLUMN_DEVICETAGID  = "devicetagid";
+        public static final String COLUMN_SYNCED  = "synced";
+        public static final String COLUMN_SYNCED_DATE  = "synced_date";
         public static final String COLUMN_APPVERSION = "appversion";
 
 

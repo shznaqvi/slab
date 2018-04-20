@@ -258,7 +258,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         JSONObject fu = new JSONObject();
         recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
         fu.put("sfudatetime", dtToday);
-        fu.put("uuid", recmodel.getUuid());
+        fu.put("uuid", recmodel.getUUID());
         fu.put("childName", recmodel.getChildName());
         fu.put("sfu01", bi.sfu01a.isChecked() ? "1"
                 : bi.sfu01b.isChecked() ? "2"

@@ -61,7 +61,7 @@ public class SyncEl extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         pd = new ProgressDialog(mContext);
-        pd.setTitle("Please wait... Processing Forms");
+        pd.setTitle("Please wait... Processing Screening");
         pd.show();
     }
 
@@ -83,17 +83,17 @@ public class SyncEl extends AsyncTask<Void, Void, String> {
                     sSyncedError += "\nError: " + jsonObject.getString("message").toString();
                 }
             }
-            Toast.makeText(mContext, sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, sSynced + " Screening synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
 
-            pd.setMessage(sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
-            pd.setTitle("Done uploading Forms data");
+            pd.setMessage(sSynced + " Screening synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
+            pd.setTitle("Done uploading Screening data");
             pd.show();
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(result);
-            pd.setTitle("Forms Sync Failed");
+            pd.setTitle("Screening Sync Failed");
             pd.show();
 
 

@@ -12,6 +12,8 @@ import org.json.JSONObject;
  */
 
 public class FollowupListContract {
+    String _ID;
+    String _UID;
     String childname;
     String mothername;
     String mrNo;
@@ -19,22 +21,47 @@ public class FollowupListContract {
     String DischargeDate;
     String type;
     Drawable typeimg;
+
     String status;
     String EnrolmentDate;
     String FollowupRound;
+    public String get_ID() {
+        return _ID;
+    }
+
+    public void set_ID(String _ID) {
+        this._ID = _ID;
+    }
+
+    public String get_UID() {
+        return _UID;
+    }
+
+    public void set_UID(String _UID) {
+        this._UID = _UID;
+    }
+
 
     public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
-        this.childname = jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
-        this.mothername = jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
-        this.mrNo = jsonObject.getString(FollowUpList.COLUMN_MRNO);
-        this.StudyID = jsonObject.getString(FollowUpList.COLUMN_STUDYID);
-        this.DischargeDate = jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
-        this.type = jsonObject.getString(FollowUpList.COLUMN_TYPE);
-        this.status = jsonObject.getString(FollowUpList.COLUMN_STATUS);
-        this.FollowupRound = jsonObject.getString(FollowUpList.COLUMN_FOLLOWUP_ROUND);
+
+        this._ID= jsonObject.getString(FollowUpList.COLUMN__ID);
+        this._UID= jsonObject.getString(FollowUpList.COLUMN__UID);
+        this.childname= jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
+        this.mothername= jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
+        this.mrNo= jsonObject.getString(FollowUpList.COLUMN_MRNO);
+        this.StudyID= jsonObject.getString(FollowUpList.COLUMN_STUDYID);
+        this.DischargeDate= jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
+        this.type= jsonObject.getString(FollowUpList.COLUMN_TYPE);
+        this.status= jsonObject.getString(FollowUpList.COLUMN_STATUS);
+        this.EnrolmentDate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
+        this.FollowupRound= jsonObject.getString(FollowUpList.COLUMN_FOLLOWUPROUND);
+
         return this;
     }
     public FollowupListContract Hydrate(Cursor cursor) {
+
+        this._ID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__ID));
+        this._UID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__UID));
         this.childname = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_CHILDNAME));
         this.mothername = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MOTHERNAME));
         this.mrNo = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MRNO));
@@ -42,7 +69,9 @@ public class FollowupListContract {
         this.DischargeDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_DISCHARGEDATE));
         this.type = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_TYPE));
         this.status = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_STATUS));
-        this.FollowupRound = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FOLLOWUP_ROUND));
+        this.EnrolmentDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_ENROLMENTDATE));
+        this.FollowupRound = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FOLLOWUPROUND));
+
         return this;
     }
     public JSONObject toJSONObject() throws JSONException {
@@ -55,7 +84,11 @@ public class FollowupListContract {
         json.put(FollowUpList.COLUMN_DISCHARGEDATE, this.DischargeDate == null ? JSONObject.NULL : this.DischargeDate);
         json.put(FollowUpList.COLUMN_TYPE, this.type == null ? JSONObject.NULL : this.type);
         json.put(FollowUpList.COLUMN_STATUS, this.status == null ? JSONObject.NULL : this.status);
-        json.put(FollowUpList.COLUMN_FOLLOWUP_ROUND, this.FollowupRound == null ? JSONObject.NULL : this.FollowupRound);
+        json.put(FollowUpList.COLUMN_ENROLMENTDATE, this.EnrolmentDate == null ? JSONObject.NULL : this.EnrolmentDate);
+        json.put(FollowUpList.COLUMN_FOLLOWUPROUND, this.FollowupRound == null ? JSONObject.NULL : this.FollowupRound);
+        json.put(FollowUpList.COLUMN__ID, this._ID == null ? JSONObject.NULL : this._ID);
+        json.put(FollowUpList.COLUMN__UID, this._UID == null ? JSONObject.NULL : this._UID);
+
 
 
         return json;
@@ -150,7 +183,6 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String TABLE_NAME = "followuplist";
     public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
     public static final String COLUMN_PROJECT_NAME = "projectname";
-    public static final String COLUMN_UID = "uid";
     public static final String COLUMN_FORMDATE = "formdate";
     public static final String COLUMN_USER = "user";
     public static final String COLUMN_FORMTYPE = "formtype";
@@ -165,10 +197,11 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String COLUMN_SYNCED = "synced";
     public static final String COLUMN_SYNCED_DATE = "synced_date";
     public static final String COLUMN_APP_VERSION = "appversion";
+    public static final String COLUMN__ID = "_id";
+    public static final String COLUMN__UID = "_uid";
 
-
-
-
+    public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
+    public static final String COLUMN_FOLLOWUPROUND = "followupround";
     public static final String COLUMN_CHILDNAME = "childname";
     public static final String COLUMN_MOTHERNAME = "mothername";
     public static final String COLUMN_MRNO = "mrno";
@@ -178,7 +211,8 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String COLUMN_STATUS = "status";
     public static final String COLUMN_FOLLOWUP_ROUND = "fround";
 
+
+    public static String _URL = "childlist.php";
+
 }
-
-
 }

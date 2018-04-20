@@ -93,8 +93,8 @@ public class FormsContract {
         this.sAnthro = jsonObject.getString(FormsTable.COLUMN_SANTHRO);
         this.sExam = jsonObject.getString(FormsTable.COLUMN_SEXAM);
         this.sLab = jsonObject.getString(FormsTable.COLUMN_SLAB);
-        this.sSup= jsonObject.getString(FormsTable.COLUMN_SSUP);
-        this.sFeed= jsonObject.getString(FormsTable.COLUMN_SFEED);
+        this.sSup = jsonObject.getString(FormsTable.COLUMN_SSUP);
+        this.sFeed = jsonObject.getString(FormsTable.COLUMN_SFEED);
         this.gpsLat = jsonObject.getString(FormsTable.COLUMN_GPSLAT);
         this.gpsLng = jsonObject.getString(FormsTable.COLUMN_GPSLNG);
         this.gpsDT = jsonObject.getString(FormsTable.COLUMN_GPSDATE);
@@ -147,11 +147,10 @@ public class FormsContract {
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APP_VERSION));
         this.endtime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_END_TIME));
         this.isinserted = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_isINSERTED));
+
         this.isDischarged = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISDISCHARGED));
         this.dischargeDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISCHARGEDATE));
         this.totalsachgiven = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTALSACHGIVEN));
-
-
 
 
         // TODO:
@@ -175,10 +174,15 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_STUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
         json.put(FormsTable.COLUMN_isEL, this.isEl == null ? JSONObject.NULL : this.isEl);
         json.put(FormsTable.COLUMN_isINSERTED, this.isinserted == null ? JSONObject.NULL : this.isinserted);
-        json.put(FormsTable.COLUMN_ISDISCHARGED, this.isDischarged == null ? JSONObject.NULL : this.isDischarged);
-        json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL : this.dischargeDate);
-        json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL : this.totalsachgiven);
-
+        if (!this.isDischarged.equals("")) {
+            json.put(FormsTable.COLUMN_ISDISCHARGED, this.isDischarged == null ? JSONObject.NULL : this.isDischarged);
+        }
+        if (!this.dischargeDate.equals("")) {
+            json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL : this.dischargeDate);
+        }
+        if (!this.totalsachgiven.equals("")) {
+            json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL : this.totalsachgiven);
+        }
 
         if (!this.sEl.equals("")) {
             json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : new JSONObject(this.sEl));
@@ -198,27 +202,25 @@ public class FormsContract {
         }
 
         if (!this.sFup.equals("")) {
-           // json.put(FormsTable.COLUMN_SBL, this.sBl.equals("") ? JSONObject.NULL : new JSONObject(this.sBl));
-
-            json.put(FormsTable.COLUMN_SFUP, this.sFup.equals("")? JSONObject.NULL : new JSONObject(this.sFup));
+            json.put(FormsTable.COLUMN_SFUP, this.sFup.equals("") ? JSONObject.NULL : new JSONObject(this.sFup));
 
             // }
         }
         if (!this.sExam.equals("")) {
 
-            json.put(FormsTable.COLUMN_SEXAM,this.sExam.equals("")? JSONObject.NULL : new JSONObject(this.sExam));
+            json.put(FormsTable.COLUMN_SEXAM, this.sExam.equals("") ? JSONObject.NULL : new JSONObject(this.sExam));
 
         }
 
 
         if (!this.sAnthro.equals("")) {
 
-            json.put(FormsTable.COLUMN_SANTHRO, this.sAnthro.equals("")? JSONObject.NULL : new JSONObject(this.sAnthro));
+            json.put(FormsTable.COLUMN_SANTHRO, this.sAnthro.equals("") ? JSONObject.NULL : new JSONObject(this.sAnthro));
 
         }
 
         if (!this.sLab.equals("")) {
-            json.put(FormsTable.COLUMN_SLAB, this.sLab.equals("")? JSONObject.NULL : new JSONObject(this.sLab));
+            json.put(FormsTable.COLUMN_SLAB, this.sLab.equals("") ? JSONObject.NULL : new JSONObject(this.sLab));
 
         }
 
@@ -465,6 +467,7 @@ public class FormsContract {
     public void setAppversion(String appversion) {
         this.appversion = appversion;
     }
+
     public String getIsinserted() {
         return isinserted;
     }
@@ -472,7 +475,6 @@ public class FormsContract {
     public void setIsinserted(String isinserted) {
         this.isinserted = isinserted;
     }
-
 
 
     public String getIsEl() {
@@ -498,7 +500,7 @@ public class FormsContract {
         public static final String COLUMN_STUDYID = "studyid";
         public static final String COLUMN_SEL = "sel";
         public static final String COLUMN_isEL = "isEl";
-       // public static final String COLUMN_SBL = "sbl";
+        // public static final String COLUMN_SBL = "sbl";
         public static final String COLUMN_SRECR = "sRecr";
         public static final String COLUMN_SFUP = "sfup";
         public static final String COLUMN_SANTHRO = "santhro";

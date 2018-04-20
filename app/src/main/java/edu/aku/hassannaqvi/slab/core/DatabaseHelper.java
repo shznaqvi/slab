@@ -20,6 +20,7 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.slab.contracts.DistrictsContract;
 import edu.aku.hassannaqvi.slab.contracts.DistrictsContract.singleDistrict;
+import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract.FollowUpList;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract.FormsTable;
@@ -102,7 +103,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + FollowUpList.TABLE_NAME + "(" +
             FollowUpList._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             FollowUpList.COLUMN_PROJECT_NAME + " TEXT," +
-            FollowUpList.COLUMN_UID + " TEXT," +
+            FollowUpList.COLUMN__UID + " TEXT," +
             FollowUpList.COLUMN_FORMDATE + " TEXT," +
             FollowUpList.COLUMN_USER + " TEXT," +
             FollowUpList.COLUMN_FORMTYPE + " TEXT," +
@@ -129,8 +130,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + " );";
     private static final String SQL_CREATE_HISTORY = "CREATE TABLE " +
             HistoryTable.TABLE_NAME + "(" +
-            HistoryTable.COLUMN_PROJECTNAME + " TEXT," +
             HistoryTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            HistoryTable.COLUMN_PROJECTNAME + " TEXT," +
             HistoryTable.COLUMN__UID + " TEXT," +
             HistoryTable.COLUMN_UUID + " TEXT," +
             HistoryTable.COLUMN_FORMDATE + " TEXT," +
@@ -977,13 +978,42 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SYNCED_DATE, fc.getSynced_date());
         values.put(FormsTable.COLUMN_APP_VERSION, fc.getAppversion());
         values.put(FormsTable.COLUMN_END_TIME, fc.getEndtime());
-
+        values.put(FormsTable.COLUMN_ISDISCHARGED, fc.getIsDischarged());
+        values.put(FormsTable.COLUMN_DISCHARGEDATE, fc.getDischargeDate());
+        values.put(FormsTable.COLUMN_TOTALSACHGIVEN, fc.getTotalsachgiven());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
         newRowId = db.insert(
                 FormsTable.TABLE_NAME,
                 FormsTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
+
+    public Long addList(FollowupListContract flc) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(FollowUpList.COLUMN__UID, flc.get_UID());
+        values.put(FollowUpList.COLUMN_CHILDNAME, flc.getChildname());
+        values.put(FollowUpList.COLUMN_MOTHERNAME, flc.getMothername());
+        values.put(FollowUpList.COLUMN_MRNO, flc.getMrNo());
+        values.put(FollowUpList.COLUMN_STUDYID, flc.getStudyID());
+        values.put(FollowUpList.COLUMN_DISCHARGEDATE, flc.getDischargeDate());
+        values.put(FollowUpList.COLUMN_TYPE, flc.getType());
+        values.put(FollowUpList.COLUMN_STATUS, flc.getStatus());
+        values.put(FollowUpList.COLUMN_ENROLMENTDATE, flc.getEnrolmentDate());
+        values.put(FollowUpList.COLUMN_FOLLOWUPROUND, flc.getFollowupRound());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                FollowUpList.TABLE_NAME,
+                FollowUpList.COLUMN_NAME_NULLABLE,
                 values);
         return newRowId;
     }
@@ -1043,6 +1073,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 whereArgs);
     }
 
+
     public int updateFormID() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -1069,7 +1100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(HistoryTable.COLUMN__UID, MainApp.hc.get_UID());
 
 // Which row to update, based on the ID
-        String selection = HistoryTable._ID + " = ?";
+        String selection = HistoryTable.COLUMN__ID + " = ?";
         String[] selectionArgs = {String.valueOf(MainApp.hc.get_ID())};
 
         int count = db.update(HistoryTable.TABLE_NAME,
@@ -1149,6 +1180,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFC;
     }
 
+    public Collection<FollowupListContract> getAllFollowups() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                FollowUpList.COLUMN__ID,
+                FollowUpList.COLUMN__UID,
+                FollowUpList.COLUMN_CHILDNAME,
+                FollowUpList.COLUMN_MOTHERNAME,
+                FollowUpList.COLUMN_MRNO,
+                FollowUpList.COLUMN_STUDYID,
+                FollowUpList.COLUMN_DISCHARGEDATE,
+                FollowUpList.COLUMN_TYPE,
+                FollowUpList.COLUMN_STATUS,
+                FollowUpList.COLUMN_ENROLMENTDATE,
+                FollowUpList.COLUMN_FOLLOWUPROUND
+
+        };
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FollowUpList.COLUMN__ID + " ASC";
+
+        Collection<FollowupListContract> allFC = new ArrayList<FollowupListContract>();
+        try {
+            c = db.query(
+                    FollowUpList.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FollowupListContract flc = new FollowupListContract();
+                allFC.add(flc.Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+
+    public void updateSyncedHistory(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(HistoryTable.COLUMN_SYNCED, true);
+        values.put(HistoryTable.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = HistoryTable.COLUMN__ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                HistoryTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+
     public Collection<HistoryContract> getAllHistory() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -1179,7 +1281,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String having = null;
 
         String orderBy =
-                HistoryTable._ID + " ASC";
+                HistoryTable.COLUMN__ID + " ASC";
 
         Collection<HistoryContract> allHistory = new ArrayList<HistoryContract>();
         try {
@@ -1305,13 +1407,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 HistoryTable.COLUMN_SYNCED_DATE,
                 HistoryTable.COLUMN_APPVERSION
         };
-        String whereClause = HistoryTable.COLUMN_SYNCED + " is null OR " + HistoryTable.COLUMN_SYNCED + "=''";
+        String whereClause = HistoryTable.COLUMN_SYNCED + " is null OR " + HistoryTable.COLUMN_SYNCED + " = '' ";
         String[] whereArgs = null;
         String groupBy = null;
         String having = null;
 
         String orderBy =
-                HistoryTable._ID + " ASC";
+                HistoryTable.COLUMN__ID + " ASC";
 
         Collection<HistoryContract> allHC = new ArrayList<HistoryContract>();
         try {
@@ -1374,7 +1476,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_SYNCED_DATE,
                 FormsTable.COLUMN_APP_VERSION,
                 FormsTable.COLUMN_END_TIME,
-
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
                 FormsTable.COLUMN_TOTALSACHGIVEN
@@ -1448,7 +1549,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_SYNCED_DATE,
                 FormsTable.COLUMN_APP_VERSION,
                 FormsTable.COLUMN_END_TIME,
-
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
                 FormsTable.COLUMN_TOTALSACHGIVEN
@@ -1834,7 +1934,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_ISTATUS, MainApp.fc.getIstatus());
         values.put(FormsTable.COLUMN_END_TIME, MainApp.fc.getEndtime());
-        values.put(FormsTable.COLUMN_ISDISCHARGED, MainApp.fc.getIsinserted());
+        values.put(FormsTable.COLUMN_ISDISCHARGED, MainApp.fc.getIsDischarged());
         values.put(FormsTable.COLUMN_DISCHARGEDATE, MainApp.fc.getDischargeDate());
         values.put(FormsTable.COLUMN_TOTALSACHGIVEN, MainApp.fc.getTotalsachgiven());
 
@@ -1849,5 +1949,80 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+    public FormsContract getEl(String uuid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                FormsTable.COLUMN_PROJECT_NAME,
+                FormsTable._ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMDATE,
+                FormsTable.COLUMN_USER,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_FORMTYPE,
+                FormsTable.COLUMN_MRNO,
+                FormsTable.COLUMN_STUDYID,
+                FormsTable.COLUMN_isINSERTED,
+                FormsTable.COLUMN_SEL,
+                FormsTable.COLUMN_isEL,
+                //FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
+                FormsTable.COLUMN_SFUP,
+                FormsTable.COLUMN_SANTHRO,
+                FormsTable.COLUMN_SEXAM,
+                FormsTable.COLUMN_SLAB,
+                FormsTable.COLUMN_SSUP,
+                FormsTable.COLUMN_SFEED,
+
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSDATE,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICETAGID,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_SYNCED,
+                FormsTable.COLUMN_SYNCED_DATE,
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME,
+
+                FormsTable.COLUMN_ISDISCHARGED,
+                FormsTable.COLUMN_DISCHARGEDATE,
+                FormsTable.COLUMN_TOTALSACHGIVEN
+
+        };
+
+        String whereClause = FormsTable.COLUMN_UID + " =? ";
+        String[] whereArgs = new String[]{uuid};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FormsTable._ID + " DESC LIMIT 1";
+        FormsContract fc = new FormsContract();
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                fc.Hydrate(c);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return fc;
+    }
+
 
 }

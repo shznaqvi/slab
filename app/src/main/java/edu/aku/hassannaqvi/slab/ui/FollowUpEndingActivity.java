@@ -14,19 +14,32 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
+import edu.aku.hassannaqvi.slab.JsonModelClasses.FollowupJSONModel;
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpEndingBinding;
+import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
+
+import static edu.aku.hassannaqvi.slab.core.MainApp.fc;
 
 public class FollowUpEndingActivity extends AppCompatActivity {
     ActivityFollowUpEndingBinding bi ;
+    FollowupJSONModel fupmodel;
+    EligibilityJSONModel elmodel;
+    FormsContract formsContract;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this,R.layout.activity_follow_up_ending);
         bi.setCallback(this);
+        fupmodel = new FollowupJSONModel();
+        elmodel = new EligibilityJSONModel();
+        formsContract = new FormsContract();
 
         Boolean check = getIntent().getExtras().getBoolean("complete");
         String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
@@ -70,9 +83,6 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             }
             if (UpdateDB()) {
 
-
-
-
                 MainApp.fupLocation = 0;
 
                 MainApp.selectedPos = -1;
@@ -109,19 +119,19 @@ public class FollowUpEndingActivity extends AppCompatActivity {
                 : "0");
         end.put("istatus96x", bi.istatus96x.getText().toString());
 
-        MainApp.fc.setIstatus(String.valueOf(end));
+        fc.setIstatus(String.valueOf(end));
         if(bi.istatusg.isChecked()) {
 
-            MainApp.fc.setIsDischarged("true");
-            MainApp.fc.setDischargeDate(bi.sfu04.getText().toString());
-            MainApp.fc.setTotalsachgiven(bi.sfu05.getText().toString());
+            fc.setIsDischarged("true");
+            fc.setDischargeDate(bi.sfu04.getText().toString());
+            fc.setTotalsachgiven(bi.sfu05.getText().toString());
         }else{
-            MainApp.fc.setIsDischarged("");
-            MainApp.fc.setDischargeDate("");
-            MainApp.fc.setTotalsachgiven("");
+            fc.setIsDischarged("");
+            fc.setDischargeDate("");
+            fc.setTotalsachgiven("");
         }
 
-        MainApp.fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+        fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
@@ -130,7 +140,26 @@ public class FollowUpEndingActivity extends AppCompatActivity {
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
         int updcount = db.updateEnding();
+/*
+This is for followup list
 
+
+        fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
+        formsContract = db.getEl(fupmodel.getUuid());
+        elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
+
+        MainApp.followuplist.set_UID(fupmodel.getUuid());
+        MainApp.followuplist.setChildname(fupmodel.getChildName());
+        MainApp.followuplist.setMrNo(MainApp.fc.getsMrno());
+        MainApp.followuplist.setStudyID(MainApp.fc.getsStudyid());
+        MainApp.followuplist.setType(fupmodel.getSfu01());
+        MainApp.followuplist.setMothername(elmodel.getSel07());
+        MainApp.followuplist.setDischargeDate(MainApp.fc.getDischargeDate());
+        MainApp.followuplist.setEnrolmentDate(MainApp.fc.getFormDate());
+        Date date = new Date(MainApp.fc.getFormDate());
+        MainApp.followuplist.setFollowupRound("1");
+        MainApp.followuplist.setStatus("");
+        */
         if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
             return true;

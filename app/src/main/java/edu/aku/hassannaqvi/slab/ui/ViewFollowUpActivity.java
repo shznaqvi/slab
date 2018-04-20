@@ -19,20 +19,29 @@ import java.util.List;
 import edu.aku.hassannaqvi.slab.Adapter.FollowupAdapter;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
+import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityViewFollowUpBinding;
 
 public class ViewFollowUpActivity extends AppCompatActivity {
     ActivityViewFollowUpBinding bi;
     FollowupAdapter adapter;
+    DatabaseHelper db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_follow_up);
         bi.setCallback(this);
-
+gettingList();
         setUpView();
+    }
+
+    private void gettingList() {
+        db = new DatabaseHelper(this);
+        db.getAllFollowups();
+
     }
 
     private void setUpView() {
@@ -57,6 +66,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
                 @Override
                 public void run() {
+
                     List<FollowupListContract> list = new ArrayList<>();
                     FollowupListContract model;
                     for (int i = 0; i < 10; i++) {

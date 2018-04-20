@@ -24,6 +24,8 @@ import java.net.URL;
 import java.util.Collection;
 
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
+import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
+import edu.aku.hassannaqvi.slab.contracts.HistoryContract.HistoryTable;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 
@@ -66,9 +68,9 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         try {
             String url;
             if (flag) {
-                url = MainApp._HOST_URL + FormsContract.FormsTable._URL;
+                url = MainApp._HOST_URL + HistoryTable._URL;
             } else {
-                url = MainApp._HOST_URL + "_" + FormsContract.FormsTable._URL;
+                url = MainApp._HOST_URL + "_" + HistoryTable._URL;
             }
             Log.d(TAG, "doInBackground: URL " + url);
             return downloadUrl(url);
@@ -81,24 +83,27 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         String line = "No Response";
 
         DatabaseHelper db = new DatabaseHelper(mContext);
-        Collection<FormsContract> Forms;
+      /*  Collection<FormsContract> Forms;
         Collection<FormsContract> Screening;
         Collection<FormsContract> Recruitment;
-        Collection<FormsContract> FollowUp;
+        Collection<FormsContract> FollowUp;*/
+        Collection<HistoryContract> History;
         //if (flag) {
-        Forms = db.getUnsyncedForms();
+       /* Forms = db.getUnsyncedForms();
         Screening = db.getUnsyncedScreening();
         Recruitment = db.getUnsyncedRecruitment();
-        FollowUp = db.getUnsyncedFollowup();
+        FollowUp = db.getUnsyncedFollowup();*/
+        History = db.getUnsyncedHistory();
         //} else {
         //Forms = db.getFormsSg();
         //}
-        Log.d(TAG, String.valueOf(Forms.size()));
+    /*    Log.d(TAG, String.valueOf(Forms.size()));
         Log.d(TAG, String.valueOf(Screening.size()));
         Log.d(TAG, String.valueOf(Recruitment.size()));
-        Log.d(TAG, String.valueOf(FollowUp.size()));
+        Log.d(TAG, String.valueOf(FollowUp.size()));*/
+        Log.d(TAG, String.valueOf(History.size()));
 
-        if (Forms.size() > 0) {
+        if (History.size() > 0) {
 
             HttpURLConnection connection = null;
             try {
@@ -126,10 +131,15 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
                     DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
 
 //            pd.setMessage("Total Forms: " );
-
+/*
                     for (FormsContract fc : Forms) {
                         //if (fc.getIstatus().equals("1")) {
                         jsonSync.put(fc.toJSONObject());
+                        //}
+                    }*/
+                    for (HistoryContract hc : History) {
+                        //if (fc.getIstatus().equals("1")) {
+                        jsonSync.put(hc.toJSONObject());
                         //}
                     }
                     wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
@@ -183,7 +193,8 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             for (int i = 0; i < json.length(); i++) {
                 JSONObject jsonObject = new JSONObject(json.getString(i));
                 if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
-                    db.updateSyncedForms(jsonObject.getString("id"));
+                   // db.updateSyncedForms(jsonObject.getString("id"));
+                    db.updateSyncedHistory(jsonObject.getString("id"));
                     sSynced++;
                 } else {
                     sSyncedError += "\nError: " + jsonObject.getString("message").toString();
@@ -199,7 +210,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
             Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
 
             pd.setMessage(result);
-            pd.setTitle("Forms Sync Failed");
+            pd.setTitle("History Sync Failed");
             pd.show();
 
 

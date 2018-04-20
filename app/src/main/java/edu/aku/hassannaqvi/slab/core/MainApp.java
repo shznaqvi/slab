@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
 import edu.aku.hassannaqvi.slab.ui.EndingActivity;
@@ -74,6 +75,7 @@ public class MainApp extends Application {
     public static Boolean admin = false;
     public static FormsContract fc;
     public static FormsContract historyForminfo;
+    public static FollowupListContract followuplist;
     public static HistoryContract hc;
     public static String userName = "0000";
     //    Total No of members got from Section A
