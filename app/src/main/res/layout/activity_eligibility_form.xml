@@ -19,7 +19,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                         android:hint="XXX-XX-XX"
                         android:layout_weight="60"
                         android:digits="0123456789-"
-                        android:inputType="text"
+                        android:inputType="number"
                         android:maxLength="9"/>
 
                 </LinearLayout>
@@ -1112,6 +1112,7 @@
                     android:backgroundTint="@color/red"
                     android:onClick="@{() -> callback.BtnEnd()}"
                     android:text="@string/end_interview"
+                    android:textSize="26sp"
                     android:textColor="@color/white" />
 
                 <Button
@@ -1119,6 +1120,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="26sp"
                     android:backgroundTint="#1ed61e"
                     android:onClick="@{() -> callback.BtnContinue()}"
                     android:text="@string/start_interview"

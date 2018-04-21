@@ -124,7 +124,7 @@ public class SachetActivity extends AppCompatActivity {
 
     public void BtnContinue() {
         answers = adapter.getAnswers();
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -132,7 +132,7 @@ public class SachetActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+       //         Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
 
             } else {

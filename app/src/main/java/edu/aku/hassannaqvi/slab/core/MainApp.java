@@ -76,6 +76,7 @@ public class MainApp extends Application {
     public static FormsContract fc;
     public static FormsContract historyForminfo;
     public static FollowupListContract followuplist;
+    public static Boolean fetchLocal = false;
     public static HistoryContract hc;
     public static String userName = "0000";
     //    Total No of members got from Section A

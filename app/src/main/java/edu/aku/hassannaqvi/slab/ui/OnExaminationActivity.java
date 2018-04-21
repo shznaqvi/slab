@@ -34,6 +34,10 @@ public class OnExaminationActivity extends AppCompatActivity {
         setupView();
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+    }
     private void setupView() {
         bi.sfu57.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -86,7 +90,7 @@ public class OnExaminationActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -94,7 +98,7 @@ public class OnExaminationActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+           //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
                 finish();
 

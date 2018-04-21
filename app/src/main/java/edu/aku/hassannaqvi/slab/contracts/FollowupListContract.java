@@ -12,19 +12,134 @@ import org.json.JSONObject;
  */
 
 public class FollowupListContract {
-    String _ID;
-    String _UID;
-    String childname;
-    String mothername;
-    String mrNo;
-    String StudyID;
-    String DischargeDate;
-    String type;
-    Drawable typeimg;
+    private String _ID = "";
+    private String projectname ="SLAB";
+    private String _UID ="";
+    private String formdate ="";
+    private String formtype ="";
+    private String user ="";
+    private String mrNo="";
+    private String StudyID="";
+    private String childname="";
+    private String mothername="";
+    private String birthdate="";
+    private String EnrolmentDate="";
+    private String FollowupRound="";
+    private String fuplocation="";
+    private String DischargeDate="";
+    private String fupstatus="";
+    private String lastfupdate="";
 
-    String status;
-    String EnrolmentDate;
-    String FollowupRound;
+    public String getFormdate() {
+        return formdate;
+    }
+
+    public void setFormdate(String formdate) {
+        this.formdate = formdate;
+    }
+
+    public String getFormtype() {
+        return formtype;
+    }
+
+    public void setFormtype(String formtype) {
+        this.formtype = formtype;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
+
+    public String getFuplocation() {
+        return fuplocation;
+    }
+
+    public void setFuplocation(String fuplocation) {
+        this.fuplocation = fuplocation;
+    }
+
+    public String getFupstatus() {
+        return fupstatus;
+    }
+
+    public void setFupstatus(String fupstatus) {
+        this.fupstatus = fupstatus;
+    }
+
+    public String getIstatus() {
+        return istatus;
+    }
+
+    public void setIstatus(String istatus) {
+        this.istatus = istatus;
+    }
+
+    public String getDeviceid() {
+        return deviceid;
+    }
+
+    public void setDeviceid(String deviceid) {
+        this.deviceid = deviceid;
+    }
+
+    public String getDevicetagid() {
+        return devicetagid;
+    }
+
+    public void setDevicetagid(String devicetagid) {
+        this.devicetagid = devicetagid;
+    }
+
+    public String getAppversion() {
+        return appversion;
+    }
+
+    public void setAppversion(String appversion) {
+        this.appversion = appversion;
+    }
+
+    public String getSynced() {
+        return synced;
+    }
+
+    public void setSynced(String synced) {
+        this.synced = synced;
+    }
+
+    public String getSynced_date() {
+        return synced_date;
+    }
+
+    public void setSynced_date(String synced_date) {
+        this.synced_date = synced_date;
+    }
+
+    private String istatus="";
+    private String deviceid = "";
+    private String devicetagid = "";
+    private String appversion = "";
+    private String synced = "";
+    private String synced_date = "";
+    public String getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getLastfupdate() {
+        return lastfupdate;
+    }
+
+    public void setLastfupdate(String lastfupdate) {
+        this.lastfupdate = lastfupdate;
+    }
+
     public String get_ID() {
         return _ID;
     }
@@ -42,6 +157,14 @@ public class FollowupListContract {
     }
 
 
+    public String getProjectname() {
+        return projectname;
+    }
+
+    public void setProjectname(String projectname) {
+        this.projectname = projectname;
+    }
+
     public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
 
         this._ID= jsonObject.getString(FollowUpList.COLUMN__ID);
@@ -51,12 +174,15 @@ public class FollowupListContract {
         this.mrNo= jsonObject.getString(FollowUpList.COLUMN_MRNO);
         this.StudyID= jsonObject.getString(FollowUpList.COLUMN_STUDYID);
         this.DischargeDate= jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
-        this.type= jsonObject.getString(FollowUpList.COLUMN_TYPE);
-        this.status= jsonObject.getString(FollowUpList.COLUMN_STATUS);
+        this.fuplocation= jsonObject.getString(FollowUpList.COLUMN_FUPLOCATION);
+        this.fupstatus= jsonObject.getString(FollowUpList.COLUMN_FUPSTATUS);
         this.EnrolmentDate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
         this.FollowupRound= jsonObject.getString(FollowUpList.COLUMN_FOLLOWUPROUND);
+        this.birthdate= jsonObject.getString(FollowUpList.COLUMN_BIRTHDATE);
+        this.lastfupdate= jsonObject.getString(FollowUpList.COLUMN_LASTFUPDATE);
 
         return this;
+
     }
     public FollowupListContract Hydrate(Cursor cursor) {
 
@@ -67,10 +193,12 @@ public class FollowupListContract {
         this.mrNo = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MRNO));
         this.StudyID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_STUDYID));
         this.DischargeDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_DISCHARGEDATE));
-        this.type = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_TYPE));
-        this.status = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_STATUS));
+        this.fuplocation = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPLOCATION));
+        this.fupstatus = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPSTATUS));
         this.EnrolmentDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_ENROLMENTDATE));
         this.FollowupRound = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FOLLOWUPROUND));
+        this.birthdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_BIRTHDATE));
+        this.lastfupdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_LASTFUPDATE));
 
         return this;
     }
@@ -82,14 +210,14 @@ public class FollowupListContract {
         json.put(FollowUpList.COLUMN_MRNO, this.mrNo == null ? JSONObject.NULL : this.mrNo);
         json.put(FollowUpList.COLUMN_STUDYID, this.StudyID == null ? JSONObject.NULL : this.StudyID);
         json.put(FollowUpList.COLUMN_DISCHARGEDATE, this.DischargeDate == null ? JSONObject.NULL : this.DischargeDate);
-        json.put(FollowUpList.COLUMN_TYPE, this.type == null ? JSONObject.NULL : this.type);
-        json.put(FollowUpList.COLUMN_STATUS, this.status == null ? JSONObject.NULL : this.status);
+        json.put(FollowUpList.COLUMN_FUPLOCATION, this.fuplocation == null ? JSONObject.NULL : this.fuplocation);
+        json.put(FollowUpList.COLUMN_FUPSTATUS, this.fupstatus == null ? JSONObject.NULL : this.fupstatus);
         json.put(FollowUpList.COLUMN_ENROLMENTDATE, this.EnrolmentDate == null ? JSONObject.NULL : this.EnrolmentDate);
         json.put(FollowUpList.COLUMN_FOLLOWUPROUND, this.FollowupRound == null ? JSONObject.NULL : this.FollowupRound);
         json.put(FollowUpList.COLUMN__ID, this._ID == null ? JSONObject.NULL : this._ID);
         json.put(FollowUpList.COLUMN__UID, this._UID == null ? JSONObject.NULL : this._UID);
-
-
+        json.put(FollowUpList.COLUMN_BIRTHDATE, this.birthdate == null ? JSONObject.NULL : this.birthdate);
+        json.put(FollowUpList.COLUMN_LASTFUPDATE, this.lastfupdate == null ? JSONObject.NULL : this.lastfupdate);
 
         return json;
     }
@@ -103,32 +231,10 @@ public class FollowupListContract {
         FollowupRound = followupRound;
     }
 
-    public Drawable getTypeimg() {
-        return typeimg;
-    }
-
-    public void setTypeimg(Drawable typeimg) {
-        this.typeimg = typeimg;
-    }
 
     public FollowupListContract() {
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public String getChildname() {
         return childname;
@@ -182,34 +288,32 @@ public static abstract class FollowUpList implements BaseColumns{
 
     public static final String TABLE_NAME = "followuplist";
     public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-    public static final String COLUMN_PROJECT_NAME = "projectname";
-    public static final String COLUMN_FORMDATE = "formdate";
-    public static final String COLUMN_USER = "user";
-    public static final String COLUMN_FORMTYPE = "formtype";
-    public static final String COLUMN_ISTATUS = "istatus";
-    public static final String COLUMN_GPSLAT = "gpslat";
-    public static final String COLUMN_GPSLNG = "gpslng";
-    public static final String COLUMN_GPSDATE = "gpsdate";
-    public static final String COLUMN_GPSACC = "gpsacc";
-    public static final String COLUMN_DEVICEID = "deviceid";
-    public static final String COLUMN_DEVICETAGID = "tagid";
-    public static final String COLUMN_END_TIME = "endtime";
-    public static final String COLUMN_SYNCED = "synced";
-    public static final String COLUMN_SYNCED_DATE = "synced_date";
-    public static final String COLUMN_APP_VERSION = "appversion";
     public static final String COLUMN__ID = "_id";
+    public static final String COLUMN_PROJECT_NAME = "projectname";
     public static final String COLUMN__UID = "_uid";
-
-    public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
-    public static final String COLUMN_FOLLOWUPROUND = "followupround";
-    public static final String COLUMN_CHILDNAME = "childname";
-    public static final String COLUMN_MOTHERNAME = "mothername";
+    public static final String COLUMN_FORMDATE = "formdate";
+    public static final String COLUMN_FORMTYPE = "formtype";
+    public static final String COLUMN_USER = "user";
     public static final String COLUMN_MRNO = "mrno";
     public static final String COLUMN_STUDYID = "studyid";
+    public static final String COLUMN_CHILDNAME = "childname";
+    public static final String COLUMN_MOTHERNAME = "mothername";
+    public static final String COLUMN_BIRTHDATE = "birthdate";
+    public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
+    public static final String COLUMN_FOLLOWUPROUND = "followupround";
+    public static final String COLUMN_FUPLOCATION = "fuplocation";
     public static final String COLUMN_DISCHARGEDATE = "dischargedate";
-    public static final String COLUMN_TYPE = "type";
-    public static final String COLUMN_STATUS = "status";
-    public static final String COLUMN_FOLLOWUP_ROUND = "fround";
+    public static final String COLUMN_FUPSTATUS = "fupstatus";
+    public static final String COLUMN_LASTFUPDATE = "lastfupdate";
+    public static final String COLUMN_ISTATUS = "istatus";
+
+    public static final String COLUMN_DEVICEID = "deviceid";
+    public static final String COLUMN_DEVICETAGID = "devicetagid";
+    public static final String COLUMN_SYNCED = "synced";
+    public static final String COLUMN_APP_VERSION = "appversion";
+
+    public static final String COLUMN_SYNCED_DATE = "synced_date";
+
 
 
     public static String _URL = "childlist.php";

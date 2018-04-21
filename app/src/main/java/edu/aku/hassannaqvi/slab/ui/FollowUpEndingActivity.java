@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ import java.util.Date;
 import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
 import edu.aku.hassannaqvi.slab.JsonModelClasses.FollowupJSONModel;
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
@@ -27,25 +29,32 @@ import edu.aku.hassannaqvi.slab.validation.validatorClass;
 import static edu.aku.hassannaqvi.slab.core.MainApp.fc;
 
 public class FollowUpEndingActivity extends AppCompatActivity {
-    ActivityFollowUpEndingBinding bi ;
+    ActivityFollowUpEndingBinding bi;
     FollowupJSONModel fupmodel;
     EligibilityJSONModel elmodel;
     FormsContract formsContract;
+    String dateToday, currentDateToday;
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this,R.layout.activity_follow_up_ending);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_follow_up_ending);
         bi.setCallback(this);
         fupmodel = new FollowupJSONModel();
         elmodel = new EligibilityJSONModel();
         formsContract = new FormsContract();
+        MainApp.followuplist = new FollowupListContract();
 
         Boolean check = getIntent().getExtras().getBoolean("complete");
-        String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
+        currentDateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
+        dateToday= new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
 
         bi.sfu04.setManager(getSupportFragmentManager());
-        bi.sfu04.setMaxDate(dateToday);
+        bi.sfu04.setMaxDate(currentDateToday);
 
         if (check) {
             bi.istatusa.setEnabled(true);
@@ -56,12 +65,13 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             bi.istatusb.setEnabled(true);
         }
 
+
         bi.istatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.istatusg){
+                if (i == R.id.istatusg) {
                     bi.fldGrpistatus.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     bi.fldGrpistatus.setVisibility(View.GONE);
                     bi.sfu04.setText(null);
                     bi.sfu05.setText(null);
@@ -74,7 +84,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -120,12 +130,12 @@ public class FollowUpEndingActivity extends AppCompatActivity {
         end.put("istatus96x", bi.istatus96x.getText().toString());
 
         fc.setIstatus(String.valueOf(end));
-        if(bi.istatusg.isChecked()) {
+        if (bi.istatusg.isChecked()) {
 
             fc.setIsDischarged("true");
             fc.setDischargeDate(bi.sfu04.getText().toString());
             fc.setTotalsachgiven(bi.sfu05.getText().toString());
-        }else{
+        } else {
             fc.setIsDischarged("");
             fc.setDischargeDate("");
             fc.setTotalsachgiven("");
@@ -139,27 +149,59 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
-        int updcount = db.updateEnding();
-/*
-This is for followup list
+        if(bi.istatusa.isChecked()||bi.istatusg.isChecked()){
+            MainApp.fc.setIsEl("1");
+        }else{
+            MainApp.fc.setIsEl("");
+        }
+        int updcount = db.updatefupEnding();
 
+//This is for followup list
+        if (MainApp.fetchLocal) {
+            fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
+            MainApp.followuplist.setUser(MainApp.userName);
+            MainApp.followuplist.setFormdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
+            MainApp.followuplist.setDeviceid(Settings.Secure.getString(getApplicationContext().getContentResolver(),
+                    Settings.Secure.ANDROID_ID));
+            MainApp.followuplist.setDevicetagid(MainApp.getTagName(this));
+            MainApp.followuplist.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
+            MainApp.followuplist.setFormtype(MainApp.FORMTYPE_Fup);
+            MainApp.followuplist.setIstatus(MainApp.fc.getIstatus());
+            MainApp.followuplist.set_UID(fupmodel.getUuid());
+            MainApp.followuplist.setChildname(fupmodel.getChildName());
+            MainApp.followuplist.setFuplocation(fupmodel.getSfu01());
+            formsContract = db.getEl(fupmodel.getUuid());
+            elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
 
-        fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
-        formsContract = db.getEl(fupmodel.getUuid());
-        elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
+            MainApp.followuplist.setMrNo(MainApp.fc.getsMrno());
+            MainApp.followuplist.setStudyID(MainApp.fc.getsStudyid());
 
-        MainApp.followuplist.set_UID(fupmodel.getUuid());
-        MainApp.followuplist.setChildname(fupmodel.getChildName());
-        MainApp.followuplist.setMrNo(MainApp.fc.getsMrno());
-        MainApp.followuplist.setStudyID(MainApp.fc.getsStudyid());
-        MainApp.followuplist.setType(fupmodel.getSfu01());
-        MainApp.followuplist.setMothername(elmodel.getSel07());
-        MainApp.followuplist.setDischargeDate(MainApp.fc.getDischargeDate());
-        MainApp.followuplist.setEnrolmentDate(MainApp.fc.getFormDate());
-        Date date = new Date(MainApp.fc.getFormDate());
-        MainApp.followuplist.setFollowupRound("1");
-        MainApp.followuplist.setStatus("");
-        */
+            MainApp.followuplist.setMothername(elmodel.getSel07());
+            MainApp.followuplist.setDischargeDate(MainApp.fc.getDischargeDate());
+   /* MainApp.followuplist.setEnrolmentDate(MainApp.fc.getFormDate());
+    Date date = new Date(MainApp.fc.getFormDate());*/
+            int round = db.getNextRoundCount(MainApp.followuplist.getMrNo(), MainApp.followuplist.get_UID());
+            int totalrounds = 0;
+
+            if (bi.istatusa.isChecked()||bi.istatusg.isChecked()){
+                totalrounds = round + 1;
+            }else{
+                totalrounds = round;
+            }
+            MainApp.followuplist.setFollowupRound(String.valueOf(totalrounds));
+            MainApp.followuplist.setLastfupdate(dateToday);
+            MainApp.followuplist.setFupstatus(bi.istatusa.isChecked() ? "1"
+                    : bi.istatusb.isChecked() ? "2"
+                    : bi.istatusc.isChecked() ? "3"
+                    : bi.istatusd.isChecked() ? "4"
+                    : bi.istatuse.isChecked() ? "5"
+                    : bi.istatusf.isChecked() ? "6"
+                    : bi.istatusg.isChecked() ? "7"
+                    : bi.istatus96.isChecked() ? "96"
+                    : "0");
+            db.addList(MainApp.followuplist);
+        }
+
         if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
             return true;
@@ -171,12 +213,12 @@ This is for followup list
     }
 
     private boolean formValidation() {
-        Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
 
         if (!validatorClass.EmptyRadioButton(this, bi.istatus, bi.istatusa, getString(R.string.istatus))) {
             return false;
         }
-        if(bi.istatusg.isChecked()){
+        if (bi.istatusg.isChecked()) {
             if (!validatorClass.EmptyTextBox(this, bi.sfu04, getString(R.string.sfu04))) {
                 return false;
             }

@@ -40,6 +40,10 @@ public class LabInvestigationActivity extends AppCompatActivity {
         setupView();
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+    }
     private void setupView() {
         bi.sli02.setManager(getSupportFragmentManager());
         bi.sli02.setMaxDate(dateToday);
@@ -80,7 +84,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
 
     public void BtnContinue() {
 
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -88,7 +92,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+           //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
                 finish();
 
                 startActivity(new Intent(this, FollowUpEndingActivity.class).putExtra("complete", true));
@@ -103,7 +107,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+ //       Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -111,9 +115,9 @@ public class LabInvestigationActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(this, FollowUpEndingActivity.class).putExtra("complete", false));
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }

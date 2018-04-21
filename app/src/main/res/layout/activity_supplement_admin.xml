@@ -15,11 +15,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:animateLayoutChanges="true"
             android:layoutDirection="ltr"
             android:layout_marginLeft="8dp"
@@ -354,7 +354,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="#1ed61e"
                     android:onClick="@{() -> callback.BtnContinue()}"
-                    android:text="@string/start_interview"
+                    android:text="@string/nextSection"
                     android:textColor="@color/white" />
 
             </LinearLayout>

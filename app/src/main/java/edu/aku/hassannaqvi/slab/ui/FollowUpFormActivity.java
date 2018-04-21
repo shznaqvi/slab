@@ -38,6 +38,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
     ActivityFollowUpFormBinding bi;
     DatabaseHelper db;
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
+    String todaysDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
     FormsContract fc, fc_1;
     RecruitmentJSONModel recmodel;
     public String localMrno;
@@ -178,7 +179,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
 
     public void BtnContinue() {
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -186,7 +187,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
                 Boolean defaultValue = true;
                 if (bi.sfu01c.isChecked()) {
@@ -210,7 +211,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                             .putExtra("studyID", bi.sfu002.getText().toString()));
                 }
             } else {
-                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -223,19 +224,36 @@ public class FollowUpFormActivity extends AppCompatActivity {
         MainApp.fc.set_ID(String.valueOf(newrowid));
 
         if (newrowid != 0) {
-            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
 
             MainApp.fc.setUID((MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
             db.updateFormID();
 
             return true;
         } else {
-            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
     public void BtnEnd() {
+        // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        if (formValidation()) {
+            try {
+                SaveDraft();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (UpdateDB()) {
+                //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+
+                finish();
+
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+            }
+        }
 
 
     }
@@ -281,12 +299,22 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
 
             if (!fc_1.getsMrno().isEmpty() && !fc_1.getsStudyid().isEmpty()) {
-                recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
-                Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
-                bi.fldGrpA.setVisibility(View.VISIBLE);
-                bi.fldGrpB.setVisibility(View.VISIBLE);
-                bi.sfu002.setText(fc_1.getsStudyid());
-                bi.ChildName.setText(recmodel.getChildName());
+
+                //TODO() : checking followup already inserted today or not!!
+
+                if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate+" 00:00", dtToday)) {
+                    recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
+                   // Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
+                    bi.fldGrpA.setVisibility(View.VISIBLE);
+                    bi.fldGrpB.setVisibility(View.VISIBLE);
+                    bi.sfu002.setText(fc_1.getsStudyid());
+                    bi.ChildName.setText(recmodel.getChildName());
+                    MainApp.fetchLocal = true;
+                } else {
+                    Toast.makeText(this, "You have already inserted a followup Today!", Toast.LENGTH_SHORT).show();
+                }
+
+
             } else {
                 bi.fldGrpA.setVisibility(View.GONE);
                 bi.fldGrpB.setVisibility(View.GONE);

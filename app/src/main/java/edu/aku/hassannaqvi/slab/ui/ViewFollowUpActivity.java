@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import edu.aku.hassannaqvi.slab.Adapter.FollowupAdapter;
@@ -27,6 +28,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
     ActivityViewFollowUpBinding bi;
     FollowupAdapter adapter;
     DatabaseHelper db;
+    List<FollowupListContract> followupList;
 
 
     @Override
@@ -34,13 +36,14 @@ public class ViewFollowUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_follow_up);
         bi.setCallback(this);
-gettingList();
+        gettingList();
         setUpView();
     }
 
+
     private void gettingList() {
         db = new DatabaseHelper(this);
-        db.getAllFollowups();
+        followupList  = db.getAllFollowups();
 
     }
 
@@ -48,8 +51,8 @@ gettingList();
         new generateFollowupList(this).execute();
     }
 
-    public void addFollowUp(View v){
-        startActivity(new Intent(this,FollowUpFormActivity.class));
+    public void addFollowUp(View v) {
+        startActivity(new Intent(this, FollowUpFormActivity.class));
     }
 
 
@@ -66,48 +69,12 @@ gettingList();
 
                 @Override
                 public void run() {
-
-                    List<FollowupListContract> list = new ArrayList<>();
-                    FollowupListContract model;
-                    for (int i = 0; i < 10; i++) {
-                        model = new FollowupListContract();
-                        model.setChildname("Child Name " + i);
-                        model.setMothername("Mother Name " + i);
-                        model.setMrNo("111-22-3" + i);
-                        model.setStudyID("123" + i);
-                        model.setDischargeDate("14-4-201" + i);
-                        model.setEnrolmentDate("10-4-201" + i);
-                        if (i == 0 || i == 3 || i == 6 || i == 9){
-                            model.setType("1");
-                            model.setTypeimg(getDrawable(R.drawable.home));
-                        }
-                        else if (i == 1 || i == 4 || i == 7){
-                            model.setType("2");
-                            model.setTypeimg(getDrawable(R.drawable.hospital));
-                        }
-                        else if (i == 2 || i == 5 || i == 8){
-                            model.setType("3");
-                            model.setTypeimg(getDrawable(R.drawable.phone));
-                        }
-                        else{
-                            model.setType("1");
-                            model.setTypeimg(getDrawable(R.drawable.home));
-                        }
-                        String type = model.getType();
-                        if(type.equals("1"))
-                        model.setStatus("Not Due");
-                        else if(type.equals("2"))
-                        model.setStatus("Due");
-                        else
-                        model.setStatus("Done");
-                        //list.add(model);
-                    }
 //              Setting Adapter to Recycler View
-                    adapter = new FollowupAdapter(list, new FollowupAdapter.OnItemClickListener() {
+                    adapter = new FollowupAdapter(followupList, new FollowupAdapter.OnItemClickListener() {
                         @Override
                         public void onItemClick(FollowupListContract followupListModel) {
-                          //  Toast.makeText(getApplicationContext(),"child Name is "+followupListModel.getChildname(),Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), FollowUpFormActivity.class).putExtra(MainApp.MRNO_TAG,followupListModel.getMrNo()).putExtra(MainApp.STUDYID_TAG,followupListModel.getStudyID()).putExtra(MainApp.CHILDNAME_TAG,followupListModel.getChildname()));
+                            //  Toast.makeText(getApplicationContext(),"child Name is "+followupListModel.getChildname(),Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), FollowUpFormActivity.class).putExtra(MainApp.MRNO_TAG, followupListModel.getMrNo()).putExtra(MainApp.STUDYID_TAG, followupListModel.getStudyID()).putExtra(MainApp.CHILDNAME_TAG, followupListModel.getChildname()));
                         }
                     });
 

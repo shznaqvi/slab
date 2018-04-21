@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.slab.Adapter;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,10 +27,11 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
     private final List<FollowupListContract> childList;
     private final OnItemClickListener listener;
 
-    public FollowupAdapter(List<FollowupListContract> childList,  OnItemClickListener listener) {
+    public FollowupAdapter(List<FollowupListContract> childList, OnItemClickListener listener) {
         this.childList = childList;
         this.listener = listener;
     }
+
     public interface OnItemClickListener {
         void onItemClick(FollowupListContract followupListModel);
     }
@@ -47,7 +49,7 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
     @Override
     public void onBindViewHolder(@NonNull FollowupAdapter.FollowupHolder holder, int position) {
         this.holder = holder;
-        this.holder.bindUser(this.childList.get(position),listener);
+        this.holder.bindUser(this.childList.get(position), listener);
     }
 
     @Override
@@ -60,41 +62,60 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
         ActivityFollowupAdapterBinding followupadapterBinding;
 
 
-
-        public FollowupHolder(View itemView)  {
+        public FollowupHolder(View itemView) {
             super(itemView);
             followupadapterBinding = DataBindingUtil.bind(itemView);
         }
 
-        public void bindUser(final FollowupListContract listModel,  final OnItemClickListener listener) {
+        public void bindUser(final FollowupListContract listModel, final OnItemClickListener listener) {
             followupadapterBinding.childname.setText(listModel.getChildname());
             followupadapterBinding.mothername.setText(listModel.getMothername());
-            followupadapterBinding.studyID.setText("Study ID: "+listModel.getStudyID());
-            followupadapterBinding.MRno.setText("MR # "+listModel.getMrNo());
-            followupadapterBinding.dischargeDate.setText(listModel.getDischargeDate());
+            followupadapterBinding.studyID.setText("Study ID: " + listModel.getStudyID());
+            followupadapterBinding.MRno.setText("MR # " + listModel.getMrNo());
+            followupadapterBinding.followupDate.setText(listModel.getLastfupdate());
             followupadapterBinding.enrolmentDate.setText(listModel.getEnrolmentDate());
-            followupadapterBinding.status.setText(listModel.getStatus());
+            if (!listModel.getDischargeDate().equals("")) {
+                followupadapterBinding.rlDischargedt.setVisibility(View.VISIBLE);
+                followupadapterBinding.DischargeDate.setText(listModel.getDischargeDate());
+            } else {
+                followupadapterBinding.rlDischargedt.setVisibility(View.GONE);
+                followupadapterBinding.DischargeDate.setText("");
+            }
+            if (listModel.getFupstatus().equals("1") || listModel.getFupstatus().equals("7")) {
+                followupadapterBinding.status.setText("Done");
+                followupadapterBinding.status.setBackgroundColor(Color.GREEN);
+            } else {
+                followupadapterBinding.status.setText("Incomplete");
+                followupadapterBinding.status.setBackgroundColor(Color.RED);
+            }
+            followupadapterBinding.fupround.setText(listModel.getFollowupRound());
             //FollowupAdapter.this;
 
-            followupadapterBinding.typeimg.setImageDrawable(listModel.getTypeimg());
 
-            if (listModel.getType().equals("1")){
-                followupadapterBinding.typetext.setText("Home");
-            }
-            else if (listModel.getType().equals("2")){
+            if (listModel.getFuplocation().equals("1")) {
                 followupadapterBinding.typetext.setText("Hospital");
+                followupadapterBinding.typehome.setVisibility(View.GONE);
+                followupadapterBinding.typehospital.setVisibility(View.VISIBLE);
+                followupadapterBinding.typephone.setVisibility(View.GONE);
+            } else if (listModel.getFuplocation().equals("2")) {
+                followupadapterBinding.typetext.setText("Home");
+                followupadapterBinding.typehome.setVisibility(View.VISIBLE);
+                followupadapterBinding.typehospital.setVisibility(View.GONE);
+                followupadapterBinding.typephone.setVisibility(View.GONE);
 
-            }
-            else if (listModel.getType().equals("3")){
+            } else if (listModel.getFuplocation().equals("3")) {
                 followupadapterBinding.typetext.setText("Telephone");
-            }
-            else if (listModel.getType().equals("4")){
+                followupadapterBinding.typehome.setVisibility(View.GONE);
+                followupadapterBinding.typehospital.setVisibility(View.GONE);
+                followupadapterBinding.typephone.setVisibility(View.VISIBLE);
+            } else if (listModel.getFuplocation().equals("4")) {
                 followupadapterBinding.typetext.setText("CTU");
             }
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
-                @Override public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                     listener.onItemClick(listModel);
                 }
             });

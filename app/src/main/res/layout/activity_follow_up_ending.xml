@@ -22,15 +22,14 @@ tools:context="edu.aku.hassannaqvi.slab.ui.FollowUpEndingActivity">
         <ScrollView
             android:id="@+id/scrollView01"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="match_parent"
             android:scrollbars="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="16dp"
+                android:layout_marginStart="16dp"
                 android:orientation="vertical">
 
                 <!--Status-->

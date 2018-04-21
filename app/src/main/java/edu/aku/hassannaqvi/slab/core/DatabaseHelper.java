@@ -105,26 +105,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             FollowUpList.COLUMN_PROJECT_NAME + " TEXT," +
             FollowUpList.COLUMN__UID + " TEXT," +
             FollowUpList.COLUMN_FORMDATE + " TEXT," +
-            FollowUpList.COLUMN_USER + " TEXT," +
             FollowUpList.COLUMN_FORMTYPE + " TEXT," +
-            FollowUpList.COLUMN_CHILDNAME + " TEXT," +
-            FollowUpList.COLUMN_MOTHERNAME + " TEXT," +
+            FollowUpList.COLUMN_USER + " TEXT," +
             FollowUpList.COLUMN_MRNO + " TEXT," +
             FollowUpList.COLUMN_STUDYID + " TEXT," +
+            FollowUpList.COLUMN_CHILDNAME + " TEXT," +
+            FollowUpList.COLUMN_MOTHERNAME + " TEXT," +
+            FollowUpList.COLUMN_BIRTHDATE + " TEXT," +
+            FollowUpList.COLUMN_ENROLMENTDATE + " TEXT," +
+            FollowUpList.COLUMN_FOLLOWUPROUND + " TEXT, " +
+            FollowUpList.COLUMN_FUPLOCATION + " TEXT," +
             FollowUpList.COLUMN_DISCHARGEDATE + " TEXT," +
-            FollowUpList.COLUMN_TYPE + " TEXT," +
-            FollowUpList.COLUMN_STATUS + " TEXT, " +
-            FollowUpList.COLUMN_FOLLOWUP_ROUND + " TEXT, " +
-
+            FollowUpList.COLUMN_FUPSTATUS + " TEXT, " +
+            FollowUpList.COLUMN_LASTFUPDATE + " TEXT," +
             FollowUpList.COLUMN_ISTATUS + " TEXT," +
-            FollowUpList.COLUMN_GPSLAT + " TEXT," +
-            FollowUpList.COLUMN_GPSLNG + " TEXT," +
-            FollowUpList.COLUMN_GPSDATE + " TEXT," +
-            FollowUpList.COLUMN_GPSACC + " TEXT," +
             FollowUpList.COLUMN_DEVICEID + " TEXT," +
             FollowUpList.COLUMN_DEVICETAGID + " TEXT," +
             FollowUpList.COLUMN_APP_VERSION + " TEXT," +
-            FollowUpList.COLUMN_END_TIME + " TEXT," +
             FollowUpList.COLUMN_SYNCED + " TEXT," +
             FollowUpList.COLUMN_SYNCED_DATE + " TEXT"
             + " );";
@@ -713,6 +710,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return fc;
     }
 
+
     public String getDateBymrno(String mrNo) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -999,15 +997,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(FollowUpList.COLUMN__UID, flc.get_UID());
-        values.put(FollowUpList.COLUMN_CHILDNAME, flc.getChildname());
-        values.put(FollowUpList.COLUMN_MOTHERNAME, flc.getMothername());
+        values.put(FollowUpList.COLUMN_PROJECT_NAME, flc.getProjectname());
+        values.put(FollowUpList.COLUMN_FORMDATE, flc.getFormdate());
+        values.put(FollowUpList.COLUMN_FORMTYPE, flc.getFormtype());
+        values.put(FollowUpList.COLUMN_USER, flc.getUser());
         values.put(FollowUpList.COLUMN_MRNO, flc.getMrNo());
         values.put(FollowUpList.COLUMN_STUDYID, flc.getStudyID());
-        values.put(FollowUpList.COLUMN_DISCHARGEDATE, flc.getDischargeDate());
-        values.put(FollowUpList.COLUMN_TYPE, flc.getType());
-        values.put(FollowUpList.COLUMN_STATUS, flc.getStatus());
+        values.put(FollowUpList.COLUMN_CHILDNAME, flc.getChildname());
+
+        values.put(FollowUpList.COLUMN_MOTHERNAME, flc.getMothername());
+        values.put(FollowUpList.COLUMN_BIRTHDATE, flc.getBirthdate());
         values.put(FollowUpList.COLUMN_ENROLMENTDATE, flc.getEnrolmentDate());
         values.put(FollowUpList.COLUMN_FOLLOWUPROUND, flc.getFollowupRound());
+        values.put(FollowUpList.COLUMN_FUPLOCATION, flc.getFuplocation());
+
+        values.put(FollowUpList.COLUMN_DISCHARGEDATE, flc.getDischargeDate());
+        values.put(FollowUpList.COLUMN_FUPSTATUS, flc.getFupstatus());
+        values.put(FollowUpList.COLUMN_LASTFUPDATE, flc.getLastfupdate());
+        values.put(FollowUpList.COLUMN_ISTATUS, flc.getIstatus());
+        values.put(FollowUpList.COLUMN_DEVICEID, flc.getDeviceid());
+        values.put(FollowUpList.COLUMN_DEVICETAGID, flc.getDevicetagid());
+        values.put(FollowUpList.COLUMN_SYNCED, flc.getSynced());
+        values.put(FollowUpList.COLUMN_SYNCED_DATE, flc.getSynced_date());
+        values.put(FollowUpList.COLUMN_APP_VERSION, flc.getAppversion());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
@@ -1179,12 +1191,80 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
+    public Boolean iffupexist(String mrno, String studyid, String startdatetime, String currentdatetime) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        int cursorCount = 0;
+        String[] columns = {
+                FormsTable._ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_FORMDATE,
+                FormsTable.COLUMN_USER,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_FORMTYPE,
+                FormsTable.COLUMN_SEL,
+                // FormsTable.COLUMN_SBL,
+                FormsTable.COLUMN_SRECR,
+                FormsTable.COLUMN_SFUP,
+                FormsTable.COLUMN_SANTHRO,
+                FormsTable.COLUMN_SEXAM,
+                FormsTable.COLUMN_SLAB,
+                FormsTable.COLUMN_SSUP,
+                FormsTable.COLUMN_SFEED,
 
-    public Collection<FollowupListContract> getAllFollowups() {
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSDATE,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICETAGID,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_SYNCED,
+                FormsTable.COLUMN_SYNCED_DATE,
+                FormsTable.COLUMN_APP_VERSION,
+                FormsTable.COLUMN_END_TIME,
+
+                FormsTable.COLUMN_ISDISCHARGED,
+                FormsTable.COLUMN_DISCHARGEDATE,
+                FormsTable.COLUMN_TOTALSACHGIVEN
+
+        };
+        String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
+                FormsTable.COLUMN_STUDYID + " =? AND " +
+                FormsTable.COLUMN_FORMTYPE + " =? AND "+
+                FormsTable.COLUMN_isEL + " =? AND "+
+                FormsTable.COLUMN_FORMDATE + " BETWEEN '"+startdatetime+"' AND '"+currentdatetime+"'";
+        String[] whereArgs = new String[]{mrno, studyid,  "3","1"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FormsTable._ID + " ASC";
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+          cursorCount = c.getCount();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return cursorCount > 0;
+    }
+
+    public List<FollowupListContract> getAllFollowups() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
-
                 FollowUpList.COLUMN__ID,
                 FollowUpList.COLUMN__UID,
                 FollowUpList.COLUMN_CHILDNAME,
@@ -1192,10 +1272,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FollowUpList.COLUMN_MRNO,
                 FollowUpList.COLUMN_STUDYID,
                 FollowUpList.COLUMN_DISCHARGEDATE,
-                FollowUpList.COLUMN_TYPE,
-                FollowUpList.COLUMN_STATUS,
+                FollowUpList.COLUMN_FUPLOCATION,
+                FollowUpList.COLUMN_FUPSTATUS,
                 FollowUpList.COLUMN_ENROLMENTDATE,
-                FollowUpList.COLUMN_FOLLOWUPROUND
+                FollowUpList.COLUMN_FOLLOWUPROUND,
+                FollowUpList.COLUMN_BIRTHDATE,
+                FollowUpList.COLUMN_LASTFUPDATE
 
         };
         String whereClause = null;
@@ -1206,7 +1288,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String orderBy =
                 FollowUpList.COLUMN__ID + " ASC";
 
-        Collection<FollowupListContract> allFC = new ArrayList<FollowupListContract>();
+        List<FollowupListContract> allFC = new ArrayList<FollowupListContract>();
         try {
             c = db.query(
                     FollowUpList.TABLE_NAME,  // The table to query
@@ -1949,6 +2031,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+    public int updatefupEnding() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.fc.getIstatus());
+        values.put(FormsTable.COLUMN_END_TIME, MainApp.fc.getEndtime());
+        values.put(FormsTable.COLUMN_ISDISCHARGED, MainApp.fc.getIsDischarged());
+        values.put(FormsTable.COLUMN_DISCHARGEDATE, MainApp.fc.getDischargeDate());
+        values.put(FormsTable.COLUMN_TOTALSACHGIVEN, MainApp.fc.getTotalsachgiven());
+        values.put(FormsTable.COLUMN_isEL, MainApp.fc.getIsEl());
+
+
+// Which row to update, based on the ID
+        String selection = FormsTable._ID + " =? ";
+        String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
+
+        int count = db.update(FormsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
     public FormsContract getEl(String uuid) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -2024,5 +2130,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return fc;
     }
 
+    public int getNextRoundCount(String mrno, String uuid) {
 
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        int count = 0;
+        try {
+            String query = "SELECT COUNT (*) FROM " + FollowUpList.TABLE_NAME + " WHERE " + FollowUpList.COLUMN__UID + " = ? AND " + FollowUpList.COLUMN_MRNO + " = ? AND "+FollowUpList.COLUMN_FUPSTATUS+" =? OR "+FollowUpList.COLUMN_FUPSTATUS+" =?";
+            cursor = db.rawQuery(
+                    query,
+                    new String[]{String.valueOf(uuid), String.valueOf(mrno),"1","7"}
+            );
+
+            if (null != cursor)
+                if (cursor.getCount() > 0) {
+                    cursor.moveToFirst();
+                    count = cursor.getInt(0);
+                }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return count;
+    }
 }
+

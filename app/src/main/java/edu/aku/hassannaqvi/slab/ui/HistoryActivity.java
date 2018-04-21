@@ -49,6 +49,11 @@ DatabaseHelper db;
         bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
     }
 
+    @Override
+    public void onBackPressed() {
+       Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+    }
+
     private void gettingIntents() {
         Intent intent = getIntent();
         if (intent.hasExtra("openExamSec") && intent.hasExtra("childName") && intent.hasExtra("noofSachet") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
@@ -68,7 +73,7 @@ DatabaseHelper db;
     }
 
     public void BtnContinue() {
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -76,7 +81,7 @@ DatabaseHelper db;
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+           //     Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
 
                 if (MainApp.hiCount == Integer.parseInt(noofSachet)) {
@@ -114,7 +119,7 @@ DatabaseHelper db;
         MainApp.hc.set_ID(String.valueOf(newrowid));
 
         if (newrowid != 0) {
-            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
 
             MainApp.hc.set_UID((MainApp.hc.getDeviceID() + MainApp.hc.get_ID()));
             db.updateHistoryID();
@@ -124,7 +129,7 @@ DatabaseHelper db;
 
             return true;
         } else {
-            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
 

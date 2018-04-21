@@ -20,7 +20,7 @@
         <LinearLayout
             android:id="@+id/testll"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:animateLayoutChanges="true"
@@ -333,7 +333,7 @@
                         android:digits="1234567890"
                         android:hint="@string/sfu10"
                         android:inputType="number"
-                        android:maxLength="1" />
+                        android:maxLength="2" />
 
                     <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
                     <LinearLayout
