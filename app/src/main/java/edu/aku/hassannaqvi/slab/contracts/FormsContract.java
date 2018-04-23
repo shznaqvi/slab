@@ -214,7 +214,6 @@ public class FormsContract {
 
 
         if (!this.sAnthro.equals("")) {
-
             json.put(FormsTable.COLUMN_SANTHRO, this.sAnthro.equals("") ? JSONObject.NULL : new JSONObject(this.sAnthro));
 
         }
@@ -232,7 +231,6 @@ public class FormsContract {
             json.put(FormsTable.COLUMN_SFEED, this.sFeed.equals("") ? JSONObject.NULL : new JSONObject(this.sFeed));
 
         }
-
 
         json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
         json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);

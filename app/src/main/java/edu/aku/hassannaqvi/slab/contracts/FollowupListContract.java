@@ -298,11 +298,8 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String TABLE_NAME = "followuplist";
     public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
     public static final String COLUMN__ID = "_id";
-    public static final String COLUMN_PROJECT_NAME = "projectname";
-    public static final String COLUMN__UID = "_uid";
-    public static final String COLUMN_FORMDATE = "formdate";
-    public static final String COLUMN_FORMTYPE = "formtype";
-    public static final String COLUMN_USER = "user";
+    public static final String COLUMN__UID = "ruid";
+    public static final String COLUMN_FORMTYPE = "formtype";//remove if not in use
     public static final String COLUMN_MRNO = "mrno";
     public static final String COLUMN_STUDYID = "studyid";
     public static final String COLUMN_CHILDNAME = "childname";
@@ -314,15 +311,6 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String COLUMN_DISCHARGEDATE = "dischargedate";
     public static final String COLUMN_FUPSTATUS = "fupstatus";
     public static final String COLUMN_LASTFUPDATE = "lastfupdate";
-    public static final String COLUMN_ISTATUS = "istatus";
-
-    public static final String COLUMN_DEVICEID = "deviceid";
-    public static final String COLUMN_DEVICETAGID = "devicetagid";
-    public static final String COLUMN_SYNCED = "synced";
-    public static final String COLUMN_APP_VERSION = "appversion";
-
-    public static final String COLUMN_SYNCED_DATE = "synced_date";
-
 
 
     public static String _URL = "childlist.php";
