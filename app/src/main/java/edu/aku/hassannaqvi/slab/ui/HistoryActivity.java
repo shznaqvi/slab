@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -47,6 +49,18 @@ DatabaseHelper db;
     private void setUpView() {
         bi.ChildName.setText(childName);
         bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
+        bi.sfu11a1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.sfu11a11){
+                    bi.llfldgrppartial.setVisibility(View.GONE);
+                    bi.sfu11a2.clearCheck();
+                }
+                else{
+                    bi.llfldgrppartial.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     @Override
@@ -157,9 +171,9 @@ DatabaseHelper db;
         his.put("sfuqty", bi.sfu11a11.isChecked() ? "1"
                 : bi.sfu11a12.isChecked() ? "2"
                 : "0");
-        his.put("sfuifpartial", bi.sfu11a21.isChecked() ? "1"
-                : bi.sfu11a22.isChecked() ? "2"
-                : "0");
+            his.put("sfuifpartial", bi.sfu11a21.isChecked() ? "1"
+                    : bi.sfu11a22.isChecked() ? "2"
+                    : "0");
         MainApp.hc.setSfu11(String.valueOf(his));
     }
     private void setGPS() {

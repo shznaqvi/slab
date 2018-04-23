@@ -351,6 +351,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu17, getString(R.string.howlong))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu17,1,30 , getString(R.string.howlong),"fever")) {
+                return false;
+            }
+
         }
 
         if (!validatorClass.EmptyRadioButton(this, bi.sfu18, bi.sfu18a, getString(R.string.sfu18))) {
@@ -358,6 +363,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }
         if (bi.sfu18a.isChecked()) {
             if (!validatorClass.EmptyTextBox(this, bi.sfu19, getString(R.string.howlong))) {
+                return false;
+            }
+            if (!validatorClass.RangeTextBox(this, bi.sfu19,1,30 , getString(R.string.howlong),"Reluctance to feed")) {
                 return false;
             }
         }
@@ -369,12 +377,20 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu21, getString(R.string.howlong))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu21,1,30 , getString(R.string.howlong),"Hypothermia")) {
+                return false;
+            }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu22, bi.sfu22a, getString(R.string.sfu22))) {
             return false;
         }
         if (bi.sfu22a.isChecked()) {
             if (!validatorClass.EmptyTextBox(this, bi.sfu23, getString(R.string.howlong))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu23,1,30 , getString(R.string.howlong),"Cyanosis")) {
                 return false;
             }
         }
@@ -385,12 +401,20 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu25, getString(R.string.howlong))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu25,1,30 , getString(R.string.howlong),"Cough")) {
+                return false;
+            }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu26, bi.sfu26a, getString(R.string.sfu26))) {
             return false;
         }
         if (bi.sfu26a.isChecked()) {
             if (!validatorClass.EmptyTextBox(this, bi.sfu27, getString(R.string.howlong))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu27,1,30 , getString(R.string.howlong),"Difficult breathing")) {
                 return false;
             }
         }
@@ -401,12 +425,20 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu29, getString(R.string.howlong))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu29,1,30 , getString(R.string.howlong),"Rapid Breathing")) {
+                return false;
+            }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu30, bi.sfu30a, getString(R.string.sfu30))) {
             return false;
         }
         if (bi.sfu30a.isChecked()) {
             if (!validatorClass.EmptyTextBox(this, bi.sfu31, getString(R.string.howlong))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu31,1,30 , getString(R.string.howlong),"Vomiting")) {
                 return false;
             }
         }
@@ -417,12 +449,20 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu33, getString(R.string.howlong))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu33,1,30 , getString(R.string.howlong),"Diarrhea")) {
+                return false;
+            }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu34, bi.sfu34a, getString(R.string.sfu34))) {
             return false;
         }
         if (bi.sfu34a.isChecked()) {
             if (!validatorClass.EmptyTextBox(this, bi.sfu35, getString(R.string.howlong))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu35,1,30 , getString(R.string.howlong),"Lethargy")) {
                 return false;
             }
         }
@@ -433,10 +473,22 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu37s, getString(R.string.howlongsmd))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu37s,1,60 , getString(R.string.howlong),"fits")) {
+                return false;
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu37m, getString(R.string.howlongsmd))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu37m,1, 60, getString(R.string.howlong),"fits")) {
+                return false;
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu37d, getString(R.string.howlongsmd))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu37d,1,30 , getString(R.string.howlong),"fits")) {
                 return false;
             }
 
@@ -451,6 +503,10 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 return false;
             }
 
+            if (!validatorClass.RangeTextBox(this, bi.sfu39,1,30 , getString(R.string.howlong),"feeding intolerance")) {
+                return false;
+            }
+
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu40, bi.sfu40a, getString(R.string.sfu40))) {
             return false;
@@ -462,6 +518,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu42, getString(R.string.times))) {
                 return false;
             }
+
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu43, bi.sfu43a, getString(R.string.sfu43))) {
             return false;
@@ -470,7 +527,15 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu44d, getString(R.string.howlongdh))) {
                 return false;
             }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu44d,1,30 , getString(R.string.howlongdh),"abdominal distension")) {
+                return false;
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu44h, getString(R.string.howlongdh))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(this, bi.sfu44h,1,24 , getString(R.string.howlongdh),"abdominal distension")) {
                 return false;
             }
 
@@ -482,6 +547,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu46, getString(R.string.times))) {
                 return false;
             }
+
         }
 /*
         if (!validatorClass.EmptyRadioButton(this, bi.sfu46, bi.sfu46a, getString(R.string.sfu46))) {

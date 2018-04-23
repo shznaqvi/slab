@@ -120,6 +120,11 @@
                     android:layout_weight="1"
                     android:text="@string/sfupartial" />
             </RadioGroup>
+<LinearLayout
+    android:id="@+id/llfldgrppartial"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -158,6 +163,7 @@
                     android:text="@string/sfuvomit" />
             </RadioGroup>
 
+</LinearLayout>
 
             <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
             <LinearLayout

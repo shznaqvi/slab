@@ -523,6 +523,7 @@ public class FormsContract {
         public static final String COLUMN_ISDISCHARGED = "isDischarged";
         public static final String COLUMN_DISCHARGEDATE = "dischargeDate";
         public static final String COLUMN_TOTALSACHGIVEN = "totalsachgiven";
+
         public static String _URL = "forms.php";
     }
 }

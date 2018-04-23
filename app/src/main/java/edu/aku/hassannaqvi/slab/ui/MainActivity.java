@@ -44,9 +44,8 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import edu.aku.hassannaqvi.slab.FormsList;
+import edu.aku.hassannaqvi.slab.NetworkUtils;
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract.HistoryTable;
@@ -55,10 +54,6 @@ import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.slab.sync.SyncAllData;
-import edu.aku.hassannaqvi.slab.sync.SyncEl;
-import edu.aku.hassannaqvi.slab.sync.SyncForms;
-import edu.aku.hassannaqvi.slab.sync.SyncFup;
-import edu.aku.hassannaqvi.slab.sync.SyncRecr;
 
 public class MainActivity extends Activity {
 
@@ -513,22 +508,52 @@ public class MainActivity extends Activity {
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
             DatabaseHelper db = new DatabaseHelper(this);
-            Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
-           // new SyncForms(this, true).execute();
-            //new SyncEl(this, true).execute();
-            //new SyncRecr(this, true).execute();
-            //new SyncFup(this, true).execute();
-            new SyncForms(this, true).execute();
-           /*Toast.makeText(getApplicationContext(), "Syncing History", Toast.LENGTH_SHORT).show();
+
+            //TODO:sync Eligibility sync to server
+            Toast.makeText(getApplicationContext(), "Syncing Screening", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Eligibility",
+                    "updateSyncedForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.FormsTable._URL.replace(".php", "el.php")),
+                    db.getUnsyncedScreening(), this.findViewById(R.id.syncStatus)
+            ).execute();
+
+            //TODO:sync Recruitment sync to server
+            Toast.makeText(getApplicationContext(), "Syncing Recruitment", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Recruitment",
+                    "updateSyncedForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.FormsTable._URL.replace(".php", "rec.php")),
+                    db.getUnsyncedRecruitment(), this.findViewById(R.id.syncStatus)
+            ).execute();
+
+            //TODO:sync Followup sync to server
+            Toast.makeText(getApplicationContext(), "Syncing Followup", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Followup",
+                    "updateSyncedForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.FormsTable._URL.replace(".php", "fup.php")),
+                    db.getUnsyncedFollowup(), this.findViewById(R.id.syncStatus)
+            ).execute();
+
+            //TODO:sync History sync to server
+            Toast.makeText(getApplicationContext(), "Syncing History", Toast.LENGTH_SHORT).show();
             new SyncAllData(
                     this,
                     "History",
                     "updateSyncedHistory",
                     HistoryContract.class,
-                    MainApp._HOST_URL + HistoryTable._URL,
+                    NetworkUtils.buildUrl(HistoryTable._URL),
                     db.getUnsyncedHistory(), this.findViewById(R.id.syncStatus)
             ).execute();
-*/
+
+
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();

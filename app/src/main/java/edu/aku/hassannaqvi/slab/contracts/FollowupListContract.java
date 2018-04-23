@@ -30,6 +30,13 @@ public class FollowupListContract {
     private String fupstatus="";
     private String lastfupdate="";
 
+    private String istatus="";
+    private String deviceid = "";
+    private String devicetagid = "";
+    private String appversion = "";
+    private String synced = "";
+    private String synced_date = "";
+
     public String getFormdate() {
         return formdate;
     }
@@ -118,12 +125,6 @@ public class FollowupListContract {
         this.synced_date = synced_date;
     }
 
-    private String istatus="";
-    private String deviceid = "";
-    private String devicetagid = "";
-    private String appversion = "";
-    private String synced = "";
-    private String synced_date = "";
     public String getBirthdate() {
         return birthdate;
     }
@@ -167,8 +168,10 @@ public class FollowupListContract {
 
     public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
 
-        this._ID= jsonObject.getString(FollowUpList.COLUMN__ID);
         this._UID= jsonObject.getString(FollowUpList.COLUMN__UID);
+        this.formdate= jsonObject.getString(FollowUpList.COLUMN_FORMDATE);
+        this.formtype= jsonObject.getString(FollowUpList.COLUMN_FORMTYPE);
+        this.user= jsonObject.getString(FollowUpList.COLUMN_USER);
         this.childname= jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
         this.mothername= jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
         this.mrNo= jsonObject.getString(FollowUpList.COLUMN_MRNO);
@@ -176,10 +179,16 @@ public class FollowupListContract {
         this.DischargeDate= jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
         this.fuplocation= jsonObject.getString(FollowUpList.COLUMN_FUPLOCATION);
         this.fupstatus= jsonObject.getString(FollowUpList.COLUMN_FUPSTATUS);
-        this.EnrolmentDate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
         this.FollowupRound= jsonObject.getString(FollowUpList.COLUMN_FOLLOWUPROUND);
+        this.EnrolmentDate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
         this.birthdate= jsonObject.getString(FollowUpList.COLUMN_BIRTHDATE);
         this.lastfupdate= jsonObject.getString(FollowUpList.COLUMN_LASTFUPDATE);
+        this.istatus= jsonObject.getString(FollowUpList.COLUMN_ISTATUS);
+        this.deviceid= jsonObject.getString(FollowUpList.COLUMN_DEVICEID);
+        this.devicetagid= jsonObject.getString(FollowUpList.COLUMN_DEVICETAGID);
+        this.appversion= jsonObject.getString(FollowUpList.COLUMN_APP_VERSION);
+        this.synced= jsonObject.getString(FollowUpList.COLUMN_SYNCED);
+        this.synced_date= jsonObject.getString(FollowUpList.COLUMN_SYNCED_DATE);
 
         return this;
 

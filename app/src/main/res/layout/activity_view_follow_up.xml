@@ -16,9 +16,10 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
     <LinearLayout
         android:id="@+id/testll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         android:layoutDirection="ltr"
+        android:background="#EFEBE9"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
@@ -44,10 +45,9 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recylerfollowuplists"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:layoutDirection="ltr"
-            android:background="#EFEBE9"
             android:scrollbars="vertical"
             tools:listitem="@layout/activity_followup_adapter"
             android:visibility="gone"/>

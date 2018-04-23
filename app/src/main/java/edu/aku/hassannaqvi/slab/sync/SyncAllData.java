@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
+import edu.aku.hassannaqvi.slab.NetworkUtils;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 
 /**
@@ -37,13 +38,14 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
     private ProgressDialog pd;
 
 
-    private String syncClass, url, updateSyncClass;
+    private String syncClass, updateSyncClass;
+    URL url ;
     private Class contractClass;
     private Collection dbData;
     private TextView syncStatus;
 
 
-    public SyncAllData(Context context, String syncClass, String updateSyncClass, Class contractClass, String url, Collection dbData, View syncStatus) {
+    public SyncAllData(Context context, String syncClass, String updateSyncClass, Class contractClass, URL url, Collection dbData, View syncStatus) {
         mContext = context;
         this.syncClass = syncClass;
         this.updateSyncClass = updateSyncClass;
@@ -82,9 +84,8 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
 
             HttpURLConnection connection = null;
             try {
-                String request = url;
 
-                URL url = new URL(request);
+//                URL url = new URL( NetworkUtils.buildUrl(url));
                 connection = (HttpURLConnection) url.openConnection();
                 connection.connect();
                 int HttpResult = connection.getResponseCode();

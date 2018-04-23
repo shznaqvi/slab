@@ -626,10 +626,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
                 @Override
                 public void run() {
-                    Toast.makeText(LoginActivity.this, "Sync District's", Toast.LENGTH_LONG).show();
+                   /* Toast.makeText(LoginActivity.this, "Sync District's", Toast.LENGTH_LONG).show();
                     new GetDistricts(mContext).execute();
                     Toast.makeText(LoginActivity.this, "Sync Villages", Toast.LENGTH_LONG).show();
-                    new GetVillages(mContext).execute();
+                    new GetVillages(mContext).execute();*/
                     Toast.makeText(LoginActivity.this, "Sync User", Toast.LENGTH_LONG).show();
                     new GetUsers(mContext).execute();
                 }
