@@ -27,6 +27,7 @@ import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.JsonModelClasses.RecruitmentJSONModel;
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
@@ -274,10 +275,9 @@ public class FollowUpFormActivity extends AppCompatActivity {
         setGPS(); //Set GPS
 
         JSONObject fu = new JSONObject();
-        recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
         fu.put("sfudatetime", dtToday);
-        fu.put("uuid", recmodel.getUUID());
-        fu.put("childName", recmodel.getChildName());
+        fu.put("uuid",  bi.ruid.getText().toString());
+        fu.put("childName", bi.ChildName.getText().toString());
         fu.put("sfu01", bi.sfu01a.isChecked() ? "1"
                 : bi.sfu01b.isChecked() ? "2"
                 : bi.sfu01c.isChecked() ? "3"
@@ -297,25 +297,36 @@ public class FollowUpFormActivity extends AppCompatActivity {
             // fc = db.getStudyID(bi.sfu001.getText().toString());
             fc_1 = db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
 
-
-            if (!fc_1.getsMrno().isEmpty() && !fc_1.getsStudyid().isEmpty()) {
+                                                                                //TODO : Checking mrno is recruited on server or not!!!
+            if ((!fc_1.getsMrno().isEmpty() && !fc_1.getsStudyid().isEmpty()) || db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())) {
 
                 //TODO() : checking followup already inserted today or not!!
 
-                if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate+" 00:00", dtToday)) {
-                    recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
+              //  if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate+" 00:00", dtToday)) {
+                    if(!db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())){
+                        recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
+                       // bi.sfu002.setText(fc_1.getsStudyid());
+                        bi.ruid.setText(fc_1.getUID());
+                        bi.ChildName.setText(recmodel.getChildName());
+                        MainApp.fetchLocal = true;
+                    }else{
+                        // TODO checking list from server side data
+                        ChildListContract childListContract = db.getChildDetail(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+                       // bi.sfu002.setText(childListContract.getStudyID());
+                        bi.ruid.setText(childListContract.get_ruid());
+                        bi.ChildName.setText(childListContract.getChildname());
+                        MainApp.fetchLocal = false;
+                    }
+
                    // Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
                     bi.fldGrpA.setVisibility(View.VISIBLE);
                     bi.fldGrpB.setVisibility(View.VISIBLE);
-                    bi.sfu002.setText(fc_1.getsStudyid());
-                    bi.ChildName.setText(recmodel.getChildName());
-                    MainApp.fetchLocal = true;
-                } else {
+              /*  } else {
                     Toast.makeText(this, "You have already inserted a followup Today!", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
 
-            } else {
+            }else {
                 bi.fldGrpA.setVisibility(View.GONE);
                 bi.fldGrpB.setVisibility(View.GONE);
 

@@ -37,8 +37,9 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
         Boolean check = getIntent().getExtras().getBoolean("complete");
         currentDateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
-        dateToday= new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
+        dateToday = new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
 
         bi.sfu04.setManager(getSupportFragmentManager());
         bi.sfu04.setMaxDate(currentDateToday);
@@ -84,7 +85,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-     //   Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -117,7 +118,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
         Toast.makeText(this, "Saving Draft for  This Section", Toast.LENGTH_SHORT).show();
 
         JSONObject end = new JSONObject();
-
+        DatabaseHelper db = new DatabaseHelper(this);
         end.put("istatus", bi.istatusa.isChecked() ? "1"
                 : bi.istatusb.isChecked() ? "2"
                 : bi.istatusc.isChecked() ? "3"
@@ -128,10 +129,15 @@ public class FollowUpEndingActivity extends AppCompatActivity {
                 : bi.istatus96.isChecked() ? "96"
                 : "0");
         end.put("istatus96x", bi.istatus96x.getText().toString());
-
         fc.setIstatus(String.valueOf(end));
+        int count = db.getMaxCount(MainApp.fc.getsMrno());
+        if (bi.istatusa.isChecked() || bi.istatusg.isChecked()) {
+            count++;
+        } else {
+            count = 0;
+        }
+        fc.setFupround(String.valueOf(count));
         if (bi.istatusg.isChecked()) {
-
             fc.setIsDischarged("true");
             fc.setDischargeDate(bi.sfu04.getText().toString());
             fc.setTotalsachgiven(bi.sfu05.getText().toString());
@@ -143,64 +149,56 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
         fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 
-
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
-        if(bi.istatusa.isChecked()||bi.istatusg.isChecked()){
+        if (bi.istatusa.isChecked() || bi.istatusg.isChecked()) {
             MainApp.fc.setIsEl("1");
-        }else{
+        } else {
             MainApp.fc.setIsEl("");
         }
         int updcount = db.updatefupEnding();
 
 //This is for followup list
-        if (MainApp.fetchLocal) {
+
             fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
-            MainApp.followuplist.setUser(MainApp.userName);
-            MainApp.followuplist.setFormdate(new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime()));
-            MainApp.followuplist.setDeviceid(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                    Settings.Secure.ANDROID_ID));
-            MainApp.followuplist.setDevicetagid(MainApp.getTagName(this));
-            MainApp.followuplist.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-            MainApp.followuplist.setFormtype(MainApp.FORMTYPE_Fup);
-            MainApp.followuplist.setIstatus(MainApp.fc.getIstatus());
-            MainApp.followuplist.set_UID(fupmodel.getUuid());
+            MainApp.followuplist.set_fuid(fupmodel.getUuid());
             MainApp.followuplist.setChildname(fupmodel.getChildName());
             MainApp.followuplist.setFuplocation(fupmodel.getSfu01());
+            MainApp.followuplist.setDischargedate(MainApp.fc.getDischargeDate());
+            MainApp.followuplist.setMrno(MainApp.fc.getsMrno());
+            MainApp.followuplist.setStudyid(MainApp.fc.getsStudyid());
+        MainApp.followuplist.setFupround(fc.getFupround());
+        MainApp.followuplist.setLastfupdate(dateToday);
+        MainApp.followuplist.setFupstatus(bi.istatusa.isChecked() ? "1"
+                : bi.istatusb.isChecked() ? "2"
+                : bi.istatusc.isChecked() ? "3"
+                : bi.istatusd.isChecked() ? "4"
+                : bi.istatuse.isChecked() ? "5"
+                : bi.istatusf.isChecked() ? "6"
+                : bi.istatusg.isChecked() ? "7"
+                : bi.istatus96.isChecked() ? "96"
+                : "0");
+        if (MainApp.fetchLocal) {
             formsContract = db.getEl(fupmodel.getUuid());
             elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
-
-            MainApp.followuplist.setMrNo(MainApp.fc.getsMrno());
-            MainApp.followuplist.setStudyID(MainApp.fc.getsStudyid());
-
             MainApp.followuplist.setMothername(elmodel.getSel07());
-            MainApp.followuplist.setDischargeDate(MainApp.fc.getDischargeDate());
    /* MainApp.followuplist.setEnrolmentDate(MainApp.fc.getFormDate());
     Date date = new Date(MainApp.fc.getFormDate());*/
-            int round = db.getNextRoundCount(MainApp.followuplist.getMrNo(), MainApp.followuplist.get_UID());
-            int totalrounds = 0;
-
+          /* int round = db.getNextRoundCount(MainApp.followuplist.getMrno(), MainApp.followuplist.get_fuid());
+           int totalrounds = 0;
             if (bi.istatusa.isChecked()||bi.istatusg.isChecked()){
-                totalrounds = round + 1;
-            }else{
-                totalrounds = round;
+               round++;
             }
-            MainApp.followuplist.setFollowupRound(String.valueOf(totalrounds));
-            MainApp.followuplist.setLastfupdate(dateToday);
-            MainApp.followuplist.setFupstatus(bi.istatusa.isChecked() ? "1"
-                    : bi.istatusb.isChecked() ? "2"
-                    : bi.istatusc.isChecked() ? "3"
-                    : bi.istatusd.isChecked() ? "4"
-                    : bi.istatuse.isChecked() ? "5"
-                    : bi.istatusf.isChecked() ? "6"
-                    : bi.istatusg.isChecked() ? "7"
-                    : bi.istatus96.isChecked() ? "96"
-                    : "0");
-            db.addList(MainApp.followuplist);
+            MainApp.followuplist.setFupround(String.valueOf(round));*/
+
+
+        } else {
+            // MainApp.followuplist.set_fuid();
         }
+        db.addList(MainApp.followuplist);
 
         if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
@@ -213,7 +211,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
     }
 
     private boolean formValidation() {
-      //  Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
 
         if (!validatorClass.EmptyRadioButton(this, bi.istatus, bi.istatusa, getString(R.string.istatus))) {
             return false;

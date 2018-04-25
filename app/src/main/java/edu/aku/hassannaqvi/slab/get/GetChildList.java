@@ -16,43 +16,61 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-import edu.aku.hassannaqvi.slab.contracts.UsersContract;
-import edu.aku.hassannaqvi.slab.contracts.UsersContract.UsersTable;
+import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
+import edu.aku.hassannaqvi.slab.contracts.ChildListContract.ChildListTable;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 
 /**
- * Created by hassan.naqvi on 11/30/2016.
+ * Created by ramsha.ahmed on 4/25/2018.
  */
 
-public class GetUsers extends AsyncTask<String, String, String> {
-
-    private final String TAG = "GetUsers()";
+public class GetChildList extends AsyncTask<String, String, String> {
+    private final String TAG = "GetChildList()";
     HttpURLConnection urlConnection;
     private Context mContext;
     private ProgressDialog pd;
 
-    public GetUsers(Context context) {
-        mContext = context;
+    public GetChildList(Context mContext) {
+        this.mContext = mContext;
     }
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
         pd = new ProgressDialog(mContext);
-        pd.setTitle("Syncing Users");
+        pd.setTitle("Syncing Child List");
         pd.setMessage("Getting connected to server...");
         pd.show();
 
     }
 
     @Override
-    protected String doInBackground(String... args) {
+    protected void onPostExecute(String s) {
+        String json = s;
+        Log.d(TAG, s);
+        if (json.length() > 0) {
+            DatabaseHelper db = new DatabaseHelper(mContext);
+            try {
+                JSONArray jsonArray = new JSONArray(json);
+                db.syncChildList(jsonArray);
+                pd.setMessage("Received: " + jsonArray.length());
+                pd.show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            pd.setMessage("Received: " + json.length() + "");
+            pd.show();
+        }
+    }
+
+    @Override
+    protected String doInBackground(String... strings) {
 
         StringBuilder result = new StringBuilder();
 
         try {
-            URL url = new URL(MainApp._HOST_URL + UsersTable._URI);
+            URL url = new URL(MainApp._HOST_URL + ChildListTable._URL);
             urlConnection = (HttpURLConnection) url.openConnection();
             if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());
@@ -61,7 +79,7 @@ public class GetUsers extends AsyncTask<String, String, String> {
 
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    Log.i(TAG, "User In: " + line);
+                    Log.i(TAG, "Childlist In: " + line);
                     result.append(line);
                 }
             }
@@ -73,33 +91,5 @@ public class GetUsers extends AsyncTask<String, String, String> {
 
 
         return result.toString();
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-
-        //Do something with the JSON string
-
-        String json = result;
-        //json = json.replaceAll("\\[", "").replaceAll("\\]","");
-        Log.d(TAG, result);
-        if (json.length() > 0) {
-            ArrayList<UsersContract> userArrayList;
-            DatabaseHelper db = new DatabaseHelper(mContext);
-            try {
-                userArrayList = new ArrayList<UsersContract>();
-                //JSONObject jsonObject = new JSONObject(json);
-                JSONArray jsonArray = new JSONArray(json);
-                db.syncUser(jsonArray);
-                pd.setMessage("Received: " + jsonArray.length());
-                pd.show();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            // db.getAllUsers();
-        } else {
-            pd.setMessage("Received: " + json.length() + "");
-            pd.show();
-        }
     }
 }

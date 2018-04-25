@@ -74,7 +74,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
                         @Override
                         public void onItemClick(FollowupListContract followupListModel) {
                             //  Toast.makeText(getApplicationContext(),"child Name is "+followupListModel.getChildname(),Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), FollowUpFormActivity.class).putExtra(MainApp.MRNO_TAG, followupListModel.getMrNo()).putExtra(MainApp.STUDYID_TAG, followupListModel.getStudyID()).putExtra(MainApp.CHILDNAME_TAG, followupListModel.getChildname()));
+                            startActivity(new Intent(getApplicationContext(), FollowUpFormActivity.class).putExtra(MainApp.MRNO_TAG, followupListModel.getMrno()).putExtra(MainApp.STUDYID_TAG, followupListModel.getStudyid()).putExtra(MainApp.CHILDNAME_TAG, followupListModel.getChildname()));
                         }
                     });
 

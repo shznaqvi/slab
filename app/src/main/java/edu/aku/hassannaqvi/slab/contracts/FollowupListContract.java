@@ -12,134 +12,20 @@ import org.json.JSONObject;
  */
 
 public class FollowupListContract {
-    private String _ID = "";
-    private String projectname ="SLAB";
-    private String _UID ="";
-    private String formdate ="";
-    private String formtype ="";
-    private String user ="";
-    private String mrNo="";
-    private String StudyID="";
+
+   private String _ID ="";
+    private String _fuid ="";
+    private String mrno ="";
+    private String studyid="";
     private String childname="";
     private String mothername="";
     private String birthdate="";
-    private String EnrolmentDate="";
-    private String FollowupRound="";
+    private String enrolmentdate="";
+    private String fupround="";
     private String fuplocation="";
-    private String DischargeDate="";
+    private String dischargedate="";
     private String fupstatus="";
     private String lastfupdate="";
-
-    private String istatus="";
-    private String deviceid = "";
-    private String devicetagid = "";
-    private String appversion = "";
-    private String synced = "";
-    private String synced_date = "";
-
-    public String getFormdate() {
-        return formdate;
-    }
-
-    public void setFormdate(String formdate) {
-        this.formdate = formdate;
-    }
-
-    public String getFormtype() {
-        return formtype;
-    }
-
-    public void setFormtype(String formtype) {
-        this.formtype = formtype;
-    }
-
-    public String getUser() {
-        return user;
-    }
-
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public String getFuplocation() {
-        return fuplocation;
-    }
-
-    public void setFuplocation(String fuplocation) {
-        this.fuplocation = fuplocation;
-    }
-
-    public String getFupstatus() {
-        return fupstatus;
-    }
-
-    public void setFupstatus(String fupstatus) {
-        this.fupstatus = fupstatus;
-    }
-
-    public String getIstatus() {
-        return istatus;
-    }
-
-    public void setIstatus(String istatus) {
-        this.istatus = istatus;
-    }
-
-    public String getDeviceid() {
-        return deviceid;
-    }
-
-    public void setDeviceid(String deviceid) {
-        this.deviceid = deviceid;
-    }
-
-    public String getDevicetagid() {
-        return devicetagid;
-    }
-
-    public void setDevicetagid(String devicetagid) {
-        this.devicetagid = devicetagid;
-    }
-
-    public String getAppversion() {
-        return appversion;
-    }
-
-    public void setAppversion(String appversion) {
-        this.appversion = appversion;
-    }
-
-    public String getSynced() {
-        return synced;
-    }
-
-    public void setSynced(String synced) {
-        this.synced = synced;
-    }
-
-    public String getSynced_date() {
-        return synced_date;
-    }
-
-    public void setSynced_date(String synced_date) {
-        this.synced_date = synced_date;
-    }
-
-    public String getBirthdate() {
-        return birthdate;
-    }
-
-    public void setBirthdate(String birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    public String getLastfupdate() {
-        return lastfupdate;
-    }
-
-    public void setLastfupdate(String lastfupdate) {
-        this.lastfupdate = lastfupdate;
-    }
 
     public String get_ID() {
         return _ID;
@@ -149,101 +35,29 @@ public class FollowupListContract {
         this._ID = _ID;
     }
 
-    public String get_UID() {
-        return _UID;
+    public String get_fuid() {
+        return _fuid;
     }
 
-    public void set_UID(String _UID) {
-        this._UID = _UID;
+    public void set_fuid(String _fuid) {
+        this._fuid = _fuid;
     }
 
-
-    public String getProjectname() {
-        return projectname;
+    public String getMrno() {
+        return mrno;
     }
 
-    public void setProjectname(String projectname) {
-        this.projectname = projectname;
+    public void setMrno(String mrno) {
+        this.mrno = mrno;
     }
 
-    public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
-
-        this._UID= jsonObject.getString(FollowUpList.COLUMN__UID);
-        this.formdate= jsonObject.getString(FollowUpList.COLUMN_FORMDATE);
-        this.formtype= jsonObject.getString(FollowUpList.COLUMN_FORMTYPE);
-        this.user= jsonObject.getString(FollowUpList.COLUMN_USER);
-        this.childname= jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
-        this.mothername= jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
-        this.mrNo= jsonObject.getString(FollowUpList.COLUMN_MRNO);
-        this.StudyID= jsonObject.getString(FollowUpList.COLUMN_STUDYID);
-        this.DischargeDate= jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
-        this.fuplocation= jsonObject.getString(FollowUpList.COLUMN_FUPLOCATION);
-        this.fupstatus= jsonObject.getString(FollowUpList.COLUMN_FUPSTATUS);
-        this.FollowupRound= jsonObject.getString(FollowUpList.COLUMN_FOLLOWUPROUND);
-        this.EnrolmentDate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
-        this.birthdate= jsonObject.getString(FollowUpList.COLUMN_BIRTHDATE);
-        this.lastfupdate= jsonObject.getString(FollowUpList.COLUMN_LASTFUPDATE);
-        this.istatus= jsonObject.getString(FollowUpList.COLUMN_ISTATUS);
-        this.deviceid= jsonObject.getString(FollowUpList.COLUMN_DEVICEID);
-        this.devicetagid= jsonObject.getString(FollowUpList.COLUMN_DEVICETAGID);
-        this.appversion= jsonObject.getString(FollowUpList.COLUMN_APP_VERSION);
-        this.synced= jsonObject.getString(FollowUpList.COLUMN_SYNCED);
-        this.synced_date= jsonObject.getString(FollowUpList.COLUMN_SYNCED_DATE);
-
-        return this;
-
-    }
-    public FollowupListContract Hydrate(Cursor cursor) {
-
-        this._ID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__ID));
-        this._UID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__UID));
-        this.childname = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_CHILDNAME));
-        this.mothername = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MOTHERNAME));
-        this.mrNo = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MRNO));
-        this.StudyID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_STUDYID));
-        this.DischargeDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_DISCHARGEDATE));
-        this.fuplocation = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPLOCATION));
-        this.fupstatus = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPSTATUS));
-        this.EnrolmentDate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_ENROLMENTDATE));
-        this.FollowupRound = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FOLLOWUPROUND));
-        this.birthdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_BIRTHDATE));
-        this.lastfupdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_LASTFUPDATE));
-
-        return this;
-    }
-    public JSONObject toJSONObject() throws JSONException {
-
-        JSONObject json = new JSONObject();
-        json.put(FollowUpList.COLUMN_CHILDNAME, this.childname == null ? JSONObject.NULL : this.childname);
-        json.put(FollowUpList.COLUMN_MOTHERNAME, this.mothername == null ? JSONObject.NULL : this.mothername);
-        json.put(FollowUpList.COLUMN_MRNO, this.mrNo == null ? JSONObject.NULL : this.mrNo);
-        json.put(FollowUpList.COLUMN_STUDYID, this.StudyID == null ? JSONObject.NULL : this.StudyID);
-        json.put(FollowUpList.COLUMN_DISCHARGEDATE, this.DischargeDate == null ? JSONObject.NULL : this.DischargeDate);
-        json.put(FollowUpList.COLUMN_FUPLOCATION, this.fuplocation == null ? JSONObject.NULL : this.fuplocation);
-        json.put(FollowUpList.COLUMN_FUPSTATUS, this.fupstatus == null ? JSONObject.NULL : this.fupstatus);
-        json.put(FollowUpList.COLUMN_ENROLMENTDATE, this.EnrolmentDate == null ? JSONObject.NULL : this.EnrolmentDate);
-        json.put(FollowUpList.COLUMN_FOLLOWUPROUND, this.FollowupRound == null ? JSONObject.NULL : this.FollowupRound);
-        json.put(FollowUpList.COLUMN__ID, this._ID == null ? JSONObject.NULL : this._ID);
-        json.put(FollowUpList.COLUMN__UID, this._UID == null ? JSONObject.NULL : this._UID);
-        json.put(FollowUpList.COLUMN_BIRTHDATE, this.birthdate == null ? JSONObject.NULL : this.birthdate);
-        json.put(FollowUpList.COLUMN_LASTFUPDATE, this.lastfupdate == null ? JSONObject.NULL : this.lastfupdate);
-
-        return json;
+    public String getStudyid() {
+        return studyid;
     }
 
-
-    public String getFollowupRound() {
-        return FollowupRound;
+    public void setStudyid(String studyid) {
+        this.studyid = studyid;
     }
-
-    public void setFollowupRound(String followupRound) {
-        FollowupRound = followupRound;
-    }
-
-
-    public FollowupListContract() {
-    }
-
 
     public String getChildname() {
         return childname;
@@ -261,59 +75,152 @@ public class FollowupListContract {
         this.mothername = mothername;
     }
 
-    public String getMrNo() {
-        return mrNo;
+    public String getBirthdate() {
+        return birthdate;
     }
 
-    public void setMrNo(String mrNo) {
-        this.mrNo = mrNo;
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
     }
 
-    public String getStudyID() {
-        return StudyID;
+    public String getEnrolmentdate() {
+        return enrolmentdate;
     }
 
-    public void setStudyID(String studyID) {
-        StudyID = studyID;
+    public void setEnrolmentdate(String enrolmentdate) {
+        this.enrolmentdate = enrolmentdate;
     }
 
-    public String getDischargeDate() {
-        return DischargeDate;
+    public String getFupround() {
+        return fupround;
     }
 
-    public void setDischargeDate(String dischargeDate) {
-        DischargeDate = dischargeDate;
+    public void setFupround(String fupround) {
+        this.fupround = fupround;
     }
 
-    public String getEnrolmentDate() {
-        return EnrolmentDate;
+    public String getFuplocation() {
+        return fuplocation;
     }
 
-    public void setEnrolmentDate(String enrolmentDate) {
-        EnrolmentDate = enrolmentDate;
+    public void setFuplocation(String fuplocation) {
+        this.fuplocation = fuplocation;
     }
+
+    public String getDischargedate() {
+        return dischargedate;
+    }
+
+    public void setDischargedate(String dischargedate) {
+        this.dischargedate = dischargedate;
+    }
+
+    public String getFupstatus() {
+        return fupstatus;
+    }
+
+    public void setFupstatus(String fupstatus) {
+        this.fupstatus = fupstatus;
+    }
+
+    public String getLastfupdate() {
+        return lastfupdate;
+    }
+
+    public void setLastfupdate(String lastfupdate) {
+        this.lastfupdate = lastfupdate;
+    }
+
+    public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
+        this._ID= jsonObject.getString(FollowUpList.COLUMN__ID);
+        this._fuid= jsonObject.getString(FollowUpList.COLUMN__FUID);
+        this.mrno= jsonObject.getString(FollowUpList.COLUMN_MRNO);
+        this.studyid= jsonObject.getString(FollowUpList.COLUMN_STUDYID);
+        this.childname= jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
+        this.mothername= jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
+        this.birthdate= jsonObject.getString(FollowUpList.COLUMN_BIRTHDATE);
+        this.enrolmentdate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
+        this.fupround= jsonObject.getString(FollowUpList.COLUMN_FUPROUND);
+        this.fuplocation= jsonObject.getString(FollowUpList.COLUMN_FUPLOCATION);
+        this.dischargedate= jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
+        this.fupstatus= jsonObject.getString(FollowUpList.COLUMN_FUPSTATUS);
+        this.lastfupdate= jsonObject.getString(FollowUpList.COLUMN_LASTFUPDATE);
+
+
+        return this;
+
+    }
+    public FollowupListContract Hydrate(Cursor cursor) {
+        this._ID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__ID));
+        this._fuid = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__FUID));
+        this.mrno = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MRNO));
+        this.studyid = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_STUDYID));
+        this.childname = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_CHILDNAME));
+        this.mothername = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_MOTHERNAME));
+        this.birthdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_BIRTHDATE));
+        this.enrolmentdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_ENROLMENTDATE));
+        this.fupround = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPROUND));
+        this.fuplocation = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPLOCATION));
+        this.dischargedate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_DISCHARGEDATE));
+        this.fupstatus = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPSTATUS));
+        this.lastfupdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_LASTFUPDATE));
+
+
+
+        return this;
+    }
+    public JSONObject toJSONObject() throws JSONException {
+        JSONObject json = new JSONObject();
+
+        json.put(FollowUpList.COLUMN__ID, this._ID == null ? JSONObject.NULL : this._ID);
+        json.put(FollowUpList.COLUMN__FUID, this._fuid == null ? JSONObject.NULL : this._fuid);
+        json.put(FollowUpList.COLUMN_MRNO, this.mrno == null ? JSONObject.NULL : this.mrno);
+        json.put(FollowUpList.COLUMN_STUDYID, this.studyid == null ? JSONObject.NULL : this.studyid);
+        json.put(FollowUpList.COLUMN_CHILDNAME, this.childname == null ? JSONObject.NULL : this.childname);
+        json.put(FollowUpList.COLUMN_MOTHERNAME, this.mothername == null ? JSONObject.NULL : this.mothername);
+        json.put(FollowUpList.COLUMN_BIRTHDATE, this.birthdate == null ? JSONObject.NULL : this.birthdate);
+        json.put(FollowUpList.COLUMN_ENROLMENTDATE, this.enrolmentdate == null ? JSONObject.NULL : this.enrolmentdate);
+        json.put(FollowUpList.COLUMN_FUPROUND, this.fupround == null ? JSONObject.NULL : this.fupround);
+        json.put(FollowUpList.COLUMN_FUPLOCATION, this.fuplocation == null ? JSONObject.NULL : this.fuplocation);
+        json.put(FollowUpList.COLUMN_DISCHARGEDATE, this.dischargedate == null ? JSONObject.NULL : this.dischargedate);
+        json.put(FollowUpList.COLUMN_FUPSTATUS, this.fupstatus == null ? JSONObject.NULL : this.fupstatus);
+        json.put(FollowUpList.COLUMN_LASTFUPDATE, this.lastfupdate == null ? JSONObject.NULL : this.lastfupdate);
+
+
+
+        return json;
+    }
+
+
+
+
+    public FollowupListContract() {
+    }
+
+
 
 public static abstract class FollowUpList implements BaseColumns{
 
     public static final String TABLE_NAME = "followuplist";
     public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+
     public static final String COLUMN__ID = "_id";
-    public static final String COLUMN__UID = "ruid";
-    public static final String COLUMN_FORMTYPE = "formtype";//remove if not in use
+    public static final String COLUMN__FUID = "_fuid";
     public static final String COLUMN_MRNO = "mrno";
     public static final String COLUMN_STUDYID = "studyid";
     public static final String COLUMN_CHILDNAME = "childname";
     public static final String COLUMN_MOTHERNAME = "mothername";
     public static final String COLUMN_BIRTHDATE = "birthdate";
     public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
-    public static final String COLUMN_FOLLOWUPROUND = "followupround";
+    public static final String COLUMN_FUPROUND = "fupround";
     public static final String COLUMN_FUPLOCATION = "fuplocation";
     public static final String COLUMN_DISCHARGEDATE = "dischargedate";
     public static final String COLUMN_FUPSTATUS = "fupstatus";
     public static final String COLUMN_LASTFUPDATE = "lastfupdate";
 
 
-    public static String _URL = "childlist.php";
+
+    public static String _URL = "fuplist.php";
 
 }
 }

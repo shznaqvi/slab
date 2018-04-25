@@ -46,6 +46,17 @@ public class FormsContract {
     private String isDischarged = "";
     private String dischargeDate = "";
     private String totalsachgiven = "";
+    private String fupround = "";
+
+
+    public String getFupround() {
+        return fupround;
+    }
+
+    public void setFupround(String fupround) {
+        this.fupround = fupround;
+    }
+
 
     public String getIsDischarged() {
         return isDischarged;
@@ -109,6 +120,7 @@ public class FormsContract {
         this.isDischarged = jsonObject.getString(FormsTable.COLUMN_ISDISCHARGED);
         this.dischargeDate = jsonObject.getString(FormsTable.COLUMN_DISCHARGEDATE);
         this.totalsachgiven = jsonObject.getString(FormsTable.COLUMN_TOTALSACHGIVEN);
+        this.fupround= jsonObject.getString(FormsTable.COLUMN_FUPROUND);
 
 
         return this;
@@ -151,6 +163,7 @@ public class FormsContract {
         this.isDischarged = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISDISCHARGED));
         this.dischargeDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISCHARGEDATE));
         this.totalsachgiven = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTALSACHGIVEN));
+        this.fupround = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FUPROUND));
 
 
         // TODO:
@@ -242,6 +255,9 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(FormsTable.COLUMN_APP_VERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
         json.put(FormsTable.COLUMN_END_TIME, this.endtime == null ? JSONObject.NULL : this.endtime);
+        json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL:this.dischargeDate);
+        json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL:this.totalsachgiven);
+        json.put(FormsTable.COLUMN_FUPROUND, this.fupround == null ? JSONObject.NULL : this.fupround);
 
         return json;
     }
@@ -521,6 +537,7 @@ public class FormsContract {
         public static final String COLUMN_ISDISCHARGED = "isDischarged";
         public static final String COLUMN_DISCHARGEDATE = "dischargeDate";
         public static final String COLUMN_TOTALSACHGIVEN = "totalsachgiven";
+        public static final String COLUMN_FUPROUND = "fupround";
 
         public static String _URL = "forms.php";
     }

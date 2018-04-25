@@ -64,7 +64,9 @@ import edu.aku.hassannaqvi.slab.contracts.TalukasContract;
 import edu.aku.hassannaqvi.slab.contracts.UCsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
+import edu.aku.hassannaqvi.slab.get.GetChildList;
 import edu.aku.hassannaqvi.slab.get.GetDistricts;
+import edu.aku.hassannaqvi.slab.get.GetFupList;
 import edu.aku.hassannaqvi.slab.get.GetUsers;
 import edu.aku.hassannaqvi.slab.get.GetVillages;
 
@@ -604,7 +606,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         }
 
-
         @Override
         protected void onCancelled() {
             mAuthTask = null;
@@ -632,9 +633,12 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     new GetVillages(mContext).execute();*/
                     Toast.makeText(LoginActivity.this, "Sync User", Toast.LENGTH_LONG).show();
                     new GetUsers(mContext).execute();
+                    Toast.makeText(LoginActivity.this, "Sync Child Recruitment list", Toast.LENGTH_LONG).show();
+                    new GetChildList(mContext).execute();
+                    Toast.makeText(LoginActivity.this, "Sync Followup list", Toast.LENGTH_LONG).show();
+                    new GetFupList(mContext).execute();
                 }
             });
-
 
             return null;
         }

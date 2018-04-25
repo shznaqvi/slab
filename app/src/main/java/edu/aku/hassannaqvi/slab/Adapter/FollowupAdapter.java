@@ -70,13 +70,13 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
         public void bindUser(final FollowupListContract listModel, final OnItemClickListener listener) {
             followupadapterBinding.childname.setText(listModel.getChildname());
             followupadapterBinding.mothername.setText(listModel.getMothername());
-            followupadapterBinding.studyID.setText("Study ID: " + listModel.getStudyID());
-            followupadapterBinding.MRno.setText("MR # " + listModel.getMrNo());
+            followupadapterBinding.studyID.setText("Study ID: " + listModel.getStudyid());
+            followupadapterBinding.MRno.setText("MR # " + listModel.getMrno());
             followupadapterBinding.followupDate.setText(listModel.getLastfupdate());
-            followupadapterBinding.enrolmentDate.setText(listModel.getEnrolmentDate());
-            if (!listModel.getDischargeDate().equals("")) {
+            followupadapterBinding.enrolmentDate.setText(listModel.getEnrolmentdate());
+            if (!listModel.getDischargedate().equals("")) {
                 followupadapterBinding.rlDischargedt.setVisibility(View.VISIBLE);
-                followupadapterBinding.DischargeDate.setText(listModel.getDischargeDate());
+                followupadapterBinding.DischargeDate.setText(listModel.getDischargedate());
             } else {
                 followupadapterBinding.rlDischargedt.setVisibility(View.GONE);
                 followupadapterBinding.DischargeDate.setText("");
@@ -88,7 +88,7 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
                 followupadapterBinding.status.setText("Incomplete");
                 followupadapterBinding.status.setBackgroundColor(Color.RED);
             }
-            followupadapterBinding.fupround.setText(listModel.getFollowupRound());
+            followupadapterBinding.fupround.setText(listModel.getFupround());
             //FollowupAdapter.this;
 
 

@@ -144,6 +144,11 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimaryAlpha"
                     android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/ruid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"/>
 
                     <TextView
                         android:layout_width="0dp"
