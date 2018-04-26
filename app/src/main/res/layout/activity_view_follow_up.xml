@@ -24,21 +24,49 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/fetchByMrno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryBeta"
+                android:onClick="fetchFollowUp"
+                android:layout_alignParentLeft="true"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
+                android:text="Search By MR#"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="List Of Follow Up's"
                 android:background="#EFEBE9"
-                android:gravity="center_horizontal"/>
+                android:paddingBottom="12dp"
+                android:textColor="@color/colorPrimary"
+                android:gravity="center_horizontal"
+                android:textStyle="bold"/>
+
             <Button
                 android:id="@+id/addFollowUp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryBeta"
                 android:onClick="addFollowUp"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="10dp"
-                android:text="Add New"/>
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
+                android:text="Add Follow up"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
         </RelativeLayout>
 
 

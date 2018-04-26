@@ -141,7 +141,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center_vertical"
                                 android:paddingTop="0dp"
-                                android:text=""
+                                android:text="Enrolment Date: "
                                 android:textSize="14sp" />
 
                             <TextView

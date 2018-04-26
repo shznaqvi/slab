@@ -9,6 +9,16 @@ public class RecruitmentJSONModel {
         private String UUID = "";
         private String childName = "";
 
+        public String getSen03() {
+                return sen03;
+        }
+
+        public void setSen03(String sen03) {
+                this.sen03 = sen03;
+        }
+
+        private String sen03 = "";
+
         public String getUUID() {
                 return UUID;
         }

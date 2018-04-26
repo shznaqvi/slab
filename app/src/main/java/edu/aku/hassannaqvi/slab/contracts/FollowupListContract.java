@@ -132,7 +132,6 @@ public class FollowupListContract {
     }
 
     public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
-        this._ID= jsonObject.getString(FollowUpList.COLUMN__ID);
         this._fuid= jsonObject.getString(FollowUpList.COLUMN__FUID);
         this.mrno= jsonObject.getString(FollowUpList.COLUMN_MRNO);
         this.studyid= jsonObject.getString(FollowUpList.COLUMN_STUDYID);
@@ -214,13 +213,11 @@ public static abstract class FollowUpList implements BaseColumns{
     public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
     public static final String COLUMN_FUPROUND = "fupround";
     public static final String COLUMN_FUPLOCATION = "fuplocation";
-    public static final String COLUMN_DISCHARGEDATE = "dischargedate";
+    public static final String COLUMN_DISCHARGEDATE = "dischargeDate";
     public static final String COLUMN_FUPSTATUS = "fupstatus";
     public static final String COLUMN_LASTFUPDATE = "lastfupdate";
 
-
-
-    public static String _URL = "fuplist.php";
+    public static String _URL = "followuplist.php";
 
 }
 }

@@ -296,6 +296,7 @@ public class MainActivity extends Activity {
         startActivity(new Intent(MainActivity.this, ViewFollowUpActivity.class));
 
     }
+
     public void openLabInvestigation(View v){
 
     }

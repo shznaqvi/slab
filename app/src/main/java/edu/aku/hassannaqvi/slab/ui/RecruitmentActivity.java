@@ -211,7 +211,10 @@ public class RecruitmentActivity extends AppCompatActivity {
             }
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, RecruitmentEndingActivity.class)
+                        .putExtra("complete", true)
+                        .putExtra("mothername",elmodel.getSel07())
+                        .putExtra("birthdate",elmodel.getSel03()));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -223,6 +226,8 @@ public class RecruitmentActivity extends AppCompatActivity {
 
         Long newrowid = db.addForm(MainApp.fc);
 
+
+
         MainApp.fc.set_ID(String.valueOf(newrowid));
 
         if (newrowid != 0) {
@@ -230,6 +235,7 @@ public class RecruitmentActivity extends AppCompatActivity {
 
             MainApp.fc.setUID((MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
             db.updateFormID();
+
 
             return true;
         } else {

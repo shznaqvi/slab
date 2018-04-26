@@ -12,24 +12,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
+import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowupAdapterBinding;
-import edu.aku.hassannaqvi.slab.ui.MainActivity;
-import edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity;
-import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.FollowupHolder> {
 
     FollowupAdapter.FollowupHolder holder;
-    private final List<FollowupListContract> childList;
+    private List<FollowupListContract> childList;
     private final OnItemClickListener listener;
 
     public FollowupAdapter(List<FollowupListContract> childList, OnItemClickListener listener) {
         this.childList = childList;
         this.listener = listener;
+    }
+    public void refreshList(List<FollowupListContract> childList){
+        this.childList.clear();
+        this.childList = childList;
     }
 
     public interface OnItemClickListener {
@@ -72,9 +76,12 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
             followupadapterBinding.mothername.setText(listModel.getMothername());
             followupadapterBinding.studyID.setText("Study ID: " + listModel.getStudyid());
             followupadapterBinding.MRno.setText("MR # " + listModel.getMrno());
-            followupadapterBinding.followupDate.setText(listModel.getLastfupdate());
+
+
+            followupadapterBinding.followupDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(MainApp.getCalendarDate(listModel.getLastfupdate()).getTime()));
+
             followupadapterBinding.enrolmentDate.setText(listModel.getEnrolmentdate());
-            if (!listModel.getDischargedate().equals("")) {
+            if (!listModel.getDischargedate().equals("") && listModel.getDischargedate() != null) {
                 followupadapterBinding.rlDischargedt.setVisibility(View.VISIBLE);
                 followupadapterBinding.DischargeDate.setText(listModel.getDischargedate());
             } else {

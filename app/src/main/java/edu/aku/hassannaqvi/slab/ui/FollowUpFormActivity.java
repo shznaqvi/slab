@@ -40,7 +40,9 @@ public class FollowUpFormActivity extends AppCompatActivity {
     DatabaseHelper db;
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     String todaysDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
-    FormsContract fc, fc_1;
+    FormsContract fc;
+//    FormsContract fc_1;
+    ChildListContract childListContract;
     RecruitmentJSONModel recmodel;
     public String localMrno;
     public String localStudyID;
@@ -60,7 +62,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
         checkIntents();
         setupView();
         fc = new FormsContract();
-        fc_1 = new FormsContract();
+//        fc_1 = new FormsContract();
+        childListContract = new ChildListContract();
         recmodel = new RecruitmentJSONModel();
     }
 
@@ -295,35 +298,38 @@ public class FollowUpFormActivity extends AppCompatActivity {
         if (!bi.sfu001.getText().toString().trim().isEmpty() && !bi.sfu002.getText().toString().trim().isEmpty()) {
 
             // fc = db.getStudyID(bi.sfu001.getText().toString());
-            fc_1 = db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+          // fc_1 = db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+           // childListContract =  db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
 
                                                                                 //TODO : Checking mrno is recruited on server or not!!!
-            if ((!fc_1.getsMrno().isEmpty() && !fc_1.getsStudyid().isEmpty()) || db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())) {
+//            if ((!childListContract.getMrNo().isEmpty() && !childListContract.getStudyID().isEmpty()) || db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())) {
+            if (db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())) {
 
                 //TODO() : checking followup already inserted today or not!!
 
-              //  if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate+" 00:00", dtToday)) {
-                    if(!db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())){
-                        recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
+                if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate+" 00:00", dtToday)) {
+                   /* if(!db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())){
+//                        recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
                        // bi.sfu002.setText(fc_1.getsStudyid());
-                        bi.ruid.setText(fc_1.getUID());
-                        bi.ChildName.setText(recmodel.getChildName());
+                        bi.ruid.setText(childListContract.get_ruid());
+                        bi.ChildName.setText(childListContract.getChildname());
                         MainApp.fetchLocal = true;
-                    }else{
+                    }else{*/
                         // TODO checking list from server side data
-                        ChildListContract childListContract = db.getChildDetail(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+                       childListContract = db.getChildDetail(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
                        // bi.sfu002.setText(childListContract.getStudyID());
                         bi.ruid.setText(childListContract.get_ruid());
                         bi.ChildName.setText(childListContract.getChildname());
-                        MainApp.fetchLocal = false;
-                    }
+
+                      //  MainApp.fetchLocal = false;
+                   // }
 
                    // Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
                     bi.fldGrpA.setVisibility(View.VISIBLE);
                     bi.fldGrpB.setVisibility(View.VISIBLE);
-              /*  } else {
+                } else {
                     Toast.makeText(this, "You have already inserted a followup Today!", Toast.LENGTH_SHORT).show();
-                }*/
+                }
 
 
             }else {

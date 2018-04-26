@@ -127,7 +127,7 @@ public class FormsContract {
 
     }
 
-    public FormsContract Hydrate(Cursor cursor) {
+    public FormsContract Hydrate(Cursor cursor,int type) {
         this.projectName = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_PROJECT_NAME));
         this._ID = cursor.getString(cursor.getColumnIndex(FormsTable._ID));
         this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
@@ -159,11 +159,14 @@ public class FormsContract {
         this.appversion = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_APP_VERSION));
         this.endtime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_END_TIME));
         this.isinserted = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_isINSERTED));
+if(type == 3){
+    this.isDischarged = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISDISCHARGED));
+    this.dischargeDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISCHARGEDATE));
+    this.totalsachgiven = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTALSACHGIVEN));
+    this.fupround = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FUPROUND));
 
-        this.isDischarged = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISDISCHARGED));
-        this.dischargeDate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_DISCHARGEDATE));
-        this.totalsachgiven = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_TOTALSACHGIVEN));
-        this.fupround = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_FUPROUND));
+}
+
 
 
         // TODO:
@@ -187,15 +190,8 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_STUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
         json.put(FormsTable.COLUMN_isEL, this.isEl == null ? JSONObject.NULL : this.isEl);
         json.put(FormsTable.COLUMN_isINSERTED, this.isinserted == null ? JSONObject.NULL : this.isinserted);
-        if (!this.isDischarged.equals("")) {
-            json.put(FormsTable.COLUMN_ISDISCHARGED, this.isDischarged == null ? JSONObject.NULL : this.isDischarged);
-        }
-        if (!this.dischargeDate.equals("")) {
-            json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL : this.dischargeDate);
-        }
-        if (!this.totalsachgiven.equals("")) {
-            json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL : this.totalsachgiven);
-        }
+
+
 
         if (!this.sEl.equals("")) {
             json.put(FormsTable.COLUMN_SEL, this.sEl == null ? JSONObject.NULL : new JSONObject(this.sEl));
@@ -255,10 +251,20 @@ public class FormsContract {
         json.put(FormsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
         json.put(FormsTable.COLUMN_APP_VERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
         json.put(FormsTable.COLUMN_END_TIME, this.endtime == null ? JSONObject.NULL : this.endtime);
-        json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL:this.dischargeDate);
-        json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL:this.totalsachgiven);
-        json.put(FormsTable.COLUMN_FUPROUND, this.fupround == null ? JSONObject.NULL : this.fupround);
 
+        if (!this.isDischarged.equals("")) {
+            json.put(FormsTable.COLUMN_ISDISCHARGED, this.isDischarged == null ? JSONObject.NULL : this.isDischarged);
+        }
+        if (!this.dischargeDate.equals("")) {
+            json.put(FormsTable.COLUMN_DISCHARGEDATE, this.dischargeDate == null ? JSONObject.NULL : this.dischargeDate);
+        }
+        if (!this.totalsachgiven.equals("")) {
+            json.put(FormsTable.COLUMN_TOTALSACHGIVEN, this.totalsachgiven == null ? JSONObject.NULL : this.totalsachgiven);
+        }
+        if(!this.fupround.equals("")){
+            json.put(FormsTable.COLUMN_FUPROUND, this.fupround == null ? JSONObject.NULL : this.fupround);
+
+        }
         return json;
     }
 

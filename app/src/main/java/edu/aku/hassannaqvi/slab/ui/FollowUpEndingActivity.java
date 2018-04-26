@@ -34,7 +34,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
     EligibilityJSONModel elmodel;
     FormsContract formsContract;
     String dateToday, currentDateToday;
-
+    String lastfupdate;
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
@@ -53,6 +53,8 @@ public class FollowUpEndingActivity extends AppCompatActivity {
         Boolean check = getIntent().getExtras().getBoolean("complete");
         currentDateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
         dateToday = new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
+        lastfupdate = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
+
 
         bi.sfu04.setManager(getSupportFragmentManager());
         bi.sfu04.setMaxDate(currentDateToday);
@@ -163,15 +165,15 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 
 //This is for followup list
 
-            fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
-            MainApp.followuplist.set_fuid(fupmodel.getUuid());
-            MainApp.followuplist.setChildname(fupmodel.getChildName());
-            MainApp.followuplist.setFuplocation(fupmodel.getSfu01());
-            MainApp.followuplist.setDischargedate(MainApp.fc.getDischargeDate());
-            MainApp.followuplist.setMrno(MainApp.fc.getsMrno());
-            MainApp.followuplist.setStudyid(MainApp.fc.getsStudyid());
+        fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
+        MainApp.followuplist.set_fuid(fupmodel.getUuid());
+        MainApp.followuplist.setChildname(fupmodel.getChildName());
+        MainApp.followuplist.setFuplocation(fupmodel.getSfu01());
+        MainApp.followuplist.setDischargedate(MainApp.fc.getDischargeDate());
+        MainApp.followuplist.setMrno(MainApp.fc.getsMrno());
+        MainApp.followuplist.setStudyid(MainApp.fc.getsStudyid());
         MainApp.followuplist.setFupround(fc.getFupround());
-        MainApp.followuplist.setLastfupdate(dateToday);
+        MainApp.followuplist.setLastfupdate(lastfupdate);
         MainApp.followuplist.setFupstatus(bi.istatusa.isChecked() ? "1"
                 : bi.istatusb.isChecked() ? "2"
                 : bi.istatusc.isChecked() ? "3"

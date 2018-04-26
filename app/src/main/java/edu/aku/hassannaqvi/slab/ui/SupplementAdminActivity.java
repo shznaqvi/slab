@@ -17,7 +17,6 @@ import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
-import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityFormBinding;
 import edu.aku.hassannaqvi.slab.databinding.ActivitySupplementAdminBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 

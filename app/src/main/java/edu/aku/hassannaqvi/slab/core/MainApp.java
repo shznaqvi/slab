@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
@@ -76,6 +77,8 @@ public class MainApp extends Application {
     public static FormsContract fc;
     public static FormsContract historyForminfo;
     public static FollowupListContract followuplist;
+    public static ChildListContract R_CHILDLIST;  //to set child info
+
     public static Boolean fetchLocal = false;
     public static HistoryContract hc;
     public static String userName = "0000";
@@ -252,6 +255,23 @@ public class MainApp extends Application {
         }
 
         return "";
+    }
+
+
+    public static Calendar getCalendarDate(String value) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = sdf.parse(value);
+            calendar.setTime(date);
+         //   sdf.format(date);
+            return calendar;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return calendar;
     }
 
     @Override

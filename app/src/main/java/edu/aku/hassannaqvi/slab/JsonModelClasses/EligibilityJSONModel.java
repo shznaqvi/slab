@@ -8,6 +8,16 @@ public class EligibilityJSONModel {
 
     private String sel01 = "";
     private String sel02 = "";
+
+    public String getSel03() {
+        return sel03;
+    }
+
+    public void setSel03(String sel03) {
+        this.sel03 = sel03;
+    }
+
+    private String sel03 = "";
     private String sel06 = "";
     private String sel07 = "";
     private String _ID = "";

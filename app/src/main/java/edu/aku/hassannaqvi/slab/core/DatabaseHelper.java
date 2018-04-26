@@ -543,7 +543,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 FormsContract fc = new FormsContract();
-                formList.add(fc.Hydrate(c));
+                formList.add(fc.Hydrate(c,1));
             } while (c.moveToNext());
         }
 
@@ -589,7 +589,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_END_TIME,
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
 
@@ -614,7 +615,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                fc.Hydrate(c);
+                fc.Hydrate(c,3);
             }
         } finally {
             if (c != null) {
@@ -666,7 +667,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
 
@@ -691,7 +693,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                fc.Hydrate(c);
+                fc.Hydrate(c,3);
             }
         } finally {
             if (c != null) {
@@ -703,7 +705,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return fc;
     }
-
+/*
     public FormsContract getChildName(String mrNo, String studyID) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -781,6 +783,52 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return fc;
+    }*/
+    public ChildListContract getChildName(String mrNo, String studyID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                ChildListTable.COLUMN__ID,
+                ChildListTable.COLUMN__RUID,
+                ChildListTable.COLUMN_MRNO,
+                ChildListTable.COLUMN_STUDYID,
+                ChildListTable.COLUMN_CHILDNAME,
+                ChildListTable.COLUMN_MOTHERNAME,
+                ChildListTable.COLUMN_BIRTHDATE,
+                ChildListTable.COLUMN_ENROLMENTDATE,
+        };
+
+        String whereClause = ChildListTable.COLUMN_MRNO + " =? AND " +
+                ChildListTable.COLUMN_STUDYID + " =?";
+        String[] whereArgs = new String[]{mrNo, studyID};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                ChildListTable.COLUMN__ID + " DESC LIMIT 1";
+        ChildListContract chl = new ChildListContract();
+        try {
+            c = db.query(
+                    ChildListTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                chl.Hydrate(c);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return chl;
     }
     public ChildListContract getChildDetail(String mrNo, String studyID) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -871,7 +919,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
 
@@ -896,7 +945,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                fc.Hydrate(c);
+                fc.Hydrate(c,3);
             }
         } finally {
             if (c != null) {
@@ -948,7 +997,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
 
@@ -973,7 +1023,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                fc.Hydrate(c);
+                fc.Hydrate(c,3);
             }
         } finally {
             if (c != null) {
@@ -1024,7 +1074,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
         };
 
         String whereClause = FormsTable.COLUMN_MRNO + "=? AND " +
@@ -1048,7 +1099,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                fc.Hydrate(c);
+                fc.Hydrate(c,3);
             }
         } finally {
             if (c != null) {
@@ -1134,6 +1185,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         newRowId = db.insert(
                 FollowUpList.TABLE_NAME,
                 FollowUpList.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
+    public Long addChildList(ChildListContract chl) {
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(ChildListTable.COLUMN__RUID, chl.get_ruid());
+        values.put(ChildListTable.COLUMN_MRNO, chl.getMrNo());
+        values.put(ChildListTable.COLUMN_STUDYID, chl.getStudyID());
+        values.put(ChildListTable.COLUMN_CHILDNAME, chl.getChildname());
+        values.put(ChildListTable.COLUMN_MOTHERNAME, chl.getMothername());
+        values.put(ChildListTable.COLUMN_BIRTHDATE, chl.getBirthdate());
+        values.put(ChildListTable.COLUMN_ENROLMENTDATE, chl.getEnrolmentDate());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                ChildListTable.TABLE_NAME,
+                ChildListTable.COLUMN_NAME_NULLABLE,
                 values);
         return newRowId;
     }
@@ -1263,7 +1335,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
         String whereClause = null;
@@ -1287,7 +1360,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                allFC.add(fc.Hydrate(c));
+                allFC.add(fc.Hydrate(c,3));
             }
         } finally {
             if (c != null) {
@@ -1299,7 +1372,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
-    public Boolean iffupexist(String mrno, String studyid, String startdatetime, String currentdatetime) {
+    /*public Boolean iffupexist(String mrno, String studyid, String startdatetime, String currentdatetime) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         int cursorCount = 0;
@@ -1333,7 +1406,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
         String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
@@ -1350,6 +1424,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         try {
             c = db.query(
                     FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+          cursorCount = c.getCount();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return cursorCount > 0;
+    }*/
+    public Boolean iffupexist(String mrno, String studyid, String startdatetime, String currentdatetime) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        int cursorCount = 0;
+        String[] columns = {
+                FollowUpList.COLUMN__ID,
+                FollowUpList.COLUMN__FUID,
+                FollowUpList.COLUMN_MRNO,
+                FollowUpList.COLUMN_STUDYID,
+                FollowUpList.COLUMN_CHILDNAME,
+                FollowUpList.COLUMN_MOTHERNAME,
+                FollowUpList.COLUMN_BIRTHDATE,
+                FollowUpList.COLUMN_ENROLMENTDATE,
+                FollowUpList.COLUMN_FUPROUND,
+                FollowUpList.COLUMN_FUPLOCATION,
+                FollowUpList.COLUMN_DISCHARGEDATE,
+                FollowUpList.COLUMN_FUPSTATUS,
+                FollowUpList.COLUMN_LASTFUPDATE
+
+        };
+        String whereClause = FollowUpList.COLUMN_MRNO + " =? AND " +
+                FollowUpList.COLUMN_STUDYID + " =? AND " +
+                FollowUpList.COLUMN_LASTFUPDATE + " BETWEEN '"+startdatetime+"' AND '"+currentdatetime+"'";
+        String[] whereArgs = new String[]{mrno, studyid};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FollowUpList.COLUMN__ID + " ASC";
+        try {
+            c = db.query(
+                    FollowUpList.TABLE_NAME,  // The table to query
                     columns,                   // The columns to return
                     whereClause,               // The columns for the WHERE clause
                     whereArgs,                 // The values for the WHERE clause
@@ -1389,6 +1513,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         };
         String whereClause = null;
         String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FollowUpList.COLUMN__ID + " ASC";
+
+        List<FollowupListContract> allFC = new ArrayList<FollowupListContract>();
+        try {
+            c = db.query(
+                    FollowUpList.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FollowupListContract flc = new FollowupListContract();
+                allFC.add(flc.Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+    public List<FollowupListContract> getAllFollowups(String mrno) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                FollowUpList.COLUMN__ID,
+                FollowUpList.COLUMN__FUID,
+                FollowUpList.COLUMN_MRNO,
+                FollowUpList.COLUMN_STUDYID,
+                FollowUpList.COLUMN_CHILDNAME,
+                FollowUpList.COLUMN_MOTHERNAME,
+                FollowUpList.COLUMN_BIRTHDATE,
+                FollowUpList.COLUMN_ENROLMENTDATE,
+                FollowUpList.COLUMN_FUPROUND,
+                FollowUpList.COLUMN_FUPLOCATION,
+                FollowUpList.COLUMN_DISCHARGEDATE,
+                FollowUpList.COLUMN_FUPSTATUS,
+                FollowUpList.COLUMN_LASTFUPDATE
+        };
+        String whereClause = FollowUpList.COLUMN_MRNO +" = ?";
+        String[] whereArgs = {mrno};
         String groupBy = null;
         String having = null;
 
@@ -1584,7 +1759,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
         };
         String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + "=''";
         String[] whereArgs = null;
@@ -1607,7 +1783,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                allFC.add(fc.Hydrate(c));
+                allFC.add(fc.Hydrate(c,3));
             }
         } finally {
             if (c != null) {
@@ -1712,10 +1888,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_SYNCED,
                 FormsTable.COLUMN_SYNCED_DATE,
                 FormsTable.COLUMN_APP_VERSION,
-                FormsTable.COLUMN_END_TIME,
-                FormsTable.COLUMN_ISDISCHARGED,
-                FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_END_TIME
         };
         String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + "='' AND " + FormsTable.COLUMN_FORMTYPE + " = '" + MainApp.FORMTYPE_EL + "'";
         String[] whereArgs = null;
@@ -1738,7 +1911,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                allFC.add(fc.Hydrate(c));
+                allFC.add(fc.Hydrate(c,1));
             }
         } finally {
             if (c != null) {
@@ -1785,10 +1958,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_SYNCED,
                 FormsTable.COLUMN_SYNCED_DATE,
                 FormsTable.COLUMN_APP_VERSION,
-                FormsTable.COLUMN_END_TIME,
-                FormsTable.COLUMN_ISDISCHARGED,
-                FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_END_TIME
         };
         String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + "='' AND " + FormsTable.COLUMN_FORMTYPE + " = '" + MainApp.FORMTYPE_Recr + "'";
         String[] whereArgs = null;
@@ -1811,7 +1981,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                allFC.add(fc.Hydrate(c));
+                allFC.add(fc.Hydrate(c,2));
             }
         } finally {
             if (c != null) {
@@ -1864,9 +2034,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_DISCHARGEDATE,
                 FormsTable.COLUMN_TOTALSACHGIVEN,
 
-                FormsTable.COLUMN_ISDISCHARGED,
-                FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN,
                 FormsTable.COLUMN_FUPROUND
         };
         String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + "='' AND " + FormsTable.COLUMN_FORMTYPE + " = '" + MainApp.FORMTYPE_Fup + "'";
@@ -1890,7 +2057,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
-                allFC.add(fc.Hydrate(c));
+                allFC.add(fc.Hydrate(c,3));
             }
         } finally {
             if (c != null) {
@@ -2251,7 +2418,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 FormsTable.COLUMN_ISDISCHARGED,
                 FormsTable.COLUMN_DISCHARGEDATE,
-                FormsTable.COLUMN_TOTALSACHGIVEN
+                FormsTable.COLUMN_TOTALSACHGIVEN,
+                FormsTable.COLUMN_FUPROUND
 
         };
 
@@ -2274,7 +2442,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                fc.Hydrate(c);
+                fc.Hydrate(c,3);
             }
         } finally {
             if (c != null) {
@@ -2320,7 +2488,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = null;
         int round = 0;
         try {
-            String query = "SELECT MAX("+FormsTable.COLUMN_FUPROUND+") FROM " + FormsTable.TABLE_NAME + " WHERE " +FormsTable.COLUMN_MRNO + " = ? ";
+            String query = "SELECT MAX("+FollowUpList.COLUMN_FUPROUND+") FROM " + FollowUpList.TABLE_NAME + " WHERE " +FollowUpList.COLUMN_MRNO + " = ? ";
             cursor = db.rawQuery(
                     query,
                     new String[]{String.valueOf(mrno)}
