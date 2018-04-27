@@ -44,10 +44,20 @@ public class EndingActivity extends AppCompatActivity {
         if (check) {
             bl.istatusa.setEnabled(true);
             bl.istatusb.setEnabled(false);
+            bl.istatusc.setEnabled(false);
+            bl.istatusd.setEnabled(false);
+            bl.istatuse.setEnabled(false);
+            bl.istatusf.setEnabled(false);
+            bl.istatus96.setEnabled(false);
 
         } else {
             bl.istatusa.setEnabled(false);
             bl.istatusb.setEnabled(true);
+            bl.istatusc.setEnabled(true);
+            bl.istatusd.setEnabled(true);
+            bl.istatuse.setEnabled(true);
+            bl.istatusf.setEnabled(true);
+            bl.istatus96.setEnabled(true);
         }
 
         bl.istatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {

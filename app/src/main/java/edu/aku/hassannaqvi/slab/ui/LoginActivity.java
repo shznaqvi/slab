@@ -77,6 +77,7 @@ import static java.lang.Thread.sleep;
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -273,7 +274,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
     public void dbBackup() {
 
-        sharedPref = getSharedPreferences("src", MODE_PRIVATE);
+        sharedPref = getSharedPreferences("slab", MODE_PRIVATE);
         editor = sharedPref.edit();
 
         if (sharedPref.getBoolean("flag", false)) {
@@ -344,6 +345,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         if (networkInfo != null && networkInfo.isConnected()) {
 
             new syncData(this).execute();
+            SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = syncPref.edit();
+
+            editor.putString("LastDownSyncServer", dtToday);
 
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();

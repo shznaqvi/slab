@@ -31,7 +31,8 @@ public class RecruitmentEndingActivity extends AppCompatActivity {
     private static final String TAG = RecruitmentEndingActivity.class.getSimpleName();
     ActivityRecruitmentEndingBinding bl;
     RecruitmentJSONModel recmodel;
-String mothername, birthdate;
+    String mothername, birthdate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,10 +49,19 @@ String mothername, birthdate;
         if (check) {
             bl.istatusa.setEnabled(true);
             bl.istatusb.setEnabled(false);
-
+            bl.istatusc.setEnabled(false);
+            bl.istatusd.setEnabled(false);
+            bl.istatuse.setEnabled(false);
+            bl.istatusf.setEnabled(false);
+            bl.istatus96.setEnabled(false);
         } else {
             bl.istatusa.setEnabled(false);
             bl.istatusb.setEnabled(true);
+            bl.istatusc.setEnabled(true);
+            bl.istatusd.setEnabled(true);
+            bl.istatuse.setEnabled(true);
+            bl.istatusf.setEnabled(true);
+            bl.istatus96.setEnabled(true);
         }
         gettingintents();
 
@@ -154,7 +164,7 @@ String mothername, birthdate;
             MainApp.R_CHILDLIST.setEnrolmentDate(recmodel.getSen03());
             MainApp.R_CHILDLIST.setMrNo(MainApp.fc.getsMrno());
             MainApp.R_CHILDLIST.setStudyID(MainApp.fc.getsStudyid());
-            db.addChildList( MainApp.R_CHILDLIST);
+            db.addChildList(MainApp.R_CHILDLIST);
         }
 
 

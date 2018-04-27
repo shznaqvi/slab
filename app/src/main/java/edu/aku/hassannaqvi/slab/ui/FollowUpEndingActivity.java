@@ -18,6 +18,7 @@ import java.util.Date;
 import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
 import edu.aku.hassannaqvi.slab.JsonModelClasses.FollowupJSONModel;
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
@@ -35,6 +36,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
     FormsContract formsContract;
     String dateToday, currentDateToday;
     String lastfupdate;
+
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
@@ -166,7 +168,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
 //This is for followup list
 
         fupmodel = JSONUtilClass.getModelFromJSON(MainApp.fc.getsFup(), FollowupJSONModel.class);
-        MainApp.followuplist.set_fuid(fupmodel.getUuid());
+        MainApp.followuplist.set_fuid(MainApp.fc.getUID());
         MainApp.followuplist.setChildname(fupmodel.getChildName());
         MainApp.followuplist.setFuplocation(fupmodel.getSfu01());
         MainApp.followuplist.setDischargedate(MainApp.fc.getDischargeDate());
@@ -183,10 +185,16 @@ public class FollowUpEndingActivity extends AppCompatActivity {
                 : bi.istatusg.isChecked() ? "7"
                 : bi.istatus96.isChecked() ? "96"
                 : "0");
-        if (MainApp.fetchLocal) {
-            formsContract = db.getEl(fupmodel.getUuid());
-            elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
-            MainApp.followuplist.setMothername(elmodel.getSel07());
+////        if (MainApp.fetchLocal) {
+//        formsContract = db.getEl(fupmodel.getUuid());
+//        elmodel = JSONUtilClass.getModelFromJSON(formsContract.getsEl(), EligibilityJSONModel.class);
+        ChildListContract childListContract = db.getChildName(MainApp.fc.getsMrno(), MainApp.fc.getsStudyid());
+        if (!childListContract.get_ID().isEmpty()) {
+            MainApp.followuplist.setMothername(childListContract.getMothername());
+            MainApp.followuplist.setEnrolmentdate(childListContract.getEnrolmentDate());
+        }
+
+
    /* MainApp.followuplist.setEnrolmentDate(MainApp.fc.getFormDate());
     Date date = new Date(MainApp.fc.getFormDate());*/
           /* int round = db.getNextRoundCount(MainApp.followuplist.getMrno(), MainApp.followuplist.get_fuid());
@@ -197,9 +205,9 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             MainApp.followuplist.setFupround(String.valueOf(round));*/
 
 
-        } else {
-            // MainApp.followuplist.set_fuid();
-        }
+//        } else {
+        // MainApp.followuplist.set_fuid();
+//        }
         db.addList(MainApp.followuplist);
 
         if (updcount == 1) {

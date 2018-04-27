@@ -81,12 +81,12 @@ public class FollowupAdapter extends RecyclerView.Adapter<FollowupAdapter.Follow
             followupadapterBinding.followupDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(MainApp.getCalendarDate(listModel.getLastfupdate()).getTime()));
 
             followupadapterBinding.enrolmentDate.setText(listModel.getEnrolmentdate());
-            if (!listModel.getDischargedate().equals("") && listModel.getDischargedate() != null) {
-                followupadapterBinding.rlDischargedt.setVisibility(View.VISIBLE);
-                followupadapterBinding.DischargeDate.setText(listModel.getDischargedate());
-            } else {
+            if (listModel.getDischargedate().equals("") || listModel.getDischargedate().equals("null") || listModel.getDischargedate().isEmpty()) {
                 followupadapterBinding.rlDischargedt.setVisibility(View.GONE);
                 followupadapterBinding.DischargeDate.setText("");
+            } else {
+                followupadapterBinding.rlDischargedt.setVisibility(View.VISIBLE);
+                followupadapterBinding.DischargeDate.setText(listModel.getDischargedate());
             }
             if (listModel.getFupstatus().equals("1") || listModel.getFupstatus().equals("7")) {
                 followupadapterBinding.status.setText("Done");

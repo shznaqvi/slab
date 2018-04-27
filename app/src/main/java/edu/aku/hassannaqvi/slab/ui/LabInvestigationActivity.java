@@ -46,8 +46,8 @@ public class LabInvestigationActivity extends AppCompatActivity {
     }
     private void setupView() {
         bi.sli02.setManager(getSupportFragmentManager());
-        bi.sli02.setMaxDate(dateToday);
-        bi.sli02.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-7));
+        bi.sli02.setMinDate(dateToday);
+        bi.sli02.setMaxDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",7));
 
         bi.sli03.setManager(getSupportFragmentManager());
         bi.sli03.setTimeFormat("HH:mm");

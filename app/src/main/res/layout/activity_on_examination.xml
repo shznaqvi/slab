@@ -248,6 +248,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/others"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                 android:inputType="text"
                 android:text='@{sfu5996.checked ? sfu5996x.getText.toString : "" }'
                 android:visibility='@{sfu5996.checked ? View.VISIBLE : View.GONE }' />
@@ -291,6 +292,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/others"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                 android:inputType="text"
                 android:text='@{sfu6096.checked ? sfu6096x.getText.toString : "" }'
                 android:visibility='@{sfu6096.checked ? View.VISIBLE : View.GONE }' />
@@ -354,6 +356,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/others"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                 android:inputType="text"
                 android:text='@{sfu6196.checked ? sfu6196x.getText.toString : "" }'
                 android:visibility='@{sfu6196.checked ? View.VISIBLE : View.GONE }' />
@@ -392,6 +395,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_height="wrap_content"
                 android:hint="@string/sfu62b"
                 android:inputType="text"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                 android:text='@{sfu62b.checked ? sfu62bx.getText.toString : "" }'
                 android:visibility='@{sfu62b.checked ? View.VISIBLE : View.GONE }' />
         </RadioGroup>
@@ -434,6 +438,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_height="wrap_content"
                 android:hint="@string/others"
                 android:inputType="text"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                 android:text='@{sfu6396.checked ? sfu6396x.getText.toString : "" }'
                 android:visibility='@{sfu6396.checked ? View.VISIBLE : View.GONE }' />
         </RadioGroup>
@@ -518,6 +523,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_height="wrap_content"
                 android:hint="@string/others"
                 android:inputType="text"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                 android:text='@{sfu6596.checked ? sfu6596x.getText.toString : "" }'
                 android:visibility='@{sfu6596.checked ? View.VISIBLE : View.GONE }' />
         </RadioGroup>
@@ -528,6 +534,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="80dp"
+            android:layout_marginBottom="30dp"
             android:orientation="horizontal">
 
             <Button
@@ -538,7 +545,8 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:backgroundTint="@color/red"
                 android:onClick="@{() -> callback.BtnEnd()}"
                 android:text="@string/end_interview"
-                android:textColor="@color/white" />
+                android:textColor="@color/red"
+                android:padding="5dp" />
 
             <Button
                 android:id="@+id/btn_Continue"
@@ -548,7 +556,9 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:backgroundTint="#1ed61e"
                 android:onClick="@{() -> callback.BtnContinue()}"
                 android:text="@string/nextSection"
-                android:textColor="@color/white" />
+                android:textColor="@color/green"
+                android:padding="5dp"
+                />
 
         </LinearLayout>
 

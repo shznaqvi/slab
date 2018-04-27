@@ -24,10 +24,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:layoutDirection="ltr"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:animateLayoutChanges="true"
+            android:layoutDirection="ltr"
             android:orientation="vertical">
 
             <TextView
@@ -82,11 +82,11 @@
                         android:id="@+id/sel01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="XXX-XX-XX"
                         android:layout_weight="60"
                         android:digits="0123456789-"
+                        android:hint="XXX-XX-XX"
                         android:inputType="number"
-                        android:maxLength="9"/>
+                        android:maxLength="9" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -127,10 +127,10 @@
                         android:id="@+id/sel02"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:hint="@string/childname"
                         android:inputType="textCapWords"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:maxLength="25"/>
+                        android:maxLength="25" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -170,56 +170,60 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:background="@color/year"
-                            android:text="@string/date"
-                            android:layout_weight="1"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textColor="@android:color/white" />
 
-                        <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
-                            android:id="@+id/sel03d"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:layout_marginTop="2dp"
-                            android:focusable="false"
-                            android:hint="DD/MM/YYYY"
-                            android:layout_weight="4"
-                            android:textColor="@android:color/black"
-                            app:dateFormat="dd-MM-yyyy" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@color/year"
+                                android:text="@string/date"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@android:color/white" />
+
+                            <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                                android:id="@+id/sel03d"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_marginTop="2dp"
+                                android:layout_weight="4"
+                                android:focusable="false"
+                                android:hint="DD/MM/YYYY"
+                                android:textColor="@android:color/black"
+                                app:dateFormat="dd-MM-yyyy" />
 
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:background="@color/year"
-                            android:text="@string/time"
-                            android:layout_weight="1"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:textColor="@android:color/white" />
 
-                        <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
-                            android:id="@+id/sel03t"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
-                            android:focusable="false"
-                            android:hint="HH:MM"
-                            android:layout_weight="4"
-                            android:textColor="@android:color/black"
-                            app:timeFormat="HH:mm"
-                            app:is24HourView="true"/>
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@color/year"
+                                android:text="@string/time"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:textColor="@android:color/white" />
+
+                            <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
+                                android:id="@+id/sel03t"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="2dp"
+                                android:layout_weight="4"
+                                android:focusable="false"
+                                android:hint="HH:MM"
+                                android:textColor="@android:color/black"
+                                app:is24HourView="true"
+                                app:timeFormat="HH:mm" />
                         </LinearLayout>
                     </LinearLayout>
 
@@ -268,20 +272,29 @@
                             android:id="@+id/sel04a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sel04a" />
+                            android:padding="@null"
+                            android:paddingTop="5dp"
+                            android:text="@string/sel04a"
+                            android:textSize="24sp" />
 
 
                         <RadioButton
                             android:id="@+id/sel04b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sel04b" />
+                            android:padding="@null"
+                            android:paddingTop="5dp"
+                            android:text="@string/sel04b"
+                            android:textSize="24sp" />
 
                         <RadioButton
                             android:id="@+id/sel04c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sel04c" />
+                            android:padding="@null"
+                            android:paddingTop="5dp"
+                            android:text="@string/sel04c"
+                            android:textSize="24sp" />
 
                     </RadioGroup>
 
@@ -396,10 +409,10 @@
                         android:id="@+id/sel06"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:hint="@string/sel06"
                         android:inputType="textCapWords"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:maxLength="25"/>
+                        android:maxLength="25" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -440,10 +453,10 @@
                         android:id="@+id/sel07"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:hint="@string/sel07"
                         android:inputType="textCapWords"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:maxLength="25"/>
+                        android:maxLength="25" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -782,14 +795,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/yes"/>
+                            android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel14b"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/no"/>
+                            android:text="@string/no" />
 
                     </RadioGroup>
 
@@ -840,7 +853,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/yes"/>
+                            android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel15b"
@@ -956,18 +969,19 @@
                             android:id="@+id/sel17a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/yes"/>
+                            android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel17b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/no"/>
+                            android:text="@string/no" />
+
                         <RadioButton
                             android:id="@+id/sel17c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/notavailable"/>
+                            android:text="@string/notavailable" />
 
                     </RadioGroup>
 
@@ -1010,24 +1024,23 @@
                         android:id="@+id/sel18"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        >
+                        android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/sel18a"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/yes"
-                            android:enabled="false"/>
+                            android:enabled="false"
+                            android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel18b"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/no"
-                            android:enabled="false"/>
+                            android:enabled="false"
+                            android:text="@string/no" />
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
@@ -1075,7 +1088,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="@string/yes"/>
+                            android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel19b"
@@ -1085,6 +1098,7 @@
                             android:text="@string/no" />
 
                     </RadioGroup>
+
                     <EditText
                         android:id="@+id/sel19bx"
                         android:layout_width="match_parent"
@@ -1102,6 +1116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="80dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -1112,19 +1127,21 @@
                     android:backgroundTint="@color/red"
                     android:onClick="@{() -> callback.BtnEnd()}"
                     android:text="@string/end_interview"
-                    android:textSize="26sp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/red"
+                    android:padding="5dp"
+                    android:textSize="26sp" />
 
                 <Button
                     android:id="@+id/btn_Continue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="26sp"
                     android:backgroundTint="#1ed61e"
                     android:onClick="@{() -> callback.BtnContinue()}"
                     android:text="@string/start_interview"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/green"
+                    android:padding="5dp"
+                    android:textSize="26sp" />
 
             </LinearLayout>
         </LinearLayout>

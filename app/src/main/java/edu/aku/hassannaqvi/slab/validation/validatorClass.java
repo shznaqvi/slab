@@ -24,6 +24,7 @@ public abstract class validatorClass {
         if (TextUtils.isEmpty(txt.getText().toString())) {
             Toast.makeText(context, "ERROR(empty): " + msg, Toast.LENGTH_SHORT).show();
             txt.setError("This data is Required! ");    // Set Error on last radio button
+            txt.setFocusableInTouchMode(true);
             txt.requestFocus();
             Log.i(context.getClass().getName(), context.getResources().getResourceEntryName(txt.getId()) + ": This data is Required!");
             return false;
@@ -80,10 +81,9 @@ public abstract class validatorClass {
         if (rdGrp.getCheckedRadioButtonId() == -1) {
             Toast.makeText(context, "ERROR(empty): " + msg, Toast.LENGTH_SHORT).show();
             rdBtn.setError("This data is Required!");    // Set Error on last radio button
-
             rdBtn.setFocusable(true);
-          //  rdBtn.setFocusableInTouchMode(true);
-           // rdBtn.requestFocus();
+            rdBtn.setFocusableInTouchMode(true);
+            rdBtn.requestFocus();
             Log.i(context.getClass().getName(), context.getResources().getResourceEntryName(rdGrp.getId()) + ": This data is Required!");
             return false;
         } else {
@@ -98,13 +98,18 @@ public abstract class validatorClass {
             Toast.makeText(context, "ERROR(empty): " + msg, Toast.LENGTH_SHORT).show();
             rdBtn.setError("This data is Required!");    // Set Error on last radio button
             rdBtn.setFocusable(true);
+            rdBtn.setFocusableInTouchMode(true);
+            rdBtn.requestFocus();
             Log.i(context.getClass().getName(), context.getResources().getResourceEntryName(rdGrp.getId()) + ": This data is Required!");
             return false;
         } else {
             rdBtn.setError(null);
+            rdBtn.clearFocus();
             if (rdBtn.isChecked()) {
                 return EmptyTextBox(context, txt, msg);
             } else {
+                txt.clearFocus();
+                txt.setError(null);
                 return true;
             }
         }

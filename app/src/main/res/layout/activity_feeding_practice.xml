@@ -191,6 +191,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/others"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                             android:inputType="text"
                             android:text='@{sfu1496.checked ? sfu1496x.getText.toString : "" }'
                             android:visibility='@{sfu1496.checked ? View.VISIBLE : View.GONE }' />
@@ -242,6 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/others"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                     android:inputType="text"
                     android:text='@{sfu1596.checked ? sfu1596x.getText.toString : "" }'
                     android:visibility='@{sfu1596.checked ? View.VISIBLE : View.GONE }' />
@@ -1341,6 +1343,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/sfu5096"
                         android:inputType="text"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:text='@{sfu5096.checked ? sfu5096x.getText.toString : "" }'
                         android:visibility='@{sfu5096.checked ? View.VISIBLE : View.GONE }' />
                 </RadioGroup>
@@ -1405,6 +1408,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginTop="80dp"
+                android:layout_marginBottom="30dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -1415,7 +1419,9 @@
                     android:backgroundTint="@color/red"
                     android:onClick="@{() -> callback.BtnEnd()}"
                     android:text="@string/end_interview"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/red"
+                    android:padding="5dp"
+                    />
 
                 <Button
                     android:id="@+id/btn_Continue"
@@ -1425,7 +1431,9 @@
                     android:backgroundTint="#1ed61e"
                     android:onClick="@{() -> callback.BtnContinue()}"
                     android:text="@string/nextSection"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/green"
+                    android:padding="5dp"
+                    />
 
             </LinearLayout>
 

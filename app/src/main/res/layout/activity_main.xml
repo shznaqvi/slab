@@ -46,8 +46,8 @@
                 android:text="Main Menu"
                 android:textAlignment="center"
                 android:textAllCaps="true"
-                android:textSize="30sp"
                 android:textColor="@color/colorPrimaryBeta"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -150,6 +150,18 @@
                     android:textSize="22sp" />
 
                 <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:paddingTop="8dp"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:visibility="invisible" />
+                <Button
                     android:id="@+id/syncServer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -166,34 +178,7 @@
                     android:textSize="22sp" />
 
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimary"
-                    android:paddingTop="8dp"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:visibility="invisible" />
 
-                <Button
-                    android:id="@+id/openDB"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimary"
-                    android:drawableLeft="@android:drawable/ic_menu_manage"
-                    android:onClick="openDB"
-                    android:paddingTop="8dp"
-                    android:text="Open Database Manager"
-                    android:textColor="@color/white"
-                    android:textSize="22sp" />
 
                 <Button
                     android:id="@+id/syncDevice"
@@ -211,21 +196,72 @@
                     android:textColor="@color/white"
                     android:textSize="22sp" />
 
-                <Button
-                    android:id="@+id/testGPS"
+                <LinearLayout
+                    android:id="@+id/adminsec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimary"
-                    android:drawableLeft="@android:drawable/ic_dialog_map"
-                    android:onClick="testGPS"
-                    android:paddingTop="8dp"
-                    android:text="Test GPS Coordinates"
-                    android:textColor="@color/white"
-                    android:textSize="22sp" />
+                    android:orientation="vertical"
+                    android:visibility="invisible">
+
+                    <Button
+                        android:id="@+id/openDB"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:drawableLeft="@android:drawable/ic_menu_manage"
+                        android:onClick="openDB"
+                        android:paddingTop="8dp"
+                        android:text="Open Database Manager"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+                    <Button
+                        android:id="@+id/testGPS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:drawableLeft="@android:drawable/ic_dialog_map"
+                        android:onClick="testGPS"
+                        android:paddingTop="8dp"
+                        android:text="Test GPS Coordinates"
+                        android:textColor="@color/white"
+                        android:textSize="22sp" />
+
+<!--
+                    <Button
+                        android:id="@+id/downloadApp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/red"
+                        android:onClick="opendownload"
+                        android:text="DOWNLOAD APP"
+                        android:textColor="@color/white"
+                        android:visibility="gone" />-->
+
+
+                    <Button
+                        android:id="@+id/updateApp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="16dp"
+                        android:background="#D60000"
+                        android:onClick="updateApp"
+                        android:text="Update App"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
             </LinearLayout>
 
 
@@ -297,185 +333,6 @@
                     android:onClick="CheckCluster"
                     android:text="Check Block"
                     android:visibility="invisible" />
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/adminsec"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <!--    <Button
-                        android:id="@+id/openMembers"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openMembers"
-                        android:text="Section Members" />
-
-                    <Button
-                        android:id="@+id/openA"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openA"
-                        android:text="Section A" />
-
-                   <Button
-                        android:id="@+id/openB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openB"
-                        android:text="Section B" />
-
-                    <Button
-                        android:id="@+id/openC"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openC"
-                        android:text="Section C" />
-
-                    <Button
-                        android:id="@+id/openD"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openD"
-                        android:text="Section D" />
-
-                    <Button
-                        android:id="@+id/openE"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openE"
-                        android:text="Section E" />
-
-                    <Button
-                        android:id="@+id/openF"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openF"
-
-                        android:text="Section F" />
-
-                    <Button
-                        android:id="@+id/openG"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openG"
-                        android:text="Section G" />
-
-                    <Button
-                        android:id="@+id/openHA"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openHA"
-                        android:text="Section HA" />
-
-                    <Button
-                        android:id="@+id/openHB"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openHB"
-                        android:text="Section HB" />
-
-                    <Button
-                        android:id="@+id/openI"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openI"
-                        android:text="Section I" />
-
-                    <Button
-                        android:id="@+id/openJ"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openJ"
-                        android:text="Section J" />
-
-                    <Button
-                        android:id="@+id/openK"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openK"
-                        android:text="Section K" />
-
-                    <Button
-                        android:id="@+id/openL"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openL"
-                        android:text="Section L" />
-
-                    <Button
-                        android:id="@+id/openM"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:layout_marginTop="16dp"
-                        android:onClick="openM"
-                        android:text="Section M" />
-    -->
-                <Button
-                    android:id="@+id/downloadApp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/red"
-                    android:onClick="opendownload"
-                    android:text="DOWNLOAD APP"
-                    android:textColor="@color/white"
-                    android:visibility="gone" />
-
-
-                <!--<Button-->
-                <!--android:id="@+id/openEnd"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginBottom="8dp"-->
-                <!--android:layout_marginTop="16dp"-->
-                <!--android:onClick="openEnd"-->
-                <!--android:text="Section End" />-->
-
-                <Button
-                    android:id="@+id/updateApp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="16dp"
-                    android:background="#D60000"
-                    android:onClick="updateApp"
-                    android:text="Update App"
-                    android:visibility="gone" />
-
-
             </LinearLayout>
 
 

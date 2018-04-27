@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -30,9 +31,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -53,11 +56,15 @@ import edu.aku.hassannaqvi.slab.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityMainBinding;
+import edu.aku.hassannaqvi.slab.get.GetChildList;
+import edu.aku.hassannaqvi.slab.get.GetFupList;
+import edu.aku.hassannaqvi.slab.get.GetUsers;
 import edu.aku.hassannaqvi.slab.sync.SyncAllData;
 
 public class MainActivity extends Activity {
 
     private final String TAG = "MainActivity";
+    String DirectoryName;
 
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
     @BindView(R.id.adminsec)
@@ -87,8 +94,9 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+//        setContentView(R.layout.activity_main);
+        ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mainBinding.setCallback(this);
         ButterKnife.bind(this);
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -97,9 +105,9 @@ public class MainActivity extends Activity {
         lblheader.setText("Welcome! You're assigned to block ' " + MainApp.regionDss + " '" + MainApp.userName);
 
         if (MainApp.admin) {
-            adminsec.setVisibility(View.VISIBLE);
+            mainBinding.adminsec.setVisibility(View.VISIBLE);
         } else {
-            adminsec.setVisibility(View.GONE);
+            mainBinding.adminsec.setVisibility(View.GONE);
         }
 
 
@@ -142,7 +150,6 @@ public class MainActivity extends Activity {
 
         DatabaseHelper db = new DatabaseHelper(this);
         Collection<FormsContract> todaysForms = db.getTodayForms();
-        //Collection<FormsContract> unsyncedForms = db.getUnsyncedForms();
         Collection<FormsContract> unsyncedScreening = db.getUnsyncedScreening();
         Collection<FormsContract> unsyncedRecruitment = db.getUnsyncedRecruitment();
         Collection<FormsContract> unsyncedFollowup = db.getUnsyncedFollowup();
@@ -238,8 +245,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        ActivityMainBinding mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        //mainBinding.setCallback(this);
+
 
     }
 
@@ -344,9 +350,6 @@ public class MainActivity extends Activity {
 
             builder.show();
         }
-//        } else {
-//            Toast.makeText(getApplicationContext(), "Please select data from combobox!!", Toast.LENGTH_LONG).show();
-//        }
     }
 
 
@@ -362,61 +365,6 @@ public class MainActivity extends Activity {
         startActivity(iC);*/
     }
 
-    /*public void openD(View v) {
-        Intent iD = new Intent(this, SectionDActivity.class);
-        startActivity(iD);
-    }
-
-    public void openE(View v) {
-        Intent iE = new Intent(this, SectionEActivity.class);
-        startActivity(iE);
-    }
-
-    public void openF(View v) {
-        Intent iF = new Intent(this, SectionFActivity.class);
-        startActivity(iF);
-    }
-
-    public void openG(View v) {
-        Intent iG = new Intent(this, SectionGActivity.class);
-        startActivity(iG);
-    }
-
-    public void openI(View v) {
-        Intent iI = new Intent(this, SectionIActivity.class);
-        startActivity(iI);
-    }
-
-    public void openJ(View v) {
-        Intent iJ = new Intent(this, SectionJActivity.class);
-        startActivity(iJ);
-    }
-
-    public void openK(View v) {
-        Intent iK = new Intent(this, SectionKActivity.class);
-        startActivity(iK);
-    }
-
-    public void openL(View v) {
-        Intent iL = new Intent(this, SectionLActivity.class);
-        startActivity(iL);
-    }
-
-    public void openM(View v) {
-        Intent iM = new Intent(this, SectionMActivity.class);
-        startActivity(iM);
-    }
-
-
-    public void openHA(View v) {
-        Intent iB = new Intent(this, SectionHAActivity.class);
-        startActivity(iB);
-    }
-
-    public void openHB(View v) {
-        Intent iB = new Intent(this, SectionHBActivity.class);
-        startActivity(iB);
-    }*/
 
 
     public void testGPS(View v) {
@@ -494,11 +442,6 @@ public class MainActivity extends Activity {
     public void CheckCluster(View v) {
         Intent iB = new Intent(this, FeedingPracticeActivity.class);
         startActivity(iB);
-
-      /*  Intent cluster_list = new Intent(getApplicationContext(), FormsList.class);
-        cluster_list.putExtra("dssid", MainApp.regionDss);
-        startActivity(cluster_list);
-*/
     }
 
     public void syncServer(View view) {
@@ -571,20 +514,18 @@ public class MainActivity extends Activity {
 
     public void syncDevice(View view) {
 
+        // Require permissions INTERNET & ACCESS_NETWORK_STATE
         ConnectivityManager connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
 
-            // Sync Random
-            /*new GetBLRandom(this).execute();*/
-
+            new syncData(this).execute();
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();
 
             editor.putString("LastDownSyncServer", dtToday);
 
-            editor.apply();
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
@@ -609,6 +550,115 @@ public class MainActivity extends Activity {
             }, 3 * 1000);
 
         }
+    }
+    public class syncData extends AsyncTask<String, String, String> {
+
+        private Context mContext;
+
+        public syncData(Context mContext) {
+            this.mContext = mContext;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                   /* Toast.makeText(LoginActivity.this, "Sync District's", Toast.LENGTH_LONG).show();
+                    new GetDistricts(mContext).execute();
+                    Toast.makeText(LoginActivity.this, "Sync Villages", Toast.LENGTH_LONG).show();
+                    new GetVillages(mContext).execute();*/
+                    Toast.makeText(getApplicationContext(), "Sync User", Toast.LENGTH_LONG).show();
+                    new GetUsers(mContext).execute();
+                    Toast.makeText(getApplicationContext(), "Sync Child Recruitment list", Toast.LENGTH_LONG).show();
+                    new GetChildList(mContext).execute();
+                    Toast.makeText(getApplicationContext(), "Sync Followup list", Toast.LENGTH_LONG).show();
+                    new GetFupList(mContext).execute();
+                }
+            });
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+
+//                    populateSpinner(mContext);
+
+                    editor.putBoolean("flag", true);
+                    editor.commit();
+
+                    dbBackup();
+
+                }
+            }, 1200);
+        }
+    }
+    public void dbBackup() {
+
+        sharedPref = getSharedPreferences("src", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        if (sharedPref.getBoolean("flag", false)) {
+
+            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+
+            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date()).toString()) {
+                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+
+                editor.commit();
+            }
+
+            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + DatabaseHelper.PROJECT_NAME);
+            boolean success = true;
+            if (!folder.exists()) {
+                success = folder.mkdirs();
+            }
+            if (success) {
+
+                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
+                folder = new File(DirectoryName);
+                if (!folder.exists()) {
+                    success = folder.mkdirs();
+                }
+                if (success) {
+
+                    try {
+                        File dbFile = new File(this.getDatabasePath(DatabaseHelper.DATABASE_NAME).getPath());
+                        FileInputStream fis = new FileInputStream(dbFile);
+
+                        String outFileName = DirectoryName + File.separator +
+                                DatabaseHelper.DB_NAME;
+
+                        // Open the empty db as the output stream
+                        OutputStream output = new FileOutputStream(outFileName);
+
+                        // Transfer bytes from the inputfile to the outputfile
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = fis.read(buffer)) > 0) {
+                            output.write(buffer, 0, length);
+                        }
+                        // Close the streams
+                        output.flush();
+                        output.close();
+                        fis.close();
+                    } catch (IOException e) {
+                        Log.e("dbBackup:", e.getMessage());
+                    }
+
+                }
+
+            } else {
+                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
 }

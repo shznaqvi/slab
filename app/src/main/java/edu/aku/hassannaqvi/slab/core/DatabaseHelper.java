@@ -1463,9 +1463,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         };
         String whereClause = FollowUpList.COLUMN_MRNO + " =? AND " +
-                FollowUpList.COLUMN_STUDYID + " =? AND " +
-                FollowUpList.COLUMN_LASTFUPDATE + " BETWEEN '"+startdatetime+"' AND '"+currentdatetime+"'";
-        String[] whereArgs = new String[]{mrno, studyid};
+                FollowUpList.COLUMN_STUDYID + " =? AND (" +
+                FollowUpList.COLUMN_FUPSTATUS + " =? OR " +
+                FollowUpList.COLUMN_FUPSTATUS + " =? ) AND " +
+                FollowUpList.COLUMN_LASTFUPDATE + " BETWEEN '"+startdatetime+"' AND '"+currentdatetime+"'" ;
+        String[] whereArgs = new String[]{mrno, studyid,"1","7"};
         String groupBy = null;
         String having = null;
 

@@ -125,7 +125,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
 
     }
     private boolean formValidation() {
-
+        String regex = "^\\d*\\.\\d+|\\d+\\.\\d*$";
         if (!validatorClass.EmptyTextBox(this, bi.sel01, getString(R.string.mrno))) {
             bi.sel01err.setVisibility(View.VISIBLE);
             return false;
@@ -199,6 +199,14 @@ public class EligibilityFormActivity extends AppCompatActivity {
         }else{
             bi.sel10.setError(null);
         }
+
+        if(!bi.sel10.getText().toString().matches(regex)){
+            Toast.makeText(this,"Invalid decimal number",Toast.LENGTH_SHORT);
+            bi.sel10.setError("Invalid decimal number");
+            return false;
+        }else{
+            bi.sel11.setError(null);
+        }
         if (!validatorClass.EmptyTextBox(this, bi.sel11, getString(R.string.sel11))) {
             return false;
         }
@@ -208,6 +216,13 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if(!bi.sel11.getText().toString().contains(".")){
             Toast.makeText(this,"Head of Circumference should be decimal",Toast.LENGTH_SHORT);
             bi.sel11.setError("Head of Circumference should be decimal");
+            return false;
+        }else{
+            bi.sel11.setError(null);
+        }
+        if(!bi.sel11.getText().toString().matches(regex)){
+            Toast.makeText(this,"Invalid decimal number",Toast.LENGTH_SHORT);
+            bi.sel11.setError("Invalid decimal number");
             return false;
         }else{
             bi.sel11.setError(null);
@@ -258,7 +273,13 @@ public class EligibilityFormActivity extends AppCompatActivity {
             }
          if (UpdateDB()) {
                 finish();
-                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+                Boolean consent = false;
+                if(bi.sel19a.isChecked()){
+                    consent = true;
+                }else{
+                    consent = false;
+                }
+                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", consent));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
