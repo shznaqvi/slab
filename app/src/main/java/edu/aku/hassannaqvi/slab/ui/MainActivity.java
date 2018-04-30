@@ -296,6 +296,7 @@ public class MainActivity extends Activity {
     }
     public void openRecruitment(View v){
         startActivity(new Intent(MainActivity.this, RecruitmentActivity.class));
+        //startActivity(new Intent(MainActivity.this, OnExaminationActivity.class));
 
     }
     public void openFollowup(View v){

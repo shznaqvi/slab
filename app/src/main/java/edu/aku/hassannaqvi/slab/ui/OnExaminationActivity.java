@@ -36,8 +36,9 @@ public class OnExaminationActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
     private void setupView() {
         bi.sfu57.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -62,10 +63,10 @@ public class OnExaminationActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-          if (UpdateDB()) {
+            if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                    startActivity(new Intent(this, SupplementAdminActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, SupplementAdminActivity.class).putExtra("complete", true));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -90,7 +91,7 @@ public class OnExaminationActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-       // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -98,7 +99,7 @@ public class OnExaminationActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-           //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+                //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
                 finish();
 
@@ -173,12 +174,41 @@ public class OnExaminationActivity extends AppCompatActivity {
     }
 
     private boolean formValidation() {
+        String decimalRegex = "^\\d*\\.\\d|\\d+\\.\\d$";
+        //String decimalRegex = "([0-9]+(\\.[0-9]))";
         if (!validatorClass.EmptyTextBox(this, bi.sfu54, getString(R.string.sfu54))) {
             return false;
         }
-        if (!validatorClass.RangeTextBox(this, bi.sfu54, 35, 40, getString(R.string.sfu54), (char) 0x00B0 +"C" )) {
+        if (!bi.sfu54.getText().toString().matches("\\d+(\\.\\d+)*")) {
+            Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+            bi.sfu54.requestFocus();
+            bi.sfu54.setError("Please enter correct decimal value!");
             return false;
+        } else {
+            bi.sfu54.clearFocus();
+            bi.sfu54.setError(null);
+            if (!validatorClass.RangeTextBox(this, bi.sfu54, 35.0, 40.9, getString(R.string.sfu54), (char) 0x00B0 + "C")) {
+                return false;
+            }
+
         }
+       /* if (!validatorClass.RangeTextBox(this, bi.sfu54, 35.0, 40.9, getString(R.string.sfu54), (char) 0x00B0 +"C" )) {
+            return false;
+        }*/
+      /*  if (bi.sfu54.getText().toString().contains(".")) {
+            if (!bi.sfu54.getText().toString().matches(decimalRegex)) {
+                Toast.makeText(this, "Invalid decimal number", Toast.LENGTH_SHORT);
+                bi.sfu54.setError("Invalid decimal number");
+                bi.sfu54.requestFocus();
+              return false;
+            } else {
+                bi.sfu54.setError(null);
+                bi.sfu54.clearFocus();
+                return false;
+            }
+          //  return false;
+        }
+*/
         if (!validatorClass.EmptyTextBox(this, bi.sfu55, getString(R.string.sfu55))) {
             return false;
         }
@@ -194,10 +224,10 @@ public class OnExaminationActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu57, bi.sfu57a, getString(R.string.sfu57))) {
             return false;
         }
-        if(bi.sfu57a.isChecked()){
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu58, bi.sfu58a, getString(R.string.sfu58))) {
-            return false;
-        }
+        if (bi.sfu57a.isChecked()) {
+            if (!validatorClass.EmptyRadioButton(this, bi.sfu58, bi.sfu58a, getString(R.string.sfu58))) {
+                return false;
+            }
 
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu59, bi.sfu5996, bi.sfu5996x, getString(R.string.sfu59))) {
@@ -221,7 +251,7 @@ public class OnExaminationActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu64, bi.sfu64a, getString(R.string.sfu64))) {
             return false;
         }
-        if(!validatorClass.EmptyRadioButton(this, bi.sfu65, bi.sfu6596, bi.sfu6596x, getString(R.string.sfu65))){
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu65, bi.sfu6596, bi.sfu6596x, getString(R.string.sfu65))) {
             return false;
         }
         return true;
