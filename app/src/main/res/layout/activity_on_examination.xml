@@ -55,10 +55,10 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:digits="1234567890"
-                android:hint="@string/sfu54"
-                android:inputType="number"
-                android:maxLength="2" />
+                android:digits="1234567890."
+                android:hint="XX.X"
+                android:inputType="numberDecimal"
+                android:maxLength="4" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
