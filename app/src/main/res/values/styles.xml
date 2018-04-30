@@ -59,8 +59,8 @@
     </style>
 
     <style name="ActionBarTheme" parent="android:Widget.ActionBar">
-        <item name="android:background">@drawable/background_grad</item>
-        <item name="background">@drawable/background_grad</item>
+        <item name="android:background">@drawable/background_grad_new</item>
+        <item name="background">@drawable/background_grad_new</item>
     </style>
 
 

@@ -272,29 +272,23 @@
                             android:id="@+id/sel04a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@null"
-                            android:paddingTop="5dp"
                             android:text="@string/sel04a"
-                            android:textSize="24sp" />
+                             />
 
 
                         <RadioButton
                             android:id="@+id/sel04b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@null"
-                            android:paddingTop="5dp"
                             android:text="@string/sel04b"
-                            android:textSize="24sp" />
+                             />
 
                         <RadioButton
                             android:id="@+id/sel04c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@null"
-                            android:paddingTop="5dp"
                             android:text="@string/sel04c"
-                            android:textSize="24sp" />
+                            />
 
                     </RadioGroup>
 
