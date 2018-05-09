@@ -30,6 +30,7 @@ public abstract class validatorClass {
             return false;
         } else {
             txt.setError(null);
+            txt.clearFocus();
             return true;
         }
     }
@@ -44,6 +45,7 @@ public abstract class validatorClass {
             return false;
         } else {
             txt.setError(null);
+            txt.clearFocus();
             return true;
         }
     }
@@ -59,6 +61,7 @@ public abstract class validatorClass {
             return false;
         } else {
             txt.setError(null);
+            txt.clearFocus();
             return true;
         }
     }
@@ -154,10 +157,8 @@ public abstract class validatorClass {
         }
         if (flag) {
             cbx.setError(null);
-            if (cbx.isChecked()) {
-                return EmptyTextBox(context, txt, msg);
-            }
-            return true;
+            //Changed According to J2ME Lint
+           return !cbx.isChecked()|| EmptyTextBox(context,txt,msg);
         } else {
             Toast.makeText(context, "ERROR(empty): " + msg, Toast.LENGTH_LONG).show();
             cbx.setError("This data is Required!");    // Set Error on last radio button

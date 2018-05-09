@@ -36,7 +36,6 @@ import edu.aku.hassannaqvi.slab.contracts.UsersContract;
 import edu.aku.hassannaqvi.slab.contracts.UsersContract.UsersTable;
 import edu.aku.hassannaqvi.slab.contracts.VillagesContract;
 import edu.aku.hassannaqvi.slab.contracts.VillagesContract.singleVillage;
-import edu.aku.hassannaqvi.slab.ui.EligibilityFormActivity;
 
 /**
  * Created by hassan.naqvi on 11/30/2016.

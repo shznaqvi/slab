@@ -1,6 +1,5 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -15,13 +14,11 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import edu.aku.hassannaqvi.slab.JsonModelClasses.EligibilityJSONModel;
 import edu.aku.hassannaqvi.slab.JsonModelClasses.RecruitmentJSONModel;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
-import edu.aku.hassannaqvi.slab.databinding.ActivityEndingBinding;
 import edu.aku.hassannaqvi.slab.databinding.ActivityRecruitmentEndingBinding;
 import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;

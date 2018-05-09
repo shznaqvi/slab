@@ -8,7 +8,6 @@ import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -24,15 +23,13 @@ import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityHistoryBinding;
-import edu.aku.hassannaqvi.slab.databinding.HistoryadapterBinding;
-import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class HistoryActivity extends AppCompatActivity {
 ActivityHistoryBinding bi;
 DatabaseHelper db;
     String noofSachet, childName , localmrno, localstudyID;
-    Boolean nextExamSec;
+    int fuplocation;
     String dtToday;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +67,9 @@ DatabaseHelper db;
 
     private void gettingIntents() {
         Intent intent = getIntent();
-        if (intent.hasExtra("openExamSec") && intent.hasExtra("childName") && intent.hasExtra("noofSachet") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
+        if (intent.hasExtra(FollowUpFormActivity.FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("noofSachet") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
             Bundle bundle = intent.getExtras();
-            nextExamSec = bundle.getBoolean("openExamSec");
+            fuplocation = bundle.getInt(FollowUpFormActivity.FUPLOCATION_TAG);
             childName = bundle.getString("childName");
             noofSachet = bundle.getString("noofSachet");
             localmrno = bundle.getString("mrno");
@@ -100,14 +97,14 @@ DatabaseHelper db;
 
                 if (MainApp.hiCount == Integer.parseInt(noofSachet)) {
                     MainApp.hiCount = 1;
-                    startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", nextExamSec).putExtra("childName", bi.ChildName.getText().toString())
+                    startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation).putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("mrno",localmrno)
                             .putExtra("studyID",localstudyID));
                 }
                 else{
                     MainApp.hiCount++;
                     startActivity(new Intent(this, HistoryActivity.class)
-                            .putExtra("openExamSec", nextExamSec)
+                            .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("noofSachet",noofSachet)
                             .putExtra("mrno",localmrno)

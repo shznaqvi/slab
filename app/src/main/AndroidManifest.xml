@@ -59,13 +59,6 @@
 
         <service android:name=".DownloadFileService" />
 
-        <activity android:name=".ui.AnthropometryActivity" />
-        <activity android:name=".ui.PhysicalExaminationActivity" />
-        <activity
-            android:name=".ui.LabInvestigationsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".ui.EligibilityFormActivity"
             android:screenOrientation="portrait"
@@ -130,6 +123,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden"/>
+        <!--TODO (7): Create an APP view for speciman data collection-->
     </application>
 
 </manifest>

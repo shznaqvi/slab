@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://E:/Android/slab1/SLAB.iml" filepath="E:/Android/slab1/SLAB.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/slab.iml" filepath="$PROJECT_DIR$/slab.iml" />
-      <module fileurl="file://E:/Android/slab1/slab.iml" filepath="E:/Android/slab1/slab.iml" />
-      <module fileurl="file://E:/slab/slab1.iml" filepath="E:/slab/slab1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/slab1.iml" filepath="$PROJECT_DIR$/slab1.iml" />
     </modules>
   </component>
 </project>

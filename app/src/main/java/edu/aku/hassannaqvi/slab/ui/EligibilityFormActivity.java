@@ -3,7 +3,6 @@ package edu.aku.hassannaqvi.slab.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.DatabaseUtils;
 import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -19,7 +17,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;

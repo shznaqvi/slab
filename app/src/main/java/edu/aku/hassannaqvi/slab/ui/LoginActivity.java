@@ -65,10 +65,8 @@ import edu.aku.hassannaqvi.slab.contracts.UCsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.get.GetChildList;
-import edu.aku.hassannaqvi.slab.get.GetDistricts;
 import edu.aku.hassannaqvi.slab.get.GetFupList;
 import edu.aku.hassannaqvi.slab.get.GetUsers;
-import edu.aku.hassannaqvi.slab.get.GetVillages;
 
 import static java.lang.Thread.sleep;
 

@@ -136,7 +136,7 @@
                     android:text="@string/sli04"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
-
+                <!--Completed (3): Add SBR and none options in other investigations question.-->
                 <LinearLayout
                     android:id="@+id/sli04"
                     android:layout_width="match_parent"
@@ -156,6 +156,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sli04b" />
+                    <CheckBox
+                        android:id="@+id/sli04c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sli04c" />
+                    <CheckBox
+                        android:id="@+id/sli04d"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sli04d" />
 
                     <CheckBox
                         android:id="@+id/sli0496"
@@ -173,7 +183,8 @@
                         android:text='@{sli0496.checked ? sli0496x.getText.toString : "" }'
                         android:visibility='@{sli0496.checked ? View.VISIBLE : View.GONE }' />
                 </LinearLayout>
-
+<!--
+// Completed (1): Exclude LabID from LAB Investigation
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -207,7 +218,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/dkn" />
 
-                </LinearLayout>
+                </LinearLayout>-->
             </LinearLayout>
 
 

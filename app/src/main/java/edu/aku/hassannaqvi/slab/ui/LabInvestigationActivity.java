@@ -1,9 +1,7 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +15,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationBinding;
@@ -46,9 +43,9 @@ public class LabInvestigationActivity extends AppCompatActivity {
     }
     private void setupView() {
         bi.sli02.setManager(getSupportFragmentManager());
-        bi.sli02.setMinDate(dateToday);
-        bi.sli02.setMaxDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",7));
-
+        bi.sli02.setMaxDate(dateToday);
+        bi.sli02.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-7));
+// Completed (2): Change the date of blood collection to 7 days backward
         bi.sli03.setManager(getSupportFragmentManager());
         bi.sli03.setTimeFormat("HH:mm");
         bi.sli03.setIs24HourView(true);
@@ -70,13 +67,35 @@ public class LabInvestigationActivity extends AppCompatActivity {
                     bi.sli04b.setChecked(false);
                     bi.sli0496.setChecked(false);
                     bi.sli0496x.setText(null);
-                    bi.sli05.setText(null);
-                    bi.sli0598.setChecked(false);
+                 /*   bi.sli05.setText(null);
+                    bi.sli0598.setChecked(false);*/
                 } else {
                     bi.fldGrpsli02.setVisibility(View.VISIBLE);
                     bi.sli01a.setEnabled(true);
                     bi.sli01b.setEnabled(true);
                     bi.sli01c.setEnabled(true);
+                }
+            }
+        });
+        bi.sli04d.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    bi.sli04a.setChecked(false);
+                    bi.sli04b.setChecked(false);
+                    bi.sli04c.setChecked(false);
+                    bi.sli0496.setChecked(false);
+                    bi.sli0496x.setText(null);
+
+                    bi.sli04a.setEnabled(false);
+                    bi.sli04b.setEnabled(false);
+                    bi.sli04c.setEnabled(false);
+                    bi.sli0496.setEnabled(false);
+                } else {
+                    bi.sli04a.setEnabled(true);
+                    bi.sli04b.setEnabled(true);
+                    bi.sli04c.setEnabled(true);
+                    bi.sli0496.setEnabled(true);
                 }
             }
         });
@@ -153,11 +172,13 @@ public class LabInvestigationActivity extends AppCompatActivity {
 
         li.put("sli04a",bi.sli04a.isChecked() ? "1" : "0");
         li.put("sli04b",bi.sli04b.isChecked() ? "2" : "0");
+        li.put("sli04c",bi.sli04c.isChecked() ? "3" : "0");
+        li.put("sli04d",bi.sli04d.isChecked() ? "4" : "0");
         li.put("sli0496",bi.sli0496.isChecked() ? "96" : "0");
 
-        li.put("sli05", bi.sli05.getText().toString());
-        li.put("sli0598",bi.sli0598.isChecked() ? "98" : "0");
-
+      /*  li.put("sli05", bi.sli05.getText().toString());
+        li.put("sli0598",bi.sli0598.isChecked() ? "98" : "0");*/
+//Completed (3): Add SBR and none options in other investigations question.
       MainApp.fc.setsLab(String.valueOf(li));
     }
 
@@ -175,7 +196,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
             if (!validatorClass.EmptyCheckBox(this, bi.sli04, bi.sli0496, bi.sli0496x, getString(R.string.sli04))) {
                 return false;
             }
-            if (!bi.sli0598.isChecked()) {
+           /* if (!bi.sli0598.isChecked()) {
                 if (!validatorClass.EmptyTextBox(this, bi.sli05, getString(R.string.sli05))) {
                     return false;
                 }
@@ -183,7 +204,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
                 if (!validatorClass.EmptyCheckBox(this, bi.fldGrpchecksli05, bi.sli0598, getString(R.string.sli05))) {
                     return false;
                 }
-            }
+            }*/
 
         }
 
