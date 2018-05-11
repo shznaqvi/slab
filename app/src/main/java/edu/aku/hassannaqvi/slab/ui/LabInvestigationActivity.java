@@ -83,18 +83,18 @@ public class LabInvestigationActivity extends AppCompatActivity {
                 if (b) {
                     bi.sli04a.setChecked(false);
                     bi.sli04b.setChecked(false);
-                    bi.sli04c.setChecked(false);
+//                    bi.sli04c.setChecked(false);
                     bi.sli0496.setChecked(false);
                     bi.sli0496x.setText(null);
 
                     bi.sli04a.setEnabled(false);
                     bi.sli04b.setEnabled(false);
-                    bi.sli04c.setEnabled(false);
+//                    bi.sli04c.setEnabled(false);
                     bi.sli0496.setEnabled(false);
                 } else {
                     bi.sli04a.setEnabled(true);
                     bi.sli04b.setEnabled(true);
-                    bi.sli04c.setEnabled(true);
+//                    bi.sli04c.setEnabled(true);
                     bi.sli0496.setEnabled(true);
                 }
             }
@@ -172,8 +172,8 @@ public class LabInvestigationActivity extends AppCompatActivity {
 
         li.put("sli04a",bi.sli04a.isChecked() ? "1" : "0");
         li.put("sli04b",bi.sli04b.isChecked() ? "2" : "0");
-        li.put("sli04c",bi.sli04c.isChecked() ? "3" : "0");
-        li.put("sli04d",bi.sli04d.isChecked() ? "4" : "0");
+//        li.put("sli04c",bi.sli04c.isChecked() ? "3" : "0");
+        li.put("sli04d",bi.sli04d.isChecked() ? "3" : "0");
         li.put("sli0496",bi.sli0496.isChecked() ? "96" : "0");
 
       /*  li.put("sli05", bi.sli05.getText().toString());

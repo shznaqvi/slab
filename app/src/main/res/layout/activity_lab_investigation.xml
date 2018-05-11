@@ -156,11 +156,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/sli04b" />
-                    <CheckBox
+                    <!--<CheckBox
                         android:id="@+id/sli04c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sli04c" />
+                        android:text="@string/sli04c" />-->
                     <CheckBox
                         android:id="@+id/sli04d"
                         android:layout_width="match_parent"
