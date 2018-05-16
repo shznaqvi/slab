@@ -12,24 +12,17 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedOutputStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 import edu.aku.hassannaqvi.slab.Adapter.HistoryAdapter;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivitySachetBinding;
-import edu.aku.hassannaqvi.slab.databinding.HistoryadapterBinding;
-import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class SachetActivity extends AppCompatActivity {
     String noofSachet, childName;

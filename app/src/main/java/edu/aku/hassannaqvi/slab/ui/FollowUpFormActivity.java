@@ -1,22 +1,18 @@
 package edu.aku.hassannaqvi.slab.ui;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -32,7 +28,6 @@ import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpFormBinding;
-import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowUpFormActivity extends AppCompatActivity {
@@ -40,15 +35,16 @@ public class FollowUpFormActivity extends AppCompatActivity {
     DatabaseHelper db;
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     String todaysDate = new SimpleDateFormat("dd-MM-yyyy").format(new Date().getTime());
+    static String FUPLOCATION_TAG = "fupLocation";
     FormsContract fc;
-//    FormsContract fc_1;
+    //    FormsContract fc_1;
     ChildListContract childListContract;
     RecruitmentJSONModel recmodel;
     public String localMrno;
     public String localStudyID;
     String childName;
     int noofsachet;
-
+    Context context;
 
     private static final String TAG = FollowUpFormActivity.class.getName();
 
@@ -56,7 +52,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_follow_up_form);
-        db = new DatabaseHelper(this);
+        context = FollowUpFormActivity.this;
+        db = new DatabaseHelper(context);
         bi.setCallback(this);
 
         checkIntents();
@@ -65,6 +62,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
 //        fc_1 = new FormsContract();
         childListContract = new ChildListContract();
         recmodel = new RecruitmentJSONModel();
+
     }
 
     private void checkIntents() {
@@ -90,7 +88,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
             bi.fldGrpB.setVisibility(View.GONE);
 
             // Do something else
-            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+            Toast.makeText(context, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
 
         }
 
@@ -121,9 +119,9 @@ public class FollowUpFormActivity extends AppCompatActivity {
     }
 
     private boolean formValidation() {
-        Toast.makeText(this, "Validating This Section ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Validating This Section ", Toast.LENGTH_SHORT).show();
 
-        if (!validatorClass.EmptyTextBox(this, bi.sfu001, getString(R.string.mrno))) {
+        if (!validatorClass.EmptyTextBox(context, bi.sfu001, getString(R.string.mrno))) {
             return false;
         }
         if (bi.sfu001.getText().toString().length() == 9) {
@@ -133,39 +131,40 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 return false;
             }
         } else {
-            Toast.makeText(this, "Invalid length: " + getString(R.string.mrno), Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Invalid length: " + getString(R.string.mrno), Toast.LENGTH_SHORT).show();
             bi.sfu001.setError("Invalid length");
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu01, bi.sfu01a, getString(R.string.sfu01c))) {
+        if (!validatorClass.EmptyRadioButton(context, bi.sfu01, bi.sfu01a, getString(R.string.sfu01c))) {
             return false;
         }
 
         if (!bi.sfu01c.isChecked()) {
 
-            if (!validatorClass.EmptyTextBox(this, bi.sfu06, getString(R.string.sfu06))) {
+            if (!validatorClass.EmptyTextBox(context, bi.sfu06, getString(R.string.sfu06))) {
                 return false;
             }
-            if (!validatorClass.RangeTextBox(this, bi.sfu06, 1000, 2500, getString(R.string.sfu06), " Weight")) {
+//Completed (4): Change weigth of neonate with a range of 5000 kg's.
+            if (!validatorClass.RangeTextBox(context, bi.sfu06, 1000, 5000, getString(R.string.sfu06), " Weight")) {
                 return false;
             }
             if (!bi.sfu01a.isChecked()) {
 
-                if (!validatorClass.EmptyTextBox(this, bi.sfu07, getString(R.string.sfu07))) {
+                if (!validatorClass.EmptyTextBox(context, bi.sfu07, getString(R.string.sfu07))) {
                     return false;
                 }
                 if (!bi.sfu07.getText().toString().contains(".")) {
-                    Toast.makeText(this, "Length of neonate should be in decimal", Toast.LENGTH_SHORT);
+                    Toast.makeText(context, "Length of neonate should be in decimal", Toast.LENGTH_SHORT);
                     bi.sfu07.setError("Length of neonate should be in decimal");
                     return false;
                 } else {
                     bi.sfu07.setError(null);
                 }
-                if (!validatorClass.EmptyTextBox(this, bi.sfu08, getString(R.string.sfu08))) {
+                if (!validatorClass.EmptyTextBox(context, bi.sfu08, getString(R.string.sfu08))) {
                     return false;
                 }
                 if (!bi.sfu08.getText().toString().contains(".")) {
-                    Toast.makeText(this, "Head of Circumference should be decimal", Toast.LENGTH_SHORT);
+                    Toast.makeText(context, "Head of Circumference should be decimal", Toast.LENGTH_SHORT);
                     bi.sfu08.setError("Head of Circumference should be decimal");
                     return false;
                 } else {
@@ -174,7 +173,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
             }
         }
-        if (!validatorClass.EmptyTextBox(this, bi.sfu10, getString(R.string.sfu10))) {
+        if (!validatorClass.EmptyTextBox(context, bi.sfu10, getString(R.string.sfu10))) {
             return false;
         }
 
@@ -183,7 +182,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
 
     public void BtnContinue() {
-      //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -191,37 +190,38 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-              //  Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+                //  Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                Boolean defaultValue = true;
+                int fuplocation = bi.sfu01a.isChecked() ? 1 : bi.sfu01b.isChecked() ? 2 : bi.sfu01c.isChecked() ? 3 : 0;
+              /*  Boolean defaultValue = true;
                 if (bi.sfu01c.isChecked()) {
                     defaultValue = false;
                 } else {
                     defaultValue = true;
-                }
+                }*/
                 //startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()));
                 if (!bi.sfu10.getText().toString().equals("0")) {
-                    startActivity(new Intent(this, HistoryActivity.class)
-                            .putExtra("openExamSec", defaultValue)
+                    startActivity(new Intent(context, HistoryActivity.class)
+                            .putExtra(FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("noofSachet", bi.sfu10.getText().toString())
                             .putExtra("mrno", bi.sfu001.getText().toString())
                             .putExtra("studyID", bi.sfu002.getText().toString()));
                 } else {
-                    startActivity(new Intent(this, FeedingPracticeActivity.class)
-                            .putExtra("openExamSec", defaultValue)
+                    startActivity(new Intent(context, FeedingPracticeActivity.class)
+                            .putExtra(FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("mrno", bi.sfu001.getText().toString())
                             .putExtra("studyID", bi.sfu002.getText().toString()));
                 }
             } else {
-               // Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(context);
 
         Long newrowid = db.addForm(MainApp.fc);
 
@@ -235,32 +235,50 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
             return true;
         } else {
-          //  Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            //  Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
 
     public void BtnEnd() {
+        final Intent endingIntent = new Intent(context, EndingActivity.class).putExtra("complete", false);
+//Completed (5): Add a prompt "Do you really want to exit?Yes/No" on click on exit button
         // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
-        if (formValidation()) {
-            try {
-                SaveDraft();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (UpdateDB()) {
-                //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
-                finish();
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context);
+            alertDialogBuilder
+                    .setMessage("Do you want to Exit??")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog,
+                                                    int id) {
+//                                    if (formValidation()) {
+                                    try {
+                                        SaveDraft();
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    if (UpdateDB()) {
+                                        finish();
+                                        startActivity(endingIntent);
+                                    } else {
+                                        Toast.makeText(context, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+                                    }
+//                                    }
+                                }
+                            });
+            alertDialogBuilder.setNegativeButton("No",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = alertDialogBuilder.create();
+            alert.show();
 
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
-            } else {
-                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }
         }
-
-
-    }
 
     private void SaveDraft() throws JSONException {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
@@ -269,7 +287,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         MainApp.fc.setUser(MainApp.userName);
         MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-        MainApp.fc.setDevicetagID(MainApp.getTagName(this));
+        MainApp.fc.setDevicetagID(MainApp.getTagName(context));
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setsMrno(bi.sfu001.getText().toString());
         MainApp.fc.setsStudyid(bi.sfu002.getText().toString());
@@ -279,7 +297,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
         JSONObject fu = new JSONObject();
         fu.put("sfudatetime", dtToday);
-        fu.put("uuid",  bi.ruid.getText().toString());
+        fu.put("uuid", bi.ruid.getText().toString());
         fu.put("childName", bi.ChildName.getText().toString());
         fu.put("sfu01", bi.sfu01a.isChecked() ? "1"
                 : bi.sfu01b.isChecked() ? "2"
@@ -298,16 +316,16 @@ public class FollowUpFormActivity extends AppCompatActivity {
         if (!bi.sfu001.getText().toString().trim().isEmpty() && !bi.sfu002.getText().toString().trim().isEmpty()) {
 
             // fc = db.getStudyID(bi.sfu001.getText().toString());
-          // fc_1 = db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
-           // childListContract =  db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+            // fc_1 = db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+            // childListContract =  db.getChildName(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
 
-                                                                                //TODO : Checking mrno is recruited on server or not!!!
+            //TODO : Checking mrno is recruited on server or not!!!
 //            if ((!childListContract.getMrNo().isEmpty() && !childListContract.getStudyID().isEmpty()) || db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())) {
             if (db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())) {
 
                 //TODO() : checking followup already inserted today or not!!
 
-                if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate+" 00:00", dtToday)) {
+                if (!db.iffupexist(bi.sfu001.getText().toString(), bi.sfu002.getText().toString(), todaysDate + " 00:00", dtToday)) {
                    /* if(!db.isChildFound(bi.sfu001.getText().toString(), bi.sfu002.getText().toString())){
 //                        recmodel = JSONUtilClass.getModelFromJSON(fc_1.getsRecr(), RecruitmentJSONModel.class);
                        // bi.sfu002.setText(fc_1.getsStudyid());
@@ -315,32 +333,32 @@ public class FollowUpFormActivity extends AppCompatActivity {
                         bi.ChildName.setText(childListContract.getChildname());
                         MainApp.fetchLocal = true;
                     }else{*/
-                        // TODO checking list from server side data
-                       childListContract = db.getChildDetail(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
-                       // bi.sfu002.setText(childListContract.getStudyID());
-                        bi.ruid.setText(childListContract.get_ruid());
-                        bi.ChildName.setText(childListContract.getChildname());
+                    // TODO checking list from server side data
+                    childListContract = db.getChildDetail(bi.sfu001.getText().toString(), bi.sfu002.getText().toString());
+                    // bi.sfu002.setText(childListContract.getStudyID());
+                    bi.ruid.setText(childListContract.get_ruid());
+                    bi.ChildName.setText(childListContract.getChildname());
 
-                      //  MainApp.fetchLocal = false;
-                   // }
+                    //  MainApp.fetchLocal = false;
+                    // }
 
-                   // Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(this, "MR Number found!", Toast.LENGTH_SHORT).show();
                     bi.fldGrpA.setVisibility(View.VISIBLE);
                     bi.fldGrpB.setVisibility(View.VISIBLE);
                 } else {
-                    Toast.makeText(this, "You have already inserted a followup Today!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "You have already inserted a followup Today!", Toast.LENGTH_SHORT).show();
                 }
 
 
-            }else {
+            } else {
                 bi.fldGrpA.setVisibility(View.GONE);
                 bi.fldGrpB.setVisibility(View.GONE);
 
-                Toast.makeText(this, "No MR No or Study ID found!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "No MR No or Study ID found!", Toast.LENGTH_SHORT).show();
             }
 
         } else {
-            Toast.makeText(this, "Please Enter correct MrNo and Study ID", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Please Enter correct MrNo and Study ID", Toast.LENGTH_SHORT).show();
         }
 
     }

@@ -1,7 +1,6 @@
 package edu.aku.hassannaqvi.slab.contracts;
 
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.provider.BaseColumns;
 
 import org.json.JSONException;

@@ -329,6 +329,8 @@
     <string name="sli04"> Other investigations: (multiple options allowed) </string>
     <string name="sli04a"> CSF </string>
     <string name="sli04b"> chest x-ray </string>
+    <string name="sli04c"> SBR </string>
+    <string name="sli04d"> None </string>
     <string name="sli05"> Lab ID</string>
     <!-- <string name="sfu23a"> Admit </string>
 <string name="sfu23b"> Discharge </string>

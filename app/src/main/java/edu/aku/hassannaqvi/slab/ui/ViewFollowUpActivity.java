@@ -15,17 +15,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import edu.aku.hassannaqvi.slab.Adapter.FollowupAdapter;
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
-import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityViewFollowUpBinding;
 
 public class ViewFollowUpActivity extends AppCompatActivity {
@@ -72,12 +68,12 @@ public class ViewFollowUpActivity extends AppCompatActivity {
         View inputmrView = li.inflate(R.layout.inputmr_layout, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(inputmrView);
 
-        final EditText usermrno = (EditText) inputmrView
+        final EditText usermrno = inputmrView
                 .findViewById(R.id.etmrno);
+
 
         // set dialog message
         alertDialogBuilder

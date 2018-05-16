@@ -2,7 +2,6 @@ package edu.aku.hassannaqvi.slab.other;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by ramsha.ahmed on 4/14/2018.

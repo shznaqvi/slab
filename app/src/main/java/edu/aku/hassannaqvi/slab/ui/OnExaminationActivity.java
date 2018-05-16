@@ -1,9 +1,7 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,10 +12,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
-import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationsBinding;
 import edu.aku.hassannaqvi.slab.databinding.ActivityOnExaminationBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 

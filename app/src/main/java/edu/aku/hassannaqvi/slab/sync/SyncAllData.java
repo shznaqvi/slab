@@ -3,7 +3,6 @@ package edu.aku.hassannaqvi.slab.sync;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -24,7 +23,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collection;
 
-import edu.aku.hassannaqvi.slab.NetworkUtils;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 
 /**
