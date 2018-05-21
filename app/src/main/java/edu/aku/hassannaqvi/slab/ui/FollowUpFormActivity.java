@@ -58,6 +58,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
         checkIntents();
         setupView();
+        validatorClass.setScrollViewFocus(bi.scrollView);
         fc = new FormsContract();
 //        fc_1 = new FormsContract();
         childListContract = new ChildListContract();

@@ -11,6 +11,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -45,6 +46,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.setCallback(this);
 
         setupView();
+        ScrollView el_scrollview = findViewById(R.id.el_scrollview);
+//        validatorClass.setScrollViewFocus(bi.el_scrollview);
+        validatorClass.setScrollViewFocus(el_scrollview);
 
 
     }
@@ -57,7 +61,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel03t.setTimeFormat("HH:mm");
         bi.sel03t.setIs24HourView(true);
 
-        bi.sel03t.setManager(getSupportFragmentManager());
+//        bi.sel03t.setManager(getSupportFragmentManager());
         bi.sel12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {

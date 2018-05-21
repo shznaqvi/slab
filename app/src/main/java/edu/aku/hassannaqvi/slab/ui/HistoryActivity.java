@@ -80,7 +80,20 @@ DatabaseHelper db;
         }
     }
     public void BtnEnd() {
-
+        if (formValidation()) {
+            try {
+                SaveDraft();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (UpdateDB()) {
+                //Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void BtnContinue() {

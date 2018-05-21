@@ -158,6 +158,22 @@
                     android:text="Follow up"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
+                <Button
+                    android:id="@+id/openLabReports"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:drawableLeft="@android:drawable/ic_menu_preferences"
+                    android:drawableTint="@color/colorPrimaryBeta"
+                    android:onClick="openLabReports"
+                    android:paddingTop="8dp"
+                    android:text="Lab Reports"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
 
                 <Button
                     android:layout_width="match_parent"

@@ -54,6 +54,8 @@
     <string name="sfu09"> </string>
     <string name="sfu10a"> </string>
     <string name="sfu10b"> </string>
+    <string name="title_location_permission"> Accessing for permision</string>
+    <string name="text_location_permission">This app is using GPS of this device please allow GPS </string>
 
     <!-- Strings related to Sections Below -->
 
@@ -332,10 +334,23 @@
     <string name="sli04c"> SBR </string>
     <string name="sli04d"> None </string>
     <string name="sli05"> Lab ID</string>
+    <string name="slrheading"> Laboratory Reports </string>
+    <string name="slrreportdate">Report Date </string>
+    <string name="slrincbc">In CBC report </string>
+    <string name="slrhb">HB </string>
+    <string name="slrwbc">WBC </string>
+    <string name="slrneu">Neutophils </string>
+    <string name="slrlym">Lymphocytes </string>
+    <string name="slrpla">Platelets </string>
+    <string name="slrcbcreport">CRP Report </string>
+    <string name="slrcrp">CRP Count </string>
+    <string name="slrblood">Blood C/s report</string>
+    <string name="slrorg">Organism name</string>
+
     <!-- <string name="sfu23a"> Admit </string>
-<string name="sfu23b"> Discharge </string>
-<string name="sfu23c"> Follow up </string>
-<string name="sfu2301"> If follow up number of capsule given </string>-->
+  <string name="sfu23b"> Discharge </string>
+  <string name="sfu23c"> Follow up </string>
+  <string name="sfu2301"> If follow up number of capsule given </string>-->
     <!--End of new Strings-->
     <!-- Baseline-->
 

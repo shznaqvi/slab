@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -27,6 +28,8 @@ public class SupplementAdminActivity extends AppCompatActivity {
         bi.setCallback(this);
         db = new DatabaseHelper(this);
         setupView();
+        ScrollView supp_scrollview = findViewById(R.id.supp_scrollview);
+        validatorClass.setScrollViewFocus(supp_scrollview);
     }
 
     @Override
