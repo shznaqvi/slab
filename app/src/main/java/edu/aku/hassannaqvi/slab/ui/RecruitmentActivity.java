@@ -11,6 +11,7 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -55,8 +56,8 @@ public class RecruitmentActivity extends AppCompatActivity {
         formsContract = new FormsContract();
         elmodel = new EligibilityJSONModel();
         setupView();
-
-
+        ScrollView recr_scrollview = findViewById(R.id.recr_scrollview);
+        validatorClass.setScrollViewFocus(recr_scrollview);
     }
 
     private void setupView() {

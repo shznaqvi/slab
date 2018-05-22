@@ -13,6 +13,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.OnExaminationActivity">
 </data>
 
 <ScrollView
+    android:id="@+id/onexam_scrollview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 

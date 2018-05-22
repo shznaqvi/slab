@@ -18,6 +18,7 @@
     </data>
 
     <ScrollView
+        android:id="@+id/el_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -957,28 +958,29 @@
                         android:id="@+id/sel17"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/sel17a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel17b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="@string/no" />
 
                         <RadioButton
                             android:id="@+id/sel17c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_weight="1"
                             android:text="@string/notavailable" />
-
                     </RadioGroup>
-
                 </LinearLayout>
             </LinearLayout>
 

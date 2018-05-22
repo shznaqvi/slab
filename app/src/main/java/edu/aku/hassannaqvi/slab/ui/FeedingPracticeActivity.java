@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         bi.setCallback(this);
         gettingIntents();
         setupView();
+        validatorClass.setScrollViewFocus(bi.scrollView);
     }
 
     @Override
@@ -126,7 +129,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                     bi.sfu50.clearCheck();
                     bi.sfu5096x.setText(null);
                     bi.sfu51.setText(null);
-                    bi.sfu52.setText(null);
+                    bi.sfu52d.setText(null);
+                    bi.sfu52hr.setText(null);
+                    bi.sfu52reason.setText(null);
                     bi.sfu52a.setChecked(false);
 
                 } else {
@@ -352,7 +357,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
         fp.put("sfu51", bi.sfu51.getText().toString());
 
-        fp.put("sfu52", bi.sfu52.getText().toString());
+        fp.put("sfu52d", bi.sfu52d.getText().toString());
+        fp.put("sfu52hr", bi.sfu52hr.getText().toString());
+        fp.put("sfu52reason", bi.sfu52reason.getText().toString());
         fp.put("sfu52a", bi.sfu52a.isChecked() ? "1"
                 : "0");
         MainApp.fc.setsFeed(String.valueOf(fp));
@@ -623,7 +630,24 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                         return false;
                     }
                     if (!bi.sfu52a.isChecked()) {
-                        if (!validatorClass.EmptyTextBox(this, bi.sfu52, getString(R.string.sfu52))) {
+                        if (!validatorClass.EmptyTextBox(this, bi.sfu52d, getString(R.string.sfu52)+" - "+getString(R.string.days))) {
+                            return false;
+                        }
+                        if (!validatorClass.EmptyTextBox(this, bi.sfu52hr, getString(R.string.sfu52)+" - "+getString(R.string.hours))) {
+                            return false;
+                        }
+                        if ((bi.sfu52d.getText().toString().equals("0") || bi.sfu52d.getText().toString().equals("00")) && (bi.sfu52hr.getText().toString().equals("0")||bi.sfu52hr.getText().toString().equals("00"))) {
+                            Toast.makeText(this, "Days and hours both cannot be 0 at the same time! ", Toast.LENGTH_LONG).show();
+                            bi.sfu52d.setError("Days and  hours both cannot be 0 at the same time!");
+                            bi.sfu52hr.setError("Days and hours both cannot be 0 at the same time!");
+                            bi.sfu52d.requestFocus();
+                            return false;
+                        } else {
+                            bi.sfu52d.setError(null);
+                            bi.sfu52hr.setError(null);
+                            bi.sfu52d.clearFocus();
+                        }
+                        if (!validatorClass.EmptyTextBox(this, bi.sfu52reason, getString(R.string.sfu52)+" - "+getString(R.string.reason))) {
                             return false;
                         }
                     } else {

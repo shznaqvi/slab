@@ -46,6 +46,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_follow_up_ending);
         bi.setCallback(this);
+
         fupmodel = new FollowupJSONModel();
         elmodel = new EligibilityJSONModel();
         formsContract = new FormsContract();

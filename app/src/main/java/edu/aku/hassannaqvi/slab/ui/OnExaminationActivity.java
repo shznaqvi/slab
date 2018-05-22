@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -28,6 +29,9 @@ public class OnExaminationActivity extends AppCompatActivity {
         bi.setCallback(this);
         db = new DatabaseHelper(this);
         setupView();
+        ScrollView onexam_scrollview = findViewById(R.id.onexam_scrollview);
+        validatorClass.setScrollViewFocus(onexam_scrollview);
+
     }
 
     @Override

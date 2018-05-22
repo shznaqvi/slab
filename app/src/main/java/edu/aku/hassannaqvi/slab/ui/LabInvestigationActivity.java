@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -35,6 +36,8 @@ public class LabInvestigationActivity extends AppCompatActivity {
         db = new DatabaseHelper(this);
 
         setupView();
+        ScrollView lab_scrollview = findViewById(R.id.lab_scrollview);
+        validatorClass.setScrollViewFocus(lab_scrollview);
     }
 
     @Override

@@ -23,6 +23,7 @@ import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
+import edu.aku.hassannaqvi.slab.contracts.LabReportsContract;
 import edu.aku.hassannaqvi.slab.ui.EndingActivity;
 
 /**
@@ -41,6 +42,7 @@ public class MainApp extends Application {
     public static final String FORMTYPE_EL = "1";
     public static final String FORMTYPE_Recr = "2";
     public static final String FORMTYPE_Fup = "3";
+    public static final String FORMTYPE_LAB = "4";
     public static int hiCount = 1;
 
     /*
@@ -74,6 +76,7 @@ public class MainApp extends Application {
 
     public static Boolean admin = false;
     public static FormsContract fc;
+    public static LabReportsContract lr;
     public static FormsContract historyForminfo;
     public static FollowupListContract followuplist;
     public static ChildListContract R_CHILDLIST;  //to set child info
@@ -276,7 +279,7 @@ public class MainApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
+        //TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/MBLateefi.ttf"); // font from assets: "assets/fonts/Roboto-Regular.ttf
 
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);

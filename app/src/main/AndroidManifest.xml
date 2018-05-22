@@ -119,11 +119,17 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity android:name=".ui.HistoryActivity"
+        <activity
+            android:name=".ui.HistoryActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden"/>
-        <!--TODO (7): Create an APP view for speciman data collection-->
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!-- TODO (7): Create an APP view for speciman data collection -->
+        <activity android:name=".ui.LabReportsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize|stateHidden"
+            ></activity>
     </application>
 
 </manifest>
