@@ -52,6 +52,8 @@ import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract.HistoryTable;
+import edu.aku.hassannaqvi.slab.contracts.LabReportsContract;
+import edu.aku.hassannaqvi.slab.contracts.LabReportsContract.LabReportsTable;
 import edu.aku.hassannaqvi.slab.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
@@ -153,6 +155,7 @@ public class MainActivity extends Activity {
         Collection<FormsContract> unsyncedScreening = db.getUnsyncedScreening();
         Collection<FormsContract> unsyncedRecruitment = db.getUnsyncedRecruitment();
         Collection<FormsContract> unsyncedFollowup = db.getUnsyncedFollowup();
+        Collection<LabReportsContract> unsyncedLabReports = db.getUnsyncedLabReports();
 
         rSumText += "TODAY'S RECORDS SUMMARY\r\n";
 
@@ -215,6 +218,8 @@ public class MainActivity extends Activity {
             rSumText += "Unsynced Forms: \t" + unsyncedRecruitment.size();
             rSumText += "\r\n";
             rSumText += "Unsynced Forms: \t" + unsyncedFollowup.size();
+            rSumText += "\r\n";
+            rSumText += "Unsynced Forms: \t" + unsyncedLabReports.size();
             rSumText += "\r\n";
         }
         Log.d(TAG, "onCreate: " + rSumText);
@@ -494,6 +499,16 @@ public class MainActivity extends Activity {
                     HistoryContract.class,
                     NetworkUtils.buildUrl(HistoryTable._URL),
                     db.getUnsyncedHistory(), this.findViewById(R.id.syncStatus)
+            ).execute();
+            //TODO:sync Lab Report sync to server
+            Toast.makeText(getApplicationContext(), "Syncing Lab Reports", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "LabReport",
+                    "updateSyncedLab",
+                    LabReportsContract.class,
+                    NetworkUtils.buildUrl(LabReportsTable._URL),
+                    db.getUnsyncedLabReports(), this.findViewById(R.id.syncStatus)
             ).execute();
 
 

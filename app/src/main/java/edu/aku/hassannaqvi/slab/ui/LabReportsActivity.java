@@ -23,6 +23,7 @@ import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
+import edu.aku.hassannaqvi.slab.contracts.LabReportsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationBinding;
@@ -37,6 +38,7 @@ public class LabReportsActivity extends AppCompatActivity {
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     DatabaseHelper db;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +47,12 @@ public class LabReportsActivity extends AppCompatActivity {
         context = LabReportsActivity.this;
         db = new DatabaseHelper(this);
         bi.reportdate.setManager(getSupportFragmentManager());
-        // bi.reportdate.setMaxDate(dateToday);
-        // bi.reportdate.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-3));
+        bi.reportdate.setMaxDate(DateUtils.getThreeDaysBack("dd/MM/yyyy", 6));
+        bi.reportdate.setMinDate(DateUtils.getThreeDaysBack("dd/MM/yyyy", -6));
         bi.reporttime.setManager(getSupportFragmentManager());
         bi.reporttime.setTimeFormat("HH:mm");
         bi.reporttime.setIs24HourView(true);
-//        validatorClass.setScrollViewFocus(labr_scrollview);
+     validatorClass.setScrollViewFocus(bi.labrScrollview);
         // setContentView(R.layout.activity_lab_reports);
     }
 
@@ -70,6 +72,12 @@ public class LabReportsActivity extends AppCompatActivity {
 
     private boolean formValidation() {
         // Toast.makeText(context, "Validating This Section ", Toast.LENGTH_SHORT).show();
+        if (!validatorClass.EmptyTextBox(context, bi.reportdate, getString(R.string.slrreportdate))) {
+            return false;
+        }
+        if (!validatorClass.EmptyTextBox(context, bi.reporttime, getString(R.string.time))) {
+            return false;
+        }
 
         if (!validatorClass.EmptyRadioButton(context, bi.reports, bi.cbc, getString(R.string.slrincbc))) {
             return false;
@@ -78,22 +86,69 @@ public class LabReportsActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(context, bi.slrhb, getString(R.string.slrhb))) {
                 return false;
             }
+            if (!bi.slrhb.getText().toString().matches("\\d+(\\.\\d+)*")) {
+                Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+                bi.slrhb.requestFocus();
+                bi.slrhb.setError("Please enter correct decimal value!");
+                return false;
+            } else {
+                bi.slrhb.clearFocus();
+                bi.slrhb.setError(null);
+                if (!validatorClass.RangeTextBox(this, bi.slrhb, 1.0, 30.0, getString(R.string.slrhb),  " units")) {
+                    return false;
+                }
+            }
             if (!validatorClass.EmptyTextBox(context, bi.slrwbc, getString(R.string.slrwbc))) {
                 return false;
             }
+
+            if (!bi.slrwbc.getText().toString().matches("\\d+(\\.\\d+)*")) {
+                Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+                bi.slrwbc.requestFocus();
+                bi.slrwbc.setError("Please enter correct decimal value!");
+                return false;
+            } else {
+                bi.slrwbc.clearFocus();
+                bi.slrwbc.setError(null);
+                if (!validatorClass.RangeTextBox(this, bi.slrwbc, 1.0, 30.0, getString(R.string.slrwbc),  " units")) {
+                    return false;
+                }
+            }
             if (!validatorClass.EmptyTextBox(context, bi.slrneu, getString(R.string.slrneu))) {
+                return false;
+            }
+
+            if (!validatorClass.RangeTextBox(context,bi.slrneu,1,99, getString(R.string.slrneu)," units")) {
                 return false;
             }
             if (!validatorClass.EmptyTextBox(context, bi.slrlym, getString(R.string.slrlym))) {
                 return false;
             }
+            if (!validatorClass.RangeTextBox(context,bi.slrlym,1,99, getString(R.string.slrlym)," units")) {
+                return false;
+            }
             if (!validatorClass.EmptyTextBox(context, bi.slrpla, getString(R.string.slrpla))) {
+                return false;
+            }
+            if (!validatorClass.RangeTextBox(context,bi.slrpla,1,999, getString(R.string.slrpla)," units")) {
                 return false;
             }
         }
         if (bi.crp.isChecked()) {
             if (!validatorClass.EmptyTextBox(context, bi.slrcrp, getString(R.string.slrcrp))) {
                 return false;
+            }
+            if (!bi.slrcrp.getText().toString().matches("\\d+(\\.\\d+)*")) {
+                Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+                bi.slrcrp.requestFocus();
+                bi.slrcrp.setError("Please enter correct decimal value!");
+                return false;
+            } else {
+                bi.slrcrp.clearFocus();
+                bi.slrcrp.setError(null);
+                if (!validatorClass.RangeTextBox(this, bi.slrcrp, 0.0, 1.0, getString(R.string.slrcrp),  " units")) {
+                    return false;
+                }
             }
         }
         if (bi.blood.isChecked()) {
@@ -112,7 +167,7 @@ public class LabReportsActivity extends AppCompatActivity {
         return true;
     }
 
-    public void BtnContinue() {
+    public void BtnEnd() {
         //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
@@ -121,10 +176,10 @@ public class LabReportsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                //  Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Lab Report Submitted", Toast.LENGTH_SHORT).show();
                 finish();
 
-                startActivity(new Intent(this, EndingActivity.class).putExtra("completed", true));
+                //startActivity(new Intent(this, EndingActivity.class).putExtra("completed", true));
 
             } else {
                 // Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -132,18 +187,19 @@ public class LabReportsActivity extends AppCompatActivity {
         }
     }
 
+
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(context);
 
-        Long newrowid = db.addForm(MainApp.fc);
+        Long newrowid = db.addLabReport(MainApp.lr);
 
-        MainApp.fc.set_ID(String.valueOf(newrowid));
+        MainApp.lr.set_ID(String.valueOf(newrowid));
 
         if (newrowid != 0) {
             //Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
 
-            MainApp.fc.setUID((MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
-            db.updateFormID();
+            MainApp.lr.set_UID((MainApp.lr.getDeviceID() + MainApp.lr.get_ID()));
+            db.updateLabReportID();
 
             return true;
         } else {
@@ -152,104 +208,41 @@ public class LabReportsActivity extends AppCompatActivity {
         }
     }
 
-    public void BtnEnd() {
-        final Intent endingIntent = new Intent(context, EndingActivity.class).putExtra("complete", false);
-//Completed (5): Add a prompt "Do you really want to exit?Yes/No" on click on exit button
-        // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
-
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                context);
-        alertDialogBuilder
-                .setMessage("Do you want to Exit??")
-                .setCancelable(false)
-                .setPositiveButton("Yes",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,
-                                                int id) {
-//                                    if (formValidation()) {
-                                try {
-                                    SaveDraft();
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                if (UpdateDB()) {
-                                    finish();
-                                    startActivity(endingIntent);
-                                } else {
-                                    Toast.makeText(context, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-                                }
-//                                    }
-                            }
-                        });
-        alertDialogBuilder.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-        AlertDialog alert = alertDialogBuilder.create();
-        alert.show();
-
-    }
 
     private void SaveDraft() throws JSONException {
-        MainApp.fc = new FormsContract();
-        MainApp.fc.setFormDate(dtToday);
-        MainApp.fc.setUser(MainApp.userName);
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
+        MainApp.lr = new LabReportsContract();
+        MainApp.lr.setFormDate(dtToday);
+        MainApp.lr.setUser(MainApp.userName);
+        MainApp.lr.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-        MainApp.fc.setDevicetagID(MainApp.getTagName(context));
-        MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
-        MainApp.fc.setsMrno(bi.lbrMrno.getText().toString());
-        MainApp.fc.setsStudyid(bi.lbrStudyid.getText().toString());
-        MainApp.fc.setFormtype(MainApp.FORMTYPE_LAB);
-        setGPS(); //Set GPS
-
-        JSONObject labr = new JSONObject();
-        // labr.put("studyid", bi.lbr_studyid.getText().toString());
-//        labr.put("mrno", bi.lbr_mrno.getText().toString());
-        labr.put("reportdate", dtToday);
-
-        labr.put("hb", bi.slrhb.getText().toString());
-        labr.put("wbc", bi.slrwbc.getText().toString());
-        labr.put("neutrophils", bi.slrneu.getText().toString());
-        labr.put("lymphocytes", bi.slrlym.getText().toString());
-        labr.put("platelets", bi.slrpla.getText().toString());
-        labr.put("crpcount", bi.slrcrp.getText().toString());
-        labr.put("organismname1", bi.slrorg1.getText().toString());
-        labr.put("organismname2", bi.slrorg2.getText().toString());
+        MainApp.lr.setDevicetagID(MainApp.getTagName(context));
+        MainApp.lr.setAppVersion(MainApp.versionName + "." + MainApp.versionCode);
+        MainApp.lr.setMrno(bi.lbrMrno.getText().toString());
+        MainApp.lr.setStudyid(bi.lbrStudyid.getText().toString());
+        MainApp.lr.setReportdate(bi.reportdate.getText().toString());
+        MainApp.lr.setReporttime(bi.reporttime.getText().toString());
 
 
-        MainApp.fc.setsFup(String.valueOf(labr));
+        JSONObject cbc = new JSONObject();
+        cbc.put("reporttype",bi.cbc.isChecked()?"1":bi.crp.isChecked()? "2":bi.blood.isChecked()?"3":"0");
+        cbc.put("hb", bi.slrhb.getText().toString());
+        cbc.put("wbc", bi.slrwbc.getText().toString());
+        cbc.put("neutrophils", bi.slrneu.getText().toString());
+        cbc.put("lymphocytes", bi.slrlym.getText().toString());
+        cbc.put("platelets", bi.slrpla.getText().toString());
+        MainApp.lr.setCbc(String.valueOf(cbc));
 
+        JSONObject crp = new JSONObject();
+        crp.put("crpcount", bi.slrcrp.getText().toString());
+        MainApp.lr.setCrp(String.valueOf(crp));
+
+        JSONObject blood = new JSONObject();
+        blood.put("organismgrowth", bi.growthyes.isChecked() ? "1" : bi.growthno.isChecked() ? "2" : "0");
+        blood.put("organismname1", bi.slrorg1.getText().toString());
+        blood.put("organismname2", bi.slrorg2.getText().toString());
+        MainApp.lr.setBlood(String.valueOf(blood));
     }
 
-    private void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
 
-            if (lat == "0" && lang == "0") {
-                // Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                //  Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            MainApp.fc.setGpsLat(lat);
-            MainApp.fc.setGpsLng(lang);
-            MainApp.fc.setGpsAcc(acc);
-            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
-
-            //Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
 
 }

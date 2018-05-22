@@ -1375,7 +1375,7 @@
                         android:id="@+id/sfu51"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ+()"
                         android:hint="@string/sfu51"
                         android:inputType="text" />
 
@@ -1388,17 +1388,55 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
-                    <EditText
-                        android:id="@+id/sfu52"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="1234567890"
-                        android:hint="@string/sfu52"
-                        android:inputType="number"
-                        android:maxLength="2"
+                        android:orientation="horizontal"
+                        android:visibility='@{sfu52a.checked ? View.GONE :  View.VISIBLE}'>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+                        <EditText
+                            android:id="@+id/sfu52d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/days"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:text='@{sfu52a.checked ? "" : sfu52d.getText.toString }'/>
+                        </android.support.design.widget.TextInputLayout>
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            >
+                        <EditText
+                            android:id="@+id/sfu52hr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/hours"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:text='@{sfu52a.checked ? "" : sfu52hr.getText.toString }' />
+                        </android.support.design.widget.TextInputLayout>
+                    </LinearLayout>
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/sfu52reason"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/reason"
+                        android:inputType="text"
+                        android:text='@{sfu52a.checked ? "" : sfu52reason.getText.toString }'
                         android:visibility='@{sfu52a.checked ? View.GONE :  View.VISIBLE}' />
-                    android:text='@{sfu52a.checked ? "" : sfu52.getText.toString }'
-                    />
+                    </android.support.design.widget.TextInputLayout>
 
                     <LinearLayout
                         android:id="@+id/fldGrpchecksfu53"

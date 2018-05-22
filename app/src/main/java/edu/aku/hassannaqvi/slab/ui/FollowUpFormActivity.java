@@ -201,7 +201,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     defaultValue = true;
                 }*/
                 //startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()));
-                if (!bi.sfu10.getText().toString().equals("0")) {
+                if (!bi.sfu10.getText().toString().equals("0") && !bi.sfu10.getText().toString().equals("00")) {
                     startActivity(new Intent(context, HistoryActivity.class)
                             .putExtra(FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())

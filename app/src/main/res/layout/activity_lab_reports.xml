@@ -133,7 +133,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -242,7 +242,7 @@
                         android:id="@+id/slrhb"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="1234567890"
+                        android:digits="1234567890."
                         android:hint="@string/slrhb"
                         android:padding="10dp"
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
@@ -264,7 +264,7 @@
                         android:id="@+id/slrwbc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="1234567890"
+                        android:digits="1234567890."
                         android:hint="@string/slrwbc"
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="numberDecimal"
@@ -287,8 +287,8 @@
                         android:digits="1234567890"
                         android:hint="@string/slrneu"
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
-                        android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:inputType="number"
+                        android:maxLength="2" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -307,8 +307,8 @@
                         android:digits="1234567890"
                         android:hint="@string/slrlym"
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
-                        android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:inputType="number"
+                        android:maxLength="2" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -327,9 +327,8 @@
                         android:digits="1234567890"
                         android:hint="@string/slrpla"
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
-
-                        android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:inputType="number"
+                        android:maxLength="3" />
 
                     <RadioButton
                         android:id="@+id/crp"
@@ -357,7 +356,7 @@
                         android:id="@+id/slrcrp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="1234567890"
+                        android:digits="1234567890."
                         android:hint="@string/slrcrp"
                         android:visibility='@{crp.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="numberDecimal"
@@ -421,7 +420,7 @@
                         android:inputType="text"
                         android:text='@{growthyes.checked ? slrorg1.getText.toString : "" }'
                         android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }'
-                        android:maxLength="4" />
+                         />
                     </android.support.design.widget.TextInputLayout>
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="match_parent"
@@ -435,10 +434,10 @@
                         android:inputType="text"
                         android:text='@{growthyes.checked ? slrorg2.getText.toString : "" }'
                         android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }'
-                        android:maxLength="4" />
+                         />
                     </android.support.design.widget.TextInputLayout>
 
-            </LinearLayout>
+
 
             <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
             <LinearLayout
@@ -457,10 +456,9 @@
                     android:backgroundTint="@color/red"
                     android:onClick="@{() -> callback.BtnEnd()}"
                     android:padding="5dp"
-                    android:text="@string/end_interview"
+                    android:text="@string/submitreport"
                     android:textColor="@color/red" />
-
-                <Button
+              <!--  <Button
                     android:id="@+id/btn_Continue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -469,8 +467,9 @@
                     android:onClick="@{() -> callback.BtnContinue()}"
                     android:padding="5dp"
                     android:text="@string/nextSection"
-                    android:textColor="@color/green" />
+                    android:textColor="@color/green" />-->
 
+            </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

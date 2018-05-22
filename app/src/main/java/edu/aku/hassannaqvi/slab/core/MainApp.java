@@ -23,6 +23,7 @@ import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
+import edu.aku.hassannaqvi.slab.contracts.LabReportsContract;
 import edu.aku.hassannaqvi.slab.ui.EndingActivity;
 
 /**
@@ -75,6 +76,7 @@ public class MainApp extends Application {
 
     public static Boolean admin = false;
     public static FormsContract fc;
+    public static LabReportsContract lr;
     public static FormsContract historyForminfo;
     public static FollowupListContract followuplist;
     public static ChildListContract R_CHILDLIST;  //to set child info

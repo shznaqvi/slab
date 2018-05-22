@@ -302,7 +302,7 @@
                 android:text="Sync Status"
                 android:visibility="gone" />
 
-            <Button
+  <!--          <Button
                 android:id="@+id/openLabInvestigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -312,7 +312,7 @@
                 android:text="Lab Investigation up"
                 android:visibility="gone" />
 
-
+-->
             <Button
                 android:id="@+id/OpenA"
                 android:layout_width="match_parent"
