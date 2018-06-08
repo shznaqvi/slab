@@ -107,10 +107,12 @@ DatabaseHelper db;
             if (UpdateDB()) {
            //     Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-
+/*
                 if (MainApp.hiCount == Integer.parseInt(noofSachet)) {
                     MainApp.hiCount = 1;
-                    startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation).putExtra("childName", bi.ChildName.getText().toString())
+                    startActivity(new Intent(this, FeedingPracticeActivity.class)
+                            .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
+                            .putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("mrno",localmrno)
                             .putExtra("studyID",localstudyID));
                 }
@@ -123,6 +125,26 @@ DatabaseHelper db;
                             .putExtra("mrno",localmrno)
                             .putExtra("studyID",localstudyID));
                 }
+                */
+
+                if (MainApp.hiCount < Integer.parseInt(noofSachet)) {
+                    MainApp.hiCount++;
+                    startActivity(new Intent(this, HistoryActivity.class)
+                            .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
+                            .putExtra("childName", bi.ChildName.getText().toString())
+                            .putExtra("noofSachet",noofSachet)
+                            .putExtra("mrno",localmrno)
+                            .putExtra("studyID",localstudyID));
+                }
+                else{
+                    MainApp.hiCount = 1;//reset counter
+                    startActivity(new Intent(this, FeedingPracticeActivity.class)
+                            .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
+                            .putExtra("childName", bi.ChildName.getText().toString())
+                            .putExtra("mrno",localmrno)
+                            .putExtra("studyID",localstudyID));
+                }
+
                 //startActivity(new Intent(this, SachetActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()).putExtra("noofSachet",bi.sfu10.getText().toString()));
 
 //                startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", nextExamSec).putExtra("childName", bi.ChildName.getText().toString()));
@@ -167,7 +189,7 @@ DatabaseHelper db;
         MainApp.hc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         MainApp.hc.setDevicetagID(MainApp.getTagName(this));
-        MainApp.hc.setUUID(MainApp.fc.get_ID());
+        MainApp.hc.setUUID(MainApp.fc.getUID());/// should be uid
         MainApp.hc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.hc.setsMrno(localmrno);
         MainApp.hc.setFormtype(MainApp.FORMTYPE_Fup);

@@ -69,6 +69,11 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
                 android:textSize="16sp" />
         </RelativeLayout>
 
+<ProgressBar
+    android:id="@+id/loadingfollowup"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical|center_horizontal"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recylerfollowuplists"

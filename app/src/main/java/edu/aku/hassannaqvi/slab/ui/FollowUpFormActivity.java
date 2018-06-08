@@ -9,6 +9,9 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -45,7 +48,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
     String childName;
     int noofsachet;
     Context context;
-
+    int length = 0;
     private static final String TAG = FollowUpFormActivity.class.getName();
 
     @Override
@@ -96,6 +99,52 @@ public class FollowUpFormActivity extends AppCompatActivity {
     }
 
     private void setupView() {
+
+        bi.sfu001.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                bi.sfu001.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+//                clearFields();
+
+
+                if (!bi.sfu001.getText().toString().isEmpty() && bi.sfu001.getText().toString().length() == 3) {
+                    if (bi.sfu001.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            bi.sfu001.setText(bi.sfu001.getText().toString() + "-");
+                            bi.sfu001.setSelection(bi.sfu001.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+                if (!bi.sfu001.getText().toString().isEmpty() && bi.sfu001.getText().toString().length() == 6) {
+                    if (bi.sfu001.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            bi.sfu001.setText(bi.sfu001.getText().toString() + "-");
+                            bi.sfu001.setSelection(bi.sfu001.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
         bi.sfu01.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -246,40 +295,40 @@ public class FollowUpFormActivity extends AppCompatActivity {
 //Completed (5): Add a prompt "Do you really want to exit?Yes/No" on click on exit button
         // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    context);
-            alertDialogBuilder
-                    .setMessage("Do you want to Exit??")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        alertDialogBuilder
+                .setMessage("Do you want to Exit??")
+                .setCancelable(false)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
 //                                    if (formValidation()) {
-                                    try {
-                                        SaveDraft();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    if (UpdateDB()) {
-                                        finish();
-                                        startActivity(endingIntent);
-                                    } else {
-                                        Toast.makeText(context, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-                                    }
-//                                    }
+                                try {
+                                    SaveDraft();
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            });
-            alertDialogBuilder.setNegativeButton("No",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = alertDialogBuilder.create();
-            alert.show();
+                                if (UpdateDB()) {
+                                    finish();
+                                    startActivity(endingIntent);
+                                } else {
+                                    Toast.makeText(context, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+                                }
+//                                    }
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
 
-        }
+    }
 
     private void SaveDraft() throws JSONException {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);

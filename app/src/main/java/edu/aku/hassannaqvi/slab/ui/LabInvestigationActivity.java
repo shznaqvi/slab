@@ -45,6 +45,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
         Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
     }
     private void setupView() {
+
         bi.sli02.setManager(getSupportFragmentManager());
         bi.sli02.setMaxDate(dateToday);
         bi.sli02.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-7));

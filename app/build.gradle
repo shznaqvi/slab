@@ -21,7 +21,7 @@ android {
         defaultConfig {
             applicationId "edu.aku.hassannaqvi.slab"
             minSdkVersion 22
-            targetSdkVersion 22
+            targetSdkVersion 23
 
 
             versionCode code

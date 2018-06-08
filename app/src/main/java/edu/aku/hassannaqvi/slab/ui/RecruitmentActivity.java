@@ -7,6 +7,9 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +42,7 @@ public class RecruitmentActivity extends AppCompatActivity {
     FormsContract formsContract;
     EligibilityJSONModel elmodel;
     private static final String TAG = RecruitmentActivity.class.getName();
+    int length = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +65,50 @@ public class RecruitmentActivity extends AppCompatActivity {
     }
 
     private void setupView() {
+        bi.senmrno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                bi.senmrno.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+//                clearFields();
+
+
+                if (!bi.senmrno.getText().toString().isEmpty() && bi.senmrno.getText().toString().length() == 3) {
+                    if (bi.senmrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            bi.senmrno.setText(bi.senmrno.getText().toString() + "-");
+                            bi.senmrno.setSelection(bi.senmrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+                if (!bi.senmrno.getText().toString().isEmpty() && bi.senmrno.getText().toString().length() == 6) {
+                    if (bi.senmrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            bi.senmrno.setText(bi.senmrno.getText().toString() + "-");
+                            bi.senmrno.setSelection(bi.senmrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
         bi.sen03.setManager(getSupportFragmentManager());
         bi.sen03.setMaxDate(dateToday);
 

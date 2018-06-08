@@ -47,7 +47,6 @@ public class LabReportsContract {
         this.synced = jsonObject.getString(LabReportsTable.COLUMN_SYNCED );
         this.synced_date = jsonObject.getString(LabReportsTable.COLUMN_SYNCED_DATE );
         this.appVersion= jsonObject.getString(LabReportsTable.COLUMN_APPVERSION);
-
         return this;
     }
 

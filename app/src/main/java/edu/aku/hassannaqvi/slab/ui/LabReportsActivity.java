@@ -10,6 +10,9 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +41,7 @@ public class LabReportsActivity extends AppCompatActivity {
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     DatabaseHelper db;
 
+    int length = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,13 +50,57 @@ public class LabReportsActivity extends AppCompatActivity {
         bi.setCallback(this);
         context = LabReportsActivity.this;
         db = new DatabaseHelper(this);
+        bi.lbrMrno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                bi.lbrMrno.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+//                clearFields();
+
+
+                if (!bi.lbrMrno.getText().toString().isEmpty() && bi.lbrMrno.getText().toString().length() == 3) {
+                    if (bi.lbrMrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            bi.lbrMrno.setText(bi.lbrMrno.getText().toString() + "-");
+                            bi.lbrMrno.setSelection(bi.lbrMrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+                if (!bi.lbrMrno.getText().toString().isEmpty() && bi.lbrMrno.getText().toString().length() == 6) {
+                    if (bi.lbrMrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            bi.lbrMrno.setText(bi.lbrMrno.getText().toString() + "-");
+                            bi.lbrMrno.setSelection(bi.lbrMrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
         bi.reportdate.setManager(getSupportFragmentManager());
         bi.reportdate.setMaxDate(DateUtils.getThreeDaysBack("dd/MM/yyyy", 6));
         bi.reportdate.setMinDate(DateUtils.getThreeDaysBack("dd/MM/yyyy", -6));
         bi.reporttime.setManager(getSupportFragmentManager());
         bi.reporttime.setTimeFormat("HH:mm");
         bi.reporttime.setIs24HourView(true);
-     validatorClass.setScrollViewFocus(bi.labrScrollview);
+        validatorClass.setScrollViewFocus(bi.labrScrollview);
         // setContentView(R.layout.activity_lab_reports);
     }
 
@@ -94,7 +142,7 @@ public class LabReportsActivity extends AppCompatActivity {
             } else {
                 bi.slrhb.clearFocus();
                 bi.slrhb.setError(null);
-                if (!validatorClass.RangeTextBox(this, bi.slrhb, 1.0, 30.0, getString(R.string.slrhb),  " units")) {
+                if (!validatorClass.RangeTextBox(this, bi.slrhb, 1.0, 30.0, getString(R.string.slrhb), " units")) {
                     return false;
                 }
             }
@@ -110,7 +158,7 @@ public class LabReportsActivity extends AppCompatActivity {
             } else {
                 bi.slrwbc.clearFocus();
                 bi.slrwbc.setError(null);
-                if (!validatorClass.RangeTextBox(this, bi.slrwbc, 1.0, 30.0, getString(R.string.slrwbc),  " units")) {
+                if (!validatorClass.RangeTextBox(this, bi.slrwbc, 1.0, 30.0, getString(R.string.slrwbc), " units")) {
                     return false;
                 }
             }
@@ -118,19 +166,19 @@ public class LabReportsActivity extends AppCompatActivity {
                 return false;
             }
 
-            if (!validatorClass.RangeTextBox(context,bi.slrneu,1,99, getString(R.string.slrneu)," units")) {
+            if (!validatorClass.RangeTextBox(context, bi.slrneu, 1, 99, getString(R.string.slrneu), " units")) {
                 return false;
             }
             if (!validatorClass.EmptyTextBox(context, bi.slrlym, getString(R.string.slrlym))) {
                 return false;
             }
-            if (!validatorClass.RangeTextBox(context,bi.slrlym,1,99, getString(R.string.slrlym)," units")) {
+            if (!validatorClass.RangeTextBox(context, bi.slrlym, 1, 99, getString(R.string.slrlym), " units")) {
                 return false;
             }
             if (!validatorClass.EmptyTextBox(context, bi.slrpla, getString(R.string.slrpla))) {
                 return false;
             }
-            if (!validatorClass.RangeTextBox(context,bi.slrpla,1,999, getString(R.string.slrpla)," units")) {
+            if (!validatorClass.RangeTextBox(context, bi.slrpla, 1, 999, getString(R.string.slrpla), " units")) {
                 return false;
             }
         }
@@ -146,7 +194,7 @@ public class LabReportsActivity extends AppCompatActivity {
             } else {
                 bi.slrcrp.clearFocus();
                 bi.slrcrp.setError(null);
-                if (!validatorClass.RangeTextBox(this, bi.slrcrp, 0.0, 1.0, getString(R.string.slrcrp),  " units")) {
+                if (!validatorClass.RangeTextBox(this, bi.slrcrp, 0.0, 1.0, getString(R.string.slrcrp), " units")) {
                     return false;
                 }
             }
@@ -224,7 +272,7 @@ public class LabReportsActivity extends AppCompatActivity {
 
 
         JSONObject cbc = new JSONObject();
-        cbc.put("reporttype",bi.cbc.isChecked()?"1":bi.crp.isChecked()? "2":bi.blood.isChecked()?"3":"0");
+        cbc.put("reporttype", bi.cbc.isChecked() ? "1" : bi.crp.isChecked() ? "2" : bi.blood.isChecked() ? "3" : "0");
         cbc.put("hb", bi.slrhb.getText().toString());
         cbc.put("wbc", bi.slrwbc.getText().toString());
         cbc.put("neutrophils", bi.slrneu.getText().toString());
@@ -242,7 +290,6 @@ public class LabReportsActivity extends AppCompatActivity {
         blood.put("organismname2", bi.slrorg2.getText().toString());
         MainApp.lr.setBlood(String.valueOf(blood));
     }
-
 
 
 }

@@ -24,6 +24,9 @@ import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.databinding.ActivityViewFollowUpBinding;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class ViewFollowUpActivity extends AppCompatActivity {
     ActivityViewFollowUpBinding bi;
     FollowupAdapter adapter;
@@ -109,6 +112,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
         public generateFollowupList(Context mContext) {
             this.mContext = mContext;
+           bi.loadingfollowup.setVisibility(VISIBLE);
         }
 
         @Override
@@ -128,8 +132,8 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
 
                     if (adapter.getItemCount() > 0) {
-                        bi.recylerfollowuplists.setVisibility(View.VISIBLE);
-                        bi.nofup.setVisibility(View.GONE);
+                        bi.recylerfollowuplists.setVisibility(VISIBLE);
+                        bi.nofup.setVisibility(GONE);
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         bi.recylerfollowuplists.setLayoutManager(mLayoutManager);
                         bi.recylerfollowuplists.setItemAnimator(new DefaultItemAnimator());
@@ -137,8 +141,8 @@ public class ViewFollowUpActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
 
                     } else {
-                        bi.recylerfollowuplists.setVisibility(View.GONE);
-                        bi.nofup.setVisibility(View.VISIBLE);
+                        bi.recylerfollowuplists.setVisibility(GONE);
+                        bi.nofup.setVisibility(VISIBLE);
                         // Toast.makeText(this, "No Child Found!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -149,17 +153,18 @@ public class ViewFollowUpActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            bi.loadingfollowup.setVisibility(GONE);
 
-            new Handler().postDelayed(new Runnable() {
+          /*  new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     // notifychildchange(childAdapter);
 //                   Background black for those that's data filled
-                  /*  for (int item : MainApp.hhClicked) {
+                  *//*  for (int item : MainApp.hhClicked) {
                         binding.recyclerChild.getChildAt(item).setBackgroundColor(Color.BLACK);
-                    }*/
+                    }*//*
                 }
-            }, 800);
+            }, 800);*/
         }
     }
 }
