@@ -19,14 +19,15 @@ public class HistoryContract {
     private String formDate = ""; // Date
     private String user = ""; // Interviewer
     private String formtype = "";
-
+    private String count = "";
+    private String round = "";
     private String sMrno = "";     // Mr number
     private String sStudyid = "";     // Study ID
     private String isEl = "";     // isEligible
     private String noofSachet = "";
     private String noofDays = "";
     private String sfu11 = "";
-    private String isinserted = "";     // Child inserted
+    private String isinserted = "";
     private String deviceID = "";
     private String devicetagID = "";
     private String synced = "";
@@ -45,13 +46,14 @@ public class HistoryContract {
         this.formDate= jsonObject.getString(HistoryTable.COLUMN_FORMDATE);
         this.user= jsonObject.getString(HistoryTable.COLUMN_USER);
         this.formtype= jsonObject.getString(HistoryTable.COLUMN_FORMTYPE);
+        this.count = jsonObject.getString(HistoryTable.COLUMN_COUNT);
+        this.round = jsonObject.getString(HistoryTable.COLUMN_ROUND);
         this.sMrno= jsonObject.getString(HistoryTable.COLUMN_SMRNO);
         this.sStudyid= jsonObject.getString(HistoryTable.COLUMN_SSTUDYID);
         this.isEl= jsonObject.getString(HistoryTable.COLUMN_ISEL);
         this.noofSachet= jsonObject.getString(HistoryTable.COLUMN_NOOFSACHET);
         this.noofDays= jsonObject.getString(HistoryTable.COLUMN_NOOFDAYS);
         this.sfu11= jsonObject.getString(HistoryTable.COLUMN_SFU11);
-        this.isinserted= jsonObject.getString(HistoryTable.COLUMN_ISINSERTED);
         this.deviceID = jsonObject.getString(HistoryTable.COLUMN_DEVICEID );
         this.devicetagID = jsonObject.getString(HistoryTable.COLUMN_DEVICETAGID );
         this.synced = jsonObject.getString(HistoryTable.COLUMN_SYNCED );
@@ -68,20 +70,20 @@ public class HistoryContract {
         this.formDate = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_FORMDATE));
         this.user = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_USER));
         this.formtype = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_FORMTYPE));
+        this.count = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_COUNT));
+        this.round = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_ROUND));
         this.sMrno = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_SMRNO));
         this.sStudyid = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_SSTUDYID));
         this.isEl = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_ISEL));
         this.noofSachet = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_NOOFSACHET));
         this.noofDays = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_NOOFDAYS));
         this.sfu11 = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_SFU11));
-        this.isinserted = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_ISINSERTED));
         this.deviceID  = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_DEVICEID ));
         this.devicetagID  = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_DEVICETAGID ));
         this.synced  = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_SYNCED ));
         this.synced_date  = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_SYNCED_DATE ));
         this.appversion = cursor.getString(cursor.getColumnIndex(HistoryTable.COLUMN_APPVERSION));
 
-        // TODO:
 
         return this;
 
@@ -100,12 +102,13 @@ public class HistoryContract {
         json.put(HistoryTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(HistoryTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(HistoryTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
+        json.put(HistoryTable.COLUMN_COUNT, this.count== null ? JSONObject.NULL : this.count);
+        json.put(HistoryTable.COLUMN_ROUND, this.round == null ? JSONObject.NULL : this.round);
         json.put(HistoryTable.COLUMN_SMRNO, this.sMrno == null ? JSONObject.NULL : this.sMrno);
         json.put(HistoryTable.COLUMN_SSTUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
         json.put(HistoryTable.COLUMN_ISEL, this.isEl == null ? JSONObject.NULL : this.isEl);
         json.put(HistoryTable.COLUMN_NOOFSACHET, this.noofSachet == null ? JSONObject.NULL : this.noofSachet);
         json.put(HistoryTable.COLUMN_NOOFDAYS, this.noofDays == null ? JSONObject.NULL : this.noofDays);
-        json.put(HistoryTable.COLUMN_ISINSERTED, this.isinserted == null ? JSONObject.NULL : this.isinserted);
         json.put(HistoryTable.COLUMN_DEVICEID , this.deviceID  == null ? JSONObject.NULL : this.deviceID );
         json.put(HistoryTable.COLUMN_DEVICETAGID , this.devicetagID  == null ? JSONObject.NULL : this.devicetagID );
         json.put(HistoryTable.COLUMN_SYNCED , this.synced  == null ? JSONObject.NULL : this.synced );
@@ -228,13 +231,6 @@ public class HistoryContract {
         this.sfu11 = sfu11;
     }
 
-    public String getIsinserted() {
-        return isinserted;
-    }
-
-    public void setIsinserted(String isinserted) {
-        this.isinserted = isinserted;
-    }
 
     public String getDeviceID() {
         return deviceID;
@@ -276,6 +272,29 @@ public class HistoryContract {
         this.appversion = appversion;
     }
 
+    public String getcount() {
+        return count;
+    }
+
+    public void setcount(String count) {
+        this.count = count;
+    }
+
+    public String getround() {
+        return round;
+    }
+
+    public void setround(String round) {
+        this.round = round;
+    }
+
+    public String getIsinserted() {
+        return isinserted;
+    }
+
+    public void setIsinserted(String isinserted) {
+        this.isinserted = isinserted;
+    }
 
     public static abstract class HistoryTable implements BaseColumns {
 
@@ -288,6 +307,8 @@ public class HistoryContract {
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_FORMTYPE = "formtype";
+        public static final String COLUMN_COUNT = "count";
+        public static final String COLUMN_ROUND = "round";
         public static final String COLUMN_SMRNO = "smrno";
         public static final String COLUMN_SSTUDYID = "sstudyid";
         public static final String COLUMN_ISEL = "isel";

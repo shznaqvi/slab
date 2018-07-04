@@ -7,6 +7,9 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +37,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
     String dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
     String tToday = new SimpleDateFormat("HH:mm").format(new Date().getTime());
-
+    int length = 0;
     private static final String TAG = EligibilityFormActivity.class.getName();
 
     @Override
@@ -60,7 +63,50 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel03t.setManager(getSupportFragmentManager());
         bi.sel03t.setTimeFormat("HH:mm");
         bi.sel03t.setIs24HourView(true);
+        bi.sel01.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+                bi.sel01.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+//                clearFields();
+
+
+                if (!bi.sel01.getText().toString().isEmpty() && bi.sel01.getText().toString().length() == 3) {
+                    if (bi.sel01.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            bi.sel01.setText(bi.sel01.getText().toString() + "-");
+                            bi.sel01.setSelection(bi.sel01.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+                if (!bi.sel01.getText().toString().isEmpty() && bi.sel01.getText().toString().length() == 6) {
+                    if (bi.sel01.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            bi.sel01.setText(bi.sel01.getText().toString() + "-");
+                            bi.sel01.setSelection(bi.sel01.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
 //        bi.sel03t.setManager(getSupportFragmentManager());
         bi.sel12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

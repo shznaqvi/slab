@@ -163,8 +163,6 @@ public class FollowupListContract {
         this.fupstatus = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_FUPSTATUS));
         this.lastfupdate = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN_LASTFUPDATE));
 
-
-
         return this;
     }
     public JSONObject toJSONObject() throws JSONException {

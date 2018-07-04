@@ -185,7 +185,8 @@ DatabaseHelper db;
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         MainApp.hc = new HistoryContract();
         MainApp.hc.setUser(MainApp.userName);
-        MainApp.hc.setFormDate(dtToday);
+//        MainApp.hc.setFormDate(dtToday);  // this date has been changed by hassan bhai after data analysis.
+        MainApp.hc.setFormDate(MainApp.fc.getFormDate());
         MainApp.hc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
         MainApp.hc.setDevicetagID(MainApp.getTagName(this));
@@ -198,43 +199,19 @@ DatabaseHelper db;
         MainApp.hc.setNoofDays(noofSachet);
         MainApp.hc.setNoofSachet(noofSachet);
         MainApp.hc.setIsinserted("1");
-        setGPS(); //Set GPS
+        MainApp.hc.setround(MainApp.fc.getFupround());
+        MainApp.hc.setcount(String.valueOf(MainApp.hiCount));
+
         JSONObject his = new JSONObject();
         his.put("sfuqty", bi.sfu11a11.isChecked() ? "1"
                 : bi.sfu11a12.isChecked() ? "2"
                 : "0");
-            his.put("sfuifpartial", bi.sfu11a21.isChecked() ? "1"
-                    : bi.sfu11a22.isChecked() ? "2"
-                    : "0");
+        his.put("sfuifpartial", bi.sfu11a21.isChecked() ? "1"
+                : bi.sfu11a22.isChecked() ? "2"
+                : "0");
         MainApp.hc.setSfu11(String.valueOf(his));
     }
-    private void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
 
-            if (lat == "0" && lang == "0") {
-                //Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-               // Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            MainApp.fc.setGpsLat(lat);
-            MainApp.fc.setGpsLng(lang);
-            MainApp.fc.setGpsAcc(acc);
-            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
-
-            //Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            //Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
     private boolean formValidation() {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1, bi.sfu11a11, getString(R.string.sfuifqty))) {
             return false;

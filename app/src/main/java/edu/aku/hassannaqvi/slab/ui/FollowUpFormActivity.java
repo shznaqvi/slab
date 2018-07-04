@@ -220,7 +220,6 @@ public class FollowUpFormActivity extends AppCompatActivity {
                 } else {
                     bi.sfu08.setError(null);
                 }
-
             }
         }
         if (!validatorClass.EmptyTextBox(context, bi.sfu10, getString(R.string.sfu10))) {

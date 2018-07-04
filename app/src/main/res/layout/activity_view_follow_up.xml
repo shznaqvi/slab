@@ -44,12 +44,14 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="List Of Follow Up's"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="#EFEBE9"
-                android:paddingBottom="12dp"
-                android:textColor="@color/colorPrimary"
                 android:gravity="center_horizontal"
-                android:textStyle="bold"/>
+                android:paddingBottom="12dp"
+                android:text="List Of Follow Up's"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/addFollowUp"

@@ -27,6 +27,7 @@ import edu.aku.hassannaqvi.slab.other.JSONUtilClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 import static edu.aku.hassannaqvi.slab.core.MainApp.fc;
+import static edu.aku.hassannaqvi.slab.core.MainApp.hc;
 
 public class FollowUpEndingActivity extends AppCompatActivity {
     ActivityFollowUpEndingBinding bi;
@@ -141,6 +142,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             count = 0;
         }
         fc.setFupround(String.valueOf(count));
+        hc.setround(fc.getFupround());
         if (bi.istatusg.isChecked()) {
             fc.setIsDischarged("true");
             fc.setDischargeDate(bi.sfu04.getText().toString());
@@ -164,6 +166,9 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             MainApp.fc.setIsEl("");
         }
         int updcount = db.updatefupEnding();
+        for (int i= 1 ; i<=Integer.parseInt(hc.getcount());i++){
+            db.updateHistory(String.valueOf(i));
+        }
 
 //This is for followup list
 

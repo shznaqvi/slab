@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -33,6 +36,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
     DatabaseHelper db;
     List<FollowupListContract> followupList;
     String localmrno;
+    int length = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,50 @@ public class ViewFollowUpActivity extends AppCompatActivity {
         final EditText usermrno = inputmrView
                 .findViewById(R.id.etmrno);
 
+        usermrno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                usermrno.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+//                clearFields();
+
+
+                if (!usermrno.getText().toString().isEmpty() && usermrno.getText().toString().length() == 3) {
+                    if (usermrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            usermrno.setText(usermrno.getText().toString() + "-");
+                            usermrno.setSelection(usermrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+                if (!usermrno.getText().toString().isEmpty() && usermrno.getText().toString().length() == 6) {
+                    if (usermrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            usermrno.setText(usermrno.getText().toString() + "-");
+                            usermrno.setSelection(usermrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
 
         // set dialog message
         alertDialogBuilder

@@ -54,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "slab.db";
     public static final String DB_NAME = DATABASE_NAME.replace(".", "_copy.");
     public static final String PROJECT_NAME = "DMU-SRCPREG";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
     private static final String SQL_CREATE_FORMS = "CREATE TABLE "
             + FormsTable.TABLE_NAME + "("
             + FormsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -105,6 +105,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_ALTER_FORMTABLE_TOTALSACHGIVEN = "ALTER TABLE " +
             FormsTable.TABLE_NAME + " ADD COLUMN " +
             FormsTable.COLUMN_TOTALSACHGIVEN + " TEXT";
+    private static final String SQL_ALTER_HISTORY_COUNT= "ALTER TABLE " +
+            HistoryTable.TABLE_NAME + " ADD COLUMN " +
+            HistoryTable.COLUMN_COUNT + " TEXT";
+    private static final String SQL_ALTER_HISTORY_ROUND = "ALTER TABLE " +
+            HistoryTable.TABLE_NAME + " ADD COLUMN " +
+            HistoryTable.COLUMN_ROUND+ " TEXT";
 
     private static final String SQL_CREATE_FOLLOWUPLIST = "CREATE TABLE "
             + FollowUpList.TABLE_NAME + "(" +
@@ -162,6 +168,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             HistoryTable.COLUMN_FORMDATE + " TEXT," +
             HistoryTable.COLUMN_USER + " TEXT," +
             HistoryTable.COLUMN_FORMTYPE + " TEXT," +
+            HistoryTable.COLUMN_COUNT + " TEXT," +
+            HistoryTable.COLUMN_ROUND + " TEXT," +
             HistoryTable.COLUMN_SMRNO + " TEXT," +
             HistoryTable.COLUMN_SSTUDYID + " TEXT," +
             HistoryTable.COLUMN_ISEL + " TEXT," +
@@ -247,6 +255,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL(SQL_ALTER_FORMTABLE_TOTALSACHGIVEN);
             case 2:
                 db.execSQL(SQL_CREATE_LABREPORTS);
+            case 3:
+                db.execSQL(SQL_ALTER_HISTORY_COUNT);
+                db.execSQL(SQL_ALTER_HISTORY_ROUND);
         }
     }
 
@@ -1328,6 +1339,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(HistoryTable.COLUMN_FORMDATE, hc.getFormDate());
         values.put(HistoryTable.COLUMN_USER, hc.getUser());
         values.put(HistoryTable.COLUMN_FORMTYPE, hc.getFormtype());
+        values.put(HistoryTable.COLUMN_COUNT, hc.getcount());
+        values.put(HistoryTable.COLUMN_ROUND, hc.getround());
         values.put(HistoryTable.COLUMN_SMRNO, hc.getsMrno());
         values.put(HistoryTable.COLUMN_SSTUDYID, hc.getsStudyid());
         values.put(HistoryTable.COLUMN_ISEL, hc.getIsEl());
@@ -1821,6 +1834,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 HistoryTable.COLUMN_FORMDATE,
                 HistoryTable.COLUMN_USER,
                 HistoryTable.COLUMN_FORMTYPE,
+                HistoryTable.COLUMN_COUNT,
+                HistoryTable.COLUMN_ROUND,
                 HistoryTable.COLUMN_SMRNO,
                 HistoryTable.COLUMN_SSTUDYID,
                 HistoryTable.COLUMN_ISEL,
@@ -1892,7 +1907,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_SLAB,
                 FormsTable.COLUMN_SSUP,
                 FormsTable.COLUMN_SFEED,
-
                 FormsTable.COLUMN_GPSLAT,
                 FormsTable.COLUMN_GPSLNG,
                 FormsTable.COLUMN_GPSDATE,
@@ -1954,13 +1968,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 HistoryTable.COLUMN_FORMDATE,
                 HistoryTable.COLUMN_USER,
                 HistoryTable.COLUMN_FORMTYPE,
+                HistoryTable.COLUMN_COUNT,
+                HistoryTable.COLUMN_ROUND,
                 HistoryTable.COLUMN_SMRNO,
                 HistoryTable.COLUMN_SSTUDYID,
                 HistoryTable.COLUMN_ISEL,
                 HistoryTable.COLUMN_NOOFSACHET,
                 HistoryTable.COLUMN_NOOFDAYS,
                 HistoryTable.COLUMN_SFU11,
-                HistoryTable.COLUMN_ISINSERTED,
                 HistoryTable.COLUMN_DEVICEID,
                 HistoryTable.COLUMN_DEVICETAGID,
                 HistoryTable.COLUMN_SYNCED,
@@ -2577,6 +2592,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(MainApp.fc.get_ID())};
 
         int count = db.update(FormsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateHistory(String historycount) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(HistoryTable.COLUMN_ROUND, MainApp.hc.getround());
+
+// Which row to update, based on the ID
+        String selection = HistoryTable.COLUMN__UID + " =? AND "+HistoryTable.COLUMN_COUNT+" = ?";
+        String[] selectionArgs = {String.valueOf(MainApp.hc.get_UID()),historycount};
+
+        int count = db.update(HistoryTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
