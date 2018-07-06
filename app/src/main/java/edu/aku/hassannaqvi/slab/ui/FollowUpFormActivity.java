@@ -194,7 +194,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(context, bi.sfu06, getString(R.string.sfu06))) {
                 return false;
             }
-//Completed (4): Change weigth of neonate with a range of 5000 kg's.
+//            Completed (4): Change weight of neonate with a range of 5000 kg's!
             if (!validatorClass.RangeTextBox(context, bi.sfu06, 1000, 5000, getString(R.string.sfu06), " Weight")) {
                 return false;
             }
