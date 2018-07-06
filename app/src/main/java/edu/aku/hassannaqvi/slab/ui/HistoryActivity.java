@@ -199,7 +199,7 @@ DatabaseHelper db;
         MainApp.hc.setNoofDays(noofSachet);
         MainApp.hc.setNoofSachet(noofSachet);
         MainApp.hc.setIsinserted("1");
-        MainApp.hc.setround(MainApp.fc.getFupround());
+       // MainApp.hc.setround(MainApp.fc.getFupround());
         MainApp.hc.setcount(String.valueOf(MainApp.hiCount));
 
         JSONObject his = new JSONObject();

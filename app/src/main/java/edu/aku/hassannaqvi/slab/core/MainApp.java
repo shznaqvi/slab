@@ -83,7 +83,6 @@ public class MainApp extends Application {
 
     public static Boolean fetchLocal = false;
     public static HistoryContract hc;
-    public static String totalHistoryCount;
     public static String userName = "0000";
     //    Total No of members got from Section A
 

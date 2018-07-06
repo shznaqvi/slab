@@ -108,7 +108,9 @@ public class FollowUpEndingActivity extends AppCompatActivity {
                 MainApp.isRsvp = false;
                 MainApp.isHead = false;
                 MainApp.flag = true;
-
+                MainApp.hc = null;
+                MainApp.fc = null;
+                MainApp.followuplist = null;
                 finish();
                 Intent endSec = new Intent(this, MainActivity.class);
                 endSec.putExtra("complete", false);
@@ -166,7 +168,7 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             MainApp.fc.setIsEl("");
         }
         int updcount = db.updatefupEnding();
-        for (int i= 1 ; i<=Integer.parseInt(hc.getcount());i++){
+        for (int i = 1; i <= Integer.parseInt(hc.getcount()); i++) {
             db.updateHistory(String.valueOf(i));
         }
 

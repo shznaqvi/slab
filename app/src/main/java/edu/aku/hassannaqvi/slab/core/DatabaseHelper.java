@@ -2605,8 +2605,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(HistoryTable.COLUMN_ROUND, MainApp.hc.getround());
 
 // Which row to update, based on the ID
-        String selection = HistoryTable.COLUMN__UID + " =? AND "+HistoryTable.COLUMN_COUNT+" = ?";
-        String[] selectionArgs = {String.valueOf(MainApp.hc.get_UID()),historycount};
+        String selection = HistoryTable.COLUMN_UUID + " = ? AND "+ HistoryTable.COLUMN_COUNT +" = ?";
+        String[] selectionArgs = {MainApp.hc.getUUID(),historycount};
 
         int count = db.update(HistoryTable.TABLE_NAME,
                 values,
