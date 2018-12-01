@@ -40,6 +40,7 @@
                 android:gravity="center"
                 android:text="@string/selheading"
                 android:textColor="@color/colorHeading"
+                android:visibility="gone"
                 android:textSize="40sp" />
 
             <View
@@ -48,21 +49,7 @@
                 android:background="@color/colorPrimary" />
 
             <!--1-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
 
-                <LinearLayout
-                    android:id="@+id/sel01err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -90,30 +77,14 @@
                         android:maxLength="9" />
 
                 </LinearLayout>
-            </LinearLayout>
 
             <!--2-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel02err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -133,30 +104,13 @@
                         android:inputType="textCapWords"
                         android:maxLength="25" />
 
-                </LinearLayout>
             </LinearLayout>
-
             <!--3-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel03err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -164,6 +118,60 @@
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
                         android:text="@string/sel03"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sel03"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/sel03"
+                        android:inputType="textCapWords"
+                        android:maxLength="25" />
+
+            </LinearLayout>
+
+            <!--4-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel04"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sel04"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/sel04"
+                        android:inputType="textCapWords"
+                        android:maxLength="25" />
+
+            </LinearLayout>
+
+            <!--06-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel06"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
@@ -187,7 +195,7 @@
                                 android:textColor="@android:color/white" />
 
                             <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
-                                android:id="@+id/sel03d"
+                                android:id="@+id/sel06d"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="2dp"
@@ -215,7 +223,7 @@
                                 android:textColor="@android:color/white" />
 
                             <io.blackbox_vision.datetimepickeredittext.view.TimePickerEditText
-                                android:id="@+id/sel03t"
+                                android:id="@+id/sel06t"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="2dp"
@@ -227,213 +235,59 @@
                                 app:timeFormat="HH:mm" />
                         </LinearLayout>
                     </LinearLayout>
-
-                </LinearLayout>
             </LinearLayout>
 
             <!--4-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel04err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
+                android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/sel04"
+                        android:text="@string/sel08"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
                     <RadioGroup
-                        android:id="@+id/sel04"
+                        android:id="@+id/sel08"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <RadioButton
-                            android:id="@+id/sel04a"
+                            android:id="@+id/sel08a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sel04a"
+                            android:text="@string/sel08a"
                              />
 
 
                         <RadioButton
-                            android:id="@+id/sel04b"
+                            android:id="@+id/sel08b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sel04b"
+                            android:text="@string/sel08b"
                              />
 
                         <RadioButton
-                            android:id="@+id/sel04c"
+                            android:id="@+id/sel08c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sel04c"
+                            android:text="@string/sel08c"
                             />
 
                     </RadioGroup>
-
-
-                </LinearLayout>
             </LinearLayout>
 
-            <!--5-->
+            <!--07-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel05err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sel05"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <RadioGroup
-                        android:id="@+id/sel05"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:id="@+id/sel05a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sel05a" />
-
-                        <RadioButton
-                            android:id="@+id/sel05b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sel05b" />
-
-                        <RadioButton
-                            android:id="@+id/sel0596"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/otherp" />
-
-                        <EditText
-                            android:id="@+id/sel0596x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="@string/askname"
-                            android:inputType="text"
-                            android:text='@{sel0596.checked ? sel0596x.getText.toString : "" }'
-                            android:visibility='@{sel0596.checked ? View.VISIBLE : View.GONE }' />
-
-                    </RadioGroup>
-
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--6-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel06err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sel06"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <EditText
-                        android:id="@+id/sel06"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/sel06"
-                        android:inputType="textCapWords"
-                        android:maxLength="25" />
-
-                </LinearLayout>
-            </LinearLayout>
-
-            <!--7-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel07err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
+                android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -444,35 +298,58 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
-                    <EditText
+                    <RadioGroup
                         android:id="@+id/sel07"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/sel07"
-                        android:inputType="textCapWords"
-                        android:maxLength="25" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <RadioButton
+                            android:id="@+id/sel07a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sel07a" />
+
+                        <RadioButton
+                            android:id="@+id/sel07b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/sel07b" />
+
+                        <RadioButton
+                            android:id="@+id/sel0796"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/otherp" />
+
+                        <EditText
+                            android:id="@+id/sel0796x"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/askname"
+                            android:inputType="text"
+                            android:text='@{sel0796.checked ? sel0796x.getText.toString : "" }'
+                            android:visibility='@{sel0796.checked ? View.VISIBLE : View.GONE }' />
+                    </RadioGroup>
             </LinearLayout>
 
-            <!--8-->
+          
+            <!--9-->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sel08"
+                android:text="@string/sel09"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/sel08w"
+                    android:id="@+id/sel09w"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -488,7 +365,7 @@
 
 
                 <EditText
-                    android:id="@+id/sel08d"
+                    android:id="@+id/sel09d"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -499,115 +376,49 @@
 
             </LinearLayout>
 
-            <!--9-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel09err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sel09"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <EditText
-                        android:id="@+id/sel09"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="0123456789"
-                        android:hint="@string/sel09"
-                        android:inputType="number"
-                        android:maxLength="4" />
-
-                </LinearLayout>
-            </LinearLayout>
-
             <!--10-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel10err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
 
-                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sel10"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/sel10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/sel10a"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sel10"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:layout_weight="1"
+                        android:text="@string/yes" />
 
-                    <EditText
-                        android:id="@+id/sel10"
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/sel10b"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:digits="0123456789."
-                        android:hint="@string/sel10"
-                        android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:layout_weight="1"
+                        android:text="@string/no" />
 
-                </LinearLayout>
+                </RadioGroup>
+
             </LinearLayout>
-
             <!--11-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel11err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9.5"
                     android:orientation="vertical">
 
                     <TextView
@@ -623,94 +434,58 @@
                         android:id="@+id/sel11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="0123456789."
+                        android:digits="0123456789"
                         android:hint="@string/sel11"
-                        android:inputType="numberDecimal"
+                        android:inputType="number"
                         android:maxLength="4" />
 
                 </LinearLayout>
-            </LinearLayout>
-
             <!--12-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel12err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
 
-                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sel12"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
 
-                <LinearLayout
+                <RadioGroup
+                    android:id="@+id/sel12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="match_parent"
+                    <RadioButton
+                        android:id="@+id/sel12a"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sel12"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:layout_weight="1"
+                        android:text="@string/yes" />
 
-                    <RadioGroup
-                        android:id="@+id/sel12"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/sel12b"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/no" />
 
-                        <RadioButton
-                            android:id="@+id/sel12a"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/yes" />
+                </RadioGroup>
 
-                        <RadioButton
-                            android:id="@+id/sel12b"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/no" />
-
-                    </RadioGroup>
-
-
-                </LinearLayout>
             </LinearLayout>
 
             <!--13-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel13err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -721,54 +496,24 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
-                    <RadioGroup
+                    <EditText
                         android:id="@+id/sel13"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <RadioButton
-                            android:id="@+id/sel13a"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/yes" />
-
-                        <RadioButton
-                            android:id="@+id/sel13b"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/no" />
-
-                    </RadioGroup>
-
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789."
+                        android:hint="@string/sel13"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4" />
 
                 </LinearLayout>
-            </LinearLayout>
+
 
             <!--14-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel14err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -779,54 +524,23 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
-                    <RadioGroup
+                    <EditText
                         android:id="@+id/sel14"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789."
+                        android:hint="@string/sel14"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4" />
 
-                        <RadioButton
-                            android:id="@+id/sel14a"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/yes" />
-
-                        <RadioButton
-                            android:id="@+id/sel14b"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/no" />
-
-                    </RadioGroup>
-
-
-                </LinearLayout>
             </LinearLayout>
 
             <!--15-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel15err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -859,32 +573,13 @@
 
                     </RadioGroup>
 
-
-                </LinearLayout>
             </LinearLayout>
 
             <!--16-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel16err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
+                android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -918,32 +613,13 @@
                     </RadioGroup>
 
 
-                </LinearLayout>
             </LinearLayout>
-
 
             <!--17-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
-
-                <LinearLayout
-                    android:id="@+id/sel17err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
+                android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -957,55 +633,35 @@
                     <RadioGroup
                         android:id="@+id/sel17"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/sel17a"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/yes" />
 
                         <RadioButton
                             android:id="@+id/sel17b"
-                            android:layout_width="match_parent"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/no" />
 
-                        <RadioButton
-                            android:id="@+id/sel17c"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/notavailable" />
                     </RadioGroup>
-                </LinearLayout>
+
+
             </LinearLayout>
 
             <!--18-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel18err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -1027,7 +683,6 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:enabled="false"
                             android:text="@string/yes" />
 
                         <RadioButton
@@ -1035,34 +690,20 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:enabled="false"
                             android:text="@string/no" />
+
                     </RadioGroup>
-                </LinearLayout>
+
+
             </LinearLayout>
 
-            <!--19-->
+             <!--19-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="10">
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/sel19err"
-                    android:layout_width="0px"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.25"
-                    android:orientation="vertical"
-                    android:visibility="gone">
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="9.5"
-                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -1076,7 +717,7 @@
                     <RadioGroup
                         android:id="@+id/sel19"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -1095,16 +736,185 @@
 
                     </RadioGroup>
 
+
+            </LinearLayout>
+
+            <!--20-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel20"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/sel20"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/sel20a"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/sel20b"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+
+            </LinearLayout>
+
+
+            <!--21-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel21"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/sel21"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/sel21a"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/sel21b"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/no" />
+
+                        <RadioButton
+                            android:id="@+id/sel21c"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:text="@string/notavailable" />
+                    </RadioGroup>
+                </LinearLayout>
+
+
+            <!--22-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel22"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/sel22"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/sel22a"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:enabled="false"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/sel22b"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:enabled="false"
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+            <!--24-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel24"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/sel24"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/sel24a"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/sel24b"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
                     <EditText
-                        android:id="@+id/sel19bx"
+                        android:id="@+id/sel24bx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/reason"
                         android:inputType="text"
-                        android:text='@{sel19b.checked ? sel19bx.getText.toString : "" }'
-                        android:visibility='@{sel19b.checked ? View.VISIBLE : View.GONE }' />
+                        android:text='@{sel24b.checked ? sel24bx.getText.toString : "" }'
+                        android:visibility='@{sel24b.checked ? View.VISIBLE : View.GONE }' />
                 </LinearLayout>
-            </LinearLayout>
+
 
             <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
             <LinearLayout

@@ -43,6 +43,7 @@ public class ViewFollowUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_view_follow_up);
         bi.setCallback(this);
+        this.setTitle(getResources().getString(R.string.list));
         gettingList();
         setUpView();
     }

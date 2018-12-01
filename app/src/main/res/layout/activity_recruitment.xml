@@ -38,6 +38,7 @@
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
                 android:text="@string/senheading"
+                android:visibility="gone"
                 android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
@@ -87,7 +88,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible"
+                >
 
                 <!--sen01-->
                 <LinearLayout
@@ -470,7 +473,71 @@
 
                     </LinearLayout>
                 </LinearLayout>
+                <!--sen08x-->
 
+                <LinearLayout
+                    android:id="@+id/fldGrpsen08"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:orientation="vertical">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@color/colorPrimary"
+                            android:text="@string/sen08x"
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="@android:color/white" />
+
+
+                        <RadioGroup
+                            android:id="@+id/sen08x"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <RadioButton
+                                android:id="@+id/sen08xa"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sen08xa" />
+
+
+                            <RadioButton
+                                android:id="@+id/sen08xb"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sen08xb" />
+
+                            <RadioButton
+                                android:id="@+id/sen08xc"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sen08xc" />
+                            <RadioButton
+                                android:id="@+id/sen08xd"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/sen08xd" />
+                            <RadioButton
+                                android:id="@+id/sen08x96"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/others" />
+
+                        </RadioGroup>
+                    <EditText
+                        android:id="@+id/sen08x96x"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/others"
+                        android:inputType="text"
+                        android:text='@{sen08x96.checked ? sen08x96x.getText.toString : "" }'
+                        android:visibility='@{sen08x96.checked ? View.VISIBLE : View.GONE }' />
+                </LinearLayout>
 
                 <!--9 10 and 11-->
                 <LinearLayout
@@ -693,6 +760,11 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/sen11c" />
+                                <RadioButton
+                                    android:id="@+id/sen11d"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/sen11d" />
 
                             </RadioGroup>
 

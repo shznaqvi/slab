@@ -34,6 +34,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_lab_investigation);
         bi.setCallback(this);
         db = new DatabaseHelper(this);
+        this.setTitle(getResources().getString(R.string.sliheading));
 
         setupView();
         ScrollView lab_scrollview = findViewById(R.id.lab_scrollview);

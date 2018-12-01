@@ -57,6 +57,7 @@ public class RecruitmentActivity extends AppCompatActivity {
         bi.sen09t.setTimeFormat("HH:mm");
         bi.sen09t.setIs24HourView(true);
         db = new DatabaseHelper(this);
+        this.setTitle(getResources().getString(R.string.senheading));
         formsContract = new FormsContract();
         elmodel = new EligibilityJSONModel();
         setupView();
@@ -124,8 +125,12 @@ public class RecruitmentActivity extends AppCompatActivity {
                     bi.fldGrpsen09.setVisibility(View.GONE);
                     bi.sen10.clearCheck();
                     bi.sen11.clearCheck();
+                    bi.fldGrpsen08.setVisibility(View.VISIBLE);
+
                 } else {
                     bi.fldGrpsen09.setVisibility(View.VISIBLE);
+                    bi.fldGrpsen08.setVisibility(View.GONE);
+                    bi.sen08x.clearCheck();
                 }
             }
         });
@@ -140,8 +145,6 @@ public class RecruitmentActivity extends AppCompatActivity {
                 }
             }
         });
-
-
     }
 
     public String convertDateFormat(String dateStr) {
@@ -164,7 +167,6 @@ public class RecruitmentActivity extends AppCompatActivity {
             //  MainApp.fc.setsMrno(mrno);
 
             if (!mrno.isEmpty()) {
-
                 if (!db.isInserted(bi.senmrno.getText().toString()).equals("1")) {
                     formsContract =  db.getelchild(mrno);
                     bi.fldGrpsen.setVisibility(View.VISIBLE);
@@ -224,6 +226,7 @@ public class RecruitmentActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sen08, bi.sen08a, getString(R.string.sen08))) {
             return false;
         }
+
         if (bi.sen08a.isChecked()) {
 
             if (!validatorClass.EmptyTextBox(this, bi.sen09d, getString(R.string.sen09) + " - " + getString(R.string.date))) {
@@ -240,6 +243,10 @@ public class RecruitmentActivity extends AppCompatActivity {
                 if (!validatorClass.EmptyRadioButton(this, bi.sen11, bi.sen11a, getString(R.string.sen11))) {
                     return false;
                 }
+            }
+        }else {
+            if (!validatorClass.EmptyRadioButton(this, bi.sen08x, bi.sen08x96, bi.sen08x96x, getString(R.string.sen08x))) {
+                return false;
             }
         }
         return true;
@@ -321,6 +328,13 @@ public class RecruitmentActivity extends AppCompatActivity {
         rec.put("sen08", bi.sen08a.isChecked() ? "1"
                 : bi.sen08b.isChecked() ? "2"
                 : "0");
+        rec.put("sen08x", bi.sen08xa.isChecked() ? "1"
+                : bi.sen08xb.isChecked() ? "2"
+                : bi.sen08xc.isChecked() ? "3"
+                : bi.sen08xd.isChecked() ? "4"
+                : bi.sen08x96.isChecked() ? "96"
+                : "0");
+        rec.put("sen08x96x", bi.sen08x96x.getText().toString());
         rec.put("sen09d", bi.sen09d.getText().toString());
         rec.put("sen09t", bi.sen09t.getText().toString());
         rec.put("sen10", bi.sen10a.isChecked() ? "1"

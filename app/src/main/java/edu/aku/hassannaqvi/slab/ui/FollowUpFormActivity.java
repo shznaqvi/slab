@@ -58,7 +58,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         context = FollowUpFormActivity.this;
         db = new DatabaseHelper(context);
         bi.setCallback(this);
-
+        this.setTitle(getResources().getString(R.string.sfuheading));
         checkIntents();
         setupView();
         validatorClass.setScrollViewFocus(bi.scrollView);

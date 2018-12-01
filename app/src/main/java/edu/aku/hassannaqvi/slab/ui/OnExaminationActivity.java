@@ -218,7 +218,7 @@ public class OnExaminationActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sfu56, getString(R.string.sfu56))) {
             return false;
         }
-        if (!validatorClass.RangeTextBox(this, bi.sfu56, 130, 200, getString(R.string.sfu55), " minutes")) {
+        if (!validatorClass.RangeTextBox(this, bi.sfu56, 130, 200, getString(R.string.sfu56), " minutes")) {
             return false;
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu57, bi.sfu57a, getString(R.string.sfu57))) {
