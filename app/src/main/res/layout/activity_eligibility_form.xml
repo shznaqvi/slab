@@ -50,8 +50,7 @@
 
             <!--1-->
 
-
-                <LinearLayout
+              <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="9.5"
@@ -403,6 +402,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:enabled="false"
                         android:text="@string/yes" />
 
                     <RadioButton
@@ -410,6 +410,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:enabled="false"
                         android:text="@string/no" />
 
                 </RadioGroup>
@@ -460,13 +461,16 @@
                     android:id="@+id/sel12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+
+                    >
 
                     <RadioButton
                         android:id="@+id/sel12a"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:enabled="false"
                         android:text="@string/yes" />
 
                     <RadioButton
@@ -474,6 +478,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:enabled="false"
                         android:text="@string/no" />
 
                 </RadioGroup>

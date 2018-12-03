@@ -59,7 +59,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
     private void setupView() {
         bi.sel06d.setManager(getSupportFragmentManager());
         bi.sel06d.setMaxDate(dateToday);
-        bi.sel06d.setMinDate( DateUtils.getThreeDaysBack("dd/MM/yyyy",-3));
+        bi.sel06d.setMinDate(DateUtils.getThreeDaysBack("dd/MM/yyyy", -3));
         bi.sel06t.setManager(getSupportFragmentManager());
         bi.sel06t.setTimeFormat("HH:mm");
         bi.sel06t.setIs24HourView(true);
@@ -107,13 +107,88 @@ public class EligibilityFormActivity extends AppCompatActivity {
 
             }
         });
+
+        bi.sel09w.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!bi.sel09w.getText().toString().isEmpty() && !bi.sel09d.getText().toString().isEmpty()) {
+                    if((Integer.valueOf(bi.sel09w.getText().toString()) >= 28 && Integer.valueOf(bi.sel09d.getText().toString()) <= 36)&&(Integer.valueOf(bi.sel09d.getText().toString()) >= 0 && Integer.valueOf(bi.sel09d.getText().toString()) <= 6)){
+                        bi.sel10a.setChecked(true);
+                    }else {
+                        bi.sel10b.setChecked(true);
+
+                    }
+                }else{
+                    bi.sel10.clearCheck();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        bi.sel09d.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!bi.sel09w.getText().toString().isEmpty() && !bi.sel09d.getText().toString().isEmpty()) {
+                    if((Integer.valueOf(bi.sel09w.getText().toString()) >= 28 && Integer.valueOf(bi.sel09d.getText().toString()) <= 36)&&(Integer.valueOf(bi.sel09d.getText().toString()) >= 0 && Integer.valueOf(bi.sel09d.getText().toString()) <= 6)){
+                        bi.sel10a.setChecked(true);
+                    }else {
+                        bi.sel10b.setChecked(true);
+                    }
+                }else{
+                    bi.sel10.clearCheck();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        bi.sel11.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!bi.sel11.getText().toString().isEmpty() ) {
+                    if(Integer.valueOf(bi.sel11.getText().toString()) >= 1000 && Integer.valueOf(bi.sel11.getText().toString()) <= 2500){
+                        bi.sel12a.setChecked(true);
+                    }else {
+                        bi.sel12b.setChecked(true);
+
+                    }
+                }else{
+                    bi.sel12.clearCheck();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 //        bi.sel06t.setManager(getSupportFragmentManager());
         bi.sel15.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked()&& bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())){
+                if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -121,9 +196,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel16.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())){
+                if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -131,9 +206,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel17.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel18b.isChecked()&& bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())){
+                if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -141,9 +216,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel18.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked()&& bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())){
+                if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -151,9 +226,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel19.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sel19a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked()&& bi.sel18b.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())){
+                if (i == R.id.sel19a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -161,9 +236,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel20.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sel20b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked()&& bi.sel19a.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())){
+                if (i == R.id.sel20b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -171,9 +246,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel21.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if((i == R.id.sel21b || i == R.id.sel21c) && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked()){
+                if ((i == R.id.sel21b || i == R.id.sel21c) && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked()) {
                     bi.sel22a.setChecked(true);
-                }else{
+                } else {
                     bi.sel22b.setChecked(true);
                 }
             }
@@ -181,6 +256,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
 
 
     }
+
     private boolean formValidation() {
         String regex = "^\\d*\\.\\d+|\\d+\\.\\d*$";
         if (!validatorClass.EmptyTextBox(this, bi.sel01, getString(R.string.mrno))) {
@@ -219,7 +295,6 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sel07, bi.sel0796, bi.sel0796x, getString(R.string.sel07))) {
             return false;
         }
-      
 
 
         if (!validatorClass.EmptyTextBox(this, bi.sel09w, getString(R.string.sel09) + " - " + getString(R.string.weeks))) {
@@ -244,7 +319,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!validatorClass.RangeTextBox(this, bi.sel11, 1000, 2500, getString(R.string.sel11) ," Weight")) {
+        if (!validatorClass.RangeTextBox(this, bi.sel11, 1000, 2500, getString(R.string.sel11), " Weight")) {
             return false;
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sel12, bi.sel12a, getString(R.string.sel12))) {
@@ -253,19 +328,19 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sel13, getString(R.string.sel13))) {
             return false;
         }
-        if(!bi.sel13.getText().toString().contains(".")){
-            Toast.makeText(this,"Length of neonate should be in decimal",Toast.LENGTH_SHORT);
+        if (!bi.sel13.getText().toString().contains(".")) {
+            Toast.makeText(this, "Length of neonate should be in decimal", Toast.LENGTH_SHORT);
             bi.sel13.setError("Length of neonate should be in decimal");
             return false;
-        }else{
+        } else {
             bi.sel13.setError(null);
         }
 
-        if(!bi.sel13.getText().toString().matches(regex)){
-            Toast.makeText(this,"Invalid decimal number",Toast.LENGTH_SHORT);
+        if (!bi.sel13.getText().toString().matches(regex)) {
+            Toast.makeText(this, "Invalid decimal number", Toast.LENGTH_SHORT);
             bi.sel13.setError("Invalid decimal number");
             return false;
-        }else{
+        } else {
             bi.sel14.setError(null);
         }
         if (!validatorClass.EmptyTextBox(this, bi.sel14, getString(R.string.sel14))) {
@@ -274,18 +349,18 @@ public class EligibilityFormActivity extends AppCompatActivity {
         /*if (!validatorClass.RangeTextBox(this, bi.sel14,1.0,4.0, getString(R.string.sel14)," cm")) {
             return false;
         }*/
-        if(!bi.sel14.getText().toString().contains(".")){
-            Toast.makeText(this,"Head of Circumference should be decimal",Toast.LENGTH_SHORT);
+        if (!bi.sel14.getText().toString().contains(".")) {
+            Toast.makeText(this, "Head of Circumference should be decimal", Toast.LENGTH_SHORT);
             bi.sel14.setError("Head of Circumference should be decimal");
             return false;
-        }else{
+        } else {
             bi.sel14.setError(null);
         }
-        if(!bi.sel14.getText().toString().matches(regex)){
-            Toast.makeText(this,"Invalid decimal number",Toast.LENGTH_SHORT);
+        if (!bi.sel14.getText().toString().matches(regex)) {
+            Toast.makeText(this, "Invalid decimal number", Toast.LENGTH_SHORT);
             bi.sel14.setError("Invalid decimal number");
             return false;
-        }else{
+        } else {
             bi.sel14.setError(null);
         }
 
@@ -320,8 +395,6 @@ public class EligibilityFormActivity extends AppCompatActivity {
         }
 
 
-
-
         return true;
     }
 
@@ -335,15 +408,15 @@ public class EligibilityFormActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-         if (UpdateDB()) {
+            if (UpdateDB()) {
                 finish();
                 Boolean consent = false;
-                if(bi.sel24a.isChecked()){
+                if (bi.sel24a.isChecked()) {
                     consent = true;
-                }else{
+                } else {
                     consent = false;
                 }
-                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", consent));
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", consent));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -371,7 +444,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
     }
 
     public void BtnEnd() {
-      //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         onBackPressed();
     }
 
@@ -387,9 +460,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setsMrno(bi.sel01.getText().toString());
         MainApp.fc.setFormtype(MainApp.FORMTYPE_EL);
-        if (bi.sel22a.isChecked()){
+        if (bi.sel22a.isChecked()) {
             MainApp.fc.setIsEl("1");
-        }else{
+        } else {
             MainApp.fc.setIsEl("2");
         }
         setGPS(); //Set GPS
