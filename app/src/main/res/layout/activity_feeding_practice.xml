@@ -35,7 +35,7 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:text="@string/sfusubheading2"
+                android:text="@string/sfu2"
                 android:textColor="@color/colorHeading"
                 android:textSize="40sp" />
 
@@ -74,39 +74,39 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sfu12"
+                android:text="@string/sfu201"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
             <RadioGroup
-                android:id="@+id/sfu12"
+                android:id="@+id/sfu201"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <RadioButton
-                    android:id="@+id/sfu12a"
+                    android:id="@+id/sfu201a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sfu12a" />
+                    android:text="@string/sfu201a" />
 
 
                 <RadioButton
-                    android:id="@+id/sfu12b"
+                    android:id="@+id/sfu201b"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sfu12b" />
+                    android:text="@string/sfu201b" />
 
                 <RadioButton
-                    android:id="@+id/sfu12c"
+                    android:id="@+id/sfu201c"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sfu12c" />
+                    android:text="@string/sfu201c" />
 
             </RadioGroup>
 
             <LinearLayout
-                android:id="@+id/fldGrpsfu13"
+                android:id="@+id/fldGrpsfu202"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -116,33 +116,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
-                    android:text="@string/sfu13"
+                    android:text="@string/sfu202"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
                 <RadioGroup
-                    android:id="@+id/sfu13"
+                    android:id="@+id/sfu202"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:id="@+id/sfu13a"
+                        android:id="@+id/sfu202a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sfu13a" />
+                        android:text="@string/sfu202a" />
 
 
                     <RadioButton
-                        android:id="@+id/sfu13b"
+                        android:id="@+id/sfu202b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sfu13b" />
+                        android:text="@string/sfu202b" />
 
                 </RadioGroup>
 
                 <LinearLayout
-                    android:id="@+id/fldGrpsfu14"
+                    android:id="@+id/fldGrpsfu203"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -152,56 +152,56 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/sfu14"
+                        android:text="@string/sfu203"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
                     <RadioGroup
-                        android:id="@+id/sfu14"
+                        android:id="@+id/sfu203"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
 
                         <RadioButton
-                            android:id="@+id/sfu14a"
+                            android:id="@+id/sfu203a"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sfu14a" />
+                            android:text="@string/sfu203a" />
 
 
                         <RadioButton
-                            android:id="@+id/sfu14b"
+                            android:id="@+id/sfu203b"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sfu14b" />
+                            android:text="@string/sfu203b" />
 
                         <RadioButton
-                            android:id="@+id/sfu14c"
+                            android:id="@+id/sfu203c"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/sfu14c" />
+                            android:text="@string/sfu203c" />
 
                         <RadioButton
-                            android:id="@+id/sfu1496"
+                            android:id="@+id/sfu20396"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/others" />
+                            android:text="@string/sfu20396" />
 
                         <EditText
-                            android:id="@+id/sfu1496x"
+                            android:id="@+id/sfu20396x"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-                            android:hint="@string/others"
+                            android:hint="@string/sfu20396"
                             android:inputType="text"
-                            android:text='@{sfu1496.checked ? sfu1496x.getText.toString : "" }'
-                            android:visibility='@{sfu1496.checked ? View.VISIBLE : View.GONE }' />
+                            android:text='@{sfu20396.checked ? sfu20396x.getText.toString : "" }'
+                            android:visibility='@{sfu20396.checked ? View.VISIBLE : View.GONE }' />
                     </RadioGroup>
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fldGrpsfu15"
+                android:id="@+id/fldGrpsfu204"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -211,49 +211,49 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
-                    android:text="@string/sfu15"
+                    android:text="@string/sfu204"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
                 <RadioGroup
-                    android:id="@+id/sfu15"
+                    android:id="@+id/sfu204"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <RadioButton
-                        android:id="@+id/sfu15a"
+                        android:id="@+id/sfu204a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sfu15a" />
+                        android:text="@string/sfu204a" />
 
                     <RadioButton
-                        android:id="@+id/sfu15b"
+                        android:id="@+id/sfu204b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sfu15b" />
+                        android:text="@string/sfu204b" />
 
                     <RadioButton
-                        android:id="@+id/sfu15c"
+                        android:id="@+id/sfu204c"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/sfu15c" />
+                        android:text="@string/sfu204c" />
 
                     <RadioButton
-                        android:id="@+id/sfu1596"
+                        android:id="@+id/sfu20496"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/others" />
+                        android:text="@string/sfu20496" />
 
                     <EditText
-                        android:id="@+id/sfu1596x"
+                        android:id="@+id/sfu20496x"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/others"
+                        android:hint="@string/sfu20496"
                         android:inputType="text"
-                        android:text='@{sfu1596.checked ? sfu1596x.getText.toString : "" }'
-                        android:visibility='@{sfu1596.checked ? View.VISIBLE : View.GONE }' />
+                        android:text='@{sfu20496.checked ? sfu20496x.getText.toString : "" }'
+                        android:visibility='@{sfu20496.checked ? View.VISIBLE : View.GONE }' />
                 </RadioGroup>
 
             </LinearLayout>
@@ -264,7 +264,7 @@
                 android:background="@color/colorPrimaryAlpha"
                 android:gravity="center_vertical"
                 android:paddingBottom="8dp"
-                android:text="Danger Signs"
+                android:text="@string/sfu3"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="24sp" />
@@ -274,25 +274,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sfu16"
+                android:text="@string/sfu301"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
             <RadioGroup
-                android:id="@+id/sfu16"
+                android:id="@+id/sfu301"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/sfu16a"
+                    android:id="@+id/sfu301a"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/yes" />
 
                 <RadioButton
-                    android:id="@+id/sfu16b"
+                    android:id="@+id/sfu301b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -300,788 +300,591 @@
             </RadioGroup>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu16a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu17"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu16a.checked ? sfu17.getText.toString : "" }'
-                    android:visibility='@{sfu16a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-
-            <!--18-->
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu18"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu18"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu18a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu18b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu18a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu19"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu18a.checked ? sfu19.getText.toString : "" }'
-                    android:visibility='@{sfu18a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu20"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu20"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu20a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu20b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu20a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu21"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu20a.checked ? sfu21.getText.toString : "" }'
-                    android:visibility='@{sfu20a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu22"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu22"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu22a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu22b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu22a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu23"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu22a.checked ? sfu23.getText.toString : "" }'
-                    android:visibility='@{sfu22a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu24"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu24"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu24a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu24b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu24a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu25"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu24a.checked ? sfu25.getText.toString : "" }'
-                    android:visibility='@{sfu24a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu26"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu26"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu26a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu26b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu26a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu27"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu26a.checked ? sfu27.getText.toString : "" }'
-                    android:visibility='@{sfu26a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu28"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu28"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu28a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu28b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu28a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu29"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu28a.checked ? sfu29.getText.toString : "" }'
-                    android:visibility='@{sfu28a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu30"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu30"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu30a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu30b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu30a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu31"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu30a.checked ? sfu31.getText.toString : "" }'
-                    android:visibility='@{sfu30a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu32"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu32"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu32a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu32b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu32a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu33"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu32a.checked ? sfu33.getText.toString : "" }'
-                    android:visibility='@{sfu32a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu34"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu34"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu34a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu34b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu34a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu35"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu34a.checked ? sfu35.getText.toString : "" }'
-                    android:visibility='@{sfu34a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu36"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu36"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu36a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu36b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/howlongsmd"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white"
-                android:visibility='@{sfu36a.checked ? View.VISIBLE : View.GONE }' />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu36a.checked ? View.VISIBLE : View.GONE }'>
-
-                <EditText
-                    android:id="@+id/sfu37s"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:digits="1234567890"
-                    android:hint="@string/sec"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu36a.checked ? sfu37s.getText.toString : "" }'
-                    android:visibility='@{sfu36a.checked ? View.VISIBLE : View.GONE }' />
-
-                <EditText
-                    android:id="@+id/sfu37m"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:digits="1234567890"
-                    android:hint="@string/min"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu36a.checked ? sfu37m.getText.toString : "" }'
-                    android:visibility='@{sfu36a.checked ? View.VISIBLE : View.GONE }' />
-
-                <EditText
-                    android:id="@+id/sfu37d"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu36a.checked ? sfu37d.getText.toString : "" }'
-                    android:visibility='@{sfu36a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu38"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu38"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu38a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu38b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu38a.checked ? View.VISIBLE : View.GONE }'>
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/howlong"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/sfu39"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu38a.checked ? sfu39.getText.toString : "" }'
-                    android:visibility='@{sfu38a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu40"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu40"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu40a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu40b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <LinearLayout
-                android:id="@+id/fldGrpsfu40"
+                android:id="@+id/fldgrpsfu301"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu302"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu302"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu302"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_weight="3"
                     android:background="@color/colorPrimary"
-                    android:text="@string/sfu41"
+                    android:text="@string/sfu303"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
-                <RadioGroup
-                    android:id="@+id/sfu41"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <RadioButton
-                        android:id="@+id/sfu41a"
+                    <EditText
+                        android:id="@+id/sfu303m"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/sfu41a" />
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
 
-                    <RadioButton
-                        android:id="@+id/sfu41b"
+                    <EditText
+                        android:id="@+id/sfu303h"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/sfu41b" />
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
 
-                    <RadioButton
-                        android:id="@+id/sfu41c"
+                    <EditText
+                        android:id="@+id/sfu303d"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/sfu41c" />
-                </RadioGroup>
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu304"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu304"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu304a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu304b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu304"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu305"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu305"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu305"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu306"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu306m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu306h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu306d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu307"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu307"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu307a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu307b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu307"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu308"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu308"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu308"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu309"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu309m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu309h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu309d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu310"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu310"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu310a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu310b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu310"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="horizontal">
+
+                       <TextView
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_marginTop="16dp"
+                           android:layout_weight="3"
+                           android:background="@color/colorPrimary"
+                           android:text="@string/sfu311"
+                           android:textAppearance="?android:attr/textAppearanceLarge"
+                           android:textColor="@android:color/white" />
+
+                       <EditText
+                           android:id="@+id/sfu311"
+                           android:layout_width="0dp"
+                           android:layout_height="wrap_content"
+                           android:layout_weight="3"
+                           android:digits="1234567890"
+                           android:hint="@string/days"
+                           android:inputType="number"
+                           android:maxLength="2"
+                           />
+                   </LinearLayout>-->
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu311"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu311m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu311h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu311d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu312"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu312"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu312a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu312b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu312"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu313"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu313"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu313"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu314"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu314m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu314h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu314d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu315"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu315"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu315a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu315b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu315"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu316"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu316"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu316"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1094,12 +897,361 @@
                         android:layout_marginTop="16dp"
                         android:layout_weight="3"
                         android:background="@color/colorPrimary"
-                        android:text="@string/times"
+                        android:text="@string/sfu317"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
                     <EditText
-                        android:id="@+id/sfu42"
+                        android:id="@+id/sfu317"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu318"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu318"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu318a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu318b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu318"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu319"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu319"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu319"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu320"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu320"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu321"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu321"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu321a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu321b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu321"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu322"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu322m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu322h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu322d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu323"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu323"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu323a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu323b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu323"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu324"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu324"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu324"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu325"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu325m"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/min"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu325h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu325d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu326"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu326"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu326a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu326b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu326"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu327"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu327"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
@@ -1111,103 +1263,31 @@
 
             </LinearLayout>
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sfu43"
+                android:text="@string/sfu328"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
             <RadioGroup
-                android:id="@+id/sfu43"
+                android:id="@+id/sfu328"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/sfu43a"
+                    android:id="@+id/sfu328a"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/yes" />
 
                 <RadioButton
-                    android:id="@+id/sfu43b"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/no" />
-            </RadioGroup>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_weight="3"
-                android:background="@color/colorPrimary"
-                android:text="@string/howlongdh"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white"
-                android:visibility='@{sfu43a.checked ? View.VISIBLE : View.GONE }' />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu43a.checked ? View.VISIBLE : View.GONE }'>
-
-                <EditText
-                    android:id="@+id/sfu44d"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu43a.checked ? sfu44d.getText.toString : "" }'
-                    android:visibility='@{sfu43a.checked ? View.VISIBLE : View.GONE }' />
-
-                <EditText
-                    android:id="@+id/sfu44h"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:digits="1234567890"
-                    android:hint="@string/hours"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu43a.checked ? sfu44h.getText.toString : "" }'
-                    android:visibility='@{sfu43a.checked ? View.VISIBLE : View.GONE }' />
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimary"
-                android:text="@string/sfu45"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:textColor="@android:color/white" />
-
-            <RadioGroup
-                android:id="@+id/sfu45"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/sfu45a"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/yes" />
-
-                <RadioButton
-                    android:id="@+id/sfu45b"
+                    android:id="@+id/sfu328b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -1215,32 +1295,77 @@
             </RadioGroup>
 
             <LinearLayout
+                android:id="@+id/fldgrpsfu328"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{sfu45a.checked ? View.VISIBLE : View.GONE }'>
+                android:orientation="vertical">
+
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_weight="3"
                     android:background="@color/colorPrimary"
-                    android:text="@string/times"
+                    android:text="@string/sfu329"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
-                <EditText
-                    android:id="@+id/sfu46"
-                    android:layout_width="0dp"
+                <RadioGroup
+                    android:id="@+id/sfu329"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RadioButton
+                        android:id="@+id/sfu329a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/sfu329a" />
+
+                    <RadioButton
+                        android:id="@+id/sfu329b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/sfu329b" />
+
+                    <RadioButton
+                        android:id="@+id/sfu329c"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/sfu329c" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
-                    android:digits="1234567890"
-                    android:hint="@string/days"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:text='@{sfu45a.checked ? sfu46.getText.toString : "" }'
-                    android:visibility='@{sfu45a.checked ? View.VISIBLE : View.GONE }' />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu330"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu330"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
 
@@ -1249,20 +1374,414 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/sfu47"
+                android:text="@string/sfu331"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu331"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu331a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu331b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu331"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu332"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/sfu332h"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/hours"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                    <EditText
+                        android:id="@+id/sfu332d"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu331"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu333"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu333a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu333b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldgrpsfu333"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu334"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu334"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu335"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <EditText
+                        android:id="@+id/sfu335"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:digits="1234567890"
+                        android:hint="@string/days"
+                        android:inputType="number"
+                        android:maxLength="2" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu336"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@android:color/white" />
 
             <EditText
-                android:id="@+id/sfu47"
+                android:id="@+id/sfu336"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                android:hint="@string/sfu47"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
                 android:inputType="text" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu337"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu337"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu337a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu337b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
             <LinearLayout
-                android:id="@+id/fldGrpsfu48"
+                android:id="@+id/fldgrpsfu337"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu338"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+
+                    <!--add date picker-->
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                        android:id="@+id/sfu338"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="1dp"
+                        android:focusable="false"
+                        android:hint="@string/date"
+                        android:textColor="@android:color/black"
+                        app:dateFormat="dd-MM-yyyy" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu339"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+
+                <RadioGroup
+                    android:id="@+id/sfu339"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RadioButton
+                        android:id="@+id/sfu339a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sfu339a" />
+
+                    <RadioButton
+                        android:id="@+id/sfu33996"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sfu33996" />
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/sfu33996x"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:hint="@string/sfu33996"
+                    android:inputType="text"
+                    android:text='@{sfu33996.checked ? sfu33996x.getText.toString : "" }'
+                    android:visibility='@{sfu33996.checked ? View.VISIBLE : View.GONE }' />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_weight="3"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu340"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/sfu340"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:hint="@string/sfu340"
+                    android:inputType="textMultiLine" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu341"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility='@{sfu341a.checked ? View.GONE :  View.VISIBLE}'>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/sfu341d"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/days"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:text='@{sfu341a.checked ? "" : sfu341d.getText.toString }' />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <EditText
+                            android:id="@+id/sfu341hr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="1234567890"
+                            android:hint="@string/hours"
+                            android:inputType="number"
+                            android:maxLength="2"
+                            android:text='@{sfu341a.checked ? "" : sfu341hr.getText.toString }' />
+                    </android.support.design.widget.TextInputLayout>
+                </LinearLayout>
+                <!--  <android.support.design.widget.TextInputLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content">
+                      <EditText
+                          android:id="@+id/sfu52reason"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                          android:hint="@string/reason"
+                          android:inputType="text"
+                          android:text='@{sfu341a.checked ? "" : sfu52reason.getText.toString }'
+                          android:visibility='@{sfu341a.checked ? View.GONE :  View.VISIBLE}' />
+                  </android.support.design.widget.TextInputLayout>-->
+
+                <LinearLayout
+                    android:id="@+id/fldGrpchecksfu340"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <CheckBox
+                        android:id="@+id/sfu341a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/sfu341a" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/sfu342"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+            <RadioGroup
+                android:id="@+id/sfu342"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/sfu342a"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/sfu342b"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/no" />
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/fldGrpsfu342"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -1272,189 +1791,58 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
-                    android:text="@string/sfu48"
+                    android:text="@string/sfu343"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white" />
+
+                <EditText
+                    android:id="@+id/sfu343"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:hint="@string/sfu343"
+                    android:inputType="text" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/sfu344"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
                 <RadioGroup
-                    android:id="@+id/sfu48"
+                    android:id="@+id/sfu344"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent">
 
                     <RadioButton
-                        android:id="@+id/sfu48a"
-                        android:layout_width="0dp"
+                        android:id="@+id/sfu344a"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/yes" />
+                        android:text="@string/sfu344a" />
 
                     <RadioButton
-                        android:id="@+id/sfu48b"
-                        android:layout_width="0dp"
+                        android:id="@+id/sfu344b"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/no" />
+                        android:text="@string/sfu344b" />
                 </RadioGroup>
 
-                <LinearLayout
-                    android:id="@+id/fldGrpsfu50"
+                <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                    android:id="@+id/sfu344bx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sfu49"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
-                        android:id="@+id/sfu49"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="2dp"
-                        android:layout_weight="4"
-                        android:focusable="false"
-                        android:hint="DD/MM/YYYY"
-                        android:textColor="@android:color/black"
-                        app:dateFormat="dd-MM-yyyy" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sfu50"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <RadioGroup
-                        android:id="@+id/sfu50"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <RadioButton
-                            android:id="@+id/sfu50a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sfu50a" />
-
-                        <RadioButton
-                            android:id="@+id/sfu5096"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/sfu5096" />
-
-                        <EditText
-                            android:id="@+id/sfu5096x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                            android:hint="@string/sfu5096"
-                            android:inputType="text"
-                            android:text='@{sfu5096.checked ? sfu5096x.getText.toString : "" }'
-                            android:visibility='@{sfu5096.checked ? View.VISIBLE : View.GONE }' />
-                    </RadioGroup>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sfu51"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <EditText
-                        android:id="@+id/sfu51"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ+()"
-                        android:hint="@string/sfu51"
-                        android:inputType="text" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/sfu52"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:visibility='@{sfu52a.checked ? View.GONE :  View.VISIBLE}'>
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            >
-                        <EditText
-                            android:id="@+id/sfu52d"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="1234567890"
-                            android:hint="@string/days"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:text='@{sfu52a.checked ? "" : sfu52d.getText.toString }'/>
-                        </android.support.design.widget.TextInputLayout>
-                        <android.support.design.widget.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            >
-                        <EditText
-                            android:id="@+id/sfu52hr"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:digits="1234567890"
-                            android:hint="@string/hours"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:text='@{sfu52a.checked ? "" : sfu52hr.getText.toString }' />
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/sfu52reason"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/reason"
-                        android:inputType="text"
-                        android:text='@{sfu52a.checked ? "" : sfu52reason.getText.toString }'
-                        android:visibility='@{sfu52a.checked ? View.GONE :  View.VISIBLE}' />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <LinearLayout
-                        android:id="@+id/fldGrpchecksfu53"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <CheckBox
-                            android:id="@+id/sfu52a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="@string/sfu52a" />
-
-                    </LinearLayout>
-                </LinearLayout>
+                    android:layout_marginTop="1dp"
+                    android:focusable="false"
+                    android:hint="@string/date"
+                    android:text='@{sfu344b.checked ? sfu344bx.getText.toString : "" }'
+                    android:textColor="@android:color/black"
+                    android:visibility='@{sfu344b.checked ? View.VISIBLE : View.GONE }'
+                    app:dateFormat="dd-MM-yyyy" />
             </LinearLayout>
-
 
             <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
             <LinearLayout

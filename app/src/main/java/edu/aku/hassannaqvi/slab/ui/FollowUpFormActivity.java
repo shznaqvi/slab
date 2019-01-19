@@ -58,7 +58,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         context = FollowUpFormActivity.this;
         db = new DatabaseHelper(context);
         bi.setCallback(this);
-        this.setTitle(getResources().getString(R.string.sfuheading));
+        this.setTitle(getResources().getString(R.string.sfu101));
         checkIntents();
         setupView();
         validatorClass.setScrollViewFocus(bi.scrollView);
@@ -145,23 +145,24 @@ public class FollowUpFormActivity extends AppCompatActivity {
             }
         });
 
-        bi.sfu01.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+
+        bi.sfu106.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sfu01c) {
-                    bi.fldGrpsfu06.setVisibility(View.GONE);
-                    bi.sfu06.setText(null);
-                    bi.sfu07.setText(null);
-                    bi.sfu08.setText(null);
-                } else if (i == R.id.sfu01b) {
-                    bi.fldGrpsfu07.setVisibility(View.VISIBLE);
-                    bi.fldGrpsfu06.setVisibility(View.VISIBLE);
-                } else if (i == R.id.sfu01a) {
-                    bi.fldGrpsfu07.setVisibility(View.GONE);
-                    bi.sfu07.setText(null);
-                    bi.sfu08.setText(null);
-                    bi.fldGrpsfu06.setVisibility(View.VISIBLE);
-
+                if (i == R.id.sfu106f) {
+                    bi.fldGrpsfu106.setVisibility(View.GONE);
+                    bi.sfu107.setText(null);
+                    bi.sfu108.setText(null);
+                    bi.sfu109.setText(null);
+                }  else if (i == R.id.sfu106a) {
+                    bi.fldGrpsfu107.setVisibility(View.GONE);
+                    bi.sfu109.setText(null);
+                    bi.sfu108.setText(null);
+                    bi.fldGrpsfu106.setVisibility(View.VISIBLE);
+                }else {
+                    bi.fldGrpsfu107.setVisibility(View.VISIBLE);
+                    bi.fldGrpsfu106.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -185,47 +186,50 @@ public class FollowUpFormActivity extends AppCompatActivity {
             bi.sfu001.setError("Invalid length");
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(context, bi.sfu01, bi.sfu01a, getString(R.string.sfu01c))) {
+        if (!validatorClass.EmptyRadioButton(context, bi.sfu105, bi.sfu105a, getString(R.string.sfu105))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(context, bi.sfu106, bi.sfu106a, getString(R.string.sfu106))) {
             return false;
         }
 
-        if (!bi.sfu01c.isChecked()) {
+        if (!bi.sfu106f.isChecked()) {
 
-            if (!validatorClass.EmptyTextBox(context, bi.sfu06, getString(R.string.sfu06))) {
+            if (!validatorClass.EmptyTextBox(context, bi.sfu107, getString(R.string.sfu107))) {
                 return false;
             }
 //            Completed (4): Change weight of neonate with a range of 5000 kg's!
-            if (!validatorClass.RangeTextBox(context, bi.sfu06, 1000, 5000, getString(R.string.sfu06), " Weight")) {
+            if (!validatorClass.RangeTextBox(context, bi.sfu107, 1000, 5000, getString(R.string.sfu107), " Weight")) {
                 return false;
             }
-            if (!bi.sfu01a.isChecked()) {
+            if (!bi.sfu106f.isChecked() && !bi.sfu106a.isChecked()) {
 
-                if (!validatorClass.EmptyTextBox(context, bi.sfu07, getString(R.string.sfu07))) {
+                if (!validatorClass.EmptyTextBox(context, bi.sfu108, getString(R.string.sfu108))) {
                     return false;
                 }
-                if (!bi.sfu07.getText().toString().contains(".")) {
+                if (!bi.sfu108.getText().toString().contains(".")) {
                     Toast.makeText(context, "Length of neonate should be in decimal", Toast.LENGTH_SHORT);
-                    bi.sfu07.setError("Length of neonate should be in decimal");
+                    bi.sfu108.setError("Length of neonate should be in decimal");
                     return false;
                 } else {
-                    bi.sfu07.setError(null);
+                    bi.sfu108.setError(null);
                 }
-                if (!validatorClass.EmptyTextBox(context, bi.sfu08, getString(R.string.sfu08))) {
+                if (!validatorClass.EmptyTextBox(context, bi.sfu109, getString(R.string.sfu109))) {
                     return false;
                 }
-                if (!bi.sfu08.getText().toString().contains(".")) {
+                if (!bi.sfu109.getText().toString().contains(".")) {
                     Toast.makeText(context, "Head of Circumference should be decimal", Toast.LENGTH_SHORT);
-                    bi.sfu08.setError("Head of Circumference should be decimal");
+                    bi.sfu109.setError("Head of Circumference should be decimal");
                     return false;
                 } else {
-                    bi.sfu08.setError(null);
+                    bi.sfu109.setError(null);
                 }
             }
         }
-        if (!validatorClass.EmptyTextBox(context, bi.sfu10, getString(R.string.sfu10))) {
+      /*  if (!validatorClass.EmptyTextBox(context, bi.sfu10, getString(R.string.sfu10))) {
             return false;
         }
-
+*/
         return true;
     }
 
@@ -241,7 +245,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 //  Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                int fuplocation = bi.sfu01a.isChecked() ? 1 : bi.sfu01b.isChecked() ? 2 : bi.sfu01c.isChecked() ? 3 : 0;
+                 MainApp.fupLocation = bi.sfu106a.isChecked() ? 1 : bi.sfu106b.isChecked() ? 2 : bi.sfu106c.isChecked() ? 3 :bi.sfu106d.isChecked() ? 4 :bi.sfu106e.isChecked() ? 5 :bi.sfu106f.isChecked() ? 6 : 0;
               /*  Boolean defaultValue = true;
                 if (bi.sfu01c.isChecked()) {
                     defaultValue = false;
@@ -249,7 +253,14 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     defaultValue = true;
                 }*/
                 //startActivity(new Intent(this, FeedingPracticeActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()));
-                if (!bi.sfu10.getText().toString().equals("0") && !bi.sfu10.getText().toString().equals("00")) {
+
+
+                startActivity(new Intent(context, FeedingPracticeActivity.class)
+                        .putExtra(FUPLOCATION_TAG, MainApp.fupLocation)
+                        .putExtra("childName", bi.ChildName.getText().toString())
+                        .putExtra("mrno", bi.sfu001.getText().toString())
+                        .putExtra("studyID", bi.sfu002.getText().toString()));
+                /*    if (!bi.sfu10.getText().toString().equals("0") && !bi.sfu10.getText().toString().equals("00")) {
                     startActivity(new Intent(context, HistoryActivity.class)
                             .putExtra(FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
@@ -262,9 +273,9 @@ public class FollowUpFormActivity extends AppCompatActivity {
                             .putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("mrno", bi.sfu001.getText().toString())
                             .putExtra("studyID", bi.sfu002.getText().toString()));
-                }
+                }*/
             } else {
-                // Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -348,13 +359,21 @@ public class FollowUpFormActivity extends AppCompatActivity {
         fu.put("sfudatetime", dtToday);
         fu.put("uuid", bi.ruid.getText().toString());
         fu.put("childName", bi.ChildName.getText().toString());
-        fu.put("sfu01", bi.sfu01a.isChecked() ? "1"
-                : bi.sfu01b.isChecked() ? "2"
-                : bi.sfu01c.isChecked() ? "3"
+        fu.put("sfu105", bi.sfu105a.isChecked() ? "1"
+                : bi.sfu105b.isChecked() ? "2"
+                : bi.sfu10596.isChecked() ? "96"
                 : "0");
-        fu.put("sfu06", bi.sfu06.getText().toString());
-        fu.put("sfu07", bi.sfu07.getText().toString());
-        fu.put("sfu08", bi.sfu08.getText().toString());
+        fu.put("sfu10596x", bi.sfu10596x.getText().toString());
+        fu.put("sfu106", bi.sfu106a.isChecked() ? "1"
+                : bi.sfu106b.isChecked() ? "2"
+                : bi.sfu106c.isChecked() ? "3"
+                : bi.sfu106d.isChecked() ? "4"
+                : bi.sfu106e.isChecked() ? "5"
+                : bi.sfu106f.isChecked() ? "6"
+                : "0");
+        fu.put("sfu107", bi.sfu107.getText().toString());
+        fu.put("sfu108", bi.sfu108.getText().toString());
+        fu.put("sfu109", bi.sfu109.getText().toString());
 
         MainApp.fc.setsFup(String.valueOf(fu));
 
@@ -395,14 +414,16 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     bi.fldGrpA.setVisibility(View.VISIBLE);
                     bi.fldGrpB.setVisibility(View.VISIBLE);
                 } else {
+
                     Toast.makeText(context, "You have already inserted a followup Today!", Toast.LENGTH_SHORT).show();
                 }
 
 
             } else {
-                bi.fldGrpA.setVisibility(View.GONE);
-                bi.fldGrpB.setVisibility(View.GONE);
-
+             /*   bi.fldGrpA.setVisibility(View.GONE);
+                bi.fldGrpB.setVisibility(View.GONE);*/
+                bi.fldGrpA.setVisibility(View.VISIBLE);
+                bi.fldGrpB.setVisibility(View.VISIBLE);
                 Toast.makeText(context, "No MR No or Study ID found!", Toast.LENGTH_SHORT).show();
             }
 

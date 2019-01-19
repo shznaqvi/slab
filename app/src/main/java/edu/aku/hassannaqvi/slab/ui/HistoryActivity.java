@@ -45,7 +45,7 @@ DatabaseHelper db;
 
     private void setUpView() {
         bi.ChildName.setText(childName);
-        bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
+     /*   bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
         bi.sfu11a1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -57,7 +57,7 @@ DatabaseHelper db;
                     bi.llfldgrppartial.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -203,24 +203,24 @@ DatabaseHelper db;
         MainApp.hc.setcount(String.valueOf(MainApp.hiCount));
 
         JSONObject his = new JSONObject();
-        his.put("sfuqty", bi.sfu11a11.isChecked() ? "1"
+       /* his.put("sfuqty", bi.sfu11a11.isChecked() ? "1"
                 : bi.sfu11a12.isChecked() ? "2"
                 : "0");
         his.put("sfuifpartial", bi.sfu11a21.isChecked() ? "1"
                 : bi.sfu11a22.isChecked() ? "2"
-                : "0");
+                : "0");*/
         MainApp.hc.setSfu11(String.valueOf(his));
     }
 
     private boolean formValidation() {
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1, bi.sfu11a11, getString(R.string.sfuifqty))) {
+     /*   if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1, bi.sfu11a11, getString(R.string.sfuifqty))) {
             return false;
         }
         if (!bi.sfu11a11.isChecked()){
             if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2, bi.sfu11a21, getString(R.string.sfuifpartial))) {
                 return false;
             }
-        }
+        }*/
         return true;
     }
 

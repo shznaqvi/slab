@@ -68,7 +68,9 @@
             android:name=".ui.FollowUpFormActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+            android:windowSoftInputMode="adjustResize|stateHidden">
+
+        </activity>
         <activity
             android:name=".ui.FeedingPracticeActivity"
             android:screenOrientation="portrait"
@@ -125,11 +127,12 @@
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- Completed (7): Create an APP view for speciman data collection -->
-        <activity android:name=".ui.LabReportsActivity"
+        <activity
+            android:name=".ui.LabReportsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            />
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity android:name=".ui.VisitOutcome"></activity>
     </application>
 
 </manifest>

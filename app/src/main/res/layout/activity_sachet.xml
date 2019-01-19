@@ -24,7 +24,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.SachetActivity">
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:orientation="vertical">
-        <TextView
+     <!--   <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -86,7 +86,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.SachetActivity">
             android:background="#EFEBE9"
             android:scrollbars="vertical"
             tools:listitem="@layout/historyadapter"
-            android:visibility="visible"/>
+            android:visibility="visible"/>-->
         <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
         <LinearLayout
             android:layout_width="match_parent"

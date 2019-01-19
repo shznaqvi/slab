@@ -115,7 +115,6 @@ public class MainApp extends Application {
     public static int BLRandomSize;
     protected static LocationManager locationManager;
 
-
     public static int monthsBetweenDates(Date startDate, Date endDate) {
 
         Calendar start = Calendar.getInstance();

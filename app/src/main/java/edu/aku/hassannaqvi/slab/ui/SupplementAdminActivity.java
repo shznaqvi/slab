@@ -21,10 +21,11 @@ import edu.aku.hassannaqvi.slab.validation.validatorClass;
 public class SupplementAdminActivity extends AppCompatActivity {
     ActivitySupplementAdminBinding bi;
     DatabaseHelper db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this,R.layout.activity_supplement_admin );
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_supplement_admin);
         bi.setCallback(this);
         db = new DatabaseHelper(this);
         setupView();
@@ -34,10 +35,12 @@ public class SupplementAdminActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
     private void setupView() {
-        bi.sfu67.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+      /*  bi.sfu67.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.sfu67a){
@@ -52,8 +55,9 @@ public class SupplementAdminActivity extends AppCompatActivity {
                     bi.fldGrpsfu68.setVisibility(View.VISIBLE);
                 }
             }
-        });
+        });*/
     }
+
     public void BtnContinue() {
 
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
@@ -63,10 +67,10 @@ public class SupplementAdminActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-          if (UpdateDB()) {
+            if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                    startActivity(new Intent(this, LabInvestigationActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, LabInvestigationActivity.class).putExtra("complete", true));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -89,7 +93,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-       // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -97,7 +101,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-           //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+                //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
                 finish();
 
@@ -109,61 +113,66 @@ public class SupplementAdminActivity extends AppCompatActivity {
 
     }
 
-    private void SaveDraft() throws JSONException{
+    private void SaveDraft() throws JSONException {
         JSONObject sa = new JSONObject();
-        sa.put("sfu66",bi.sfu66a.isChecked() ? "1"
-                : bi.sfu66b.isChecked() ? "2"
+        sa.put("sfu501", bi.sfu501a.isChecked() ? "1"
+                : bi.sfu501b.isChecked() ? "2"
                 : "0");
-        sa.put("sfu66bx", bi.sfu66bx.getText().toString());
+        sa.put("sfu502", bi.sfu502a.isChecked() ? "1"
+                : bi.sfu502b.isChecked() ? "2"
+                : bi.sfu502c.isChecked() ? "3"
+                : bi.sfu502d.isChecked() ? "4"
+                : bi.sfu50296.isChecked() ? "96"
+                : "0");
 
-        sa.put("sfu67",bi.sfu67a.isChecked() ? "1"
-                : bi.sfu67b.isChecked() ? "2"
-                : "0");
-        sa.put("sfu68a",bi.sfu68a01.isChecked() ? "1"
-                : bi.sfu68a02.isChecked() ? "2"
-                : "0");
-        sa.put("sfu68b",bi.sfu68b01.isChecked() ? "1"
-                : bi.sfu68b02.isChecked() ? "2"
-                : "0");
-        sa.put("sfu6896",bi.sfu689601.isChecked() ? "1"
-                : bi.sfu689602.isChecked() ? "2"
-                : "0");
-        sa.put("sfu6896x", bi.sfu6896x.getText().toString());
+        sa.put("sfu50296x", bi.sfu50296x.getText().toString());
+        sa.put("sfu503", bi.sfu503.getText().toString());
+        sa.put("sfu504", bi.sfu504.getText().toString());
+        sa.put("sfu505", bi.sfu505.getText().toString());
 
-        sa.put("sfu69",bi.sfu69a.isChecked() ? "1"
-                : bi.sfu69b.isChecked() ? "2"
-                : bi.sfu69c.isChecked() ? "3"
-                : bi.sfu6996.isChecked() ? "96"
+        sa.put("sfu506", bi.sfu506a.isChecked() ? "1"
+                : bi.sfu506b.isChecked() ? "2"
+                : bi.sfu50696.isChecked() ? "96"
                 : "0");
-        sa.put("sfu6996x", bi.sfu6996x.getText().toString());
+
+        sa.put("sfu50696x", bi.sfu50696x.getText().toString());
+        sa.put("sfu507", bi.sfu507a.isChecked() ? "1"
+                : bi.sfu50796.isChecked() ? "96"
+                : "0");
+
+        sa.put("sfu50796x", bi.sfu50796x.getText().toString());
 
         MainApp.fc.setsSup(String.valueOf(sa));
     }
 
     private boolean formValidation() {
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu66, bi.sfu66b,bi.sfu66bx, getString(R.string.sfu66))) {
+        if (MainApp.fupLocation == 1) {
+            if (!validatorClass.EmptyRadioButton(this, bi.sfu501, bi.sfu501b, getString(R.string.sfu501))) {
+                return false;
+            }
+            if (bi.sfu501b.isChecked()) {
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu502, bi.sfu50296, bi.sfu50296x, getString(R.string.sfu502))) {
+                    return false;
+                }
+            }
+
+        }
+        if (!validatorClass.EmptyTextBox(this, bi.sfu503, getString(R.string.sfu503))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu67, bi.sfu67a, getString(R.string.sfu67))) {
+        if (!validatorClass.EmptyTextBox(this, bi.sfu504, getString(R.string.sfu504))) {
             return false;
         }
-        if(bi.sfu67b.isChecked()){
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu68a, bi.sfu68a01, getString(R.string.sfu68)+" - "+getString(R.string.sfu68a))) {
-                return false;
-            }
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu68b, bi.sfu68b01, getString(R.string.sfu68)+" - "+getString(R.string.sfu68b))) {
-                return false;
-            }
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu6896, bi.sfu689601,bi.sfu6896x, getString(R.string.sfu68)+" - "+getString(R.string.sfu6896))) {
-                return false;
-            }
-
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu69, bi.sfu6996,bi.sfu6996x, getString(R.string.sfu69)+" - "+getString(R.string.others))) {
-                return false;
-            }
-
-
+        if (!validatorClass.EmptyTextBox(this, bi.sfu505, getString(R.string.sfu505))) {
+            return false;
         }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu506, bi.sfu50696, bi.sfu50696x, getString(R.string.sfu506))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu507, bi.sfu50796, bi.sfu50796x, getString(R.string.sfu507))) {
+            return false;
+        }
+
 
         return true;
     }

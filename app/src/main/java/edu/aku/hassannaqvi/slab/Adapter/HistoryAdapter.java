@@ -60,7 +60,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
 
         public void bindUser(final int noofsachet) {
             final int count = getAdapterPosition() + 1;
-            binding.sfudaytext.setText("Day " + count + " (have you given the supplement)?");
+           /* binding.sfudaytext.setText("Day " + count + " (have you given the supplement)?");
 
             binding.sfu11a1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 @Override
@@ -80,7 +80,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
                     answers[getAdapterPosition()][1] = i;
 
                 }
-            });
+            });*/
         }
     }
 }

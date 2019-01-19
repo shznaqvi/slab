@@ -41,7 +41,7 @@ public class SachetActivity extends AppCompatActivity {
     }
 
     private void setUpView() {
-        bi.ChildName.setText(childName);
+//        bi.ChildName.setText(childName);
         new generateHistoryRadioList(this).execute();
     }
 
@@ -78,15 +78,15 @@ public class SachetActivity extends AppCompatActivity {
                     adapter = new HistoryAdapter(Integer.parseInt(noofSachet));
 
                     if (adapter.getItemCount() > 0) {
-                        bi.recylerDays.setVisibility(View.VISIBLE);
+                       /* bi.recylerDays.setVisibility(View.VISIBLE);
                         //bi.nofup.setVisibility(View.GONE);
                         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                         bi.recylerDays.setLayoutManager(mLayoutManager);
                         bi.recylerDays.setItemAnimator(new DefaultItemAnimator());
-                        bi.recylerDays.setAdapter(adapter);
+                        bi.recylerDays.setAdapter(adapter);*/
                         adapter.notifyDataSetChanged();
                     } else {
-                        bi.recylerDays.setVisibility(View.GONE);
+//                        bi.recylerDays.setVisibility(View.GONE);
                         // Toast.makeText(this, "No Child Found!", Toast.LENGTH_SHORT).show();
                     }
                 }

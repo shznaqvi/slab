@@ -40,18 +40,17 @@ public class OnExaminationActivity extends AppCompatActivity {
     }
 
     private void setupView() {
-        bi.sfu57.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        bi.sfu404.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sfu57b) {
-                    bi.fldGrpsfu58.setVisibility(View.GONE);
-                    bi.sfu58.clearCheck();
+                if (i == R.id.sfu404b) {
+                    bi.fldGrpsfu404.setVisibility(View.GONE);
+                    bi.sfu405.clearCheck();
                 } else {
-                    bi.fldGrpsfu58.setVisibility(View.VISIBLE);
+                    bi.fldGrpsfu404.setVisibility(View.VISIBLE);
                 }
             }
         });
-
     }
 
     public void BtnContinue() {
@@ -114,80 +113,80 @@ public class OnExaminationActivity extends AppCompatActivity {
     private void SaveDraft() throws JSONException {
 
         JSONObject oe = new JSONObject();
-        oe.put("sfu54", bi.sfu54.getText().toString());
-        oe.put("sfu55", bi.sfu55.getText().toString());
-        oe.put("sfu56", bi.sfu56.getText().toString());
+        oe.put("sfu401", bi.sfu401.getText().toString());
+        oe.put("sfu402", bi.sfu402.getText().toString());
+        oe.put("sfu403", bi.sfu403.getText().toString());
 
-        oe.put("sfu57", bi.sfu57a.isChecked() ? "1"
-                : bi.sfu57b.isChecked() ? "2"
+        oe.put("sfu404", bi.sfu404a.isChecked() ? "1"
+                : bi.sfu404b.isChecked() ? "2"
                 : "0");
-        oe.put("sfu58", bi.sfu58a.isChecked() ? "1"
-                : bi.sfu58b.isChecked() ? "2"
-                : bi.sfu58c.isChecked() ? "3"
-                : bi.sfu58d.isChecked() ? "4"
-                : bi.sfu58e.isChecked() ? "5"
+        oe.put("sfu405", bi.sfu405a.isChecked() ? "1"
+                : bi.sfu405b.isChecked() ? "2"
+                : bi.sfu405c.isChecked() ? "3"
+                : bi.sfu405d.isChecked() ? "4"
+                : bi.sfu405e.isChecked() ? "5"
                 : "0");
-        oe.put("sfu59", bi.sfu59a.isChecked() ? "1"
-                : bi.sfu59b.isChecked() ? "2"
-                : bi.sfu59c.isChecked() ? "3"
-                : bi.sfu59d.isChecked() ? "4"
-                : bi.sfu5996.isChecked() ? "96"
+        oe.put("sfu406", bi.sfu406a.isChecked() ? "1"
+                : bi.sfu406b.isChecked() ? "2"
+                : bi.sfu406c.isChecked() ? "3"
+                : bi.sfu406d.isChecked() ? "4"
+                : bi.sfu40696.isChecked() ? "96"
                 : "0");
-        oe.put("sfu5996x", bi.sfu5996x.getText().toString());
-        oe.put("sfu60", bi.sfu60a.isChecked() ? "1"
-                : bi.sfu60b.isChecked() ? "2"
-                : bi.sfu6096.isChecked() ? "96"
+        oe.put("sfu40696x", bi.sfu40696x.getText().toString());
+        oe.put("sfu407", bi.sfu407a.isChecked() ? "1"
+                : bi.sfu407b.isChecked() ? "2"
+                : bi.sfu40796.isChecked() ? "96"
                 : "0");
-        oe.put("sfu6096x", bi.sfu6096x.getText().toString());
+        oe.put("sfu40796x", bi.sfu40796x.getText().toString());
 
-        oe.put("sfu61", bi.sfu61a.isChecked() ? "1"
-                : bi.sfu61b.isChecked() ? "2"
-                : bi.sfu61c.isChecked() ? "3"
-                : bi.sfu61d.isChecked() ? "4"
-                : bi.sfu61e.isChecked() ? "5"
-                : bi.sfu61f.isChecked() ? "6"
-                : bi.sfu6196.isChecked() ? "96"
+        oe.put("sfu408", bi.sfu408a.isChecked() ? "1"
+                : bi.sfu408b.isChecked() ? "2"
+                : bi.sfu408c.isChecked() ? "3"
+                : bi.sfu408d.isChecked() ? "4"
+                : bi.sfu408e.isChecked() ? "5"
+                : bi.sfu408f.isChecked() ? "6"
+                : bi.sfu40896.isChecked() ? "96"
                 : "0");
-        oe.put("sfu6196x", bi.sfu6196x.getText().toString());
+        oe.put("sfu40896x", bi.sfu40896x.getText().toString());
 
-        oe.put("sfu62", bi.sfu62a.isChecked() ? "1"
-                : bi.sfu62b.isChecked() ? "2"
+        oe.put("sfu409", bi.sfu409a.isChecked() ? "1"
+                : bi.sfu409b.isChecked() ? "2"
                 : "0");
-        oe.put("sfu62bx", bi.sfu62bx.getText().toString());
-        oe.put("sfu63", bi.sfu63a.isChecked() ? "1"
-                : bi.sfu63b.isChecked() ? "2"
-                : bi.sfu6396.isChecked() ? "96"
+        oe.put("sfu409bx", bi.sfu409bx.getText().toString());
+        oe.put("sfu410", bi.sfu410a.isChecked() ? "1"
+                : bi.sfu410b.isChecked() ? "2"
+                : bi.sfu41096.isChecked() ? "96"
                 : "0");
-        oe.put("sfu6396x", bi.sfu6396x.getText().toString());
-        oe.put("sfu64", bi.sfu64a.isChecked() ? "1"
-                : bi.sfu64b.isChecked() ? "2"
-                : bi.sfu64c.isChecked() ? "3"
-                : bi.sfu64d.isChecked() ? "4"
+        oe.put("sfu41096x", bi.sfu41096x.getText().toString());
+        oe.put("sfu411", bi.sfu411a.isChecked() ? "1"
+                : bi.sfu411b.isChecked() ? "2"
+                : bi.sfu411c.isChecked() ? "3"
+                : bi.sfu411d.isChecked() ? "4"
                 : "0");
 
-        oe.put("sfu65", bi.sfu65a.isChecked() ? "1"
-                : bi.sfu65b.isChecked() ? "2"
-                : bi.sfu6596.isChecked() ? "96"
+        oe.put("sfu412", bi.sfu412a.isChecked() ? "1"
+                : bi.sfu412b.isChecked() ? "2"
+                : bi.sfu41296.isChecked() ? "96"
                 : "0");
-        oe.put("sfu6596x", bi.sfu6596x.getText().toString());
+        oe.put("sfu41296x", bi.sfu41296x.getText().toString());
         MainApp.fc.setsExam(String.valueOf(oe));
     }
 
     private boolean formValidation() {
         String decimalRegex = "^\\d*\\.\\d|\\d+\\.\\d$";
         //String decimalRegex = "([0-9]+(\\.[0-9]))";
-        if (!validatorClass.EmptyTextBox(this, bi.sfu54, getString(R.string.sfu54))) {
+        if (!validatorClass.EmptyTextBox(this, bi.sfu401, getString(R.string.sfu401))) {
             return false;
         }
-        if (!bi.sfu54.getText().toString().matches("\\d+(\\.\\d+)*")) {
+        if (!bi.sfu401.getText().toString().matches("\\d+(\\.\\d+)*")) {
             Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
-            bi.sfu54.requestFocus();
-            bi.sfu54.setError("Please enter correct decimal value!");
+            bi.sfu401.requestFocus();
+            bi.sfu401.setError("Please enter correct decimal value!");
             return false;
         } else {
-            bi.sfu54.clearFocus();
-            bi.sfu54.setError(null);
-            if (!validatorClass.RangeTextBox(this, bi.sfu54, 35.0, 40.9, getString(R.string.sfu54), (char) 0x00B0 + "C")) {
+            bi.sfu401.clearFocus();
+            bi.sfu401.setError(null);
+            if (!validatorClass.RangeTextBox(this, bi.sfu401, 35.0, 40.9, getString(R.string.sfu401), (char) 0x00B0 + "C")) {
                 return false;
             }
 
@@ -209,51 +208,48 @@ public class OnExaminationActivity extends AppCompatActivity {
           //  return false;
         }
 */
-        if (!validatorClass.EmptyTextBox(this, bi.sfu55, getString(R.string.sfu55))) {
+        if (!validatorClass.EmptyTextBox(this, bi.sfu402, getString(R.string.sfu402))) {
             return false;
         }
-        if (!validatorClass.RangeTextBox(this, bi.sfu55, 30, 100, getString(R.string.sfu55), " minutes")) {
+        if (!validatorClass.RangeTextBox(this, bi.sfu402, 30, 100, getString(R.string.sfu402), " minutes")) {
             return false;
         }
-        if (!validatorClass.EmptyTextBox(this, bi.sfu56, getString(R.string.sfu56))) {
+        if (!validatorClass.EmptyTextBox(this, bi.sfu403, getString(R.string.sfu403))) {
             return false;
         }
-        if (!validatorClass.RangeTextBox(this, bi.sfu56, 130, 200, getString(R.string.sfu56), " minutes")) {
+        if (!validatorClass.RangeTextBox(this, bi.sfu403, 130, 200, getString(R.string.sfu403), " minutes")) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu57, bi.sfu57a, getString(R.string.sfu57))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu404, bi.sfu404a, getString(R.string.sfu404))) {
             return false;
         }
-        if (bi.sfu57a.isChecked()) {
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu58, bi.sfu58a, getString(R.string.sfu58))) {
+        if (bi.sfu404a.isChecked()) {
+            if (!validatorClass.EmptyRadioButton(this, bi.sfu405, bi.sfu405a, getString(R.string.sfu405))) {
                 return false;
             }
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu406, bi.sfu40696, bi.sfu40696x, getString(R.string.sfu406))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu407, bi.sfu40796, bi.sfu40796x, getString(R.string.sfu407))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu408, bi.sfu40896, bi.sfu40896x, getString(R.string.sfu408))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu409, bi.sfu409b, bi.sfu409bx, getString(R.string.sfu409))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu410, bi.sfu41096, bi.sfu41096x, getString(R.string.sfu410))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu411, bi.sfu411a,getString(R.string.sfu411))) {
+            return false;
+        }
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu412, bi.sfu41296, bi.sfu41296x, getString(R.string.sfu412))) {
+            return false;
+        }
 
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu59, bi.sfu5996, bi.sfu5996x, getString(R.string.sfu59))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu60, bi.sfu6096, bi.sfu6096x, getString(R.string.sfu60))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu61, bi.sfu6196, bi.sfu6196x, getString(R.string.sfu61))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu61, bi.sfu6196, bi.sfu6196x, getString(R.string.sfu61))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu62, bi.sfu62b, bi.sfu62bx, getString(R.string.sfu62))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu63, bi.sfu6396, bi.sfu6396x, getString(R.string.sfu63))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu64, bi.sfu64a, getString(R.string.sfu64))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu65, bi.sfu6596, bi.sfu6596x, getString(R.string.sfu65))) {
-            return false;
-        }
         return true;
     }
 }
