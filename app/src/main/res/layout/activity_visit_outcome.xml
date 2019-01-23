@@ -338,6 +338,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.VisitOutcome">
                 android:text='@{sfu60396.checked ? sfu60396x.getText.toString : "" }'
                 android:visibility='@{sfu60396.checked ? View.VISIBLE : View.GONE }'
                 />
+        </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -410,7 +411,6 @@ tools:context="edu.aku.hassannaqvi.slab.ui.VisitOutcome">
                       android:visibility='@{sfu6996.checked ? View.VISIBLE : View.GONE }' />
               </RadioGroup>-->
 
-        </LinearLayout>
         <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
         <LinearLayout
             android:layout_width="match_parent"

@@ -319,7 +319,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!validatorClass.RangeTextBox(this, bi.sel11, 1000, 2500, getString(R.string.sel11), " Weight")) {
+        if (!validatorClass.RangeTextBox(this, bi.sel11, 500, 4000, getString(R.string.sel11), " Weight")) {
             return false;
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sel12, bi.sel12a, getString(R.string.sel12))) {

@@ -18,10 +18,13 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityOnExaminationBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
+import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
+
 public class OnExaminationActivity extends AppCompatActivity {
     ActivityOnExaminationBinding bi;
     DatabaseHelper db;
-
+    String  childName , localmrno, localstudyID;
+    int fupLocation;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,7 @@ public class OnExaminationActivity extends AppCompatActivity {
         bi.setCallback(this);
         db = new DatabaseHelper(this);
         setupView();
+        gettingIntents();
         ScrollView onexam_scrollview = findViewById(R.id.onexam_scrollview);
         validatorClass.setScrollViewFocus(onexam_scrollview);
 
@@ -52,6 +56,22 @@ public class OnExaminationActivity extends AppCompatActivity {
             }
         });
     }
+    private void gettingIntents() {
+
+        Intent intent = getIntent();
+        if (intent.hasExtra(FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
+            Bundle bundle = intent.getExtras();
+            fupLocation = bundle.getInt(FUPLOCATION_TAG);
+            childName = bundle.getString("childName");
+            localmrno = bundle.getString("mrno");
+            localstudyID = bundle.getString("studyID");
+        } else {
+            // Do something else
+            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+
+        }
+
+    }
 
     public void BtnContinue() {
 
@@ -65,7 +85,10 @@ public class OnExaminationActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(this, SupplementAdminActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, SupplementAdminActivity.class).putExtra(FUPLOCATION_TAG, fupLocation)
+                        .putExtra("childName", childName)
+                        .putExtra("mrno", localmrno)
+                        .putExtra("studyID", localstudyID));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -114,7 +137,7 @@ public class OnExaminationActivity extends AppCompatActivity {
 
         JSONObject oe = new JSONObject();
         oe.put("sfu401", bi.sfu401.getText().toString());
-        oe.put("sfu402", bi.sfu402.getText().toString());
+            oe.put("sfu402", bi.sfu402.getText().toString());
         oe.put("sfu403", bi.sfu403.getText().toString());
 
         oe.put("sfu404", bi.sfu404a.isChecked() ? "1"

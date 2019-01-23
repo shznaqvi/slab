@@ -39,7 +39,6 @@
                 android:textSize="40sp" />
 
             <LinearLayout
-                android:id="@+id/fldgrpsfu501"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -53,7 +52,11 @@
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/colorPrimaryDark"
                     android:visibility="gone" />
-
+                <LinearLayout
+                    android:id="@+id/fldGrpsfu501"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -64,7 +67,6 @@
                     android:textColor="@android:color/white" />
 
                 <RadioGroup
-
                     android:id="@+id/sfu501"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,8 +143,9 @@
 
                 </RadioGroup>
     -->
+                </LinearLayout>
                 <LinearLayout
-                    android:id="@+id/fldGrpsfu501"
+                    android:id="@+id/fldGrpsfu502"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -155,7 +158,6 @@
                         android:text="@string/sfu502"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
-
 
                     <RadioGroup
                         android:id="@+id/sfu502"

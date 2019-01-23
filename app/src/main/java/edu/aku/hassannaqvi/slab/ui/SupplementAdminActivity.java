@@ -18,9 +18,14 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivitySupplementAdminBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
+import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
+
 public class SupplementAdminActivity extends AppCompatActivity {
     ActivitySupplementAdminBinding bi;
     DatabaseHelper db;
+    String  childName , localmrno, localstudyID;
+  int fupLocation;
+  public static JSONObject supAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
         bi.setCallback(this);
         db = new DatabaseHelper(this);
         setupView();
+        gettingIntents();
         ScrollView supp_scrollview = findViewById(R.id.supp_scrollview);
         validatorClass.setScrollViewFocus(supp_scrollview);
     }
@@ -39,23 +45,25 @@ public class SupplementAdminActivity extends AppCompatActivity {
     }
 
     private void setupView() {
+        if (MainApp.fupLocation == 1) {
+            bi.fldGrpsfu501.setVisibility(View.VISIBLE);
+            bi.fldGrpsfu502.setVisibility(View.VISIBLE);
+        } else {
+            bi.fldGrpsfu501.setVisibility(View.GONE);
+            bi.fldGrpsfu502.setVisibility(View.GONE);
+        }
 
-      /*  bi.sfu67.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        bi.sfu501.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.sfu67a){
-                    bi.fldGrpsfu68.setVisibility(View.GONE);
-                    bi.sfu68a.clearCheck();
-                    bi.sfu68b.clearCheck();
-                    bi.sfu6896.clearCheck();
-                    bi.sfu6896x.setText(null);
-                    bi.sfu69.clearCheck();
-                    bi.sfu6996x.setText(null);
-                }else{
-                    bi.fldGrpsfu68.setVisibility(View.VISIBLE);
+                if (i == R.id.sfu501a) {
+                    bi.fldGrpsfu502.setVisibility(View.GONE);
+                    bi.sfu502.clearCheck();
+                } else {
+                    bi.fldGrpsfu502.setVisibility(View.VISIBLE);
                 }
             }
-        });*/
+        });
     }
 
     public void BtnContinue() {
@@ -70,13 +78,33 @@ public class SupplementAdminActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(this, LabInvestigationActivity.class).putExtra("complete", true));
+//                startActivity(new Intent(this, HistoryActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, HistoryActivity.class).putExtra(FUPLOCATION_TAG, MainApp.fupLocation)
+                        .putExtra("noofSachet", bi.sfu504.getText().toString())
+                        .putExtra("childName", childName)
+                        .putExtra("mrno", localmrno)
+                        .putExtra("studyID",localstudyID));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+    private void gettingIntents() {
 
+        Intent intent = getIntent();
+        if (intent.hasExtra(FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
+            Bundle bundle = intent.getExtras();
+            fupLocation = bundle.getInt(FUPLOCATION_TAG);
+            childName = bundle.getString("childName");
+            localmrno = bundle.getString("mrno");
+            localstudyID = bundle.getString("studyID");
+        } else {
+            // Do something else
+            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+
+        }
+
+    }
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
         int updcount = db.updateSSUP();
@@ -141,7 +169,8 @@ public class SupplementAdminActivity extends AppCompatActivity {
                 : "0");
 
         sa.put("sfu50796x", bi.sfu50796x.getText().toString());
-
+        supAdmin = new JSONObject();
+        supAdmin = sa;
         MainApp.fc.setsSup(String.valueOf(sa));
     }
 

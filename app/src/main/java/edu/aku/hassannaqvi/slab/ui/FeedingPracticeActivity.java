@@ -24,6 +24,7 @@ import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
+import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
 
 public class FeedingPracticeActivity extends AppCompatActivity {
     ActivityFeedingPracticeBinding bi;
@@ -52,9 +53,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     private void gettingIntents() {
 
         Intent intent = getIntent();
-        if (intent.hasExtra(FollowUpFormActivity.FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
+        if (intent.hasExtra(FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
             Bundle bundle = intent.getExtras();
-            fupLocation = bundle.getInt(FollowUpFormActivity.FUPLOCATION_TAG);
+            fupLocation = bundle.getInt(FUPLOCATION_TAG);
             childName = bundle.getString("childName");
             localmrno = bundle.getString("mrno");
             localstudyID = bundle.getString("studyID");
@@ -96,6 +97,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                         bi.fldGrpsfu204.setVisibility(View.VISIBLE);
                         break;
                 }
+//                showhideTextBoxes();
 
 
             }
@@ -111,6 +113,8 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 } else {
                     bi.fldGrpsfu203.setVisibility(View.VISIBLE);
                 }
+                showhideTextBoxes();
+
             }
         });
 
@@ -118,10 +122,258 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         bi.sfu301.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-               // TODO implement skip pattern here
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu301a) {
+                    bi.fldgrpsfu301.setVisibility(VISIBLE);
+
+                } else {
+                    bi.fldgrpsfu301.setVisibility(GONE);
+                    bi.sfu302.setText(null);
+                    bi.sfu303m.setText(null);
+                    bi.sfu303h.setText(null);
+                    bi.sfu303d.setText(null);
+                }
+                showhideTextBoxes();
+
+
             }
         });
 
+        bi.sfu304.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu304a) {
+                    bi.fldgrpsfu304.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu304.setVisibility(GONE);
+                    bi.sfu305.setText(null);
+                    bi.sfu306m.setText(null);
+                    bi.sfu306h.setText(null);
+                    bi.sfu306d.setText(null);
+                }
+
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu307.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu307a) {
+                    bi.fldgrpsfu307.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu307.setVisibility(GONE);
+                    bi.sfu308.setText(null);
+                    bi.sfu309m.setText(null);
+                    bi.sfu309h.setText(null);
+                    bi.sfu309d.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu310.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu310a) {
+                    bi.fldgrpsfu310.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu310.setVisibility(GONE);
+                    bi.sfu311m.setText(null);
+                    bi.sfu311h.setText(null);
+                    bi.sfu311d.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu312.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu312a) {
+                    bi.fldgrpsfu312.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu312.setVisibility(GONE);
+                    bi.sfu313.setText(null);
+                    bi.sfu314m.setText(null);
+                    bi.sfu314h.setText(null);
+                    bi.sfu314d.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu315.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu315a) {
+                    bi.fldgrpsfu315.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu315.setVisibility(GONE);
+                    bi.sfu316.setText(null);
+                    bi.sfu317.setText(null);
+
+                }
+                showhideTextBoxes();
+
+            }
+        });
+
+        bi.sfu318.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu318a) {
+                    bi.fldgrpsfu318.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu318.setVisibility(GONE);
+                    bi.sfu319.setText(null);
+                    bi.sfu320.setText(null);
+                  }
+                showhideTextBoxes();
+
+            }
+        });
+
+        bi.sfu321.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu321a) {
+                    bi.fldgrpsfu321.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu321.setVisibility(GONE);
+                    bi.sfu322d.setText(null);
+                    bi.sfu322m.setText(null);
+                    bi.sfu322h.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu323.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu323a) {
+                    bi.fldgrpsfu323.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu323.setVisibility(GONE);
+                    bi.sfu324.setText(null);
+                    bi.sfu325d.setText(null);
+                    bi.sfu325m.setText(null);
+                    bi.sfu325h.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu326.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu326a) {
+                    bi.fldgrpsfu326.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu326.setVisibility(GONE);
+                    bi.sfu327.setText(null);
+
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu328.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu328a) {
+                    bi.fldgrpsfu328.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu328.setVisibility(GONE);
+                    bi.sfu329.clearCheck();
+                    bi.sfu330.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu331.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu331a) {
+                    bi.fldgrpsfu331.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu331.setVisibility(GONE);
+                    bi.sfu332d.setText(null);
+                    bi.sfu332h.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu333.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu333a) {
+                    bi.fldgrpsfu333.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu333.setVisibility(GONE);
+                    bi.sfu334.setText(null);
+                    bi.sfu335.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu337.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu337a) {
+                    bi.fldgrpsfu337.setVisibility(VISIBLE);
+                } else {
+                    bi.fldgrpsfu337.setVisibility(GONE);
+//                    bi.sfu338.setText(null);
+                    bi.sfu339.clearCheck();
+                    bi.sfu340.setText(null);
+                }
+                showhideTextBoxes();
+
+            }
+        });
+        bi.sfu342.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // TODO implement skip pattern here
+                if (checkedId == R.id.sfu342a) {
+                    bi.fldGrpsfu342.setVisibility(VISIBLE);
+                } else {
+                    bi.fldGrpsfu342.setVisibility(GONE);
+                    bi.sfu343.setText(null);
+                    bi.sfu344.clearCheck();
+//                    bi.sfu344bx.setText(null);
+                }
+                showhideTextBoxes();
+            }
+        });
+
+       showhideTextBoxes();
+        if (fupLocation == 6 ) {
+            nextExamSec = false;
+        } else {
+            nextExamSec = false;
+        }
+    }
+
+    private void showhideTextBoxes() {
         switch (fupLocation) {
             case 1:
                 bi.sfu303h.setVisibility(GONE);
@@ -138,6 +390,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu314m.setVisibility(VISIBLE);
                 bi.sfu322m.setVisibility(VISIBLE);
                 bi.sfu325m.setVisibility(VISIBLE);
+                bi.fldGrpsfu302.setVisibility(GONE);
+                bi.fldGrpsfu305.setVisibility(GONE);
+                bi.fldGrpsfu308.setVisibility(GONE);
+                bi.fldGrpsfu313.setVisibility(GONE);
+                bi.fldGrpsfu316.setVisibility(GONE);
+                bi.fldGrpsfu319.setVisibility(GONE);
+                bi.fldGrpsfu324.setVisibility(GONE);
                 break;
             case 3:
             case 4:
@@ -162,6 +421,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu316.setVisibility(GONE);
                 bi.sfu319.setVisibility(GONE);
                 bi.sfu324.setVisibility(GONE);
+                bi.fldGrpsfu302.setVisibility(GONE);
+                bi.fldGrpsfu305.setVisibility(GONE);
+                bi.fldGrpsfu308.setVisibility(GONE);
+                bi.fldGrpsfu313.setVisibility(GONE);
+                bi.fldGrpsfu316.setVisibility(GONE);
+                bi.fldGrpsfu319.setVisibility(GONE);
+                bi.fldGrpsfu324.setVisibility(GONE);
                 break;
             case 2:
             case 5:
@@ -191,11 +457,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
         }
 
-        if (fupLocation == 1 || fupLocation == 2) {
-            nextExamSec = true;
-        } else {
-            nextExamSec = false;
-        }
     }
 
     public void BtnContinue() {
@@ -211,9 +472,17 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
                 if (nextExamSec == false)
-                    startActivity(new Intent(this, SupplementAdminActivity.class));
+                    startActivity(new Intent(this, SupplementAdminActivity.class)
+                            .putExtra(FUPLOCATION_TAG, fupLocation)
+                            .putExtra("childName", childName)
+                            .putExtra("mrno", localmrno)
+                            .putExtra("studyID", localstudyID));
                 else
-                    startActivity(new Intent(this, OnExaminationActivity.class));
+                    startActivity(new Intent(this, OnExaminationActivity.class)
+                            .putExtra(FUPLOCATION_TAG, fupLocation)
+                            .putExtra("childName", childName)
+                            .putExtra("mrno", localmrno)
+                            .putExtra("studyID", localstudyID));
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -222,8 +491,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     }
 
     private boolean UpdateDB() {
-
-
         DatabaseHelper db = new DatabaseHelper(this);
 
         int updcount = db.updateSFEED();
@@ -338,7 +605,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         fp.put("sfu320", bi.sfu320.getText().toString());
 
 
-
         fp.put("sfu321", bi.sfu321a.isChecked() ? "1"
                 : bi.sfu321b.isChecked() ? "2"
                 : "0");
@@ -354,7 +620,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         fp.put("sfu325m", bi.sfu325m.getText().toString());
         fp.put("sfu325h", bi.sfu325h.getText().toString());
         fp.put("sfu325d", bi.sfu325d.getText().toString());
-
 
 
         fp.put("sfu326", bi.sfu326a.isChecked() ? "1"
@@ -435,17 +700,19 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu301, bi.sfu301a, getString(R.string.sfu301))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu302, getString(R.string.sfu302))) {
-                return false;
-            }
-        }
+
         if (bi.sfu301a.isChecked()) {
-            if(fupLocation == 1){
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu302, getString(R.string.sfu302))) {
+                    return false;
+                }
+            }
+            if (fupLocation == 1) {
+
                 if (!validatorClass.EmptyTextBox(this, bi.sfu303m, getString(R.string.sfu303) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu303d, getString(R.string.sfu303) + " in Days")) {
                     return false;
                 }
@@ -458,17 +725,19 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu304, bi.sfu304a, getString(R.string.sfu304))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu305, getString(R.string.sfu305))) {
-                return false;
-            }
-        }
+
         if (bi.sfu304a.isChecked()) {
-            if(fupLocation == 1){
+
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu305, getString(R.string.sfu305))) {
+                    return false;
+                }
+            }
+            if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu306m, getString(R.string.sfu306) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu306d, getString(R.string.sfu306) + " in Days")) {
                     return false;
                 }
@@ -481,17 +750,18 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu307, bi.sfu307a, getString(R.string.sfu307))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu308, getString(R.string.sfu308))) {
-                return false;
-            }
-        }
+
         if (bi.sfu307a.isChecked()) {
-            if(fupLocation == 1){
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu308, getString(R.string.sfu308))) {
+                    return false;
+                }
+            }
+            if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu309m, getString(R.string.sfu309) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu309d, getString(R.string.sfu309) + " in Days")) {
                     return false;
                 }
@@ -506,11 +776,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             return false;
         }
         if (bi.sfu310a.isChecked()) {
-            if(fupLocation == 1){
+            if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu311m, getString(R.string.sfu311) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu311d, getString(R.string.sfu311) + " in Days")) {
                     return false;
                 }
@@ -523,17 +793,18 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu312, bi.sfu312a, getString(R.string.sfu312))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu313, getString(R.string.sfu313))) {
-                return false;
-            }
-        }
+
         if (bi.sfu312a.isChecked()) {
-            if(fupLocation == 1){
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu313, getString(R.string.sfu313))) {
+                    return false;
+                }
+            }
+            if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu314m, getString(R.string.sfu314) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu314d, getString(R.string.sfu314) + " in Days")) {
                     return false;
                 }
@@ -546,12 +817,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu315, bi.sfu315a, getString(R.string.sfu315))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu316, getString(R.string.sfu316))) {
-                return false;
-            }
-        }
+
         if (bi.sfu315a.isChecked()) {
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu316, getString(R.string.sfu316))) {
+                    return false;
+                }
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu317, getString(R.string.sfu317) + " in Days")) {
                 return false;
             }
@@ -559,12 +831,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu318, bi.sfu318a, getString(R.string.sfu318))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu319, getString(R.string.sfu319))) {
-                return false;
-            }
-        }
+
         if (bi.sfu318a.isChecked()) {
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu319, getString(R.string.sfu319))) {
+                    return false;
+                }
+            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu320, getString(R.string.sfu320) + " in Days")) {
                 return false;
             }
@@ -575,11 +848,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             return false;
         }
         if (bi.sfu321a.isChecked()) {
-            if(fupLocation == 1){
+            if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu322m, getString(R.string.sfu322) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu322d, getString(R.string.sfu322) + " in Days")) {
                     return false;
                 }
@@ -592,17 +865,18 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu323, bi.sfu323a, getString(R.string.sfu323))) {
             return false;
         }
-        if(fupLocation == 2 || fupLocation == 5 || fupLocation == 6){
-            if (!validatorClass.EmptyTextBox(this, bi.sfu324, getString(R.string.sfu324))) {
-                return false;
-            }
-        }
+
         if (bi.sfu323a.isChecked()) {
-            if(fupLocation == 1){
+            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu324, getString(R.string.sfu324))) {
+                    return false;
+                }
+            }
+            if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu325m, getString(R.string.sfu325) + " in Minutes")) {
                     return false;
                 }
-            }else {
+            } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu325d, getString(R.string.sfu325) + " in Days")) {
                     return false;
                 }

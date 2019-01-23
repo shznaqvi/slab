@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -16,6 +18,9 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityVisitOutcomeBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
+import static edu.aku.hassannaqvi.slab.other.JsonUtils.mergeJSONObjects;
+import static edu.aku.hassannaqvi.slab.ui.SupplementAdminActivity.supAdmin;
+
 public class VisitOutcome extends AppCompatActivity {
 ActivityVisitOutcomeBinding bi;
     @Override
@@ -23,6 +28,23 @@ ActivityVisitOutcomeBinding bi;
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this,R.layout.activity_visit_outcome);
         bi.setCallback(this);
+
+        bi.sfu601.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.sfu601a){
+                    bi.fldGrpsfu601.setVisibility(View.GONE);
+                    bi.sfu602a.clearCheck();
+                    bi.sfu602b.clearCheck();
+                    bi.sfu60296.clearCheck();
+                    bi.sfu603.clearCheck();
+                }else {
+                    bi.fldGrpsfu601.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+
     }
     public void BtnEnd(){
 
@@ -55,7 +77,7 @@ ActivityVisitOutcomeBinding bi;
             if (UpdateDB()) {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                startActivity(new Intent(this, LabInvestigationActivity.class).putExtra("complete", true));
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -79,9 +101,10 @@ ActivityVisitOutcomeBinding bi;
                 if (!validatorClass.EmptyRadioButton(this, bi.sfu603, bi.sfu60396,bi.sfu60396x, getString(R.string.sfu603)+" "+ getString(R.string.others))) {
                     return false;
                 }
-                if (!validatorClass.EmptyTextBox(this, bi.sfu604, getString(R.string.sfu604))) {
-                    return false;
-                }
+
+            }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu604, getString(R.string.sfu604))) {
+                return false;
             }
 
         }
@@ -112,8 +135,11 @@ ActivityVisitOutcomeBinding bi;
                 : "0");
 
         sa.put("sfu604", bi.sfu604.getText().toString());
+        JSONObject localJson;
 
-        MainApp.fc.setsSup(String.valueOf(sa));
+        localJson = mergeJSONObjects(supAdmin, sa);
+
+        MainApp.fc.setsSup(String.valueOf(localJson));
     }
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);

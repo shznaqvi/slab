@@ -420,10 +420,10 @@ public class FollowUpFormActivity extends AppCompatActivity {
 
 
             } else {
-             /*   bi.fldGrpA.setVisibility(View.GONE);
-                bi.fldGrpB.setVisibility(View.GONE);*/
-                bi.fldGrpA.setVisibility(View.VISIBLE);
-                bi.fldGrpB.setVisibility(View.VISIBLE);
+                bi.fldGrpA.setVisibility(View.GONE);
+                bi.fldGrpB.setVisibility(View.GONE);
+             /*   bi.fldGrpA.setVisibility(View.VISIBLE);
+                bi.fldGrpB.setVisibility(View.VISIBLE);*/
                 Toast.makeText(context, "No MR No or Study ID found!", Toast.LENGTH_SHORT).show();
             }
 

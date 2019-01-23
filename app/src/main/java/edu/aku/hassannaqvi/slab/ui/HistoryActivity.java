@@ -25,6 +25,9 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityHistoryBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class HistoryActivity extends AppCompatActivity {
 ActivityHistoryBinding bi;
 DatabaseHelper db;
@@ -45,8 +48,43 @@ DatabaseHelper db;
 
     private void setUpView() {
         bi.ChildName.setText(childName);
-     /*   bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
-        bi.sfu11a1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+        bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
+        bi.sfu508a.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.sfu508a01){
+                    bi.llfldgrppartial.setVisibility(VISIBLE);
+                }else {
+                    bi.llfldgrppartial.setVisibility(GONE);
+                    bi.sfu508b.clearCheck();
+                }
+            }
+        });
+        bi.sfu508b.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.sfu508b1){
+                    bi.partial.setVisibility(GONE);
+                    bi.missed.setVisibility(GONE);
+                    bi.sfu508c.clearCheck();
+                    bi.sfu508d.clearCheck();
+                }else if(checkedId == R.id.sfu508b2){
+                    bi.partial.setVisibility(VISIBLE);
+                    bi.missed.setVisibility(GONE);
+//                    bi.sfu508c.clearCheck();
+                    bi.sfu508d.clearCheck();
+                }else if(checkedId == R.id.sfu508b3){
+                    bi.partial.setVisibility(GONE);
+                    bi.missed.setVisibility(VISIBLE);
+                    bi.sfu508c.clearCheck();
+//                    bi.sfu508d.clearCheck();
+                }
+            }
+        });
+
+
+      /*  bi.sfu11a1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.sfu11a11){
@@ -59,7 +97,22 @@ DatabaseHelper db;
             }
         });*/
     }
+   /* private void gettingIntents() {
 
+        Intent intent = getIntent();
+        if (intent.hasExtra(FollowUpFormActivity.FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
+            Bundle bundle = intent.getExtras();
+            fupLocation = bundle.getInt(FollowUpFormActivity.FUPLOCATION_TAG);
+            childName = bundle.getString("childName");
+            localmrno = bundle.getString("mrno");
+            localstudyID = bundle.getString("studyID");
+        } else {
+            // Do something else
+            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+
+        }
+
+    }*/
     @Override
     public void onBackPressed() {
        Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
@@ -138,7 +191,7 @@ DatabaseHelper db;
                 }
                 else{
                     MainApp.hiCount = 1;//reset counter
-                    startActivity(new Intent(this, FeedingPracticeActivity.class)
+                    startActivity(new Intent(this, VisitOutcome.class)
                             .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
                             .putExtra("mrno",localmrno)
@@ -203,24 +256,47 @@ DatabaseHelper db;
         MainApp.hc.setcount(String.valueOf(MainApp.hiCount));
 
         JSONObject his = new JSONObject();
-       /* his.put("sfuqty", bi.sfu11a11.isChecked() ? "1"
-                : bi.sfu11a12.isChecked() ? "2"
+        his.put("sfu508a", bi.sfu508a01.isChecked() ? "1"
+                : bi.sfu508a02.isChecked() ? "2"
                 : "0");
-        his.put("sfuifpartial", bi.sfu11a21.isChecked() ? "1"
-                : bi.sfu11a22.isChecked() ? "2"
-                : "0");*/
+        his.put("sfu508b", bi.sfu508b1.isChecked() ? "1"
+                : bi.sfu508b2.isChecked() ? "2"
+                : bi.sfu508b3.isChecked() ? "3"
+                : "0");
+        his.put("sfu508c", bi.sfu508c1.isChecked() ? "1"
+                : bi.sfu508c2.isChecked() ? "2"
+                : bi.sfu508c3.isChecked() ? "3"
+                : "0");
+        his.put("sfu508d", bi.sfu508d1.isChecked() ? "1"
+                : bi.sfu508d2.isChecked() ? "2"
+                : bi.sfu508d3.isChecked() ? "3"
+                : bi.sfu508d4.isChecked() ? "4"
+                : bi.sfu508d96.isChecked() ? "96"
+                : "0");
+        his.put("sfu508d96x", bi.sfu508d96x.getText().toString());
         MainApp.hc.setSfu11(String.valueOf(his));
     }
 
     private boolean formValidation() {
-     /*   if (!validatorClass.EmptyRadioButton(this, bi.sfu11a1, bi.sfu11a11, getString(R.string.sfuifqty))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu508a, bi.sfu508a01, getString(R.string.sfu508a))) {
             return false;
         }
-        if (!bi.sfu11a11.isChecked()){
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu11a2, bi.sfu11a21, getString(R.string.sfuifpartial))) {
+        if(bi.sfu508a01.isChecked()){
+            if (!validatorClass.EmptyRadioButton(this, bi.sfu508b, bi.sfu508b1, getString(R.string.sfu508b))) {
                 return false;
             }
-        }*/
+            if (bi.sfu508b2.isChecked()){
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu508c, bi.sfu508c1, getString(R.string.sfu508c))) {
+                    return false;
+                }
+            }
+            if (bi.sfu508b3.isChecked()){
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d1, bi.sfu508d96x, getString(R.string.sfu508d))) {
+                    return false;
+                }
+            }
+        }
+
         return true;
     }
 
