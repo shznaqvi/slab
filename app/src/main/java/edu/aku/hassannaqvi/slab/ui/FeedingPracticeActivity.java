@@ -33,6 +33,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     Boolean nextExamSec;
     String childName, localmrno, localstudyID;
     int fupLocation;
+    Boolean skip38;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         bi.setCallback(this);
         gettingIntents();
         setupView();
+        if(MainApp.fupLocation == 1 || MainApp.fupLocation == 3 || MainApp.fupLocation == 4){
+            skip38 = true;
+        }else {
+            skip38 = false;
+        }
         validatorClass.setScrollViewFocus(bi.scrollView);
     }
 
@@ -366,23 +372,23 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         });
 
        showhideTextBoxes();
-        if (fupLocation == 6 ) {
+        if (fupLocation == 6) {
             nextExamSec = false;
         } else {
-            nextExamSec = false;
+            nextExamSec = true;
         }
     }
 
     private void showhideTextBoxes() {
         switch (fupLocation) {
             case 1:
-                bi.sfu303h.setVisibility(GONE);
-                bi.sfu306h.setVisibility(GONE);
-                bi.sfu309h.setVisibility(GONE);
-                bi.sfu311h.setVisibility(GONE);
-                bi.sfu314h.setVisibility(GONE);
-                bi.sfu322h.setVisibility(GONE);
-                bi.sfu325h.setVisibility(GONE);
+                bi.sfu303d.setVisibility(GONE);
+                bi.sfu306d.setVisibility(GONE);
+                bi.sfu309d.setVisibility(GONE);
+                bi.sfu311d.setVisibility(GONE);
+                bi.sfu314d.setVisibility(GONE);
+                bi.sfu322d.setVisibility(GONE);
+                bi.sfu325d.setVisibility(GONE);
                 bi.sfu303m.setVisibility(VISIBLE);
                 bi.sfu306m.setVisibility(VISIBLE);
                 bi.sfu309m.setVisibility(VISIBLE);
@@ -400,13 +406,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 break;
             case 3:
             case 4:
-                bi.sfu303h.setVisibility(GONE);
-                bi.sfu306h.setVisibility(GONE);
-                bi.sfu309h.setVisibility(GONE);
-                bi.sfu311h.setVisibility(GONE);
-                bi.sfu314h.setVisibility(GONE);
-                bi.sfu322h.setVisibility(GONE);
-                bi.sfu325h.setVisibility(GONE);
+                bi.sfu303d.setVisibility(GONE);
+                bi.sfu306d.setVisibility(GONE);
+                bi.sfu309d.setVisibility(GONE);
+                bi.sfu311d.setVisibility(GONE);
+                bi.sfu314d.setVisibility(GONE);
+                bi.sfu322d.setVisibility(GONE);
+                bi.sfu325d.setVisibility(GONE);
                 bi.sfu303m.setVisibility(VISIBLE);
                 bi.sfu306m.setVisibility(VISIBLE);
                 bi.sfu309m.setVisibility(VISIBLE);
@@ -432,13 +438,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             case 2:
             case 5:
             case 6:
-                bi.sfu303h.setVisibility(VISIBLE);
-                bi.sfu306h.setVisibility(VISIBLE);
-                bi.sfu309h.setVisibility(VISIBLE);
-                bi.sfu311h.setVisibility(VISIBLE);
-                bi.sfu314h.setVisibility(VISIBLE);
-                bi.sfu322h.setVisibility(VISIBLE);
-                bi.sfu325h.setVisibility(VISIBLE);
+                bi.sfu303d.setVisibility(VISIBLE);
+                bi.sfu306d.setVisibility(VISIBLE);
+                bi.sfu309d.setVisibility(VISIBLE);
+                bi.sfu311d.setVisibility(VISIBLE);
+                bi.sfu314d.setVisibility(VISIBLE);
+                bi.sfu322d.setVisibility(VISIBLE);
+                bi.sfu325d.setVisibility(VISIBLE);
                 bi.sfu303m.setVisibility(GONE);
                 bi.sfu306m.setVisibility(GONE);
                 bi.sfu309m.setVisibility(GONE);
@@ -933,23 +939,24 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sfu336, getString(R.string.sfu336))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu337, bi.sfu337a, getString(R.string.sfu337))) {
-            return false;
-        }
-        if (bi.sfu337a.isChecked()) {
+        if(skip38){
+            if (!validatorClass.EmptyRadioButton(this, bi.sfu337, bi.sfu337a, getString(R.string.sfu337))) {
+                return false;
+            }
+            if (bi.sfu337a.isChecked()) {
 
-            if (!validatorClass.EmptyTextBox(this, bi.sfu338, getString(R.string.sfu338))) {
-                return false;
-            }
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu339, bi.sfu33996, bi.sfu33996x, getString(R.string.sfu339))) {
-                return false;
-            }
-            if (!validatorClass.EmptyTextBox(this, bi.sfu340, getString(R.string.sfu340))) {
-                return false;
-            }
+                if (!validatorClass.EmptyTextBox(this, bi.sfu338, getString(R.string.sfu338))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu339, bi.sfu33996, bi.sfu33996x, getString(R.string.sfu339))) {
+                    return false;
+                }
+                if (!validatorClass.EmptyTextBox(this, bi.sfu340, getString(R.string.sfu340))) {
+                    return false;
+                }
 //            TODO: apply validation for Question 41 check from old app
-            /**/
-
+                /**/
+            }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu342, bi.sfu342a, getString(R.string.sfu342))) {
             return false;

@@ -66,6 +66,36 @@ public class FollowUpFormActivity extends AppCompatActivity {
 //        fc_1 = new FormsContract();
         childListContract = new ChildListContract();
         recmodel = new RecruitmentJSONModel();
+        bi.sfu105.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId == R.id.sfu105a){
+                    bi.sfu106.clearCheck();
+                    bi.sfu106a.setEnabled(true);
+                    bi.sfu106b.setEnabled(true);
+                    bi.sfu106c.setEnabled(true);
+                    bi.sfu106d.setEnabled(false);
+                    bi.sfu106e.setEnabled(false);
+                    bi.sfu106f.setEnabled(false);
+                }else if(checkedId == R.id.sfu105b){
+                    bi.sfu106.clearCheck();
+                    bi.sfu106a.setEnabled(false);
+                    bi.sfu106b.setEnabled(false);
+                    bi.sfu106c.setEnabled(false);
+                    bi.sfu106d.setEnabled(false);
+                    bi.sfu106e.setEnabled(true);
+                    bi.sfu106f.setEnabled(true);
+                }else if(checkedId == R.id.sfu10596){
+                    bi.sfu106.clearCheck();
+                    bi.sfu106a.setEnabled(false);
+                    bi.sfu106b.setEnabled(false);
+                    bi.sfu106c.setEnabled(false);
+                    bi.sfu106d.setEnabled(true);
+                    bi.sfu106e.setEnabled(false);
+                    bi.sfu106f.setEnabled(false);
+                }
+            }
+        });
 
     }
 

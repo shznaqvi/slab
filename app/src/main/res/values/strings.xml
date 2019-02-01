@@ -89,8 +89,8 @@
         <string name="sel15"> Neonates with early-onset sepsis </string>
         <string name="sel16"> Antibiotics stopped within 48hrs of life </string>
         <string name="sel17"> Neonate with history of Chorioamnionitis or Maternal GBS colonization </string>
-        <string name="sel18"> Doppler ultrasound shows reversed or absent end-diastolic flow on maternal umbilical artery </string>
-        <string name="sel19"> Child Eligible For Enrolment: </string>-->
+        <string name="sel19"> Doppler ultrasound shows reversed or absent end-diastolic flow on maternal umbilical artery </string>
+        <string name="sel20"> Child Eligible For Enrolment: </string>-->
     <string name="sel03"> Father’s name: </string>
     <string name="sel04"> Mother’s name: </string>
 
@@ -110,19 +110,22 @@
     <string name="sel11"> Birth weight of neonate (in grams): </string>
     <string name="sel12"> Is the birth weight ≥1000 grams and ≤ 2500 grams </string>
     <string name="sel13"> Length of neonate (in cms): </string>
-    <string name="sel14">Head of circumference (in cms): </string>
+    <string name="sel14"> Head of circumference (in cms): </string>
 
     <string name="sel15"> Do you have any plans to travel out of Karachi in next one month. </string>
     <string name="sel16"> Newborn initiated feeding within 48 hours of birth. </string>
     <string name="sel17"> Does the newborn have any congenital anomaly </string>
     <string name="sel18"> Does the newborn have early onset of sepsis  </string>
-    <string name="sel19">Antibiotics stopped within 48hrs of life </string>
-    <string name="sel20">Does the newborn have history of Chorioamnionitis or Maternal GBS colonization  </string>
-    <string name="sel21"> Doppler ultrasound shows reversed or absent end-diastolic flow on maternal umbilical artery </string>
+    <string name="sel19"> Is baby on antibiotics? </string>
 
-    <string name="sel22"> Newborn is eligible for enrolment</string>
-    <string name="sel23"> If NO, Specify Reason </string>
-    <string name="sel24"> Consent Form Signed?</string>
+    <string name="sel20">Antibiotics stopped within 48hrs of life </string>
+    <string name="sel21">Does the newborn have history of Chorioamnionitis or Maternal GBS colonization  </string>
+    <string name="sel22"> Doppler ultrasound shows reversed or absent end-diastolic flow on maternal umbilical artery </string>
+
+    <string name="sel23"> Newborn is eligible for enrolment</string>
+    <string name="sel24"> If NO, Specify Reason </string>
+    <string name="sel25"> Consent Form Signed?</string>
+
     <string name="senheading">Recruitment</string>
     <!--<string name="sen01"> Study ID: </string>-->
     <string name="sen02"> Randomization code: </string>

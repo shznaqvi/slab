@@ -7,6 +7,7 @@ import android.databinding.DataBindingUtil;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatRadioButton;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -30,6 +31,9 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityEligibilityFormBinding;
 import edu.aku.hassannaqvi.slab.other.DateUtils;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
+
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
 
 public class EligibilityFormActivity extends AppCompatActivity {
     ActivityEligibilityFormBinding bi;
@@ -117,13 +121,13 @@ public class EligibilityFormActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!bi.sel09w.getText().toString().isEmpty() && !bi.sel09d.getText().toString().isEmpty()) {
-                    if((Integer.valueOf(bi.sel09w.getText().toString()) >= 28 && Integer.valueOf(bi.sel09d.getText().toString()) <= 36)&&(Integer.valueOf(bi.sel09d.getText().toString()) >= 0 && Integer.valueOf(bi.sel09d.getText().toString()) <= 6)){
+                    if ((Integer.valueOf(bi.sel09w.getText().toString()) >= 28 && Integer.valueOf(bi.sel09d.getText().toString()) <= 36) && (Integer.valueOf(bi.sel09d.getText().toString()) >= 0 && Integer.valueOf(bi.sel09d.getText().toString()) <= 6)) {
                         bi.sel10a.setChecked(true);
-                    }else {
+                    } else {
                         bi.sel10b.setChecked(true);
 
                     }
-                }else{
+                } else {
                     bi.sel10.clearCheck();
                 }
             }
@@ -142,12 +146,12 @@ public class EligibilityFormActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (!bi.sel09w.getText().toString().isEmpty() && !bi.sel09d.getText().toString().isEmpty()) {
-                    if((Integer.valueOf(bi.sel09w.getText().toString()) >= 28 && Integer.valueOf(bi.sel09d.getText().toString()) <= 36)&&(Integer.valueOf(bi.sel09d.getText().toString()) >= 0 && Integer.valueOf(bi.sel09d.getText().toString()) <= 6)){
+                    if ((Integer.valueOf(bi.sel09w.getText().toString()) >= 28 && Integer.valueOf(bi.sel09d.getText().toString()) <= 36) && (Integer.valueOf(bi.sel09d.getText().toString()) >= 0 && Integer.valueOf(bi.sel09d.getText().toString()) <= 6)) {
                         bi.sel10a.setChecked(true);
-                    }else {
+                    } else {
                         bi.sel10b.setChecked(true);
                     }
-                }else{
+                } else {
                     bi.sel10.clearCheck();
                 }
             }
@@ -165,14 +169,13 @@ public class EligibilityFormActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (!bi.sel11.getText().toString().isEmpty() ) {
-                    if(Integer.valueOf(bi.sel11.getText().toString()) >= 1000 && Integer.valueOf(bi.sel11.getText().toString()) <= 2500){
+                if (!bi.sel11.getText().toString().isEmpty()) {
+                    if (Integer.valueOf(bi.sel11.getText().toString()) >= 1000 && Integer.valueOf(bi.sel11.getText().toString()) <= 2500) {
                         bi.sel12a.setChecked(true);
-                    }else {
+                    } else {
                         bi.sel12b.setChecked(true);
-
                     }
-                }else{
+                } else {
                     bi.sel12.clearCheck();
                 }
             }
@@ -183,73 +186,171 @@ public class EligibilityFormActivity extends AppCompatActivity {
             }
         });
 //        bi.sel06t.setManager(getSupportFragmentManager());
+        bi.sel10.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.sel10a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked()  && bi.sel15b.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+
+                } else if (i == R.id.sel10a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
+                } else {
+                    bi.sel23b.setChecked(true);
+                }
+            }
+        });
+        bi.sel12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.sel12a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel10a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+
+                } else if (i == R.id.sel12a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel10a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
+                } else {
+                    bi.sel23b.setChecked(true);
+                }
+            }
+        });
         bi.sel15.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked()) ) {
+
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+
+                } else if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
                 }
             }
         });
         bi.sel16.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+
+                } else if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
+
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
                 }
             }
         });
         bi.sel17.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked()  && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+                } else if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
+
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
                 }
             }
         });
         bi.sel18.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19b.isChecked() && bi.sel17b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
+                } else if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19a.isChecked() && bi.sel17b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
+
                 }
             }
         });
         bi.sel19.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel19a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel20b.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel19a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.fldGrpsel19.setVisibility(VISIBLE);
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+                } else if (i == R.id.sel19b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.fldGrpsel19.setVisibility(GONE);
+                    bi.sel20.clearCheck();
+                    bi.sel23a.setChecked(true);
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
                 }
             }
         });
         bi.sel20.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel20b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && (bi.sel21b.isChecked() || bi.sel21c.isChecked())) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel20a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
                 }
             }
         });
         bi.sel21.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if ((i == R.id.sel21b || i == R.id.sel21c) && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel20b.isChecked()) {
-                    bi.sel22a.setChecked(true);
+                if (i == R.id.sel21b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+                } else if (i == R.id.sel21b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                    bi.sel23a.setChecked(true);
+
                 } else {
-                    bi.sel22b.setChecked(true);
+                    bi.sel23b.setChecked(true);
+                }
+            }
+        });
+        bi.sel22.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if ((i == R.id.sel22b || i == R.id.sel22c) && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked()) {
+                    if (bi.sel20a.isChecked()) {
+                        bi.sel23a.setChecked(true);
+                    } else {
+                        bi.sel23b.setChecked(true);
+                    }
+                } else if ((i == R.id.sel22b || i == R.id.sel22c) && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked()) {
+                    bi.sel23a.setChecked(true);
+                } else {
+                    bi.sel23b.setChecked(true);
                 }
             }
         });
@@ -379,18 +480,24 @@ public class EligibilityFormActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sel19, bi.sel19a, getString(R.string.sel19))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sel20, bi.sel20a, getString(R.string.sel20))) {
-            return false;
+        if(bi.sel19a.isChecked()){
+            if (!validatorClass.EmptyRadioButton(this, bi.sel20, bi.sel20a, getString(R.string.sel20))) {
+                return false;
+            }
         }
+
         if (!validatorClass.EmptyRadioButton(this, bi.sel21, bi.sel21a, getString(R.string.sel21))) {
             return false;
         }
-
         if (!validatorClass.EmptyRadioButton(this, bi.sel22, bi.sel22a, getString(R.string.sel22))) {
             return false;
         }
 
-        if (!validatorClass.EmptyRadioButton(this, bi.sel24, bi.sel24b, bi.sel24bx, getString(R.string.sel24))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.sel23, bi.sel23a, getString(R.string.sel23))) {
+            return false;
+        }
+
+        if (!validatorClass.EmptyRadioButton(this, bi.sel25, bi.sel25b, bi.sel25bx, getString(R.string.sel25))) {
             return false;
         }
 
@@ -411,7 +518,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 finish();
                 Boolean consent = false;
-                if (bi.sel24a.isChecked()) {
+                if (bi.sel25a.isChecked()) {
                     consent = true;
                 } else {
                     consent = false;
@@ -460,7 +567,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setsMrno(bi.sel01.getText().toString());
         MainApp.fc.setFormtype(MainApp.FORMTYPE_EL);
-        if (bi.sel22a.isChecked()) {
+        if (bi.sel23a.isChecked()) {
             MainApp.fc.setIsEl("1");
         } else {
             MainApp.fc.setIsEl("2");
@@ -521,15 +628,18 @@ public class EligibilityFormActivity extends AppCompatActivity {
                 : "0");
         ef.put("sel21", bi.sel21a.isChecked() ? "1"
                 : bi.sel21b.isChecked() ? "2"
-                : bi.sel21c.isChecked() ? "3"
                 : "0");
         ef.put("sel22", bi.sel22a.isChecked() ? "1"
                 : bi.sel22b.isChecked() ? "2"
+                : bi.sel22c.isChecked() ? "3"
                 : "0");
-        ef.put("sel24", bi.sel24a.isChecked() ? "1"
-                : bi.sel24b.isChecked() ? "2"
+        ef.put("sel23", bi.sel23a.isChecked() ? "1"
+                : bi.sel23b.isChecked() ? "2"
                 : "0");
-        ef.put("sel24x", bi.sel24bx.getText().toString());
+        ef.put("sel25", bi.sel25a.isChecked() ? "1"
+                : bi.sel25b.isChecked() ? "2"
+                : "0");
+        ef.put("sel25x", bi.sel25bx.getText().toString());
 
         MainApp.fc.setsEl(String.valueOf(ef));
     }

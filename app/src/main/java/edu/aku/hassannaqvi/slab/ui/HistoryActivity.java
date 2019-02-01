@@ -34,6 +34,7 @@ DatabaseHelper db;
     String noofSachet, childName , localmrno, localstudyID;
     int fuplocation;
     String dtToday;
+    Boolean nextExamSec;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,7 @@ DatabaseHelper db;
         dtToday = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(new Date().getTime());
         gettingIntents();
         setUpView();
+
     }
 
     private void setUpView() {
@@ -160,6 +162,9 @@ DatabaseHelper db;
             if (UpdateDB()) {
            //     Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
+
+
+
 /*
                 if (MainApp.hiCount == Integer.parseInt(noofSachet)) {
                     MainApp.hiCount = 1;

@@ -666,8 +666,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -702,7 +700,8 @@
 
             </LinearLayout>
 
-             <!--19-->
+
+            <!--19-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -744,11 +743,13 @@
 
             </LinearLayout>
 
-            <!--20-->
+             <!--20-->
             <LinearLayout
+                android:id="@+id/fldGrpsel19"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
 
 
                     <TextView
@@ -785,7 +786,6 @@
 
             </LinearLayout>
 
-
             <!--21-->
             <LinearLayout
                 android:layout_width="match_parent"
@@ -805,7 +805,7 @@
                     <RadioGroup
                         android:id="@+id/sel21"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -822,14 +822,10 @@
                             android:layout_weight="1"
                             android:text="@string/no" />
 
-                        <RadioButton
-                            android:id="@+id/sel21c"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
-                            android:text="@string/notavailable" />
                     </RadioGroup>
-                </LinearLayout>
+
+
+            </LinearLayout>
 
 
             <!--22-->
@@ -851,7 +847,7 @@
                     <RadioGroup
                         android:id="@+id/sel22"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RadioButton
@@ -859,7 +855,6 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:enabled="false"
                             android:text="@string/yes" />
 
                         <RadioButton
@@ -867,12 +862,19 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:enabled="false"
                             android:text="@string/no" />
+
+                        <RadioButton
+                            android:id="@+id/sel22c"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.5"
+                            android:text="@string/notavailable" />
                     </RadioGroup>
                 </LinearLayout>
 
-            <!--24-->
+
+            <!--23-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -884,25 +886,65 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/sel24"
+                        android:text="@string/sel23"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
                     <RadioGroup
-                        android:id="@+id/sel24"
+                        android:id="@+id/sel23"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/sel23a"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:enabled="false"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/sel23b"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:enabled="false"
+                            android:text="@string/no" />
+                    </RadioGroup>
+                </LinearLayout>
+
+            <!--25-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sel25"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <RadioGroup
+                        android:id="@+id/sel25"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/sel24a"
+                            android:id="@+id/sel25a"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="@string/yes" />
 
                         <RadioButton
-                            android:id="@+id/sel24b"
+                            android:id="@+id/sel25b"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -911,13 +953,13 @@
                     </RadioGroup>
 
                     <EditText
-                        android:id="@+id/sel24bx"
+                        android:id="@+id/sel25bx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/reason"
                         android:inputType="text"
-                        android:text='@{sel24b.checked ? sel24bx.getText.toString : "" }'
-                        android:visibility='@{sel24b.checked ? View.VISIBLE : View.GONE }' />
+                        android:text='@{sel25b.checked ? sel25bx.getText.toString : "" }'
+                        android:visibility='@{sel25b.checked ? View.VISIBLE : View.GONE }' />
                 </LinearLayout>
 
 
