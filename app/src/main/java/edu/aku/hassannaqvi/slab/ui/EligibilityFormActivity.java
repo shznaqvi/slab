@@ -189,7 +189,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel10.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel10a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked()  && bi.sel15b.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel10a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked()  && bi.sel15b.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
 
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
@@ -197,7 +197,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
                         bi.sel23b.setChecked(true);
                     }
 
-                } else if (i == R.id.sel10a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel10a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
                 } else {
                     bi.sel23b.setChecked(true);
@@ -207,7 +207,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel12.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel12a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel10a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel12a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel10a.isChecked()  && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
 
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
@@ -215,7 +215,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
                         bi.sel23b.setChecked(true);
                     }
 
-                } else if (i == R.id.sel12a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel10a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel12a && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel15b.isChecked() && bi.sel10a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
                 } else {
                     bi.sel23b.setChecked(true);
@@ -225,7 +225,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel15.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked()) ) {
+                if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked()  && (bi.sel22b.isChecked() || bi.sel22c.isChecked()) ) {
 
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
@@ -233,7 +233,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
                         bi.sel23b.setChecked(true);
                     }
 
-                } else if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel15b && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked()&& bi.sel10a.isChecked() && bi.sel12a.isChecked()  && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
                 } else {
                     bi.sel23b.setChecked(true);
@@ -243,14 +243,14 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel16.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
                     } else {
                         bi.sel23b.setChecked(true);
                     }
 
-                } else if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel16a && bi.sel15b.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
 
                 } else {
@@ -261,13 +261,13 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel17.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked()  && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked()  && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
                     } else {
                         bi.sel23b.setChecked(true);
                     }
-                } else if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel17b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
 
                 } else {
@@ -278,9 +278,9 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel18.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19b.isChecked() && bi.sel17b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19b.isChecked() && bi.sel17b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
-                } else if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19a.isChecked() && bi.sel17b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel18b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel19a.isChecked() && bi.sel17b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
                     } else {
@@ -295,16 +295,20 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel19.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel19a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if(i == R.id.sel19a ){
                     bi.fldGrpsel19.setVisibility(VISIBLE);
+
+                }else{
+                    bi.fldGrpsel19.setVisibility(GONE);
+                    bi.sel20.clearCheck();
+                }
+                if (i == R.id.sel19a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
                     } else {
                         bi.sel23b.setChecked(true);
                     }
-                } else if (i == R.id.sel19b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
-                    bi.fldGrpsel19.setVisibility(GONE);
-                    bi.sel20.clearCheck();
+                } else if (i == R.id.sel19b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
                 } else {
                     bi.sel23b.setChecked(true);
@@ -314,7 +318,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel20.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel20a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19b.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel20a && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel18b.isChecked() && bi.sel19a.isChecked() && bi.sel21b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     bi.sel23a.setChecked(true);
                 } else {
                     bi.sel23b.setChecked(true);
@@ -324,13 +328,13 @@ public class EligibilityFormActivity extends AppCompatActivity {
         bi.sel21.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.sel21b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                if (i == R.id.sel21b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19a.isChecked() && bi.sel18b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked() && (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
                     if (bi.sel20a.isChecked()) {
                         bi.sel23a.setChecked(true);
                     } else {
                         bi.sel23b.setChecked(true);
                     }
-                } else if (i == R.id.sel21b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()&& (bi.sel22b.isChecked() || bi.sel22c.isChecked())) {
+                } else if (i == R.id.sel21b && bi.sel15b.isChecked() && bi.sel16a.isChecked() && bi.sel17b.isChecked() && bi.sel19b.isChecked() && bi.sel18b.isChecked() && bi.sel10a.isChecked() && bi.sel12a.isChecked()) {
                     bi.sel23a.setChecked(true);
 
                 } else {

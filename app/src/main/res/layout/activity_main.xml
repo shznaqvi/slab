@@ -180,7 +180,6 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginTop="16dp"
-                    android:visibility="gone"
                     android:background="@color/colorPrimary"
                     android:drawableLeft="@android:drawable/ic_menu_preferences"
                     android:drawableTint="@color/colorPrimaryBeta"
