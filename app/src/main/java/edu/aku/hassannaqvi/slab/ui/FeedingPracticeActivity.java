@@ -48,6 +48,12 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }else {
             skip38 = false;
         }
+        if(skip38){
+            bi.fldGrp337.setVisibility(GONE);
+        }else {
+            bi.fldGrp337.setVisibility(VISIBLE);
+
+        }
         validatorClass.setScrollViewFocus(bi.scrollView);
     }
 
@@ -75,6 +81,8 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
     private void setupView() {
 
+        bi.sfu343dt.setManager(getSupportFragmentManager());
+        bi.sfu343dt.setMaxDate(dateToday);
         bi.sfu338.setManager(getSupportFragmentManager());
         bi.sfu338.setMaxDate(dateToday);
         bi.sfu344bx.setManager(getSupportFragmentManager());
@@ -364,6 +372,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 } else {
                     bi.fldGrpsfu342.setVisibility(GONE);
                     bi.sfu343.setText(null);
+                    bi.sfu343dt.setText(null);
                     bi.sfu344.clearCheck();
 //                    bi.sfu344bx.setText(null);
                 }
@@ -406,20 +415,20 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 break;
             case 3:
             case 4:
-                bi.sfu303d.setVisibility(GONE);
-                bi.sfu306d.setVisibility(GONE);
-                bi.sfu309d.setVisibility(GONE);
-                bi.sfu311d.setVisibility(GONE);
-                bi.sfu314d.setVisibility(GONE);
-                bi.sfu322d.setVisibility(GONE);
-                bi.sfu325d.setVisibility(GONE);
-                bi.sfu303m.setVisibility(VISIBLE);
-                bi.sfu306m.setVisibility(VISIBLE);
-                bi.sfu309m.setVisibility(VISIBLE);
-                bi.sfu311m.setVisibility(VISIBLE);
-                bi.sfu314m.setVisibility(VISIBLE);
-                bi.sfu322m.setVisibility(VISIBLE);
-                bi.sfu325m.setVisibility(VISIBLE);
+                bi.sfu303d.setVisibility(VISIBLE);
+                bi.sfu306d.setVisibility(VISIBLE);
+                bi.sfu309d.setVisibility(VISIBLE);
+                bi.sfu311d.setVisibility(VISIBLE);
+                bi.sfu314d.setVisibility(VISIBLE);
+                bi.sfu322d.setVisibility(VISIBLE);
+                bi.sfu325d.setVisibility(VISIBLE);
+                bi.sfu303m.setVisibility(GONE);
+                bi.sfu306m.setVisibility(GONE);
+                bi.sfu309m.setVisibility(GONE);
+                bi.sfu311m.setVisibility(GONE);
+                bi.sfu314m.setVisibility(GONE);
+                bi.sfu322m.setVisibility(GONE);
+                bi.sfu325m.setVisibility(GONE);
                 bi.sfu302.setVisibility(GONE);
                 bi.sfu305.setVisibility(GONE);
                 bi.sfu308.setVisibility(GONE);
@@ -514,7 +523,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     public void BtnEnd() {
 
         //   Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
-        if (formValidation()) {
+//        if (formValidation()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -529,7 +538,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+//        }
 
     }
 
@@ -666,6 +675,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 : bi.sfu342b.isChecked() ? "2"
                 : "0");
         fp.put("sfu343", bi.sfu343.getText().toString());
+        fp.put("sfu343dt", bi.sfu343dt.getText().toString());
         fp.put("sfu344", bi.sfu344a.isChecked() ? "1"
                 : bi.sfu344b.isChecked() ? "2"
                 : "0");
@@ -939,7 +949,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sfu336, getString(R.string.sfu336))) {
             return false;
         }
-        if(skip38){
+        if(!skip38){
             if (!validatorClass.EmptyRadioButton(this, bi.sfu337, bi.sfu337a, getString(R.string.sfu337))) {
                 return false;
             }
@@ -964,6 +974,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         if (bi.sfu342a.isChecked()) {
 
             if (!validatorClass.EmptyTextBox(this, bi.sfu343, getString(R.string.sfu343))) {
+                return false;
+            }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu343dt, getString(R.string.date))) {
                 return false;
             }
             if (!validatorClass.EmptyRadioButton(this, bi.sfu344, bi.sfu344b, bi.sfu344bx, getString(R.string.sfu344))) {

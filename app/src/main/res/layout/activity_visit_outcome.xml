@@ -354,8 +354,9 @@ tools:context="edu.aku.hassannaqvi.slab.ui.VisitOutcome">
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/sfu604"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                android:inputType="text"
+                android:digits="0123456789"
+                android:inputType="number"
+                android:maxLength="2"
 
                 />
 

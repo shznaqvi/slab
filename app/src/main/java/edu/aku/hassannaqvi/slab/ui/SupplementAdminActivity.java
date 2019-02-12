@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -64,7 +67,40 @@ public class SupplementAdminActivity extends AppCompatActivity {
                 }
             }
         });
+        bi.sfu504.addTextChangedListener(sachetswatcher);
+        bi.sfu505.addTextChangedListener(sachetswatcher);
     }
+    TextWatcher sachetswatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if(!TextUtils.isEmpty(bi.sfu504.getText().toString()) && !TextUtils.isEmpty(bi.sfu505.getText().toString())){
+                if(Integer.parseInt(bi.sfu505.getText().toString()) < Integer.parseInt(bi.sfu504.getText().toString())){
+                    bi.fldGrp506.setVisibility(View.VISIBLE);
+                    bi.fldGrp507.setVisibility(View.GONE);
+                    bi.sfu507.clearCheck();
+                }else if(Integer.parseInt(bi.sfu505.getText().toString()) > Integer.parseInt(bi.sfu504.getText().toString())) {
+                    bi.fldGrp506.setVisibility(View.GONE);
+                    bi.sfu506.clearCheck();
+                    bi.fldGrp507.setVisibility(View.VISIBLE);
+                }else if(Integer.parseInt(bi.sfu505.getText().toString()) == Integer.parseInt(bi.sfu504.getText().toString())) {
+                    bi.fldGrp506.setVisibility(View.GONE);
+                    bi.sfu506.clearCheck();
+                    bi.fldGrp507.setVisibility(View.GONE);
+                    bi.sfu507.clearCheck();
+                }
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     public void BtnContinue() {
 
@@ -195,12 +231,19 @@ public class SupplementAdminActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sfu505, getString(R.string.sfu505))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu506, bi.sfu50696, bi.sfu50696x, getString(R.string.sfu506))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu507, bi.sfu50796, bi.sfu50796x, getString(R.string.sfu507))) {
-            return false;
-        }
+
+            if (Integer.parseInt(bi.sfu505.getText().toString()) < Integer.parseInt(bi.sfu504.getText().toString())) {
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu506, bi.sfu50696, bi.sfu50696x, getString(R.string.sfu506))) {
+                    return false;
+                }
+            } else if (Integer.parseInt(bi.sfu505.getText().toString()) > Integer.parseInt(bi.sfu504.getText().toString())) {
+                if (!validatorClass.EmptyRadioButton(this, bi.sfu507, bi.sfu50796, bi.sfu50796x, getString(R.string.sfu507))) {
+                    return false;
+                }
+
+            } else if (Integer.parseInt(bi.sfu505.getText().toString()) == Integer.parseInt(bi.sfu504.getText().toString())) {
+
+            }
 
 
         return true;
