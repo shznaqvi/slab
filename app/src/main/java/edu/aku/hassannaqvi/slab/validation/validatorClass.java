@@ -30,7 +30,7 @@ public abstract class validatorClass {
             txt.setError("This data is Required! ");    // Set Error on last radio button
             txt.setFocusableInTouchMode(true);
             txt.requestFocus();
-            Log.i(context.getClass().getName(), context.getResources().getResourceEntryName(txt.getId()) + ": This data is Required!");
+//            Log.i(context.getClass().getName(), context.getResources().getResourceEntryName(txt.getId()) + ": This data is Required!");
             return false;
         } else {
             txt.setError(null);

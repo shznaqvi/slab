@@ -22,6 +22,8 @@ import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
 import edu.aku.hassannaqvi.slab.contracts.ChildListContract.ChildListTable;
 import edu.aku.hassannaqvi.slab.contracts.DistrictsContract;
 import edu.aku.hassannaqvi.slab.contracts.DistrictsContract.singleDistrict;
+import edu.aku.hassannaqvi.slab.contracts.EpisodesContract;
+import edu.aku.hassannaqvi.slab.contracts.EpisodesContract.EpisodesTable;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract.FollowUpList;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
@@ -54,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "slab.db";
     public static final String DB_NAME = DATABASE_NAME.replace(".", "_copy.");
     public static final String PROJECT_NAME = "DMU-SRCPREG";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String SQL_CREATE_FORMS = "CREATE TABLE "
             + FormsTable.TABLE_NAME + "("
             + FormsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -182,7 +184,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             HistoryTable.COLUMN_SYNCED + " TEXT," +
             HistoryTable.COLUMN_SYNCED_DATE + " TEXT," +
             HistoryTable.COLUMN_APPVERSION + " TEXT"
+            + " );";
 
+    private static final String SQL_CREATE_EPISODE = "CREATE TABLE " +
+            EpisodesTable.TABLE_NAME + "(" +
+            EpisodesTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            EpisodesTable.COLUMN_PROJECTNAME + " TEXT," +
+            EpisodesTable.COLUMN__UID + " TEXT,"+
+            EpisodesTable.COLUMN_UUID + " TEXT,"+
+            EpisodesTable.COLUMN_FORMDATE + " TEXT,"+
+            EpisodesTable.COLUMN_USER + " TEXT,"+
+            EpisodesTable.COLUMN_FORMTYPE + " TEXT,"+
+            EpisodesTable.COLUMN_NOOFEP + " TEXT,"+
+            EpisodesTable.COLUMN_COUNT + " TEXT,"+
+            EpisodesTable.COLUMN_SMRNO + " TEXT,"+
+            EpisodesTable.COLUMN_SSTUDYID + " TEXT,"+
+            EpisodesTable.COLUMN_SFUEP + " TEXT,"+
+            EpisodesTable.COLUMN_DEVICEID + " TEXT,"+
+            EpisodesTable.COLUMN_DEVICETAGID + " TEXT,"+
+            EpisodesTable.COLUMN_SYNCED + " TEXT,"+
+            EpisodesTable.COLUMN_SYNCED_DATE + " TEXT,"+
+            EpisodesTable.COLUMN_APPVERSION + " TEXT,"+
+            EpisodesTable.COLUMN_DISEASETYPE + " TEXT"
             + " );";
 
     private static final String SQL_DELETE_USERS =
@@ -230,6 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_DISTRICT);
         db.execSQL(SQL_CREATE_VILLAGE);
         db.execSQL(SQL_CREATE_LABREPORTS);
+        db.execSQL(SQL_CREATE_EPISODE);
     }
 
     @Override
@@ -258,6 +282,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             case 3:
                 db.execSQL(SQL_ALTER_HISTORY_COUNT);
                 db.execSQL(SQL_ALTER_HISTORY_ROUND);
+            case 4:
+                db.execSQL(SQL_CREATE_EPISODE);
+
         }
     }
 
@@ -308,6 +335,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(TalukasTable.COLUMN_TALUKA, Vc.getTaluka());
 
                 db.insert(TalukasTable.TABLE_NAME, null, values);
+            }
+        } catch (Exception e) {
+        } finally {
+            db.close();
+        }
+    }
+    public void syncEpisodes(JSONArray episodeslist) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(EpisodesTable.TABLE_NAME, null, null);
+        try {
+            JSONArray jsonArray = episodeslist;
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonObjectCC = jsonArray.getJSONObject(i);
+
+                EpisodesContract ep = new EpisodesContract();
+                ep.Sync(jsonObjectCC);
+
+                ContentValues values = new ContentValues();
+
+                values.put(EpisodesTable.COLUMN_PROJECTNAME, ep.getprojectName());
+                values.put(EpisodesTable.COLUMN__ID, ep.get_ID());
+                values.put(EpisodesTable.COLUMN__UID, ep.get_UID());
+                values.put(EpisodesTable.COLUMN_UUID, ep.getUUID());
+                values.put(EpisodesTable.COLUMN_FORMDATE, ep.getformDate());
+                values.put(EpisodesTable.COLUMN_USER, ep.getuser());
+                values.put(EpisodesTable.COLUMN_FORMTYPE, ep.getformtype());
+                values.put(EpisodesTable.COLUMN_NOOFEP, ep.getnoofep());
+                values.put(EpisodesTable.COLUMN_COUNT, ep.getcount());
+                values.put(EpisodesTable.COLUMN_SMRNO, ep.getsMrno());
+                values.put(EpisodesTable.COLUMN_SSTUDYID, ep.getsStudyid());
+                values.put(EpisodesTable.COLUMN_SFUEP, ep.getsfuep());
+                values.put(EpisodesTable.COLUMN_DEVICEID, ep.getdeviceID());
+                values.put(EpisodesTable.COLUMN_DEVICETAGID, ep.getdevicetagID());
+                values.put(EpisodesTable.COLUMN_SYNCED, ep.getsynced());
+                values.put(EpisodesTable.COLUMN_SYNCED_DATE, ep.getsynced_date());
+                values.put(EpisodesTable.COLUMN_APPVERSION, ep.getappversion());
+                values.put(EpisodesTable.COLUMN_DISEASETYPE, ep.getdiseasetype());
+
+
+
+                db.insert(EpisodesTable.TABLE_NAME, null, values);
             }
         } catch (Exception e) {
         } finally {
@@ -1242,6 +1310,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values);
         return newRowId;
     }
+    public Long addEpisodes(EpisodesContract ep) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(EpisodesTable.COLUMN_PROJECTNAME, ep.getprojectName());
+//        values.put(EpisodesTable.COLUMN__ID, ep.get_ID());
+//        values.put(EpisodesTable.COLUMN__UID, ep.get_UID());
+        values.put(EpisodesTable.COLUMN_UUID, ep.getUUID());
+        values.put(EpisodesTable.COLUMN_FORMDATE, ep.getformDate());
+        values.put(EpisodesTable.COLUMN_USER, ep.getuser());
+        values.put(EpisodesTable.COLUMN_FORMTYPE, ep.getformtype());
+        values.put(EpisodesTable.COLUMN_NOOFEP, ep.getnoofep());
+        values.put(EpisodesTable.COLUMN_COUNT, ep.getcount());
+        values.put(EpisodesTable.COLUMN_SMRNO, ep.getsMrno());
+        values.put(EpisodesTable.COLUMN_SSTUDYID, ep.getsStudyid());
+        values.put(EpisodesTable.COLUMN_SFUEP, ep.getsfuep());
+        values.put(EpisodesTable.COLUMN_DEVICEID, ep.getdeviceID());
+        values.put(EpisodesTable.COLUMN_DEVICETAGID, ep.getdevicetagID());
+        values.put(EpisodesTable.COLUMN_SYNCED, ep.getsynced());
+        values.put(EpisodesTable.COLUMN_SYNCED_DATE, ep.getsynced_date());
+        values.put(EpisodesTable.COLUMN_APPVERSION, ep.getappversion());
+        values.put(EpisodesTable.COLUMN_DISEASETYPE, ep.getdiseasetype());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                EpisodesTable.TABLE_NAME,
+                EpisodesTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
 
     public Long addLabReport(LabReportsContract lr) {
 
@@ -1402,6 +1504,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+
     public int updateLabReportID() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -1432,6 +1535,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(MainApp.hc.get_ID())};
 
         int count = db.update(HistoryTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateEpisodeID(EpisodesContract epc) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(EpisodesTable.COLUMN__UID, epc.get_UID());
+
+// Which row to update, based on the ID
+        String selection = EpisodesTable.COLUMN__ID + " = ?";
+        String[] selectionArgs = {String.valueOf(epc.get_ID())};
+
+        int count = db.update(EpisodesTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -1497,6 +1617,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
                 allFC.add(fc.Hydrate(c, 3));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+    public Collection<EpisodesContract> getAllEpisodes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                EpisodesTable.COLUMN_PROJECTNAME,
+                EpisodesTable.COLUMN__ID,
+                EpisodesTable.COLUMN__UID,
+                EpisodesTable.COLUMN_UUID,
+                EpisodesTable.COLUMN_FORMDATE,
+                EpisodesTable.COLUMN_USER,
+                EpisodesTable.COLUMN_FORMTYPE,
+                EpisodesTable.COLUMN_NOOFEP,
+                EpisodesTable.COLUMN_COUNT,
+                EpisodesTable.COLUMN_SMRNO,
+                EpisodesTable.COLUMN_SSTUDYID,
+                EpisodesTable.COLUMN_SFUEP,
+                EpisodesTable.COLUMN_DEVICEID,
+                EpisodesTable.COLUMN_DEVICETAGID,
+                EpisodesTable.COLUMN_SYNCED,
+                EpisodesTable.COLUMN_SYNCED_DATE,
+                EpisodesTable.COLUMN_APPVERSION,
+                EpisodesTable.COLUMN_DISEASETYPE,
+
+        };
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                EpisodesTable._ID + " ASC";
+
+        Collection<EpisodesContract> allFC = new ArrayList<EpisodesContract>();
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                EpisodesContract fc = new EpisodesContract();
+                allFC.add(fc.Hydrate(c));
             }
         } finally {
             if (c != null) {
@@ -1803,6 +1980,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 where,
                 whereArgs);
     }
+    public void updateSyncedEpisodes(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(EpisodesTable.COLUMN_SYNCED, true);
+        values.put(EpisodesTable.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = EpisodesTable.COLUMN__ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                EpisodesTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
 
     public void updateSyncedLab(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -2003,6 +2198,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 HistoryContract hc = new HistoryContract();
+                allHC.add(hc.Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allHC;
+    }
+    public Collection<EpisodesContract> getUnsyncedEpisodes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                EpisodesTable.COLUMN_PROJECTNAME,
+                EpisodesTable.COLUMN__ID,
+                EpisodesTable.COLUMN__UID,
+                EpisodesTable.COLUMN_UUID,
+                EpisodesTable.COLUMN_FORMDATE,
+                EpisodesTable.COLUMN_USER,
+                EpisodesTable.COLUMN_FORMTYPE,
+                EpisodesTable.COLUMN_NOOFEP,
+                EpisodesTable.COLUMN_COUNT,
+                EpisodesTable.COLUMN_SMRNO,
+                EpisodesTable.COLUMN_SSTUDYID,
+                EpisodesTable.COLUMN_SFUEP,
+                EpisodesTable.COLUMN_DEVICEID,
+                EpisodesTable.COLUMN_DEVICETAGID,
+                EpisodesTable.COLUMN_SYNCED,
+                EpisodesTable.COLUMN_SYNCED_DATE,
+                EpisodesTable.COLUMN_APPVERSION,
+                EpisodesTable.COLUMN_DISEASETYPE
+
+        };
+        String whereClause = HistoryTable.COLUMN_SYNCED + " is null OR " + HistoryTable.COLUMN_SYNCED + " = '' ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                HistoryTable.COLUMN__ID + " ASC";
+
+        Collection<EpisodesContract> allHC = new ArrayList<EpisodesContract>();
+        try {
+            c = db.query(
+                    EpisodesTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                EpisodesContract hc = new EpisodesContract();
                 allHC.add(hc.Hydrate(c));
             }
         } finally {

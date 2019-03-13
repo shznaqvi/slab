@@ -2,21 +2,33 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
+import android.text.method.DigitsKeyListener;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.EpisodesContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFeedingPracticeBinding;
@@ -25,6 +37,7 @@ import edu.aku.hassannaqvi.slab.validation.validatorClass;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
+import static java.sql.Types.INTEGER;
 
 public class FeedingPracticeActivity extends AppCompatActivity {
     ActivityFeedingPracticeBinding bi;
@@ -34,6 +47,38 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     String childName, localmrno, localstudyID;
     int fupLocation;
     Boolean skip38;
+    List<EpisodesContract> alleplist = new ArrayList<>();
+EpisodesContract epc;
+    //    for question number 309
+    final List<EditText> secEtArray309 = new ArrayList();
+    final List<EditText> minEtArray309 = new ArrayList();
+    final List<TextView> durationLabelArray309 = new ArrayList();
+    final List<LinearLayout> childllArray309 = new ArrayList();
+//    final List<EpisodesContract> episodesArrayList309 = new ArrayList();
+
+    //    for question number 314
+    final List<EditText> hrEtArray314 = new ArrayList();
+    final List<EditText> minEtArray314 = new ArrayList();
+    final List<TextView> durationLabelArray314 = new ArrayList();
+    final List<LinearLayout> childllArray314 = new ArrayList();
+//    final List<EpisodesContract> episodesArrayList314 = new ArrayList();
+
+    //    for question number 325
+    final List<EditText> secEtArray325 = new ArrayList();
+    final List<EditText> minEtArray325 = new ArrayList();
+    final List<TextView> durationLabelArray325 = new ArrayList();
+    final List<LinearLayout> childllArray325 = new ArrayList();
+//    final List<EpisodesContract> episodesArrayList325 = new ArrayList();
+
+
+    //    for question number 335
+    final List<EditText> secEtArray335 = new ArrayList();
+    final List<TextView> durationLabelArray335 = new ArrayList();
+//    final List<EpisodesContract> episodesArrayList336  = new ArrayList();
+
+    final LinearLayout.LayoutParams mRparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+    final LinearLayout.LayoutParams mRparams1 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+    final LinearLayout.LayoutParams mRparams2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +86,302 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_feeding_practice);
         db = new DatabaseHelper(this);
         bi.setCallback(this);
+
+        sfu309autogenerateboxes();
+        sfu314autogenerateboxes();
+        sfu325autogenerateboxes();
+        sfu336autogenerateboxes();
+
         gettingIntents();
         setupView();
-        if(MainApp.fupLocation == 1 || MainApp.fupLocation == 3 || MainApp.fupLocation == 4){
+        if (MainApp.fupLocation == 1 || MainApp.fupLocation == 3 || MainApp.fupLocation == 4) {
             skip38 = true;
-        }else {
+        } else {
             skip38 = false;
         }
-        if(skip38){
+        if (skip38) {
             bi.fldGrp337.setVisibility(GONE);
-        }else {
+        } else {
             bi.fldGrp337.setVisibility(VISIBLE);
-
         }
         validatorClass.setScrollViewFocus(bi.scrollView);
+
+    }
+
+
+
+    private void sfu309autogenerateboxes() {
+        bi.sfu308.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 2) {
+                    int noofboxes = Integer.valueOf(bi.sfu308.getText().toString());
+                    if (durationLabelArray309.size() > 0) {
+                        for (int i = 0; i < durationLabelArray309.size(); i++) {
+                            bi.llgrpsfu309.removeView(durationLabelArray309.get(i));
+                            bi.llgrpsfu309.removeView(childllArray309.get(i));
+                        }
+                        durationLabelArray309.clear();
+                        childllArray309.clear();
+                    }
+                    bi.Eplabel309.setVisibility(View.VISIBLE);
+                    for (int i = 0; i < noofboxes; i++) {
+
+                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                        DurationLabelTextView.setLayoutParams(mRparams2);
+                        int numberss = i + 1;
+                        DurationLabelTextView.setText("Duration of episode # " + numberss);
+                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                        durationLabelArray309.add(DurationLabelTextView);
+                        bi.llgrpsfu309.addView(DurationLabelTextView);
+
+                        LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
+                        llchild.setLayoutParams(mRparams2);
+                        llchild.setOrientation(LinearLayout.HORIZONTAL);
+                        childllArray309.add(llchild);
+                        bi.llgrpsfu309.addView(llchild);
+
+                        EditText secEditText = new EditText(FeedingPracticeActivity.this);
+                        secEditText.setLayoutParams(mRparams1);
+                        secEditText.setHint("Seconds " + numberss);
+                        secEditText.setInputType(INTEGER);
+                        secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        int maxLength = 2;
+                        secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        secEtArray309.add(secEditText);
+                        llchild.addView(secEditText);
+
+
+                        EditText minEditText = new EditText(FeedingPracticeActivity.this);
+                        minEditText.setLayoutParams(mRparams1);
+                        minEditText.setHint("Minutes " + numberss);
+                        minEditText.setInputType(INTEGER);
+                        minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        minEtArray309.add(minEditText);
+                        llchild.addView(minEditText);
+                    }
+                    if(noofboxes == 00){
+                        bi.Eplabel309.setVisibility(View.GONE);
+
+                    }else {
+                        bi.Eplabel309.setVisibility(View.VISIBLE);
+
+                    }
+                } else {
+                    bi.Eplabel309.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+    }
+
+    private void sfu314autogenerateboxes() {
+        bi.sfu313.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 2) {
+                    int noofboxes = Integer.valueOf(bi.sfu313.getText().toString());
+                    if (durationLabelArray314.size() > 0) {
+                        for (int i = 0; i < durationLabelArray314.size(); i++) {
+                            bi.llgrpsfu314.removeView(durationLabelArray314.get(i));
+                            bi.llgrpsfu314.removeView(childllArray309.get(i));
+                        }
+                        durationLabelArray314.clear();
+                        childllArray314.clear();
+                    }
+                    bi.Eplabel314.setVisibility(View.VISIBLE);
+                    for (int i = 0; i < noofboxes; i++) {
+
+                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                        DurationLabelTextView.setLayoutParams(mRparams2);
+                        int numberss = i + 1;
+                        DurationLabelTextView.setText("Duration of episode # " + numberss);
+                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                        durationLabelArray314.add(DurationLabelTextView);
+                        bi.llgrpsfu314.addView(DurationLabelTextView);
+
+                        LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
+                        llchild.setLayoutParams(mRparams2);
+                        llchild.setOrientation(LinearLayout.HORIZONTAL);
+                        childllArray314.add(llchild);
+                        bi.llgrpsfu314.addView(llchild);
+
+                        EditText hrEditText = new EditText(FeedingPracticeActivity.this);
+                        hrEditText.setLayoutParams(mRparams1);
+                        hrEditText.setHint("Hours " + numberss);
+                        hrEditText.setInputType(INTEGER);
+                        hrEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        int maxLength = 2;
+                        hrEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        hrEtArray314.add(hrEditText);
+                        llchild.addView(hrEditText);
+
+
+                        EditText minEditText = new EditText(FeedingPracticeActivity.this);
+                        minEditText.setLayoutParams(mRparams1);
+                        minEditText.setHint("Minutes " + numberss);
+                        minEditText.setInputType(INTEGER);
+                        minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        minEtArray314.add(minEditText);
+                        llchild.addView(minEditText);
+                    }
+                } else {
+                    bi.Eplabel314.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+    }
+    private void sfu325autogenerateboxes() {
+        bi.sfu324.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 2) {
+                    int noofboxes = Integer.valueOf(bi.sfu324.getText().toString());
+                    if (durationLabelArray325.size() > 0) {
+                        for (int i = 0; i < durationLabelArray325.size(); i++) {
+                            bi.llgrpsfu325.removeView(durationLabelArray325.get(i));
+                            bi.llgrpsfu325.removeView(childllArray325.get(i));
+                        }
+                        durationLabelArray325.clear();
+                        childllArray325.clear();
+                    }
+                    bi.Eplabel325.setVisibility(View.VISIBLE);
+                    for (int i = 0; i < noofboxes; i++) {
+
+                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                        DurationLabelTextView.setLayoutParams(mRparams2);
+                        int numberss = i + 1;
+                        DurationLabelTextView.setText("Duration of episode # " + numberss);
+                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                        durationLabelArray325.add(DurationLabelTextView);
+                        bi.llgrpsfu325.addView(DurationLabelTextView);
+
+                        LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
+                        llchild.setLayoutParams(mRparams2);
+                        llchild.setOrientation(LinearLayout.HORIZONTAL);
+                        childllArray325.add(llchild);
+                        bi.llgrpsfu325.addView(llchild);
+
+                        EditText secEditText = new EditText(FeedingPracticeActivity.this);
+                        secEditText.setLayoutParams(mRparams1);
+                        secEditText.setHint("Seconds " + numberss);
+                        secEditText.setInputType(INTEGER);
+                        secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        int maxLength = 2;
+                        secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        secEtArray325.add(secEditText);
+                        llchild.addView(secEditText);
+
+
+                        EditText minEditText = new EditText(FeedingPracticeActivity.this);
+                        minEditText.setLayoutParams(mRparams1);
+                        minEditText.setHint("Minutes " + numberss);
+                        minEditText.setInputType(INTEGER);
+                        minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        minEtArray325.add(minEditText);
+                        llchild.addView(minEditText);
+                    }
+                } else {
+                    bi.Eplabel325.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
+    }
+    private void sfu336autogenerateboxes() {
+        bi.sfu334.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 2) {
+                    int noofboxes = Integer.valueOf(bi.sfu334.getText().toString());
+                    if (durationLabelArray335.size() > 0) {
+                        for (int i = 0; i < durationLabelArray335.size(); i++) {
+                            bi.llgrpsfu335.removeView(durationLabelArray335.get(i));
+                            bi.llgrpsfu335.removeView(secEtArray335.get(i));
+                        }
+                        durationLabelArray335.clear();
+                        secEtArray335.clear();
+                    }
+                    bi.Eplabel335.setVisibility(View.VISIBLE);
+                    for (int i = 0; i < noofboxes; i++) {
+
+                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                        DurationLabelTextView.setLayoutParams(mRparams2);
+                        int numberss = i + 1;
+                        DurationLabelTextView.setText("Duration of episode # " + numberss);
+                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                        durationLabelArray335.add(DurationLabelTextView);
+                        bi.llgrpsfu335.addView(DurationLabelTextView);
+
+
+                        EditText secEditText = new EditText(FeedingPracticeActivity.this);
+                        secEditText.setLayoutParams(mRparams1);
+                        secEditText.setHint("Seconds " + numberss);
+                        secEditText.setInputType(INTEGER);
+                        secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                        int maxLength = 2;
+                        secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                        secEtArray335.add(secEditText);
+                        bi.llgrpsfu335.addView(secEditText);
+                    }
+                } else {
+                    bi.Eplabel335.setVisibility(View.GONE);
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+
+            }
+        });
     }
 
     @Override
@@ -148,8 +475,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                     bi.sfu303d.setText(null);
                 }
                 showhideTextBoxes();
-
-
             }
         });
 
@@ -180,9 +505,8 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 } else {
                     bi.fldgrpsfu307.setVisibility(GONE);
                     bi.sfu308.setText(null);
-                    bi.sfu309m.setText(null);
-                    bi.sfu309h.setText(null);
-                    bi.sfu309d.setText(null);
+                   /* bi.sfu309s.setText(null);
+                    bi.sfu309m.setText(null);*/
                 }
                 showhideTextBoxes();
 
@@ -213,9 +537,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 } else {
                     bi.fldgrpsfu312.setVisibility(GONE);
                     bi.sfu313.setText(null);
-                    bi.sfu314m.setText(null);
-                    bi.sfu314h.setText(null);
-                    bi.sfu314d.setText(null);
+                   /* bi.sfu314m.setText(null);
+                    bi.sfu314h.setText(null);*/
+//                    bi.sfu314d.setText(null);
                 }
                 showhideTextBoxes();
 
@@ -248,7 +572,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                     bi.fldgrpsfu318.setVisibility(GONE);
                     bi.sfu319.setText(null);
                     bi.sfu320.setText(null);
-                  }
+                }
                 showhideTextBoxes();
 
             }
@@ -279,9 +603,10 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 } else {
                     bi.fldgrpsfu323.setVisibility(GONE);
                     bi.sfu324.setText(null);
-                    bi.sfu325d.setText(null);
-                    bi.sfu325m.setText(null);
-                    bi.sfu325h.setText(null);
+//                    bi.sfu325d.setText(null);
+                  /*  bi.sfu325s.setText(null);
+                    bi.sfu325m.setText(null);*/
+//                    bi.sfu325h.setText(null);
                 }
                 showhideTextBoxes();
 
@@ -341,7 +666,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 } else {
                     bi.fldgrpsfu333.setVisibility(GONE);
                     bi.sfu334.setText(null);
-                    bi.sfu335.setText(null);
+//                    bi.sfu335.setText(null);
                 }
                 showhideTextBoxes();
 
@@ -380,7 +705,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             }
         });
 
-       showhideTextBoxes();
+        showhideTextBoxes();
         if (fupLocation == 6) {
             nextExamSec = false;
         } else {
@@ -393,42 +718,43 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             case 1:
                 bi.sfu303d.setVisibility(GONE);
                 bi.sfu306d.setVisibility(GONE);
-                bi.sfu309d.setVisibility(GONE);
+//                bi.sfu309d.setVisibility(GONE);
                 bi.sfu311d.setVisibility(GONE);
-                bi.sfu314d.setVisibility(GONE);
+//                bi.sfu314d.setVisibility(GONE);
                 bi.sfu322d.setVisibility(GONE);
-                bi.sfu325d.setVisibility(GONE);
+//                bi.sfu325d.setVisibility(GONE);
                 bi.sfu303m.setVisibility(VISIBLE);
                 bi.sfu306m.setVisibility(VISIBLE);
-                bi.sfu309m.setVisibility(VISIBLE);
+//                bi.sfu309m.setVisibility(VISIBLE);
                 bi.sfu311m.setVisibility(VISIBLE);
-                bi.sfu314m.setVisibility(VISIBLE);
+//                bi.sfu314m.setVisibility(VISIBLE);
                 bi.sfu322m.setVisibility(VISIBLE);
-                bi.sfu325m.setVisibility(VISIBLE);
-                bi.fldGrpsfu302.setVisibility(GONE);
-                bi.fldGrpsfu305.setVisibility(GONE);
-                bi.fldGrpsfu308.setVisibility(GONE);
-                bi.fldGrpsfu313.setVisibility(GONE);
-                bi.fldGrpsfu316.setVisibility(GONE);
-                bi.fldGrpsfu319.setVisibility(GONE);
-                bi.fldGrpsfu324.setVisibility(GONE);
+//                bi.sfu325m.setVisibility(VISIBLE);
+//                SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
+                bi.fldGrpsfu302.setVisibility(VISIBLE);
+                bi.fldGrpsfu305.setVisibility(VISIBLE);
+                bi.fldGrpsfu308.setVisibility(VISIBLE);
+                bi.fldGrpsfu313.setVisibility(VISIBLE);
+                bi.fldGrpsfu316.setVisibility(VISIBLE);
+                bi.fldGrpsfu319.setVisibility(VISIBLE);
+                bi.fldGrpsfu324.setVisibility(VISIBLE);
                 break;
             case 3:
             case 4:
                 bi.sfu303d.setVisibility(VISIBLE);
                 bi.sfu306d.setVisibility(VISIBLE);
-                bi.sfu309d.setVisibility(VISIBLE);
+//                bi.sfu309d.setVisibility(VISIBLE);
                 bi.sfu311d.setVisibility(VISIBLE);
-                bi.sfu314d.setVisibility(VISIBLE);
+//                bi.sfu314d.setVisibility(VISIBLE);
                 bi.sfu322d.setVisibility(VISIBLE);
-                bi.sfu325d.setVisibility(VISIBLE);
+//                bi.sfu325d.setVisibility(VISIBLE);
                 bi.sfu303m.setVisibility(GONE);
                 bi.sfu306m.setVisibility(GONE);
-                bi.sfu309m.setVisibility(GONE);
+//                bi.sfu309m.setVisibility(GONE);
                 bi.sfu311m.setVisibility(GONE);
-                bi.sfu314m.setVisibility(GONE);
+//                bi.sfu314m.setVisibility(VISIBLE);//should be visible in any ftype.
                 bi.sfu322m.setVisibility(GONE);
-                bi.sfu325m.setVisibility(GONE);
+//                bi.sfu325m.setVisibility(VISIBLE);//should be visible in any ftype.
                 bi.sfu302.setVisibility(GONE);
                 bi.sfu305.setVisibility(GONE);
                 bi.sfu308.setVisibility(GONE);
@@ -436,31 +762,33 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu316.setVisibility(GONE);
                 bi.sfu319.setVisibility(GONE);
                 bi.sfu324.setVisibility(GONE);
-                bi.fldGrpsfu302.setVisibility(GONE);
-                bi.fldGrpsfu305.setVisibility(GONE);
-                bi.fldGrpsfu308.setVisibility(GONE);
-                bi.fldGrpsfu313.setVisibility(GONE);
-                bi.fldGrpsfu316.setVisibility(GONE);
-                bi.fldGrpsfu319.setVisibility(GONE);
-                bi.fldGrpsfu324.setVisibility(GONE);
+                //                SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
+
+                bi.fldGrpsfu302.setVisibility(VISIBLE);
+                bi.fldGrpsfu305.setVisibility(VISIBLE);
+                bi.fldGrpsfu308.setVisibility(VISIBLE);
+                bi.fldGrpsfu313.setVisibility(VISIBLE);
+                bi.fldGrpsfu316.setVisibility(VISIBLE);
+                bi.fldGrpsfu319.setVisibility(VISIBLE);
+                bi.fldGrpsfu324.setVisibility(VISIBLE);
                 break;
             case 2:
             case 5:
             case 6:
                 bi.sfu303d.setVisibility(VISIBLE);
                 bi.sfu306d.setVisibility(VISIBLE);
-                bi.sfu309d.setVisibility(VISIBLE);
+//                bi.sfu309d.setVisibility(VISIBLE);
                 bi.sfu311d.setVisibility(VISIBLE);
-                bi.sfu314d.setVisibility(VISIBLE);
+//                bi.sfu314d.setVisibility(VISIBLE);
                 bi.sfu322d.setVisibility(VISIBLE);
-                bi.sfu325d.setVisibility(VISIBLE);
+//                bi.sfu325d.setVisibility(VISIBLE);
                 bi.sfu303m.setVisibility(GONE);
                 bi.sfu306m.setVisibility(GONE);
-                bi.sfu309m.setVisibility(GONE);
+//                bi.sfu309m.setVisibility(GONE);
                 bi.sfu311m.setVisibility(GONE);
-                bi.sfu314m.setVisibility(GONE);
+//                bi.sfu314m.setVisibility(VISIBLE);//should be visible in any ftype.
                 bi.sfu322m.setVisibility(GONE);
-                bi.sfu325m.setVisibility(GONE);
+//                bi.sfu325m.setVisibility(VISIBLE);//should be visible in any ftype.
                 bi.fldGrpsfu302.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
@@ -511,7 +839,25 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         int updcount = db.updateSFEED();
 
         if (updcount == 1) {
-            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            for (int i = 0; i < alleplist.size(); i++) {
+                Long newrowid = db.addEpisodes(alleplist.get(i));
+
+                alleplist.get(i).set_ID(String.valueOf(newrowid));
+
+                if (newrowid != 0) {
+                    Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+                    alleplist.get(i).set_UID((MainApp.fc.getDeviceID() + alleplist.get(i).get_ID()));
+                    db.updateEpisodeID(alleplist.get(i));
+
+//                    return true;
+                } else {
+                    Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+                    return false;
+                }
+
+            }
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
@@ -524,25 +870,27 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
         //   Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 //        if (formValidation()) {
-            try {
-                SaveDraft();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (UpdateDB()) {
-                // Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+        try {
+            SaveDraft();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (UpdateDB()) {
+            // Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
-                finish();
+            finish();
 
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
-            } else {
-                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }
+            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+        } else {
+            Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+        }
 //        }
 
     }
 
     private void SaveDraft() throws JSONException {
+
+
         MainApp.fc.setsMrno(localmrno);
         MainApp.fc.setsStudyid(localstudyID);
         JSONObject fp = new JSONObject();
@@ -589,10 +937,40 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 : bi.sfu307b.isChecked() ? "2"
                 : "0");
         fp.put("sfu308", bi.sfu308.getText().toString());
-        fp.put("sfu309m", bi.sfu309m.getText().toString());
+
+        for (int i = 0; i < childllArray309.size(); i++) {
+            epc = new EpisodesContract();
+            epc.setdeviceID(MainApp.fc.getDeviceID());
+            epc.setdevicetagID(MainApp.fc.getDevicetagID());
+            epc.setformDate(MainApp.fc.getFormDate());
+            epc.setformtype(MainApp.fc.getFormtype());
+            epc.setappversion(MainApp.fc.getAppversion());
+            epc.setprojectName(MainApp.fc.getProjectName());
+            epc.setuser(MainApp.fc.getUser());
+            epc.setUUID(MainApp.fc.getUID());
+            epc.setsMrno(MainApp.fc.getsMrno());
+            epc.setsStudyid(MainApp.fc.getsStudyid());
+            epc.setdiseasetype(MainApp.CYANOSIS_DISEASE);
+            epc.setnoofep(bi.sfu308.getText().toString());
+
+            int episode = i + 1;
+            JSONObject episodes = new JSONObject();
+            episodes.put("episodeno", String.valueOf(episode));
+            episodes.put("quesno", "sfu309");
+            episodes.put("sec", secEtArray309.get(i).getText().toString());
+            episodes.put("min", minEtArray309.get(i).getText().toString());
+            epc.setsfuep(String.valueOf(episodes));
+
+            alleplist.add(epc);
+
+        }
+
+//       fp.put("sfu309s", bi.sfu309s.getText().toString());
+//       fp.put("sfu309m", bi.sfu309m.getText().toString());
+       /* fp.put("sfu309m", bi.sfu309m.getText().toString());
         fp.put("sfu309h", bi.sfu309h.getText().toString());
         fp.put("sfu309d", bi.sfu309d.getText().toString());
-
+*/
         fp.put("sfu310", bi.sfu310a.isChecked() ? "1"
                 : bi.sfu310b.isChecked() ? "2"
                 : "0");
@@ -604,9 +982,37 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 : bi.sfu312b.isChecked() ? "2"
                 : "0");
         fp.put("sfu313", bi.sfu313.getText().toString());
-        fp.put("sfu314m", bi.sfu314m.getText().toString());
-        fp.put("sfu314h", bi.sfu314h.getText().toString());
-        fp.put("sfu314d", bi.sfu314d.getText().toString());
+      /*  fp.put("sfu314m", bi.sfu314m.getText().toString());
+        fp.put("sfu314h", bi.sfu314h.getText().toString());*/
+//        fp.put("sfu314d", bi.sfu314d.getText().toString());
+        for (int i = 0; i < childllArray314.size(); i++) {
+            epc = new EpisodesContract();
+            epc.setdeviceID(MainApp.fc.getDeviceID());
+            epc.setdevicetagID(MainApp.fc.getDevicetagID());
+            epc.setformDate(MainApp.fc.getFormDate());
+            epc.setformtype(MainApp.fc.getFormtype());
+            epc.setappversion(MainApp.fc.getAppversion());
+            epc.setprojectName(MainApp.fc.getProjectName());
+            epc.setuser(MainApp.fc.getUser());
+            epc.setUUID(MainApp.fc.getUID());
+            epc.setsMrno(MainApp.fc.getsMrno());
+            epc.setsStudyid(MainApp.fc.getsStudyid());
+            epc.setdiseasetype(MainApp.RAPID_BREATHING_DISEASE);
+            epc.setnoofep(bi.sfu313.getText().toString());
+
+            int episode = i + 1;
+            JSONObject episodes = new JSONObject();
+
+            episodes.put("episodeno", String.valueOf(episode));
+            episodes.put("quesno", "sfu314");
+            episodes.put("hr", hrEtArray314.get(i).getText().toString());
+            episodes.put("min", minEtArray314.get(i).getText().toString());
+            epc.setsfuep(String.valueOf(episodes));
+
+            alleplist.add(epc);
+
+        }
+
 
         fp.put("sfu315", bi.sfu315a.isChecked() ? "1"
                 : bi.sfu315b.isChecked() ? "2"
@@ -632,9 +1038,36 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 : bi.sfu323b.isChecked() ? "2"
                 : "0");
         fp.put("sfu324", bi.sfu324.getText().toString());
-        fp.put("sfu325m", bi.sfu325m.getText().toString());
-        fp.put("sfu325h", bi.sfu325h.getText().toString());
-        fp.put("sfu325d", bi.sfu325d.getText().toString());
+        for (int i = 0; i < childllArray325.size(); i++) {
+            epc = new EpisodesContract();
+            epc.setdeviceID(MainApp.fc.getDeviceID());
+            epc.setdevicetagID(MainApp.fc.getDevicetagID());
+            epc.setformDate(MainApp.fc.getFormDate());
+            epc.setformtype(MainApp.fc.getFormtype());
+            epc.setappversion(MainApp.fc.getAppversion());
+            epc.setprojectName(MainApp.fc.getProjectName());
+            epc.setuser(MainApp.fc.getUser());
+            epc.setUUID(MainApp.fc.getUID());
+            epc.setsMrno(MainApp.fc.getsMrno());
+            epc.setsStudyid(MainApp.fc.getsStudyid());
+            epc.setdiseasetype(MainApp.FITS_DISEASE);
+            epc.setnoofep(bi.sfu324.getText().toString());
+            int episode = i + 1;
+            JSONObject episodes = new JSONObject();
+
+            episodes.put("episodeno", String.valueOf(episode));
+            episodes.put("quesno", "sfu325");
+            episodes.put("sec", secEtArray325.get(i).getText().toString());
+            episodes.put("min", minEtArray325.get(i).getText().toString());
+            epc.setsfuep(String.valueOf(episodes));
+
+            alleplist.add(epc);
+
+        }
+       /* fp.put("sfu325m", bi.sfu325m.getText().toString());
+        fp.put("sfu325s", bi.sfu325s.getText().toString());*/
+//        fp.put("sfu325h", bi.sfu325h.getText().toString());
+//        fp.put("sfu325d", bi.sfu325d.getText().toString());
 
 
         fp.put("sfu326", bi.sfu326a.isChecked() ? "1"
@@ -658,7 +1091,32 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 : bi.sfu333b.isChecked() ? "2"
                 : "0");
         fp.put("sfu334", bi.sfu334.getText().toString());
-        fp.put("sfu335", bi.sfu335.getText().toString());
+        for (int i = 0; i < secEtArray335.size(); i++) {
+            epc = new EpisodesContract();
+            epc.setdeviceID(MainApp.fc.getDeviceID());
+            epc.setdevicetagID(MainApp.fc.getDevicetagID());
+            epc.setformDate(MainApp.fc.getFormDate());
+            epc.setformtype(MainApp.fc.getFormtype());
+            epc.setappversion(MainApp.fc.getAppversion());
+            epc.setprojectName(MainApp.fc.getProjectName());
+            epc.setuser(MainApp.fc.getUser());
+            epc.setUUID(MainApp.fc.getUID());
+            epc.setsMrno(MainApp.fc.getsMrno());
+            epc.setsStudyid(MainApp.fc.getsStudyid());
+            epc.setdiseasetype(MainApp.APNEA_DISEASE);
+            epc.setnoofep(bi.sfu334.getText().toString());
+            int episode = i + 1;
+            JSONObject episodes = new JSONObject();
+
+            episodes.put("episodeno", String.valueOf(episode));
+            episodes.put("quesno", "sfu335");
+            episodes.put("sec", secEtArray335.get(i).getText().toString());
+            epc.setsfuep(String.valueOf(episodes));
+
+            alleplist.add(epc);
+
+        }
+//        fp.put("sfu335", bi.sfu335.getText().toString());
         fp.put("sfu336", bi.sfu336.getText().toString());
         fp.put("sfu337", bi.sfu337a.isChecked() ? "1"
                 : bi.sfu337b.isChecked() ? "2"
@@ -718,11 +1176,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }
 
         if (bi.sfu301a.isChecked()) {
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu302, getString(R.string.sfu302))) {
                     return false;
                 }
-            }
+//            }
             if (fupLocation == 1) {
 
                 if (!validatorClass.EmptyTextBox(this, bi.sfu303m, getString(R.string.sfu303) + " in Minutes")) {
@@ -744,11 +1202,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
         if (bi.sfu304a.isChecked()) {
 
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu305, getString(R.string.sfu305))) {
                     return false;
                 }
-            }
+//            }
             if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu306m, getString(R.string.sfu306) + " in Minutes")) {
                     return false;
@@ -761,6 +1219,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
             if (!validatorClass.EmptyTextBox(this, bi.sfu306h, getString(R.string.sfu306) + " in Hours")) {
                 return false;
+
             }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu307, bi.sfu307a, getString(R.string.sfu307))) {
@@ -768,24 +1227,28 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }
 
         if (bi.sfu307a.isChecked()) {
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu308, getString(R.string.sfu308))) {
                     return false;
                 }
-            }
-            if (fupLocation == 1) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu309m, getString(R.string.sfu309) + " in Minutes")) {
-                    return false;
-                }
-            } else {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu309d, getString(R.string.sfu309) + " in Days")) {
-                    return false;
-                }
-            }
+//            }
 
-            if (!validatorClass.EmptyTextBox(this, bi.sfu309h, getString(R.string.sfu309) + " in Hours")) {
+            for (int i = 0; i < childllArray309.size(); i++) {
+                int numberss = i + 1;
+                if (!validatorClass.EmptyTextBox(this, secEtArray309.get(i), getString(R.string.sfu309) + " Seconds " + numberss)) {
+                    return false;
+                }
+                if (!validatorClass.EmptyTextBox(this, minEtArray309.get(i), getString(R.string.sfu309) + " Minutes " + numberss)) {
+                    return false;
+                }
+            }
+/*            if (!validatorClass.EmptyTextBox(this, bi.sfu309s, getString(R.string.sfu309) + " in Seconds")) {
                 return false;
             }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu309m, getString(R.string.sfu309) + " in Minutes")) {
+                return false;
+            }*/
+
         }
 
         if (!validatorClass.EmptyRadioButton(this, bi.sfu310, bi.sfu310a, getString(R.string.sfu310))) {
@@ -811,35 +1274,46 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }
 
         if (bi.sfu312a.isChecked()) {
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu313, getString(R.string.sfu313))) {
                     return false;
-                }
+//                }
             }
-            if (fupLocation == 1) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu314m, getString(R.string.sfu314) + " in Minutes")) {
+//            if (fupLocation == 1) {
+          /*  if (!validatorClass.EmptyTextBox(this, bi.sfu314m, getString(R.string.sfu314) + " in Minutes")) {
+                return false;
+            }*/
+         /*   } else {
+                if (!validatorClass.EmptyTextBox(this, bi.sfu314d, getString(R.string.sfu314) + " in Days")) {
                     return false;
                 }
-            } else {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu314d, getString(R.string.sfu314) + " in Days")) {
+            }*/
+
+           /* if (!validatorClass.EmptyTextBox(this, bi.sfu314h, getString(R.string.sfu314) + " in Hours")) {
+                return false;
+            }*/
+
+            for (int i = 0; i < childllArray314.size(); i++) {
+                int numberss = i + 1;
+                if (!validatorClass.EmptyTextBox(this, hrEtArray314.get(i), getString(R.string.sfu314) + " Hours " + numberss)) {
+                    return false;
+                }
+                if (!validatorClass.EmptyTextBox(this, minEtArray314.get(i), getString(R.string.sfu314) + " Minutes " + numberss)) {
                     return false;
                 }
             }
 
-            if (!validatorClass.EmptyTextBox(this, bi.sfu314h, getString(R.string.sfu314) + " in Hours")) {
-                return false;
-            }
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu315, bi.sfu315a, getString(R.string.sfu315))) {
             return false;
         }
 
         if (bi.sfu315a.isChecked()) {
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu316, getString(R.string.sfu316))) {
                     return false;
                 }
-            }
+//            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu317, getString(R.string.sfu317) + " in Days")) {
                 return false;
             }
@@ -849,11 +1323,11 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }
 
         if (bi.sfu318a.isChecked()) {
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu319, getString(R.string.sfu319))) {
                     return false;
                 }
-            }
+//            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu320, getString(R.string.sfu320) + " in Days")) {
                 return false;
             }
@@ -883,25 +1357,35 @@ public class FeedingPracticeActivity extends AppCompatActivity {
         }
 
         if (bi.sfu323a.isChecked()) {
-            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
+//            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu324, getString(R.string.sfu324))) {
                     return false;
                 }
-            }
-            if (fupLocation == 1) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu325m, getString(R.string.sfu325) + " in Minutes")) {
+//            }
+
+            for (int i = 0; i < childllArray325.size(); i++) {
+                int numberss = i + 1;
+                if (!validatorClass.EmptyTextBox(this, secEtArray325.get(i), getString(R.string.sfu325) + " Seconds " + numberss)) {
                     return false;
                 }
-            } else {
+                if (!validatorClass.EmptyTextBox(this, minEtArray325.get(i), getString(R.string.sfu325) + " Minutes " + numberss)) {
+                    return false;
+                }
+            }
+//            if (fupLocation == 1) {
+           /* if (!validatorClass.EmptyTextBox(this, bi.sfu325m, getString(R.string.sfu325) + " in Minutes")) {
+                return false;
+            }*/
+           /* } else {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu325d, getString(R.string.sfu325) + " in Days")) {
                     return false;
                 }
-            }
+            }*/
 
 
-            if (!validatorClass.EmptyTextBox(this, bi.sfu325h, getString(R.string.sfu325) + " in Hours")) {
+           /* if (!validatorClass.EmptyTextBox(this, bi.sfu325s, getString(R.string.sfu325) + " in Seconds")) {
                 return false;
-            }
+            }*/
         }
         if (!validatorClass.EmptyRadioButton(this, bi.sfu326, bi.sfu326a, getString(R.string.sfu326))) {
             return false;
@@ -942,14 +1426,22 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu334, getString(R.string.sfu334) + " in hours")) {
                 return false;
             }
-            if (!validatorClass.EmptyTextBox(this, bi.sfu335, getString(R.string.sfu335) + " in seconds")) {
-                return false;
+            for (int i = 0; i < secEtArray335.size(); i++) {
+                int numberss = i + 1;
+                if (!validatorClass.EmptyTextBox(this, secEtArray335.get(i), getString(R.string.sfu335) + " Seconds " + numberss)) {
+                    return false;
+                }
+
             }
+
+            /*if (!validatorClass.EmptyTextBox(this, bi.sfu335, getString(R.string.sfu335) + " in seconds")) {
+                return false;
+            }*/
         }
         if (!validatorClass.EmptyTextBox(this, bi.sfu336, getString(R.string.sfu336))) {
             return false;
         }
-        if(!skip38){
+        if (!skip38) {
             if (!validatorClass.EmptyRadioButton(this, bi.sfu337, bi.sfu337a, getString(R.string.sfu337))) {
                 return false;
             }

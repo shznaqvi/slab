@@ -14,12 +14,14 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.text.format.DateFormat;
 
+import java.io.FileInputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.contracts.ChildListContract;
+import edu.aku.hassannaqvi.slab.contracts.EpisodesContract;
 import edu.aku.hassannaqvi.slab.contracts.FollowupListContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
@@ -76,6 +78,14 @@ public class MainApp extends Application {
 
     public static Boolean admin = false;
     public static FormsContract fc;
+    public static EpisodesContract epc;
+
+//    code for disease  type
+    public static final String CYANOSIS_DISEASE = "1";
+    public static final String RAPID_BREATHING_DISEASE = "2";
+    public static final String FITS_DISEASE = "3";
+    public static final String APNEA_DISEASE = "4";
+
     public static LabReportsContract lr;
     public static FormsContract historyForminfo;
     public static FollowupListContract followuplist;

@@ -49,6 +49,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.aku.hassannaqvi.slab.NetworkUtils;
 import edu.aku.hassannaqvi.slab.R;
+import edu.aku.hassannaqvi.slab.contracts.EpisodesContract;
 import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract;
 import edu.aku.hassannaqvi.slab.contracts.HistoryContract.HistoryTable;
@@ -509,6 +510,16 @@ public class MainActivity extends Activity {
                     LabReportsContract.class,
                     NetworkUtils.buildUrl(LabReportsTable._URL),
                     db.getUnsyncedLabReports(), this.findViewById(R.id.syncStatus)
+            ).execute();
+            //TODO:sync Episodes sync to server
+            Toast.makeText(getApplicationContext(), "Syncing Episodes", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Episodes",
+                    "updateSyncedEpisodes",
+                    EpisodesContract.class,
+                    NetworkUtils.buildUrl(EpisodesContract.EpisodesTable._URL),
+                    db.getUnsyncedEpisodes(), this.findViewById(R.id.syncStatus)
             ).execute();
 
 
