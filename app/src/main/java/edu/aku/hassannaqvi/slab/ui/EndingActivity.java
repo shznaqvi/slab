@@ -75,7 +75,6 @@ public class EndingActivity extends AppCompatActivity {
 
     public void BtnEnd() {
 
-        Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -98,7 +97,6 @@ public class EndingActivity extends AppCompatActivity {
 
                 finish();
                 Intent endSec = new Intent(this, MainActivity.class);
-                endSec.putExtra("complete", false);
                 startActivity(endSec);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -107,7 +105,6 @@ public class EndingActivity extends AppCompatActivity {
     }
 
     private void SaveDraft() throws JSONException {
-        Toast.makeText(this, "Saving Draft for  This Section", Toast.LENGTH_SHORT).show();
 
         JSONObject end = new JSONObject();
 
@@ -126,8 +123,6 @@ public class EndingActivity extends AppCompatActivity {
 
         MainApp.fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 
-
-        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
     private boolean UpdateDB() {
@@ -154,9 +149,7 @@ public class EndingActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04))) {
                 return false;
             }
-            if (!validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05))) {
-                return false;
-            }
+            return validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05));
         }
 
         return true;
