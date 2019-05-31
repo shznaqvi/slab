@@ -1,8 +1,6 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
@@ -456,7 +454,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
         if (!bi.sel13.getText().toString().contains(".")) {
-            Toast.makeText(this, "Length of neonate should be in decimal", Toast.LENGTH_SHORT);
+            Toast.makeText(EligibilityFormActivity.this, "Length of neonate should be in decimal", Toast.LENGTH_SHORT).show();
             bi.sel13.setError("Length of neonate should be in decimal");
             return false;
         } else {
@@ -464,11 +462,11 @@ public class EligibilityFormActivity extends AppCompatActivity {
         }
 
         if (!bi.sel13.getText().toString().matches(regex)) {
-            Toast.makeText(this, "Invalid decimal number", Toast.LENGTH_SHORT);
+            Toast.makeText(EligibilityFormActivity.this, "Invalid decimal number", Toast.LENGTH_SHORT).show();
             bi.sel13.setError("Invalid decimal number");
             return false;
         } else {
-            bi.sel14.setError(null);
+            bi.sel13.setError(null);
         }
         if (!validatorClass.EmptyTextBox(this, bi.sel14, getString(R.string.sel14))) {
             return false;
@@ -477,14 +475,14 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }*/
         if (!bi.sel14.getText().toString().contains(".")) {
-            Toast.makeText(this, "Head of Circumference should be decimal", Toast.LENGTH_SHORT);
+            Toast.makeText(EligibilityFormActivity.this, "Head of Circumference should be decimal", Toast.LENGTH_SHORT);
             bi.sel14.setError("Head of Circumference should be decimal");
             return false;
         } else {
             bi.sel14.setError(null);
         }
         if (!bi.sel14.getText().toString().matches(regex)) {
-            Toast.makeText(this, "Invalid decimal number", Toast.LENGTH_SHORT);
+            Toast.makeText(EligibilityFormActivity.this, "Invalid decimal number", Toast.LENGTH_SHORT);
             bi.sel14.setError("Invalid decimal number");
             return false;
         } else {
@@ -523,39 +521,11 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
 
-        return validatorClass.EmptyRadioButton(this, bi.sel25, bi.sel25b, bi.sel25bx, getString(R.string.sel25));
-    }
+        if (bi.sel23a.isChecked()) {
+            return validatorClass.EmptyRadioButton(this, bi.sel25, bi.sel25b, bi.sel25bx, getString(R.string.sel25));
+        }
 
-    private boolean endFormValidation() {
-        String regex = "^\\d*\\.\\d+|\\d+\\.\\d*$";
-        if (!validatorClass.EmptyTextBox(this, bi.sel01, getString(R.string.mrno))) {
-//            bi.sel01err.setVisibility(View.VISIBLE);
-            return false;
-        }
-        if (bi.sel01.getText().toString().length() == 9) {
-            String[] str = bi.sel01.getText().toString().split("-");
-            if (str.length > 3 || bi.sel01.getText().toString().charAt(3) != '-' || bi.sel01.getText().toString().charAt(6) != '-') {
-                bi.sel01.setError("Wrong presentation!!");
-                return false;
-            }
-        } else {
-            Toast.makeText(this, "Invalid length: " + getString(R.string.mrno), Toast.LENGTH_SHORT).show();
-            bi.sel01.setError("Invalid length");
-            return false;
-        }
-        if (!validatorClass.EmptyTextBox(this, bi.sel02, getString(R.string.childname))) {
-            return false;
-        }
-        if (!validatorClass.EmptyTextBox(this, bi.sel03, getString(R.string.sel03))) {
-            return false;
-        }
-        if (!validatorClass.EmptyTextBox(this, bi.sel04, getString(R.string.sel04))) {
-            return false;
-        }
-        if (!validatorClass.EmptyTextBox(this, bi.sel06d, getString(R.string.sel06) + " - " + getString(R.string.date))) {
-            return false;
-        }
-        return validatorClass.EmptyTextBox(this, bi.sel06t, getString(R.string.sel06) + " - " + getString(R.string.time));
+        return true;
     }
 
     public void BtnContinue() {
@@ -598,41 +568,21 @@ public class EligibilityFormActivity extends AppCompatActivity {
     }
 
     public void BtnEnd() {
-        if (endFormValidation()) {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                    EligibilityFormActivity.this);
-            alertDialogBuilder
-                    .setMessage("Do you want to Exit??")
-                    .setCancelable(false)
-                    .setPositiveButton("Yes",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog,
-                                                    int id) {
 
-                                    try {
-                                        SaveDraft();
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                    if (UpdateDB()) {
-                                        finish();
-                                        startActivity(new Intent(EligibilityFormActivity.this, EndingActivity.class).putExtra("complete", false));
-                                    } else {
-                                        Toast.makeText(EligibilityFormActivity.this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-
-
-                            });
-            alertDialogBuilder.setNegativeButton("No",
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = alertDialogBuilder.create();
-            alert.show();
+        if (formValidation()) {
+            try {
+                SaveDraft();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (UpdateDB()) {
+                finish();
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
 
     private void SaveDraft() throws JSONException {
@@ -646,11 +596,11 @@ public class EligibilityFormActivity extends AppCompatActivity {
         MainApp.fc.setAppversion(MainApp.versionName + "." + MainApp.versionCode);
         MainApp.fc.setsMrno(bi.sel01.getText().toString());
         MainApp.fc.setFormtype(MainApp.FORMTYPE_EL);
-        if (bi.sel23a.isChecked()) {
-            MainApp.fc.setIsEl("1");
-        } else {
-            MainApp.fc.setIsEl("2");
-        }
+
+        MainApp.fc.setIsEl(bi.sel23a.isChecked() ? "1"
+                : bi.sel23b.isChecked() ? "2"
+                : "0");
+
         setGPS(); //Set GPS
 
         JSONObject ef = new JSONObject();

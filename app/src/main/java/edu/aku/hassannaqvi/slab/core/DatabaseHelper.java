@@ -107,12 +107,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_ALTER_FORMTABLE_TOTALSACHGIVEN = "ALTER TABLE " +
             FormsTable.TABLE_NAME + " ADD COLUMN " +
             FormsTable.COLUMN_TOTALSACHGIVEN + " TEXT";
-    private static final String SQL_ALTER_HISTORY_COUNT= "ALTER TABLE " +
+    private static final String SQL_ALTER_HISTORY_COUNT = "ALTER TABLE " +
             HistoryTable.TABLE_NAME + " ADD COLUMN " +
             HistoryTable.COLUMN_COUNT + " TEXT";
     private static final String SQL_ALTER_HISTORY_ROUND = "ALTER TABLE " +
             HistoryTable.TABLE_NAME + " ADD COLUMN " +
-            HistoryTable.COLUMN_ROUND+ " TEXT";
+            HistoryTable.COLUMN_ROUND + " TEXT";
 
     private static final String SQL_CREATE_FOLLOWUPLIST = "CREATE TABLE "
             + FollowUpList.TABLE_NAME + "(" +
@@ -190,21 +190,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             EpisodesTable.TABLE_NAME + "(" +
             EpisodesTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             EpisodesTable.COLUMN_PROJECTNAME + " TEXT," +
-            EpisodesTable.COLUMN__UID + " TEXT,"+
-            EpisodesTable.COLUMN_UUID + " TEXT,"+
-            EpisodesTable.COLUMN_FORMDATE + " TEXT,"+
-            EpisodesTable.COLUMN_USER + " TEXT,"+
-            EpisodesTable.COLUMN_FORMTYPE + " TEXT,"+
-            EpisodesTable.COLUMN_NOOFEP + " TEXT,"+
-            EpisodesTable.COLUMN_COUNT + " TEXT,"+
-            EpisodesTable.COLUMN_SMRNO + " TEXT,"+
-            EpisodesTable.COLUMN_SSTUDYID + " TEXT,"+
-            EpisodesTable.COLUMN_SFUEP + " TEXT,"+
-            EpisodesTable.COLUMN_DEVICEID + " TEXT,"+
-            EpisodesTable.COLUMN_DEVICETAGID + " TEXT,"+
-            EpisodesTable.COLUMN_SYNCED + " TEXT,"+
-            EpisodesTable.COLUMN_SYNCED_DATE + " TEXT,"+
-            EpisodesTable.COLUMN_APPVERSION + " TEXT,"+
+            EpisodesTable.COLUMN__UID + " TEXT," +
+            EpisodesTable.COLUMN_UUID + " TEXT," +
+            EpisodesTable.COLUMN_FORMDATE + " TEXT," +
+            EpisodesTable.COLUMN_USER + " TEXT," +
+            EpisodesTable.COLUMN_FORMTYPE + " TEXT," +
+            EpisodesTable.COLUMN_NOOFEP + " TEXT," +
+            EpisodesTable.COLUMN_COUNT + " TEXT," +
+            EpisodesTable.COLUMN_SMRNO + " TEXT," +
+            EpisodesTable.COLUMN_SSTUDYID + " TEXT," +
+            EpisodesTable.COLUMN_SFUEP + " TEXT," +
+            EpisodesTable.COLUMN_DEVICEID + " TEXT," +
+            EpisodesTable.COLUMN_DEVICETAGID + " TEXT," +
+            EpisodesTable.COLUMN_SYNCED + " TEXT," +
+            EpisodesTable.COLUMN_SYNCED_DATE + " TEXT," +
+            EpisodesTable.COLUMN_APPVERSION + " TEXT," +
             EpisodesTable.COLUMN_DISEASETYPE + " TEXT"
             + " );";
 
@@ -341,6 +341,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
+
     public void syncEpisodes(JSONArray episodeslist) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(EpisodesTable.TABLE_NAME, null, null);
@@ -372,7 +373,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values.put(EpisodesTable.COLUMN_SYNCED_DATE, ep.getsynced_date());
                 values.put(EpisodesTable.COLUMN_APPVERSION, ep.getappversion());
                 values.put(EpisodesTable.COLUMN_DISEASETYPE, ep.getdiseasetype());
-
 
 
                 db.insert(EpisodesTable.TABLE_NAME, null, values);
@@ -742,10 +742,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         };
 
-        String whereClause = FormsTable.COLUMN_MRNO + " =? AND " +
-                FormsTable.COLUMN_isEL + " =?  ";
+        String whereClause = FormsTable.COLUMN_MRNO + " =? AND " + FormsTable.COLUMN_isEL + " =?";
 
-        String[] whereArgs = new String[]{mrNo, "1"};
+        String[] whereArgs = {mrNo, "1"};
         String groupBy = null;
         String having = null;
 
@@ -1310,6 +1309,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values);
         return newRowId;
     }
+
     public Long addEpisodes(EpisodesContract ep) {
 
         // Gets the data repository in write mode
@@ -1540,6 +1540,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+
     public int updateEpisodeID(EpisodesContract epc) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -1628,6 +1629,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
+
     public Collection<EpisodesContract> getAllEpisodes() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -1980,6 +1982,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 where,
                 whereArgs);
     }
+
     public void updateSyncedEpisodes(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -2210,6 +2213,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allHC;
     }
+
     public Collection<EpisodesContract> getUnsyncedEpisodes() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -2849,6 +2853,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+
     public int updateHistory(String historycount) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -2857,8 +2862,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(HistoryTable.COLUMN_ROUND, MainApp.hc.getround());
 
 // Which row to update, based on the ID
-        String selection = HistoryTable.COLUMN_UUID + " = ? AND "+ HistoryTable.COLUMN_COUNT +" = ?";
-        String[] selectionArgs = {MainApp.hc.getUUID(),historycount};
+        String selection = HistoryTable.COLUMN_UUID + " = ? AND " + HistoryTable.COLUMN_COUNT + " = ?";
+        String[] selectionArgs = {MainApp.hc.getUUID(), historycount};
 
         int count = db.update(HistoryTable.TABLE_NAME,
                 values,
