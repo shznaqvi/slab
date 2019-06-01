@@ -426,7 +426,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!validatorClass.RangeTextBox(this, bi.sel09w, 28, 36, getString(R.string.sel09) + " - " + getString(R.string.weeks), " weeks")) {
+        if (!validatorClass.RangeTextBox(this, bi.sel09w, 28, 42, getString(R.string.sel09) + " - " + getString(R.string.weeks), " weeks")) {
             return false;
         }
 
@@ -538,9 +538,7 @@ public class EligibilityFormActivity extends AppCompatActivity {
             }
             if (UpdateDB()) {
                 finish();
-                Boolean consent = false;
-                consent = bi.sel25a.isChecked();
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", consent));
+                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
