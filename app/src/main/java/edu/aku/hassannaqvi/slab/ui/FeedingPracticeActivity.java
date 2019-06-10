@@ -2,17 +2,13 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.text.method.DigitsKeyListener;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -48,7 +44,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     int fupLocation;
     Boolean skip38;
     List<EpisodesContract> alleplist = new ArrayList<>();
-EpisodesContract epc;
+    EpisodesContract epc;
     //    for question number 309
     final List<EditText> secEtArray309 = new ArrayList();
     final List<EditText> minEtArray309 = new ArrayList();
@@ -94,11 +90,7 @@ EpisodesContract epc;
 
         gettingIntents();
         setupView();
-        if (MainApp.fupLocation == 1 || MainApp.fupLocation == 3 || MainApp.fupLocation == 4) {
-            skip38 = true;
-        } else {
-            skip38 = false;
-        }
+        skip38 = MainApp.fupLocation == 1 || MainApp.fupLocation == 3 || MainApp.fupLocation == 4;
         if (skip38) {
             bi.fldGrp337.setVisibility(GONE);
         } else {
@@ -107,7 +99,6 @@ EpisodesContract epc;
         validatorClass.setScrollViewFocus(bi.scrollView);
 
     }
-
 
 
     private void sfu309autogenerateboxes() {
@@ -119,63 +110,66 @@ EpisodesContract epc;
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 2) {
-                    int noofboxes = Integer.valueOf(bi.sfu308.getText().toString());
-                    if (durationLabelArray309.size() > 0) {
-                        for (int i = 0; i < durationLabelArray309.size(); i++) {
-                            bi.llgrpsfu309.removeView(durationLabelArray309.get(i));
-                            bi.llgrpsfu309.removeView(childllArray309.get(i));
-                        }
-                        durationLabelArray309.clear();
-                        childllArray309.clear();
+
+                if (bi.sfu308.getText().toString().isEmpty()) {
+                    bi.llgrpsfu3A.setVisibility(GONE);
+                    bi.llgrpsfu309.removeAllViews();
+                    return;
+                }
+
+                int noofboxes = Integer.valueOf(bi.sfu308.getText().toString());
+                if (noofboxes == 0) {
+                    bi.llgrpsfu3A.setVisibility(GONE);
+                    bi.llgrpsfu309.removeAllViews();
+                    return;
+                }
+
+                /*if (durationLabelArray309.size() > 0) {
+                    for (int i = 0; i < durationLabelArray309.size(); i++) {
+                        bi.llgrpsfu309.removeView(durationLabelArray309.get(i));
+                        bi.llgrpsfu309.removeView(childllArray309.get(i));
                     }
-                    bi.Eplabel309.setVisibility(View.VISIBLE);
-                    for (int i = 0; i < noofboxes; i++) {
+                    durationLabelArray309.clear();
+                    childllArray309.clear();
+                }*/
 
-                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
-                        DurationLabelTextView.setLayoutParams(mRparams2);
-                        int numberss = i + 1;
-                        DurationLabelTextView.setText("Duration of episode # " + numberss);
-                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
-                        durationLabelArray309.add(DurationLabelTextView);
-                        bi.llgrpsfu309.addView(DurationLabelTextView);
+                bi.llgrpsfu3A.setVisibility(View.VISIBLE);
+                for (int i = 0; i < noofboxes; i++) {
 
-                        LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
-                        llchild.setLayoutParams(mRparams2);
-                        llchild.setOrientation(LinearLayout.HORIZONTAL);
-                        childllArray309.add(llchild);
-                        bi.llgrpsfu309.addView(llchild);
+                    TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                    DurationLabelTextView.setLayoutParams(mRparams2);
+                    int numberss = i + 1;
+                    DurationLabelTextView.setText("Duration of episode # " + numberss);
+                    DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                    durationLabelArray309.add(DurationLabelTextView);
+                    bi.llgrpsfu309.addView(DurationLabelTextView);
 
-                        EditText secEditText = new EditText(FeedingPracticeActivity.this);
-                        secEditText.setLayoutParams(mRparams1);
-                        secEditText.setHint("Seconds " + numberss);
-                        secEditText.setInputType(INTEGER);
-                        secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        int maxLength = 2;
-                        secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        secEtArray309.add(secEditText);
-                        llchild.addView(secEditText);
+                    LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
+                    llchild.setLayoutParams(mRparams2);
+                    llchild.setOrientation(LinearLayout.HORIZONTAL);
+                    childllArray309.add(llchild);
+                    bi.llgrpsfu309.addView(llchild);
+
+                    EditText secEditText = new EditText(FeedingPracticeActivity.this);
+                    secEditText.setLayoutParams(mRparams1);
+                    secEditText.setHint("Seconds " + numberss);
+                    secEditText.setInputType(INTEGER);
+                    secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    int maxLength = 2;
+                    secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    secEtArray309.add(secEditText);
+                    llchild.addView(secEditText);
 
 
-                        EditText minEditText = new EditText(FeedingPracticeActivity.this);
-                        minEditText.setLayoutParams(mRparams1);
-                        minEditText.setHint("Minutes " + numberss);
-                        minEditText.setInputType(INTEGER);
-                        minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        minEtArray309.add(minEditText);
-                        llchild.addView(minEditText);
-                    }
-                    if(noofboxes == 00){
-                        bi.Eplabel309.setVisibility(View.GONE);
-
-                    }else {
-                        bi.Eplabel309.setVisibility(View.VISIBLE);
-
-                    }
-                } else {
-                    bi.Eplabel309.setVisibility(View.GONE);
+                    EditText minEditText = new EditText(FeedingPracticeActivity.this);
+                    minEditText.setLayoutParams(mRparams1);
+                    minEditText.setHint("Minutes " + numberss);
+                    minEditText.setInputType(INTEGER);
+                    minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    minEtArray309.add(minEditText);
+                    llchild.addView(minEditText);
                 }
 
             }
@@ -258,6 +252,7 @@ EpisodesContract epc;
             }
         });
     }
+
     private void sfu325autogenerateboxes() {
         bi.sfu324.addTextChangedListener(new TextWatcher() {
             @Override
@@ -328,6 +323,7 @@ EpisodesContract epc;
             }
         });
     }
+
     private void sfu336autogenerateboxes() {
         bi.sfu334.addTextChangedListener(new TextWatcher() {
             @Override
@@ -706,11 +702,7 @@ EpisodesContract epc;
         });
 
         showhideTextBoxes();
-        if (fupLocation == 6) {
-            nextExamSec = false;
-        } else {
-            nextExamSec = true;
-        }
+        nextExamSec = fupLocation != 6;
     }
 
     private void showhideTextBoxes() {
@@ -1177,9 +1169,9 @@ EpisodesContract epc;
 
         if (bi.sfu301a.isChecked()) {
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu302, getString(R.string.sfu302))) {
-                    return false;
-                }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu302, getString(R.string.sfu302))) {
+                return false;
+            }
 //            }
             if (fupLocation == 1) {
 
@@ -1203,9 +1195,9 @@ EpisodesContract epc;
         if (bi.sfu304a.isChecked()) {
 
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu305, getString(R.string.sfu305))) {
-                    return false;
-                }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu305, getString(R.string.sfu305))) {
+                return false;
+            }
 //            }
             if (fupLocation == 1) {
                 if (!validatorClass.EmptyTextBox(this, bi.sfu306m, getString(R.string.sfu306) + " in Minutes")) {
@@ -1228,17 +1220,20 @@ EpisodesContract epc;
 
         if (bi.sfu307a.isChecked()) {
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu308, getString(R.string.sfu308))) {
-                    return false;
-                }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu308, getString(R.string.sfu308))) {
+                return false;
+            }
+            if (!validatorClass.RangeTextBox(this, bi.sfu308, 0, 10, getString(R.string.sfu308), "")) {
+                return false;
+            }
 //            }
 
             for (int i = 0; i < childllArray309.size(); i++) {
                 int numberss = i + 1;
-                if (!validatorClass.EmptyTextBox(this, secEtArray309.get(i), getString(R.string.sfu309) + " Seconds " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, secEtArray309.get(i), getString(R.string.sfu309) + " Seconds " + numberss)) {
                     return false;
                 }
-                if (!validatorClass.EmptyTextBox(this, minEtArray309.get(i), getString(R.string.sfu309) + " Minutes " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, minEtArray309.get(i), getString(R.string.sfu309) + " Minutes " + numberss)) {
                     return false;
                 }
             }
@@ -1275,8 +1270,8 @@ EpisodesContract epc;
 
         if (bi.sfu312a.isChecked()) {
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu313, getString(R.string.sfu313))) {
-                    return false;
+            if (!validatorClass.EmptyTextBox(this, bi.sfu313, getString(R.string.sfu313))) {
+                return false;
 //                }
             }
 //            if (fupLocation == 1) {
@@ -1310,9 +1305,9 @@ EpisodesContract epc;
 
         if (bi.sfu315a.isChecked()) {
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu316, getString(R.string.sfu316))) {
-                    return false;
-                }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu316, getString(R.string.sfu316))) {
+                return false;
+            }
 //            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu317, getString(R.string.sfu317) + " in Days")) {
                 return false;
@@ -1324,9 +1319,9 @@ EpisodesContract epc;
 
         if (bi.sfu318a.isChecked()) {
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu319, getString(R.string.sfu319))) {
-                    return false;
-                }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu319, getString(R.string.sfu319))) {
+                return false;
+            }
 //            }
             if (!validatorClass.EmptyTextBox(this, bi.sfu320, getString(R.string.sfu320) + " in Days")) {
                 return false;
@@ -1358,9 +1353,9 @@ EpisodesContract epc;
 
         if (bi.sfu323a.isChecked()) {
 //            if (fupLocation == 2 || fupLocation == 5 || fupLocation == 6) {
-                if (!validatorClass.EmptyTextBox(this, bi.sfu324, getString(R.string.sfu324))) {
-                    return false;
-                }
+            if (!validatorClass.EmptyTextBox(this, bi.sfu324, getString(R.string.sfu324))) {
+                return false;
+            }
 //            }
 
             for (int i = 0; i < childllArray325.size(); i++) {
@@ -1471,9 +1466,7 @@ EpisodesContract epc;
             if (!validatorClass.EmptyTextBox(this, bi.sfu343dt, getString(R.string.date))) {
                 return false;
             }
-            if (!validatorClass.EmptyRadioButton(this, bi.sfu344, bi.sfu344b, bi.sfu344bx, getString(R.string.sfu344))) {
-                return false;
-            }
+            return validatorClass.EmptyRadioButton(this, bi.sfu344, bi.sfu344b, bi.sfu344bx, getString(R.string.sfu344));
         }
         return true;
     }
