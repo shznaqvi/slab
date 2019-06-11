@@ -2,8 +2,8 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -26,9 +26,9 @@ import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
 public class SupplementAdminActivity extends AppCompatActivity {
     ActivitySupplementAdminBinding bi;
     DatabaseHelper db;
-    String  childName , localmrno, localstudyID;
-  int fupLocation;
-  public static JSONObject supAdmin;
+    public static JSONObject supAdmin;
+    String childName, localmrno, localstudyID;
+    int fupLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,44 @@ public class SupplementAdminActivity extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+    TextWatcher sachetswatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            if (TextUtils.isEmpty(bi.sfu504.getText().toString()) || TextUtils.isEmpty(bi.sfu505.getText().toString())) {
+                bi.fldGrp506.setVisibility(View.GONE);
+                bi.sfu506.clearCheck();
+                bi.fldGrp507.setVisibility(View.GONE);
+                bi.sfu507.clearCheck();
+                return;
+            }
+
+            if (Integer.parseInt(bi.sfu505.getText().toString()) < Integer.parseInt(bi.sfu504.getText().toString())) {
+                bi.fldGrp506.setVisibility(View.VISIBLE);
+                bi.fldGrp507.setVisibility(View.GONE);
+                bi.sfu507.clearCheck();
+            } else if (Integer.parseInt(bi.sfu505.getText().toString()) > Integer.parseInt(bi.sfu504.getText().toString())) {
+                bi.fldGrp506.setVisibility(View.GONE);
+                bi.sfu506.clearCheck();
+                bi.fldGrp507.setVisibility(View.VISIBLE);
+            } else if (Integer.parseInt(bi.sfu505.getText().toString()) == Integer.parseInt(bi.sfu504.getText().toString())) {
+                bi.fldGrp506.setVisibility(View.GONE);
+                bi.sfu506.clearCheck();
+                bi.fldGrp507.setVisibility(View.GONE);
+                bi.sfu507.clearCheck();
+            }
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     private void setupView() {
         if (MainApp.fupLocation == 1) {
@@ -54,6 +92,10 @@ public class SupplementAdminActivity extends AppCompatActivity {
         } else {
             bi.fldGrpsfu501.setVisibility(View.GONE);
             bi.fldGrpsfu502.setVisibility(View.GONE);
+
+            if (MainApp.fupLocation == 6) {
+                bi.fldGrp5A.setVisibility(View.GONE);
+            }
         }
 
         bi.sfu501.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -70,37 +112,6 @@ public class SupplementAdminActivity extends AppCompatActivity {
         bi.sfu504.addTextChangedListener(sachetswatcher);
         bi.sfu505.addTextChangedListener(sachetswatcher);
     }
-    TextWatcher sachetswatcher = new TextWatcher() {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-        }
-
-        @Override
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-            if(!TextUtils.isEmpty(bi.sfu504.getText().toString()) && !TextUtils.isEmpty(bi.sfu505.getText().toString())){
-                if(Integer.parseInt(bi.sfu505.getText().toString()) < Integer.parseInt(bi.sfu504.getText().toString())){
-                    bi.fldGrp506.setVisibility(View.VISIBLE);
-                    bi.fldGrp507.setVisibility(View.GONE);
-                    bi.sfu507.clearCheck();
-                }else if(Integer.parseInt(bi.sfu505.getText().toString()) > Integer.parseInt(bi.sfu504.getText().toString())) {
-                    bi.fldGrp506.setVisibility(View.GONE);
-                    bi.sfu506.clearCheck();
-                    bi.fldGrp507.setVisibility(View.VISIBLE);
-                }else if(Integer.parseInt(bi.sfu505.getText().toString()) == Integer.parseInt(bi.sfu504.getText().toString())) {
-                    bi.fldGrp506.setVisibility(View.GONE);
-                    bi.sfu506.clearCheck();
-                    bi.fldGrp507.setVisibility(View.GONE);
-                    bi.sfu507.clearCheck();
-                }
-            }
-        }
-
-        @Override
-        public void afterTextChanged(Editable s) {
-
-        }
-    };
 
     public void BtnContinue() {
 
@@ -119,12 +130,13 @@ public class SupplementAdminActivity extends AppCompatActivity {
                         .putExtra("noofSachet", bi.sfu504.getText().toString())
                         .putExtra("childName", childName)
                         .putExtra("mrno", localmrno)
-                        .putExtra("studyID",localstudyID));
+                        .putExtra("studyID", localstudyID));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
     private void gettingIntents() {
 
         Intent intent = getIntent();
@@ -141,6 +153,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
         }
 
     }
+
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
         int updcount = db.updateSSUP();
@@ -165,10 +178,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
-
                 finish();
-
                 startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -220,7 +230,6 @@ public class SupplementAdminActivity extends AppCompatActivity {
                     return false;
                 }
             }
-
         }
         if (!validatorClass.EmptyTextBox(this, bi.sfu503, getString(R.string.sfu503))) {
             return false;
@@ -228,23 +237,24 @@ public class SupplementAdminActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.sfu504, getString(R.string.sfu504))) {
             return false;
         }
-        if (!validatorClass.EmptyTextBox(this, bi.sfu505, getString(R.string.sfu505))) {
-            return false;
-        }
 
-            if (Integer.parseInt(bi.sfu505.getText().toString()) < Integer.parseInt(bi.sfu504.getText().toString())) {
-                if (!validatorClass.EmptyRadioButton(this, bi.sfu506, bi.sfu50696, bi.sfu50696x, getString(R.string.sfu506))) {
-                    return false;
-                }
-            } else if (Integer.parseInt(bi.sfu505.getText().toString()) > Integer.parseInt(bi.sfu504.getText().toString())) {
-                if (!validatorClass.EmptyRadioButton(this, bi.sfu507, bi.sfu50796, bi.sfu50796x, getString(R.string.sfu507))) {
-                    return false;
-                }
+        if (MainApp.fupLocation != 6) {
 
-            } else if (Integer.parseInt(bi.sfu505.getText().toString()) == Integer.parseInt(bi.sfu504.getText().toString())) {
-
+            if (!validatorClass.EmptyTextBox(this, bi.sfu505, getString(R.string.sfu505))) {
+                return false;
             }
 
+            if (!TextUtils.isEmpty(bi.sfu504.getText().toString()) && !TextUtils.isEmpty(bi.sfu505.getText().toString())) {
+
+                if (Integer.parseInt(bi.sfu505.getText().toString()) < Integer.parseInt(bi.sfu504.getText().toString())) {
+                    return validatorClass.EmptyRadioButton(this, bi.sfu506, bi.sfu50696, bi.sfu50696x, getString(R.string.sfu506));
+                } else if (Integer.parseInt(bi.sfu505.getText().toString()) > Integer.parseInt(bi.sfu504.getText().toString())) {
+                    return validatorClass.EmptyRadioButton(this, bi.sfu507, bi.sfu50796, bi.sfu50796x, getString(R.string.sfu507));
+
+                }
+            }
+
+        }
 
         return true;
     }

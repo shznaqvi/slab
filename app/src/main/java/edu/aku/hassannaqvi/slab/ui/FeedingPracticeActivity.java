@@ -112,7 +112,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (bi.sfu308.getText().toString().isEmpty()) {
-                    bi.llgrpsfu3A.setVisibility(GONE);
+                    bi.llgrpsfu3B.setVisibility(GONE);
                     bi.llgrpsfu309.removeAllViews();
                     return;
                 }
@@ -191,56 +191,66 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 2) {
-                    int noofboxes = Integer.valueOf(bi.sfu313.getText().toString());
-                    if (durationLabelArray314.size() > 0) {
+
+                if (bi.sfu313.getText().toString().isEmpty()) {
+                    bi.llgrpsfu3B.setVisibility(GONE);
+                    bi.llgrpsfu314.removeAllViews();
+                    return;
+                }
+
+                int noofboxes = Integer.valueOf(bi.sfu313.getText().toString());
+                if (noofboxes == 0) {
+                    bi.llgrpsfu3B.setVisibility(GONE);
+                    bi.llgrpsfu314.removeAllViews();
+                    return;
+                }
+
+                /*if (durationLabelArray314.size() > 0) {
                         for (int i = 0; i < durationLabelArray314.size(); i++) {
                             bi.llgrpsfu314.removeView(durationLabelArray314.get(i));
                             bi.llgrpsfu314.removeView(childllArray309.get(i));
                         }
                         durationLabelArray314.clear();
                         childllArray314.clear();
-                    }
-                    bi.Eplabel314.setVisibility(View.VISIBLE);
-                    for (int i = 0; i < noofboxes; i++) {
+                }*/
 
-                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
-                        DurationLabelTextView.setLayoutParams(mRparams2);
-                        int numberss = i + 1;
-                        DurationLabelTextView.setText("Duration of episode # " + numberss);
-                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
-                        durationLabelArray314.add(DurationLabelTextView);
-                        bi.llgrpsfu314.addView(DurationLabelTextView);
+                bi.llgrpsfu3B.setVisibility(View.VISIBLE);
+                for (int i = 0; i < noofboxes; i++) {
 
-                        LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
-                        llchild.setLayoutParams(mRparams2);
-                        llchild.setOrientation(LinearLayout.HORIZONTAL);
-                        childllArray314.add(llchild);
-                        bi.llgrpsfu314.addView(llchild);
+                    TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                    DurationLabelTextView.setLayoutParams(mRparams2);
+                    int numberss = i + 1;
+                    DurationLabelTextView.setText("Duration of episode # " + numberss);
+                    DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                    durationLabelArray314.add(DurationLabelTextView);
+                    bi.llgrpsfu314.addView(DurationLabelTextView);
 
-                        EditText hrEditText = new EditText(FeedingPracticeActivity.this);
-                        hrEditText.setLayoutParams(mRparams1);
-                        hrEditText.setHint("Hours " + numberss);
-                        hrEditText.setInputType(INTEGER);
-                        hrEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        int maxLength = 2;
-                        hrEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        hrEtArray314.add(hrEditText);
-                        llchild.addView(hrEditText);
+                    LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
+                    llchild.setLayoutParams(mRparams2);
+                    llchild.setOrientation(LinearLayout.HORIZONTAL);
+                    childllArray314.add(llchild);
+                    bi.llgrpsfu314.addView(llchild);
+
+                    EditText hrEditText = new EditText(FeedingPracticeActivity.this);
+                    hrEditText.setLayoutParams(mRparams1);
+                    hrEditText.setHint("Hours " + numberss);
+                    hrEditText.setInputType(INTEGER);
+                    hrEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    int maxLength = 2;
+                    hrEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    hrEtArray314.add(hrEditText);
+                    llchild.addView(hrEditText);
 
 
-                        EditText minEditText = new EditText(FeedingPracticeActivity.this);
-                        minEditText.setLayoutParams(mRparams1);
-                        minEditText.setHint("Minutes " + numberss);
-                        minEditText.setInputType(INTEGER);
-                        minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        minEtArray314.add(minEditText);
-                        llchild.addView(minEditText);
-                    }
-                } else {
-                    bi.Eplabel314.setVisibility(View.GONE);
+                    EditText minEditText = new EditText(FeedingPracticeActivity.this);
+                    minEditText.setLayoutParams(mRparams1);
+                    minEditText.setHint("Minutes " + numberss);
+                    minEditText.setInputType(INTEGER);
+                    minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    minEtArray314.add(minEditText);
+                    llchild.addView(minEditText);
                 }
 
             }
@@ -262,56 +272,66 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 2) {
-                    int noofboxes = Integer.valueOf(bi.sfu324.getText().toString());
-                    if (durationLabelArray325.size() > 0) {
+
+                if (bi.sfu324.getText().toString().isEmpty()) {
+                    bi.llgrpsfu3C.setVisibility(GONE);
+                    bi.llgrpsfu325.removeAllViews();
+                    return;
+                }
+
+                int noofboxes = Integer.valueOf(bi.sfu324.getText().toString());
+                if (noofboxes == 0) {
+                    bi.llgrpsfu3C.setVisibility(GONE);
+                    bi.llgrpsfu325.removeAllViews();
+                    return;
+                }
+
+                /*if (durationLabelArray325.size() > 0) {
                         for (int i = 0; i < durationLabelArray325.size(); i++) {
                             bi.llgrpsfu325.removeView(durationLabelArray325.get(i));
                             bi.llgrpsfu325.removeView(childllArray325.get(i));
                         }
                         durationLabelArray325.clear();
                         childllArray325.clear();
-                    }
-                    bi.Eplabel325.setVisibility(View.VISIBLE);
-                    for (int i = 0; i < noofboxes; i++) {
+                }*/
 
-                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
-                        DurationLabelTextView.setLayoutParams(mRparams2);
-                        int numberss = i + 1;
-                        DurationLabelTextView.setText("Duration of episode # " + numberss);
-                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
-                        durationLabelArray325.add(DurationLabelTextView);
-                        bi.llgrpsfu325.addView(DurationLabelTextView);
+                bi.llgrpsfu3C.setVisibility(View.VISIBLE);
+                for (int i = 0; i < noofboxes; i++) {
 
-                        LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
-                        llchild.setLayoutParams(mRparams2);
-                        llchild.setOrientation(LinearLayout.HORIZONTAL);
-                        childllArray325.add(llchild);
-                        bi.llgrpsfu325.addView(llchild);
+                    TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                    DurationLabelTextView.setLayoutParams(mRparams2);
+                    int numberss = i + 1;
+                    DurationLabelTextView.setText("Duration of episode # " + numberss);
+                    DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                    durationLabelArray325.add(DurationLabelTextView);
+                    bi.llgrpsfu325.addView(DurationLabelTextView);
 
-                        EditText secEditText = new EditText(FeedingPracticeActivity.this);
-                        secEditText.setLayoutParams(mRparams1);
-                        secEditText.setHint("Seconds " + numberss);
-                        secEditText.setInputType(INTEGER);
-                        secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        int maxLength = 2;
-                        secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        secEtArray325.add(secEditText);
-                        llchild.addView(secEditText);
+                    LinearLayout llchild = new LinearLayout(FeedingPracticeActivity.this);
+                    llchild.setLayoutParams(mRparams2);
+                    llchild.setOrientation(LinearLayout.HORIZONTAL);
+                    childllArray325.add(llchild);
+                    bi.llgrpsfu325.addView(llchild);
+
+                    EditText secEditText = new EditText(FeedingPracticeActivity.this);
+                    secEditText.setLayoutParams(mRparams1);
+                    secEditText.setHint("Seconds " + numberss);
+                    secEditText.setInputType(INTEGER);
+                    secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    int maxLength = 2;
+                    secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    secEtArray325.add(secEditText);
+                    llchild.addView(secEditText);
 
 
-                        EditText minEditText = new EditText(FeedingPracticeActivity.this);
-                        minEditText.setLayoutParams(mRparams1);
-                        minEditText.setHint("Minutes " + numberss);
-                        minEditText.setInputType(INTEGER);
-                        minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        minEtArray325.add(minEditText);
-                        llchild.addView(minEditText);
-                    }
-                } else {
-                    bi.Eplabel325.setVisibility(View.GONE);
+                    EditText minEditText = new EditText(FeedingPracticeActivity.this);
+                    minEditText.setLayoutParams(mRparams1);
+                    minEditText.setHint("Minutes " + numberss);
+                    minEditText.setInputType(INTEGER);
+                    minEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    minEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    minEtArray325.add(minEditText);
+                    llchild.addView(minEditText);
                 }
 
             }
@@ -333,41 +353,51 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 2) {
-                    int noofboxes = Integer.valueOf(bi.sfu334.getText().toString());
-                    if (durationLabelArray335.size() > 0) {
-                        for (int i = 0; i < durationLabelArray335.size(); i++) {
-                            bi.llgrpsfu335.removeView(durationLabelArray335.get(i));
-                            bi.llgrpsfu335.removeView(secEtArray335.get(i));
+
+                if (bi.sfu334.getText().toString().isEmpty()) {
+                    bi.llgrpsfu3D.setVisibility(GONE);
+                    bi.llgrpsfu335.removeAllViews();
+                    return;
+                }
+
+                int noofboxes = Integer.valueOf(bi.sfu334.getText().toString());
+                if (noofboxes == 0) {
+                    bi.llgrpsfu3D.setVisibility(GONE);
+                    bi.llgrpsfu335.removeAllViews();
+                    return;
+                }
+
+                /*if (durationLabelArray325.size() > 0) {
+                        for (int i = 0; i < durationLabelArray325.size(); i++) {
+                            bi.llgrpsfu335.removeView(durationLabelArray325.get(i));
+                            bi.llgrpsfu335.removeView(childllArray325.get(i));
                         }
-                        durationLabelArray335.clear();
-                        secEtArray335.clear();
-                    }
-                    bi.Eplabel335.setVisibility(View.VISIBLE);
-                    for (int i = 0; i < noofboxes; i++) {
+                        durationLabelArray325.clear();
+                        childllArray325.clear();
+                }*/
 
-                        TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
-                        DurationLabelTextView.setLayoutParams(mRparams2);
-                        int numberss = i + 1;
-                        DurationLabelTextView.setText("Duration of episode # " + numberss);
-                        DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
-                        DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
-                        durationLabelArray335.add(DurationLabelTextView);
-                        bi.llgrpsfu335.addView(DurationLabelTextView);
+                bi.llgrpsfu3D.setVisibility(View.VISIBLE);
+                for (int i = 0; i < noofboxes; i++) {
+
+                    TextView DurationLabelTextView = new TextView(FeedingPracticeActivity.this);
+                    DurationLabelTextView.setLayoutParams(mRparams2);
+                    int numberss = i + 1;
+                    DurationLabelTextView.setText("Duration of episode # " + numberss);
+                    DurationLabelTextView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                    DurationLabelTextView.setBackgroundColor(getResources().getColor(R.color.colorPrimaryAlpha));
+                    durationLabelArray335.add(DurationLabelTextView);
+                    bi.llgrpsfu335.addView(DurationLabelTextView);
 
 
-                        EditText secEditText = new EditText(FeedingPracticeActivity.this);
-                        secEditText.setLayoutParams(mRparams1);
-                        secEditText.setHint("Seconds " + numberss);
-                        secEditText.setInputType(INTEGER);
-                        secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
-                        int maxLength = 2;
-                        secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
-                        secEtArray335.add(secEditText);
-                        bi.llgrpsfu335.addView(secEditText);
-                    }
-                } else {
-                    bi.Eplabel335.setVisibility(View.GONE);
+                    EditText secEditText = new EditText(FeedingPracticeActivity.this);
+                    secEditText.setLayoutParams(mRparams);
+                    secEditText.setHint("Seconds " + numberss);
+                    secEditText.setInputType(INTEGER);
+                    secEditText.setKeyListener(DigitsKeyListener.getInstance("0123456789"));
+                    int maxLength = 2;
+                    secEditText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
+                    secEtArray335.add(secEditText);
+                    bi.llgrpsfu335.addView(secEditText);
                 }
 
             }
@@ -1274,6 +1304,10 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 return false;
 //                }
             }
+            if (!validatorClass.RangeTextBox(this, bi.sfu313, 0, 10, getString(R.string.sfu313), "")) {
+                return false;
+            }
+
 //            if (fupLocation == 1) {
           /*  if (!validatorClass.EmptyTextBox(this, bi.sfu314m, getString(R.string.sfu314) + " in Minutes")) {
                 return false;
@@ -1290,10 +1324,10 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 
             for (int i = 0; i < childllArray314.size(); i++) {
                 int numberss = i + 1;
-                if (!validatorClass.EmptyTextBox(this, hrEtArray314.get(i), getString(R.string.sfu314) + " Hours " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, hrEtArray314.get(i), getString(R.string.sfu314) + " Hours " + numberss)) {
                     return false;
                 }
-                if (!validatorClass.EmptyTextBox(this, minEtArray314.get(i), getString(R.string.sfu314) + " Minutes " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, minEtArray314.get(i), getString(R.string.sfu314) + " Minutes " + numberss)) {
                     return false;
                 }
             }
@@ -1356,14 +1390,17 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu324, getString(R.string.sfu324))) {
                 return false;
             }
+            if (!validatorClass.RangeTextBox(this, bi.sfu324, 0, 10, getString(R.string.sfu324), "")) {
+                return false;
+            }
 //            }
 
             for (int i = 0; i < childllArray325.size(); i++) {
                 int numberss = i + 1;
-                if (!validatorClass.EmptyTextBox(this, secEtArray325.get(i), getString(R.string.sfu325) + " Seconds " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, secEtArray325.get(i), getString(R.string.sfu325) + " Seconds " + numberss)) {
                     return false;
                 }
-                if (!validatorClass.EmptyTextBox(this, minEtArray325.get(i), getString(R.string.sfu325) + " Minutes " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, minEtArray325.get(i), getString(R.string.sfu325) + " Minutes " + numberss)) {
                     return false;
                 }
             }
@@ -1421,9 +1458,12 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sfu334, getString(R.string.sfu334) + " in hours")) {
                 return false;
             }
+            if (!validatorClass.RangeTextBox(this, bi.sfu334, 0, 10, getString(R.string.sfu334), "")) {
+                return false;
+            }
             for (int i = 0; i < secEtArray335.size(); i++) {
                 int numberss = i + 1;
-                if (!validatorClass.EmptyTextBox(this, secEtArray335.get(i), getString(R.string.sfu335) + " Seconds " + numberss)) {
+                if (!validatorClass.EmptyTextBox(FeedingPracticeActivity.this, secEtArray335.get(i), getString(R.string.sfu335) + " Seconds " + numberss)) {
                     return false;
                 }
 

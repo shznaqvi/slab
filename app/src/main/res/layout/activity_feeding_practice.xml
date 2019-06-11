@@ -813,16 +813,6 @@
                         android:maxLength="2" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/sfu314"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
                 <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -859,17 +849,33 @@
                          android:maxLength="2" />&ndash;&gt;
                 </LinearLayout>-->
                 <LinearLayout
-                    android:id="@+id/llgrpsfu314"
+                    android:id="@+id/llgrpsfu3B"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu314"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/Eplabel314"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Please Enter Value For Each Episode Below"
-                        android:visibility="gone" />
+                        android:text="Please Enter Value For Each Episode Below" />
+
+                    <LinearLayout
+                        android:id="@+id/llgrpsfu314"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -1203,28 +1209,34 @@
                         android:maxLength="2" />
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_weight="3"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/sfu325"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white" />
-
                 <LinearLayout
-                    android:id="@+id/llgrpsfu325"
+                    android:id="@+id/llgrpsfu3C"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="3"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu325"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
 
                     <TextView
                         android:id="@+id/Eplabel325"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Please Enter Value For Each Episode Below"
-                        android:visibility="gone" />
+                        android:text="Please Enter Value For Each Episode Below" />
+
+                    <LinearLayout
+                        android:id="@+id/llgrpsfu325"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
 
                 </LinearLayout>
                 <!--<LinearLayout
@@ -1607,7 +1619,7 @@
                          android:maxLength="2" />
                  </LinearLayout>-->
                 <LinearLayout
-                    android:id="@+id/llgrpsfu335"
+                    android:id="@+id/llgrpsfu3D"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -1618,6 +1630,12 @@
                         android:layout_height="wrap_content"
                         android:text="Please Enter Value For Each Episode Below"
                         android:visibility="gone" />
+
+                    <LinearLayout
+                        android:id="@+id/llgrpsfu335"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" />
 
                 </LinearLayout>
             </LinearLayout>
