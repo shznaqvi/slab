@@ -12,19 +12,19 @@ import org.json.JSONObject;
 
 public class FollowupListContract {
 
-   private String _ID ="";
-    private String _fuid ="";
-    private String mrno ="";
-    private String studyid="";
-    private String childname="";
-    private String mothername="";
-    private String birthdate="";
-    private String enrolmentdate="";
-    private String fupround="";
-    private String fuplocation="";
-    private String dischargedate="";
-    private String fupstatus="";
-    private String lastfupdate="";
+    private String _ID = "";
+    private String _fuid = "";
+    private String mrno = "";
+    private String studyid = "";
+    private String childname = "";
+    private String mothername = "";
+    private String birthdate = "";
+    private String enrolmentdate = "";
+    private String fupround = "";
+    private String fuplocation = "";
+    private String dischargedate = "";
+    private String fupstatus = "";
+    private String lastfupdate = "";
 
     public String get_ID() {
         return _ID;
@@ -131,23 +131,24 @@ public class FollowupListContract {
     }
 
     public FollowupListContract Sync(JSONObject jsonObject) throws JSONException {
-        this._fuid= jsonObject.getString(FollowUpList.COLUMN__FUID);
-        this.mrno= jsonObject.getString(FollowUpList.COLUMN_MRNO);
-        this.studyid= jsonObject.getString(FollowUpList.COLUMN_STUDYID);
-        this.childname= jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
-        this.mothername= jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
-        this.birthdate= jsonObject.getString(FollowUpList.COLUMN_BIRTHDATE);
-        this.enrolmentdate= jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
-        this.fupround= jsonObject.getString(FollowUpList.COLUMN_FUPROUND);
-        this.fuplocation= jsonObject.getString(FollowUpList.COLUMN_FUPLOCATION);
-        this.dischargedate= jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
-        this.fupstatus= jsonObject.getString(FollowUpList.COLUMN_FUPSTATUS);
-        this.lastfupdate= jsonObject.getString(FollowUpList.COLUMN_LASTFUPDATE);
+        this._fuid = jsonObject.getString(FollowUpList.COLUMN__FUID);
+        this.mrno = jsonObject.getString(FollowUpList.COLUMN_MRNO);
+        this.studyid = jsonObject.getString(FollowUpList.COLUMN_STUDYID);
+        this.childname = jsonObject.getString(FollowUpList.COLUMN_CHILDNAME);
+        this.mothername = jsonObject.getString(FollowUpList.COLUMN_MOTHERNAME);
+        this.birthdate = jsonObject.getString(FollowUpList.COLUMN_BIRTHDATE);
+        this.enrolmentdate = jsonObject.getString(FollowUpList.COLUMN_ENROLMENTDATE);
+        this.fupround = jsonObject.getString(FollowUpList.COLUMN_FUPROUND);
+        this.fuplocation = jsonObject.getString(FollowUpList.COLUMN_FUPLOCATION);
+        this.dischargedate = jsonObject.getString(FollowUpList.COLUMN_DISCHARGEDATE);
+        this.fupstatus = jsonObject.getString(FollowUpList.COLUMN_FUPSTATUS);
+        this.lastfupdate = jsonObject.getString(FollowUpList.COLUMN_LASTFUPDATE);
 
 
         return this;
 
     }
+
     public FollowupListContract Hydrate(Cursor cursor) {
         this._ID = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__ID));
         this._fuid = cursor.getString(cursor.getColumnIndex(FollowUpList.COLUMN__FUID));
@@ -165,6 +166,7 @@ public class FollowupListContract {
 
         return this;
     }
+
     public JSONObject toJSONObject() throws JSONException {
         JSONObject json = new JSONObject();
 
@@ -183,38 +185,34 @@ public class FollowupListContract {
         json.put(FollowUpList.COLUMN_LASTFUPDATE, this.lastfupdate == null ? JSONObject.NULL : this.lastfupdate);
 
 
-
         return json;
     }
-
-
 
 
     public FollowupListContract() {
     }
 
 
+    public static abstract class FollowUpList implements BaseColumns {
 
-public static abstract class FollowUpList implements BaseColumns{
+        public static final String TABLE_NAME = "followuplist";
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
 
-    public static final String TABLE_NAME = "followuplist";
-    public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String COLUMN__ID = "_id";
+        public static final String COLUMN__FUID = "_fuid";
+        public static final String COLUMN_MRNO = "mrno";
+        public static final String COLUMN_STUDYID = "studyid";
+        public static final String COLUMN_CHILDNAME = "childname";
+        public static final String COLUMN_MOTHERNAME = "mothername";
+        public static final String COLUMN_BIRTHDATE = "birthdate";
+        public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
+        public static final String COLUMN_FUPROUND = "fupround";
+        public static final String COLUMN_FUPLOCATION = "fuplocation";
+        public static final String COLUMN_DISCHARGEDATE = "dischargeDate";
+        public static final String COLUMN_FUPSTATUS = "fupstatus";
+        public static final String COLUMN_LASTFUPDATE = "lastfupdate";
 
-    public static final String COLUMN__ID = "_id";
-    public static final String COLUMN__FUID = "_fuid";
-    public static final String COLUMN_MRNO = "mrno";
-    public static final String COLUMN_STUDYID = "studyid";
-    public static final String COLUMN_CHILDNAME = "childname";
-    public static final String COLUMN_MOTHERNAME = "mothername";
-    public static final String COLUMN_BIRTHDATE = "birthdate";
-    public static final String COLUMN_ENROLMENTDATE = "enrolmentdate";
-    public static final String COLUMN_FUPROUND = "fupround";
-    public static final String COLUMN_FUPLOCATION = "fuplocation";
-    public static final String COLUMN_DISCHARGEDATE = "dischargeDate";
-    public static final String COLUMN_FUPSTATUS = "fupstatus";
-    public static final String COLUMN_LASTFUPDATE = "lastfupdate";
+        public static String _URL = "followuplist.php";
 
-    public static String _URL = "followuplist.php";
-
-}
+    }
 }
