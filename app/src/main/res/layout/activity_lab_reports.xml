@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     tools:context="edu.aku.hassannaqvi.slab.ui.LabReportsActivity">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="callback"
             type="edu.aku.hassannaqvi.slab.ui.LabReportsActivity" />
@@ -32,10 +35,10 @@
                 android:layout_marginTop="2dp"
                 android:background="@color/colorPrimaryDark"
                 android:gravity="center"
-                android:visibility="gone"
                 android:text="@string/slrheading"
                 android:textColor="@color/colorHeading"
-                android:textSize="40sp" />
+                android:textSize="40sp"
+                android:visibility="gone" />
 
 
             <LinearLayout
@@ -134,15 +137,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:visibility="gone">
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:background="@color/colorPrimary"
-                    android:text="@string/slrreportdate"
                     android:padding="10dp"
+                    android:text="@string/slrreportdate"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@android:color/white" />
 
@@ -170,8 +174,8 @@
                             android:id="@+id/reportdate"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="2dp"
                             android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
                             android:layout_weight="4"
                             android:focusable="false"
                             android:hint="DD/MM/YYYY"
@@ -211,9 +215,9 @@
 
                 <RadioGroup
                     android:id="@+id/reports"
-                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:orientation="vertical">
 
                     <RadioButton
@@ -233,11 +237,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/slrhb"
                         android:padding="10dp"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
+                        android:text="@string/slrhb"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <EditText
                         android:id="@+id/slrhb"
@@ -245,21 +249,22 @@
                         android:layout_height="wrap_content"
                         android:digits="1234567890."
                         android:hint="@string/slrhb"
-                        android:padding="10dp"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:maxLength="4"
+                        android:padding="10dp"
+                        android:text='@{cbc.checked ? slrhb.getText.toString : "" }'
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/slrwbc"
                         android:padding="10dp"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
+                        android:text="@string/slrwbc"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <EditText
                         android:id="@+id/slrwbc"
@@ -267,9 +272,10 @@
                         android:layout_height="wrap_content"
                         android:digits="1234567890."
                         android:hint="@string/slrwbc"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:maxLength="4"
+                        android:text='@{cbc.checked ? slrwbc.getText.toString : "" }'
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -277,9 +283,9 @@
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
                         android:text="@string/slrneu"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <EditText
                         android:id="@+id/slrneu"
@@ -287,9 +293,10 @@
                         android:layout_height="wrap_content"
                         android:digits="1234567890"
                         android:hint="@string/slrneu"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="number"
-                        android:maxLength="2" />
+                        android:maxLength="2"
+                        android:text='@{cbc.checked ? slrneu.getText.toString : "" }'
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -297,9 +304,9 @@
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
                         android:text="@string/slrlym"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <EditText
                         android:id="@+id/slrlym"
@@ -307,9 +314,10 @@
                         android:layout_height="wrap_content"
                         android:digits="1234567890"
                         android:hint="@string/slrlym"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="number"
-                        android:maxLength="2" />
+                        android:maxLength="2"
+                        android:text='@{cbc.checked ? slrlym.getText.toString : "" }'
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -317,9 +325,9 @@
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
                         android:text="@string/slrpla"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <EditText
                         android:id="@+id/slrpla"
@@ -327,9 +335,10 @@
                         android:layout_height="wrap_content"
                         android:digits="1234567890"
                         android:hint="@string/slrpla"
-                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="number"
-                        android:maxLength="3" />
+                        android:maxLength="3"
+                        android:text='@{cbc.checked ? slrpla.getText.toString : "" }'
+                        android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
                     <RadioButton
                         android:id="@+id/crp"
@@ -349,9 +358,9 @@
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
                         android:text="@string/slrcrp"
-                        android:visibility='@{crp.checked ? View.VISIBLE : View.GONE }'
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:visibility='@{crp.checked ? View.VISIBLE : View.GONE }' />
 
                     <EditText
                         android:id="@+id/slrcrp"
@@ -359,9 +368,10 @@
                         android:layout_height="wrap_content"
                         android:digits="1234567890."
                         android:hint="@string/slrcrp"
-                        android:visibility='@{crp.checked ? View.VISIBLE : View.GONE }'
                         android:inputType="numberDecimal"
-                        android:maxLength="4" />
+                        android:maxLength="4"
+                        android:text='@{crp.checked ? slrcrp.getText.toString : "" }'
+                        android:visibility='@{crp.checked ? View.VISIBLE : View.GONE }' />
 
                     <RadioButton
                         android:id="@+id/blood"
@@ -375,43 +385,44 @@
                         android:textColor="@color/colorPrimaryDark"
                         android:textSize="24sp" />
                 </RadioGroup>
-                    <TextView
-                        android:layout_width="match_parent"
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:text="@string/slrorg"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:textColor="@android:color/white"
+                    android:visibility='@{blood.checked ? View.VISIBLE : View.GONE }' />
+
+                <RadioGroup
+                    android:id="@+id/growth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:text="Growth"
+                    android:visibility='@{blood.checked ? View.VISIBLE : View.GONE }'>
+
+                    <RadioButton
+                        android:id="@+id/growthyes"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:background="@color/colorPrimary"
-                        android:text="@string/slrorg"
-                        android:visibility='@{blood.checked ? View.VISIBLE : View.GONE }'
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@android:color/white" />
-                    <RadioGroup
-                        android:id="@+id/growth"
-                        android:layout_width="match_parent"
+                        android:layout_weight="1"
+                        android:text="@string/yes" />
+
+                    <RadioButton
+                        android:id="@+id/growthno"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Growth"
-                        android:visibility='@{blood.checked ? View.VISIBLE : View.GONE }'
-                        android:orientation="horizontal"
-                        >
-                        <RadioButton
-                            android:id="@+id/growthyes"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/yes"
-                            />
-                        <RadioButton
-                            android:id="@+id/growthno"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="@string/no"
-                            />
-                    </RadioGroup>
+                        android:layout_weight="1"
+                        android:text="@string/no" />
+                </RadioGroup>
 
                 <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                    >
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
                     <EditText
                         android:id="@+id/slrorg1"
                         android:layout_width="match_parent"
@@ -420,12 +431,13 @@
                         android:hint="@string/slrorg"
                         android:inputType="text"
                         android:text='@{growthyes.checked ? slrorg1.getText.toString : "" }'
-                        android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }'
-                         />
-                    </android.support.design.widget.TextInputLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }' />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
                     <EditText
                         android:id="@+id/slrorg2"
                         android:layout_width="match_parent"
@@ -434,43 +446,41 @@
                         android:hint="@string/slrorg"
                         android:inputType="text"
                         android:text='@{growthyes.checked ? slrorg2.getText.toString : "" }'
-                        android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }'
-                         />
-                    </android.support.design.widget.TextInputLayout>
+                        android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }' />
+                </android.support.design.widget.TextInputLayout>
 
 
-
-            <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="80dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/btn_End"
+                <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="@color/red"
-                    android:onClick="@{() -> callback.BtnEnd()}"
-                    android:padding="5dp"
-                    android:text="@string/submitreport"
-                    android:textColor="@color/red" />
-              <!--  <Button
-                    android:id="@+id/btn_Continue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:backgroundTint="#1ed61e"
-                    android:onClick="@{() -> callback.BtnContinue()}"
-                    android:padding="5dp"
-                    android:text="@string/nextSection"
-                    android:textColor="@color/green" />-->
+                    android:layout_gravity="end"
+                    android:layout_marginTop="80dp"
+                    android:layout_marginBottom="30dp"
+                    android:orientation="horizontal">
 
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/btn_End"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/red"
+                        android:onClick="@{() -> callback.BtnEnd()}"
+                        android:padding="5dp"
+                        android:text="@string/submitreport"
+                        android:textColor="@color/red" />
+                    <!--  <Button
+                          android:id="@+id/btn_Continue"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:backgroundTint="#1ed61e"
+                          android:onClick="@{() -> callback.BtnContinue()}"
+                          android:padding="5dp"
+                          android:text="@string/nextSection"
+                          android:textColor="@color/green" />-->
+
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

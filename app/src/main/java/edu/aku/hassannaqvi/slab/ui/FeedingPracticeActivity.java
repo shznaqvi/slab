@@ -111,27 +111,17 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (bi.sfu308.getText().toString().isEmpty()) {
-                    bi.llgrpsfu3B.setVisibility(GONE);
-                    bi.llgrpsfu309.removeAllViews();
-                    return;
-                }
+                childllArray309.clear();
+                bi.llgrpsfu3B.setVisibility(GONE);
+                bi.llgrpsfu309.removeAllViews();
+                minEtArray309.clear();
+                secEtArray309.clear();
+
+                if (bi.sfu308.getText().toString().isEmpty()) return;
 
                 int noofboxes = Integer.valueOf(bi.sfu308.getText().toString());
-                if (noofboxes == 0) {
-                    bi.llgrpsfu3A.setVisibility(GONE);
-                    bi.llgrpsfu309.removeAllViews();
+                if (noofboxes == 0)
                     return;
-                }
-
-                /*if (durationLabelArray309.size() > 0) {
-                    for (int i = 0; i < durationLabelArray309.size(); i++) {
-                        bi.llgrpsfu309.removeView(durationLabelArray309.get(i));
-                        bi.llgrpsfu309.removeView(childllArray309.get(i));
-                    }
-                    durationLabelArray309.clear();
-                    childllArray309.clear();
-                }*/
 
                 bi.llgrpsfu3A.setVisibility(View.VISIBLE);
                 for (int i = 0; i < noofboxes; i++) {
@@ -192,27 +182,17 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (bi.sfu313.getText().toString().isEmpty()) {
-                    bi.llgrpsfu3B.setVisibility(GONE);
-                    bi.llgrpsfu314.removeAllViews();
-                    return;
-                }
+                childllArray314.clear();
+                bi.llgrpsfu3B.setVisibility(GONE);
+                bi.llgrpsfu314.removeAllViews();
+                minEtArray314.clear();
+                hrEtArray314.clear();
+
+                if (bi.sfu313.getText().toString().isEmpty()) return;
 
                 int noofboxes = Integer.valueOf(bi.sfu313.getText().toString());
-                if (noofboxes == 0) {
-                    bi.llgrpsfu3B.setVisibility(GONE);
-                    bi.llgrpsfu314.removeAllViews();
+                if (noofboxes == 0)
                     return;
-                }
-
-                /*if (durationLabelArray314.size() > 0) {
-                        for (int i = 0; i < durationLabelArray314.size(); i++) {
-                            bi.llgrpsfu314.removeView(durationLabelArray314.get(i));
-                            bi.llgrpsfu314.removeView(childllArray309.get(i));
-                        }
-                        durationLabelArray314.clear();
-                        childllArray314.clear();
-                }*/
 
                 bi.llgrpsfu3B.setVisibility(View.VISIBLE);
                 for (int i = 0; i < noofboxes; i++) {
@@ -273,27 +253,17 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (bi.sfu324.getText().toString().isEmpty()) {
-                    bi.llgrpsfu3C.setVisibility(GONE);
-                    bi.llgrpsfu325.removeAllViews();
-                    return;
-                }
+                childllArray325.clear();
+                secEtArray325.clear();
+                minEtArray325.clear();
+                bi.llgrpsfu3C.setVisibility(GONE);
+                bi.llgrpsfu325.removeAllViews();
+
+                if (bi.sfu324.getText().toString().isEmpty()) return;
 
                 int noofboxes = Integer.valueOf(bi.sfu324.getText().toString());
-                if (noofboxes == 0) {
-                    bi.llgrpsfu3C.setVisibility(GONE);
-                    bi.llgrpsfu325.removeAllViews();
+                if (noofboxes == 0)
                     return;
-                }
-
-                /*if (durationLabelArray325.size() > 0) {
-                        for (int i = 0; i < durationLabelArray325.size(); i++) {
-                            bi.llgrpsfu325.removeView(durationLabelArray325.get(i));
-                            bi.llgrpsfu325.removeView(childllArray325.get(i));
-                        }
-                        durationLabelArray325.clear();
-                        childllArray325.clear();
-                }*/
 
                 bi.llgrpsfu3C.setVisibility(View.VISIBLE);
                 for (int i = 0; i < noofboxes; i++) {
@@ -354,27 +324,15 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                if (bi.sfu334.getText().toString().isEmpty()) {
-                    bi.llgrpsfu3D.setVisibility(GONE);
-                    bi.llgrpsfu335.removeAllViews();
-                    return;
-                }
+                secEtArray335.clear();
+                bi.llgrpsfu3D.setVisibility(GONE);
+                bi.llgrpsfu335.removeAllViews();
+
+                if (bi.sfu334.getText().toString().isEmpty()) return;
 
                 int noofboxes = Integer.valueOf(bi.sfu334.getText().toString());
-                if (noofboxes == 0) {
-                    bi.llgrpsfu3D.setVisibility(GONE);
-                    bi.llgrpsfu335.removeAllViews();
+                if (noofboxes == 0)
                     return;
-                }
-
-                /*if (durationLabelArray325.size() > 0) {
-                        for (int i = 0; i < durationLabelArray325.size(); i++) {
-                            bi.llgrpsfu335.removeView(durationLabelArray325.get(i));
-                            bi.llgrpsfu335.removeView(childllArray325.get(i));
-                        }
-                        durationLabelArray325.clear();
-                        childllArray325.clear();
-                }*/
 
                 bi.llgrpsfu3D.setVisibility(View.VISIBLE);
                 for (int i = 0; i < noofboxes; i++) {
