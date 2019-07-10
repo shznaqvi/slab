@@ -356,7 +356,7 @@
     <string name="reasonb">refusal on that day</string>
     <string name="reasonc">withdrawal from study</string>
 
-  <string name="list"> List Of Follow Up's</string>
+    <string name="list"> List Of Follow Up\'s</string>
   <!--lab investigation-->
   <string name="sliheading"> Laboratory investigation </string>
   <string name="sli01"> Laboratory investigation </string>

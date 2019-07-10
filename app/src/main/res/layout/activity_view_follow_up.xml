@@ -70,6 +70,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.ViewFollowUpActivity">
                 android:text="Add Follow up"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
+
         </RelativeLayout>
 
 <ProgressBar

@@ -707,7 +707,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_weight="3"
                     android:background="@color/colorPrimary"
                     android:text="@string/sfu311"
                     android:textAppearance="?android:attr/textAppearanceLarge"
@@ -747,7 +746,9 @@
                         android:hint="@string/days"
                         android:inputType="number"
                         android:maxLength="2" />
+
                 </LinearLayout>
+
             </LinearLayout>
 
             <TextView
@@ -811,6 +812,7 @@
                         android:hint="@string/days"
                         android:inputType="number"
                         android:maxLength="2" />
+
                 </LinearLayout>
 
                 <!--<LinearLayout

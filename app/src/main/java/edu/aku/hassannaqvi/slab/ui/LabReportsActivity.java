@@ -1,21 +1,15 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -25,13 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.contracts.LabReportsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
-import edu.aku.hassannaqvi.slab.databinding.ActivityLabInvestigationBinding;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabReportsBinding;
 import edu.aku.hassannaqvi.slab.other.DateUtils;
+import edu.aku.hassannaqvi.slab.validation.ClearClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class LabReportsActivity extends AppCompatActivity {
@@ -103,6 +96,16 @@ public class LabReportsActivity extends AppCompatActivity {
         bi.reporttime.setIs24HourView(true);
         validatorClass.setScrollViewFocus(bi.labrScrollview);
         // setContentView(R.layout.activity_lab_reports);
+
+        bi.reports.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId != bi.blood.getId()) {
+                    ClearClass.ClearAllFields(bi.growth, null);
+                }
+            }
+        });
     }
 
     public void btnCheckMrno() {
@@ -208,9 +211,7 @@ public class LabReportsActivity extends AppCompatActivity {
                 if (!validatorClass.EmptyTextBox(context, bi.slrorg1, getString(R.string.slrorg))) {
                     return false;
                 }
-                if (!validatorClass.EmptyTextBox(context, bi.slrorg2, getString(R.string.slrorg))) {
-                    return false;
-                }
+                return validatorClass.EmptyTextBox(context, bi.slrorg2, getString(R.string.slrorg));
             }
         }
         return true;
