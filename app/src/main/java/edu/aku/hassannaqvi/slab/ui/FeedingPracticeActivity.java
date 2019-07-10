@@ -699,9 +699,9 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu303d.setVisibility(GONE);
                 bi.sfu306d.setVisibility(GONE);
 //                bi.sfu309d.setVisibility(GONE);
-                bi.sfu311d.setVisibility(GONE);
+//                bi.sfu311d.setVisibility(GONE);
 //                bi.sfu314d.setVisibility(GONE);
-                bi.sfu322d.setVisibility(GONE);
+//                bi.sfu322d.setVisibility(GONE);
 //                bi.sfu325d.setVisibility(GONE);
                 bi.sfu303m.setVisibility(VISIBLE);
                 bi.sfu306m.setVisibility(VISIBLE);
