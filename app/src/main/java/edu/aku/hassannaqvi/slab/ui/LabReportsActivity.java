@@ -24,7 +24,6 @@ import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityLabReportsBinding;
 import edu.aku.hassannaqvi.slab.other.DateUtils;
-import edu.aku.hassannaqvi.slab.validation.ClearClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class LabReportsActivity extends AppCompatActivity {
@@ -95,14 +94,13 @@ public class LabReportsActivity extends AppCompatActivity {
         bi.reporttime.setTimeFormat("HH:mm");
         bi.reporttime.setIs24HourView(true);
         validatorClass.setScrollViewFocus(bi.labrScrollview);
-        // setContentView(R.layout.activity_lab_reports);
 
         bi.reports.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 if (checkedId != bi.blood.getId()) {
-                    ClearClass.ClearAllFields(bi.growth, null);
+                    bi.growth.clearCheck();
                 }
             }
         });

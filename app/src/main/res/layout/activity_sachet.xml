@@ -85,7 +85,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.SachetActivity">
             android:layoutDirection="ltr"
             android:background="#EFEBE9"
             android:scrollbars="vertical"
-            tools:listitem="@layout/historyadapter"
+            tools:listitem="@layout/history_adapter"
             android:visibility="visible"/>-->
         <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
         <LinearLayout

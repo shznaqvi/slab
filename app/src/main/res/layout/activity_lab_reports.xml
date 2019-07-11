@@ -386,70 +386,75 @@
                         android:textSize="24sp" />
                 </RadioGroup>
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimary"
-                    android:text="@string/slrorg"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@android:color/white"
-                    android:visibility='@{blood.checked ? View.VISIBLE : View.GONE }' />
-
-                <RadioGroup
-                    android:id="@+id/growth"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:text="Growth"
+                    android:orientation="vertical"
                     android:visibility='@{blood.checked ? View.VISIBLE : View.GONE }'>
 
-                    <RadioButton
-                        android:id="@+id/growthyes"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/yes" />
-
-                    <RadioButton
-                        android:id="@+id/growthno"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/no" />
-
-                </RadioGroup>
-
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/slrorg1"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        android:hint="@string/slrorg"
-                        android:inputType="text"
-                        android:text='@{growthyes.checked ? slrorg1.getText.toString : "" }'
-                        android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }' />
-                </android.support.design.widget.TextInputLayout>
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/slrorg"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
 
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
-                        android:id="@+id/slrorg2"
+                    <RadioGroup
+                        android:id="@+id/growth"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                        android:hint="@string/slrorg"
-                        android:inputType="text"
-                        android:text='@{growthyes.checked ? slrorg2.getText.toString : "" }'
-                        android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }' />
-                </android.support.design.widget.TextInputLayout>
+                        android:orientation="horizontal"
+                        android:text="Growth">
 
+                        <RadioButton
+                            android:id="@+id/growthyes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/yes" />
+
+                        <RadioButton
+                            android:id="@+id/growthno"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/no" />
+
+                    </RadioGroup>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/slrorg1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                            android:hint="@string/slrorg"
+                            android:inputType="text"
+                            android:text='@{growthyes.checked ? slrorg1.getText.toString : "" }'
+                            android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }' />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/slrorg2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                            android:hint="@string/slrorg"
+                            android:inputType="text"
+                            android:text='@{growthyes.checked ? slrorg2.getText.toString : "" }'
+                            android:visibility='@{growthyes.checked ? View.VISIBLE : View.GONE }' />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
 
                 <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
                 <LinearLayout

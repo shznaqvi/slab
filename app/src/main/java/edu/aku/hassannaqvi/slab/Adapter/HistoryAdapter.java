@@ -2,15 +2,12 @@ package edu.aku.hassannaqvi.slab.Adapter;
 
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioGroup;
-
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.databinding.HistoryadapterBinding;
+import edu.aku.hassannaqvi.slab.databinding.HistoryAdapterBinding;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryHolder> {
     HistoryAdapter.HistoryHolder holder;
@@ -31,7 +28,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         View itemView;
 
         itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.historyadapter, parent, false);
+                .inflate(R.layout.history_adapter, parent, false);
         answers = new int[getItemCount()][2];
 
         return new HistoryAdapter.HistoryHolder(itemView);
@@ -50,7 +47,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
 
 
     public class HistoryHolder extends RecyclerView.ViewHolder {
-        HistoryadapterBinding binding;
+        HistoryAdapterBinding binding;
 
 
         public HistoryHolder(View itemView) {
