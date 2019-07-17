@@ -7,9 +7,6 @@
 
         <import type="android.view.View" />
 
-        <variable
-            name="callback"
-            type="edu.aku.hassannaqvi.slab.Adapter.HistoryAdapter" />
     </data>
 <LinearLayout
 
