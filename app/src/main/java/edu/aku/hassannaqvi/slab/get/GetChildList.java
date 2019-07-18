@@ -69,6 +69,8 @@ public class GetChildList extends AsyncTask<String, String, String> {
 
         try {
             URL url = new URL(MainApp._HOST_URL + ChildListTable._URL);
+            Log.d(TAG, "doInBackground: URL " + url);
+
             urlConnection = (HttpURLConnection) url.openConnection();
             if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());

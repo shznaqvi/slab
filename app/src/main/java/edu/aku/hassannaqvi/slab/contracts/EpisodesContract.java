@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EpisodesContract {
-    private String projectName = "SLAB";
+    private String projectName = "SLAB 2019";
     private String _ID = "";
     private String _UID = "";
     private String UUID = "";

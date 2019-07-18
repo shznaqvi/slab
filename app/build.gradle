@@ -19,12 +19,12 @@ android {
 
         defaultConfig {
             applicationId "edu.aku.hassannaqvi.slab"
-            minSdkVersion 22
-            targetSdkVersion 27
+            minSdkVersion 23
+            targetSdkVersion 28
 
 
             versionCode code
-            versionName "1.4"
+            versionName "2.0"
             testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         }
     } else {
