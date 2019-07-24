@@ -142,6 +142,8 @@ public class VisitOutcome extends AppCompatActivity {
                 : bi.sfu60396.isChecked() ? "96"
                 : "0");
 
+        sa.put("sfu60396x", bi.sfu60396x.getText().toString());
+
         sa.put("sfu604", bi.sfu604.getText().toString());
         JSONObject localJson;
 
