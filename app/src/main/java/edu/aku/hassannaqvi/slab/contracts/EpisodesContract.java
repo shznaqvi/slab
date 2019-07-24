@@ -229,7 +229,6 @@ public class EpisodesContract {
         json.put(EpisodesTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(EpisodesTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(EpisodesTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
-        json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : this.noofep);
         json.put(EpisodesTable.COLUMN_COUNT, this.count == null ? JSONObject.NULL : this.count);
         json.put(EpisodesTable.COLUMN_SMRNO, this.sMrno == null ? JSONObject.NULL : this.sMrno);
         json.put(EpisodesTable.COLUMN_SSTUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
@@ -240,6 +239,9 @@ public class EpisodesContract {
 
 
         if (!this.noofep.equals("")) {
+            json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : new JSONObject(this.noofep));
+        }
+        if (!this.sfuep.equals("")) {
             json.put(EpisodesTable.COLUMN_SFUEP, this.sfuep == null ? JSONObject.NULL : new JSONObject(this.sfuep));
         }
 
