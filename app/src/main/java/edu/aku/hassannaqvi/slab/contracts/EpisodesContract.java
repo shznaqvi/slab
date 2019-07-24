@@ -2,11 +2,13 @@ package edu.aku.hassannaqvi.slab.contracts;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EpisodesContract {
+    private static final String TAG = "EpisodesContract";
     private String projectName = "SLAB 2019";
     private String _ID = "";
     private String _UID = "";
@@ -236,11 +238,10 @@ public class EpisodesContract {
         json.put(EpisodesTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
         json.put(EpisodesTable.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
         json.put(EpisodesTable.COLUMN_DISEASETYPE, this.diseasetype == null ? JSONObject.NULL : this.diseasetype);
+        json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : this.noofep);
+        Log.d(TAG, "toJSONObject: " + this.noofep);
 
 
-        if (!this.noofep.equals("")) {
-            json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : new JSONObject(this.noofep));
-        }
         if (!this.sfuep.equals("")) {
             json.put(EpisodesTable.COLUMN_SFUEP, this.sfuep == null ? JSONObject.NULL : new JSONObject(this.sfuep));
         }
