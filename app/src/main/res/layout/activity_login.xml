@@ -26,12 +26,13 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="72dp"
             android:layout_marginLeft="72dp"
-            android:layout_marginRight="72dp"
             android:layout_marginTop="70dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginBottom="72dp"
             android:layoutDirection="rtl"
             android:orientation="vertical">
+
             <TextView
                 android:id="@+id/testing"
                 android:layout_width="match_parent"
@@ -44,7 +45,8 @@
                 android:text="ONLY FOR TESTING"
                 android:textColor="@color/dullWhile"
                 android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -99,8 +101,8 @@
                         android:imeOptions="actionUnspecified"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:paddingEnd="4dp"
                         android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
                         android:singleLine="true"
                         android:textSize="18sp">
 
@@ -142,8 +144,8 @@
                         android:imeOptions="actionUnspecified"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:paddingEnd="4dp"
                         android:paddingStart="4dp"
+                        android:paddingEnd="4dp"
                         android:singleLine="true"
                         android:textSize="18sp" />
 
