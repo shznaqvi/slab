@@ -190,7 +190,7 @@
                             android:id="@+id/sfu20396x"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                             android:hint="@string/sfu20396"
                             android:inputType="text"
                             android:text='@{sfu20396.checked ? sfu20396x.getText.toString : "" }'
@@ -248,7 +248,7 @@
                         android:id="@+id/sfu20496x"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:hint="@string/sfu20496"
                         android:inputType="text"
                         android:text='@{sfu20496.checked ? sfu20496x.getText.toString : "" }'
@@ -1656,7 +1656,7 @@
                 android:id="@+id/sfu336"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                 android:inputType="text" />
 
             <LinearLayout
@@ -1763,7 +1763,7 @@
                         android:id="@+id/sfu33996x"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:hint="@string/sfu33996"
                         android:inputType="text"
                         android:text='@{sfu33996.checked ? sfu33996x.getText.toString : "" }'
@@ -1783,7 +1783,7 @@
                         android:id="@+id/sfu340"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:hint="@string/sfu340"
                         android:inputType="textMultiLine" />
 
@@ -1914,7 +1914,7 @@
                     android:id="@+id/sfu343"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+                    android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                     android:hint="@string/sfu343a"
                     android:inputType="text" />
 
