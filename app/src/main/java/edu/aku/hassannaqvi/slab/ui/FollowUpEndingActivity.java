@@ -2,8 +2,8 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -234,12 +234,10 @@ public class FollowUpEndingActivity extends AppCompatActivity {
             return false;
         }
         if (bi.istatusg.isChecked()) {
-            if (!validatorClass.EmptyTextBox(this, bi.sfu04, getString(R.string.sfu04))) {
+            if (!validatorClass.EmptyTextBox(this, bi.sfu04, getString(R.string.sfu05))) {
                 return false;
             }
-            if (!validatorClass.EmptyTextBox(this, bi.sfu05, getString(R.string.sfu05))) {
-                return false;
-            }
+            return validatorClass.EmptyTextBox(this, bi.sfu05, getString(R.string.sfu06));
         }
 
         return true;

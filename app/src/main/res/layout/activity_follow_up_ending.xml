@@ -127,7 +127,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.FollowUpEndingActivity">
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/sfu04"
+                        android:text="@string/sfu05"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
@@ -149,7 +149,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.FollowUpEndingActivity">
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/sfu05"
+                        android:text="@string/sfu06"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
@@ -158,7 +158,7 @@ tools:context="edu.aku.hassannaqvi.slab.ui.FollowUpEndingActivity">
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="1234567890"
-                        android:hint="@string/sfu05"
+                        android:hint="@string/sfu06"
                         android:inputType="number"
                         android:maxLength="2" />
 

@@ -348,8 +348,9 @@
     <string name="istatuse">Refusal on that day</string>
     <string name="istatusf">Withdrawal from study</string>
     <string name="istatusg">Discharged</string>
-    <string name="sfu04"> Discharge date </string>
-    <string name="sfu05"> Total Sachets Given </string>
+  <string name="sfu04"> Reason </string>
+  <string name="sfu05"> Discharge date </string>
+  <string name="sfu06"> Total Sachets Given </string>
 
     <!--<string name="reason">If not completed reason: </string>-->
     <string name="reasona">Not at home</string>

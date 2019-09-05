@@ -36,8 +36,8 @@ public class EndingActivity extends AppCompatActivity {
         Boolean check = getIntent().getExtras().getBoolean("complete");
         String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
 
-        bl.sfu04.setManager(getSupportFragmentManager());
-        bl.sfu04.setMaxDate(dateToday);
+        bl.sfu05.setManager(getSupportFragmentManager());
+        bl.sfu05.setMaxDate(dateToday);
 
         if (check) {
             bl.istatusa.setEnabled(true);
@@ -61,12 +61,12 @@ public class EndingActivity extends AppCompatActivity {
         bl.istatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.istatusg){
+                if (i == R.id.istatusg) {
                     bl.fldGrpistatus.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     bl.fldGrpistatus.setVisibility(View.GONE);
-                    bl.sfu04.setText(null);
                     bl.sfu05.setText(null);
+                    bl.sfu06.setText(null);
                 }
             }
         });
@@ -145,11 +145,14 @@ public class EndingActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bl.istatus, bl.istatusa, getString(R.string.istatus))) {
             return false;
         }
-        if(bl.istatusg.isChecked()){
-            if (!validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04))) {
+
+        if (bl.istatuse.isChecked() || bl.istatusf.isChecked()) {
+            return validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04));
+        } else if (bl.istatusg.isChecked()) {
+            if (!validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05))) {
                 return false;
             }
-            return validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05));
+            return validatorClass.EmptyTextBox(this, bl.sfu06, getString(R.string.sfu06));
         }
 
         return true;
