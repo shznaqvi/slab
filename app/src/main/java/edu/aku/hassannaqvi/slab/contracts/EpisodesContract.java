@@ -2,12 +2,14 @@ package edu.aku.hassannaqvi.slab.contracts;
 
 import android.database.Cursor;
 import android.provider.BaseColumns;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EpisodesContract {
-    private String projectName = "SLAB";
+    private static final String TAG = "EpisodesContract";
+    private String projectName = "SLAB 2019";
     private String _ID = "";
     private String _UID = "";
     private String UUID = "";
@@ -172,27 +174,28 @@ public class EpisodesContract {
 
     public EpisodesContract Sync(JSONObject jsonObject) throws JSONException {
 
-        this.projectName= jsonObject.getString(EpisodesTable.COLUMN_PROJECTNAME);
-        this._ID= jsonObject.getString(EpisodesTable.COLUMN__ID);
-        this._UID= jsonObject.getString(EpisodesTable.COLUMN__UID);
-        this.UUID= jsonObject.getString(EpisodesTable.COLUMN_UUID);
-        this.formDate= jsonObject.getString(EpisodesTable.COLUMN_FORMDATE);
-        this.user= jsonObject.getString(EpisodesTable.COLUMN_USER);
-        this.formtype= jsonObject.getString(EpisodesTable.COLUMN_FORMTYPE);
-        this.noofep= jsonObject.getString(EpisodesTable.COLUMN_NOOFEP);
-        this.count= jsonObject.getString(EpisodesTable.COLUMN_COUNT);
-        this.sMrno= jsonObject.getString(EpisodesTable.COLUMN_SMRNO);
-        this.sStudyid= jsonObject.getString(EpisodesTable.COLUMN_SSTUDYID);
-        this.sfuep= jsonObject.getString(EpisodesTable.COLUMN_SFUEP);
-        this.deviceID= jsonObject.getString(EpisodesTable.COLUMN_DEVICEID);
-        this.devicetagID= jsonObject.getString(EpisodesTable.COLUMN_DEVICETAGID);
-        this.synced= jsonObject.getString(EpisodesTable.COLUMN_SYNCED);
-        this.synced_date= jsonObject.getString(EpisodesTable.COLUMN_SYNCED_DATE);
-        this.appversion= jsonObject.getString(EpisodesTable.COLUMN_APPVERSION);
-        this.diseasetype= jsonObject.getString(EpisodesTable.COLUMN_DISEASETYPE);
+        this.projectName = jsonObject.getString(EpisodesTable.COLUMN_PROJECTNAME);
+        this._ID = jsonObject.getString(EpisodesTable.COLUMN__ID);
+        this._UID = jsonObject.getString(EpisodesTable.COLUMN__UID);
+        this.UUID = jsonObject.getString(EpisodesTable.COLUMN_UUID);
+        this.formDate = jsonObject.getString(EpisodesTable.COLUMN_FORMDATE);
+        this.user = jsonObject.getString(EpisodesTable.COLUMN_USER);
+        this.formtype = jsonObject.getString(EpisodesTable.COLUMN_FORMTYPE);
+        this.noofep = jsonObject.getString(EpisodesTable.COLUMN_NOOFEP);
+        this.count = jsonObject.getString(EpisodesTable.COLUMN_COUNT);
+        this.sMrno = jsonObject.getString(EpisodesTable.COLUMN_SMRNO);
+        this.sStudyid = jsonObject.getString(EpisodesTable.COLUMN_SSTUDYID);
+        this.sfuep = jsonObject.getString(EpisodesTable.COLUMN_SFUEP);
+        this.deviceID = jsonObject.getString(EpisodesTable.COLUMN_DEVICEID);
+        this.devicetagID = jsonObject.getString(EpisodesTable.COLUMN_DEVICETAGID);
+        this.synced = jsonObject.getString(EpisodesTable.COLUMN_SYNCED);
+        this.synced_date = jsonObject.getString(EpisodesTable.COLUMN_SYNCED_DATE);
+        this.appversion = jsonObject.getString(EpisodesTable.COLUMN_APPVERSION);
+        this.diseasetype = jsonObject.getString(EpisodesTable.COLUMN_DISEASETYPE);
 
         return this;
     }
+
     public EpisodesContract Hydrate(Cursor cursor) {
 
         this.projectName = cursor.getString(cursor.getColumnIndex(EpisodesTable.COLUMN_PROJECTNAME));
@@ -217,6 +220,7 @@ public class EpisodesContract {
         return this;
 
     }
+
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
@@ -227,20 +231,20 @@ public class EpisodesContract {
         json.put(EpisodesTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(EpisodesTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
         json.put(EpisodesTable.COLUMN_FORMTYPE, this.formtype == null ? JSONObject.NULL : this.formtype);
-        json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : this.noofep);
         json.put(EpisodesTable.COLUMN_COUNT, this.count == null ? JSONObject.NULL : this.count);
         json.put(EpisodesTable.COLUMN_SMRNO, this.sMrno == null ? JSONObject.NULL : this.sMrno);
         json.put(EpisodesTable.COLUMN_SSTUDYID, this.sStudyid == null ? JSONObject.NULL : this.sStudyid);
-        json.put(EpisodesTable.COLUMN_SFUEP, this.sfuep == null ? JSONObject.NULL : this.sfuep);
         json.put(EpisodesTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
         json.put(EpisodesTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
         json.put(EpisodesTable.COLUMN_APPVERSION, this.appversion == null ? JSONObject.NULL : this.appversion);
         json.put(EpisodesTable.COLUMN_DISEASETYPE, this.diseasetype == null ? JSONObject.NULL : this.diseasetype);
+        json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : this.noofep);
+        Log.d(TAG, "toJSONObject: " + this.noofep);
 
 
-        if (!this.noofep.equals("")) {
-            json.put(EpisodesTable.COLUMN_NOOFEP, this.noofep == null ? JSONObject.NULL : new JSONObject(this.noofep));
-         }
+        if (!this.sfuep.equals("")) {
+            json.put(EpisodesTable.COLUMN_SFUEP, this.sfuep == null ? JSONObject.NULL : new JSONObject(this.sfuep));
+        }
 
         return json;
     }

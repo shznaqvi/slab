@@ -1059,6 +1059,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 : "0");
         fp.put("sfu329", bi.sfu329a.isChecked() ? "1"
                 : bi.sfu329b.isChecked() ? "2"
+                : bi.sfu329c.isChecked() ? "3"
                 : "0");
         fp.put("sfu330", bi.sfu330.getText().toString());
         fp.put("sfu331", bi.sfu331a.isChecked() ? "1"

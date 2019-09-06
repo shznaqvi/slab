@@ -53,6 +53,8 @@ public class GetUsers extends AsyncTask<String, String, String> {
 
         try {
             URL url = new URL(MainApp._HOST_URL + UsersTable._URI);
+            Log.d(TAG, "doInBackground: URL " + url);
+
             urlConnection = (HttpURLConnection) url.openConnection();
             if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream in = new BufferedInputStream(urlConnection.getInputStream());

@@ -182,12 +182,10 @@ public class RecruitmentEndingActivity extends AppCompatActivity {
             return false;
         }
         if (bl.istatusg.isChecked()) {
-            if (!validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04))) {
+            if (!validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu05))) {
                 return false;
             }
-            if (!validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05))) {
-                return false;
-            }
+            return validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu06));
         }
 
         return true;

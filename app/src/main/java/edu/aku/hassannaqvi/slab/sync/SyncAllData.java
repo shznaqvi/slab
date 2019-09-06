@@ -21,13 +21,10 @@ import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
-
-/**
- * Created by ramsha.ahmed on 4/20/2018.
- */
 
 public class SyncAllData extends AsyncTask<Void, Void, String> {
 
@@ -36,14 +33,15 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
     private ProgressDialog pd;
 
 
-    private String syncClass, updateSyncClass;
-    URL url ;
+    private String syncClass;
+    private URL url;
+    private String updateSyncClass;
     private Class contractClass;
     private Collection dbData;
     private TextView syncStatus;
 
 
-    public SyncAllData(Context context, String syncClass, String updateSyncClass, Class contractClass, URL url, Collection dbData, View syncStatus) {
+    public SyncAllData(Context context, String syncClass, String updateSyncClass, Class contractClass, URL url, Collection dbData, View v) {
         mContext = context;
         this.syncClass = syncClass;
         this.updateSyncClass = updateSyncClass;
@@ -53,6 +51,7 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
         //this.syncStatus = (TextView) syncStatus;
         TAG = "Get" + syncClass;
     }
+
 
     @Override
     protected void onPreExecute() {
@@ -83,7 +82,36 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
             HttpURLConnection connection = null;
             try {
 
-//                URL url = new URL( NetworkUtils.buildUrl(url));
+                // Load CAs from an InputStream
+                // (could be from a resource or ByteArrayInputStream or ...)
+//                CertificateFactory cf = CertificateFactory.getInstance("X.509");
+                // From https://www.washington.edu/itconnect/security/ca/load-der.crt
+//                InputStream caInput = new BufferedInputStream(new FileInputStream("load-der.crt"));
+//                Certificate ca;
+//                try {
+//                    ca = cf.generateCertificate(caInput);
+//                    System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+//                } finally {
+//                    caInput.close();
+//                }
+
+                // Create a KeyStore containing our trusted CAs
+               /* String keyStoreType = KeyStore.getDefaultType();
+                KeyStore keyStore = KeyStore.getInstance(keyStoreType);
+                keyStore.load(null, null);
+                keyStore.setCertificateEntry("ca", ca);*/
+
+                // Create a TrustManager that trusts the CAs in our KeyStore
+//                String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+//                TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+//                tmf.init(keyStore);
+
+//                // Create an SSLContext that uses our TrustManager
+//                SSLContext context = SSLContext.getInstance("TLS");
+//                context.init(null, tmf.getTrustManagers(), null);
+
+                URL request = url;
+                URL url = request;
                 connection = (HttpURLConnection) url.openConnection();
                 connection.connect();
                 int HttpResult = connection.getResponseCode();
@@ -97,6 +125,7 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
                     connection.setRequestMethod("POST");
                     connection.setRequestProperty("Content-Type", "application/json");
                     connection.setRequestProperty("charset", "utf-8");
+
                     connection.setUseCaches(false);
                     connection.connect();
 
@@ -129,7 +158,7 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
 
 
                     BufferedReader br = new BufferedReader(new InputStreamReader(
-                            connection.getInputStream(), "utf-8"));
+                            connection.getInputStream(), StandardCharsets.UTF_8));
                     StringBuffer sb = new StringBuffer();
 
                     while ((line = br.readLine()) != null) {
@@ -153,9 +182,7 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
                 if (connection != null)
                     connection.disconnect();
             }
-        } else
-
-        {
+        } else {
             return "No new records to sync";
         }
         return line;
@@ -168,11 +195,12 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
         int sDuplicate = 0;
         String sSyncedError = "";
         JSONArray json = null;
+        Log.d(TAG, "onPostExecute: " + result);
         try {
             json = new JSONArray(result);
 
-          //  DatabaseHelper db = new DatabaseHelper(mContext);
-            DatabaseHelper db = new DatabaseHelper(mContext);// Database Helper
+            DatabaseHelper db = new DatabaseHelper(mContext); // Database Helper
+
             Method method = null;
             for (Method method1 : db.getClass().getDeclaredMethods()) {
                 if (method1.getName().equals(updateSyncClass)) {
@@ -186,13 +214,10 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
 
                 if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
 
-                    //  db.updateSyncedChildForm(jsonObject.getString("id"));  // UPDATE SYNCED
-
                     method.invoke(db, jsonObject.getString("id"));
 
                     sSynced++;
                 } else if (jsonObject.getString("status").equals("2") && jsonObject.getString("error").equals("0")) {
-                    //db.updateSyncedChildForm(jsonObject.getString("id")); // UPDATE DUPLICATES
 
                     method.invoke(db, jsonObject.getString("id"));
 
@@ -207,7 +232,6 @@ public class SyncAllData extends AsyncTask<Void, Void, String> {
             pd.setMessage(syncClass + " synced: " + sSynced + "\r\n\r\n Duplicates: " + sDuplicate + "\r\n\r\n Errors: " + sSyncedError);
             pd.setTitle("Done uploading +" + syncClass + " data");
             pd.show();
-            //syncStatus.setText(syncStatus.getText() + "\r\nDone uploading +" + syncClass + " data");
 
         } catch (JSONException e) {
             e.printStackTrace();
