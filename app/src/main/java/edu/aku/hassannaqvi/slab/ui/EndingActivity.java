@@ -65,10 +65,19 @@ public class EndingActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.istatusg) {
                     bl.fldGrpistatus.setVisibility(View.VISIBLE);
-                } else {
+                    bl.fldGrpistatus02.setVisibility(View.GONE);
+                    bl.sfu04.setText(null);
+                } else if (bl.istatuse.isChecked() || bl.istatusf.isChecked()) {
+                    bl.fldGrpistatus02.setVisibility(View.VISIBLE);
                     bl.fldGrpistatus.setVisibility(View.GONE);
                     bl.sfu05.setText(null);
                     bl.sfu06.setText(null);
+                } else {
+                    bl.fldGrpistatus02.setVisibility(View.GONE);
+                    bl.fldGrpistatus.setVisibility(View.GONE);
+                    bl.sfu05.setText(null);
+                    bl.sfu06.setText(null);
+                    bl.sfu04.setText(null);
                 }
             }
         });
