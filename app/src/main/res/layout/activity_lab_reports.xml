@@ -291,10 +291,10 @@
                         android:id="@+id/slrneu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="1234567890"
-                        android:hint="@string/slrneu"
-                        android:inputType="number"
-                        android:maxLength="2"
+                        android:digits="1234567890."
+                        android:hint="XX.X"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4"
                         android:text='@{cbc.checked ? slrneu.getText.toString : "" }'
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 
@@ -312,10 +312,10 @@
                         android:id="@+id/slrlym"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="1234567890"
-                        android:hint="@string/slrlym"
-                        android:inputType="number"
-                        android:maxLength="2"
+                        android:digits="1234567890."
+                        android:hint="XX.X"
+                        android:inputType="numberDecimal"
+                        android:maxLength="4"
                         android:text='@{cbc.checked ? slrlym.getText.toString : "" }'
                         android:visibility='@{cbc.checked ? View.VISIBLE : View.GONE }' />
 

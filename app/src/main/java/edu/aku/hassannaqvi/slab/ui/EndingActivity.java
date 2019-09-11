@@ -20,6 +20,8 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityEndingBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
+import static edu.aku.hassannaqvi.slab.other.JsonUtils.mergeJSONObjects;
+
 public class EndingActivity extends AppCompatActivity {
 
     private static final String TAG = EndingActivity.class.getSimpleName();
@@ -36,8 +38,8 @@ public class EndingActivity extends AppCompatActivity {
         Boolean check = getIntent().getExtras().getBoolean("complete");
         String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
 
-        bl.sfu04.setManager(getSupportFragmentManager());
-        bl.sfu04.setMaxDate(dateToday);
+        bl.sfu05.setManager(getSupportFragmentManager());
+        bl.sfu05.setMaxDate(dateToday);
 
         if (check) {
             bl.istatusa.setEnabled(true);
@@ -61,12 +63,21 @@ public class EndingActivity extends AppCompatActivity {
         bl.istatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.istatusg){
+                if (i == R.id.istatusg) {
                     bl.fldGrpistatus.setVisibility(View.VISIBLE);
-                }else {
-                    bl.fldGrpistatus.setVisibility(View.GONE);
+                    bl.fldGrpistatus02.setVisibility(View.GONE);
                     bl.sfu04.setText(null);
+                } else if (bl.istatuse.isChecked() || bl.istatusf.isChecked()) {
+                    bl.fldGrpistatus02.setVisibility(View.VISIBLE);
+                    bl.fldGrpistatus.setVisibility(View.GONE);
                     bl.sfu05.setText(null);
+                    bl.sfu06.setText(null);
+                } else {
+                    bl.fldGrpistatus02.setVisibility(View.GONE);
+                    bl.fldGrpistatus.setVisibility(View.GONE);
+                    bl.sfu05.setText(null);
+                    bl.sfu06.setText(null);
+                    bl.sfu04.setText(null);
                 }
             }
         });
@@ -106,8 +117,15 @@ public class EndingActivity extends AppCompatActivity {
 
     private void SaveDraft() throws JSONException {
 
-        JSONObject end = new JSONObject();
+        JSONObject sa = new JSONObject();
+        if (bl.istatuse.isChecked() || bl.istatusf.isChecked())
+            sa.put("sfu04", bl.sfu04.getText().toString());
+        else if (bl.istatusg.isChecked()) {
+            sa.put("sfu05", bl.sfu05.getText().toString());
+            sa.put("sfu06", bl.sfu06.getText().toString());
+        }
 
+        JSONObject end = new JSONObject();
         end.put("istatus", bl.istatusa.isChecked() ? "1"
                 : bl.istatusb.isChecked() ? "2"
                 : bl.istatusc.isChecked() ? "3"
@@ -119,7 +137,9 @@ public class EndingActivity extends AppCompatActivity {
                 : "0");
         end.put("istatus96x", bl.istatus96x.getText().toString());
 
-        MainApp.fc.setIstatus(String.valueOf(end));
+        JSONObject localJson = mergeJSONObjects(end, sa);
+
+        MainApp.fc.setIstatus(String.valueOf(localJson));
 
         MainApp.fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 
@@ -145,11 +165,14 @@ public class EndingActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bl.istatus, bl.istatusa, getString(R.string.istatus))) {
             return false;
         }
-        if(bl.istatusg.isChecked()){
-            if (!validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04))) {
+
+        if (bl.istatuse.isChecked() || bl.istatusf.isChecked()) {
+            return validatorClass.EmptyTextBox(this, bl.sfu04, getString(R.string.sfu04));
+        } else if (bl.istatusg.isChecked()) {
+            if (!validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05))) {
                 return false;
             }
-            return validatorClass.EmptyTextBox(this, bl.sfu05, getString(R.string.sfu05));
+            return validatorClass.EmptyTextBox(this, bl.sfu06, getString(R.string.sfu06));
         }
 
         return true;

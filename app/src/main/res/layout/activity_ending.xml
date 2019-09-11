@@ -31,8 +31,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="16dp"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="vertical">
 
                 <!--Status-->
@@ -120,11 +120,12 @@
                     android:visibility="@{istatus96.checked ? View.VISIBLE : View.GONE}" />
 
                 <LinearLayout
-                    android:id="@+id/fldGrpistatus"
+                    android:id="@+id/fldGrpistatus02"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    tools:visibility="visible">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -135,12 +136,40 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
-                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                    <EditText
                         android:id="@+id/sfu04"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2dp"
+                        android:digits="1234567890"
+                        android:hint="@string/sfu06"
+                        android:inputType="number"
+                        android:maxLength="2" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/fldGrpistatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/colorPrimary"
+                        android:text="@string/sfu05"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="@android:color/white" />
+
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                        android:id="@+id/sfu05"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:layout_marginBottom="2dp"
                         android:layout_weight="4"
                         android:focusable="false"
                         android:hint="DD/MM/YYYY"
@@ -152,16 +181,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:background="@color/colorPrimary"
-                        android:text="@string/sfu05"
+                        android:text="@string/sfu06"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textColor="@android:color/white" />
 
                     <EditText
-                        android:id="@+id/sfu05"
+                        android:id="@+id/sfu06"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="1234567890"
-                        android:hint="@string/sfu05"
+                        android:hint="@string/sfu06"
                         android:inputType="number"
                         android:maxLength="2" />
 
@@ -174,10 +203,9 @@
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/red"
                     android:onClick="@{() -> callback.BtnEnd()}"
-                    android:text="@string/end_interview"
-                    android:textColor="@color/red"
                     android:padding="5dp"
-                    />
+                    android:text="@string/end_interview"
+                    android:textColor="@color/red" />
 
 
             </LinearLayout>
