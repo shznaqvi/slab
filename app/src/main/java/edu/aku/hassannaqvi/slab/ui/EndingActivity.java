@@ -20,6 +20,8 @@ import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityEndingBinding;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
+import static edu.aku.hassannaqvi.slab.other.JsonUtils.mergeJSONObjects;
+
 public class EndingActivity extends AppCompatActivity {
 
     private static final String TAG = EndingActivity.class.getSimpleName();
@@ -63,10 +65,19 @@ public class EndingActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if (i == R.id.istatusg) {
                     bl.fldGrpistatus.setVisibility(View.VISIBLE);
-                } else {
+                    bl.fldGrpistatus02.setVisibility(View.GONE);
+                    bl.sfu04.setText(null);
+                } else if (bl.istatuse.isChecked() || bl.istatusf.isChecked()) {
+                    bl.fldGrpistatus02.setVisibility(View.VISIBLE);
                     bl.fldGrpistatus.setVisibility(View.GONE);
                     bl.sfu05.setText(null);
                     bl.sfu06.setText(null);
+                } else {
+                    bl.fldGrpistatus02.setVisibility(View.GONE);
+                    bl.fldGrpistatus.setVisibility(View.GONE);
+                    bl.sfu05.setText(null);
+                    bl.sfu06.setText(null);
+                    bl.sfu04.setText(null);
                 }
             }
         });
@@ -106,8 +117,15 @@ public class EndingActivity extends AppCompatActivity {
 
     private void SaveDraft() throws JSONException {
 
-        JSONObject end = new JSONObject();
+        JSONObject sa = new JSONObject();
+        if (bl.istatuse.isChecked() || bl.istatusf.isChecked())
+            sa.put("sfu04", bl.sfu04.getText().toString());
+        else if (bl.istatusg.isChecked()) {
+            sa.put("sfu05", bl.sfu05.getText().toString());
+            sa.put("sfu06", bl.sfu06.getText().toString());
+        }
 
+        JSONObject end = new JSONObject();
         end.put("istatus", bl.istatusa.isChecked() ? "1"
                 : bl.istatusb.isChecked() ? "2"
                 : bl.istatusc.isChecked() ? "3"
@@ -119,7 +137,9 @@ public class EndingActivity extends AppCompatActivity {
                 : "0");
         end.put("istatus96x", bl.istatus96x.getText().toString());
 
-        MainApp.fc.setIstatus(String.valueOf(end));
+        JSONObject localJson = mergeJSONObjects(end, sa);
+
+        MainApp.fc.setIstatus(String.valueOf(localJson));
 
         MainApp.fc.setEndtime(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
 
