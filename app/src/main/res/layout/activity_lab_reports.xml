@@ -367,7 +367,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="1234567890."
-                        android:hint="@string/slrcrp"
+                        android:hint="XX.X"
                         android:inputType="numberDecimal"
                         android:maxLength="4"
                         android:text='@{crp.checked ? slrcrp.getText.toString : "" }'

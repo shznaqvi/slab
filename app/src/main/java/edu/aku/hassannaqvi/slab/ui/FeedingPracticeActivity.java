@@ -450,7 +450,6 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 // TODO implement skip pattern here
                 if (checkedId == R.id.sfu301a) {
                     bi.fldgrpsfu301.setVisibility(VISIBLE);
-
                 } else {
                     bi.fldgrpsfu301.setVisibility(GONE);
                     bi.sfu302.setText(null);
@@ -711,7 +710,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu322m.setVisibility(VISIBLE);
 //                bi.sfu325m.setVisibility(VISIBLE);
 //                SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
-                bi.fldGrpsfu302.setVisibility(VISIBLE);
+                bi.fldgrpsfu301.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
                 bi.fldGrpsfu313.setVisibility(VISIBLE);
@@ -744,7 +743,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu324.setVisibility(GONE);
                 //                SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
 
-                bi.fldGrpsfu302.setVisibility(VISIBLE);
+                bi.fldgrpsfu301.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
                 bi.fldGrpsfu313.setVisibility(VISIBLE);
@@ -769,7 +768,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 //                bi.sfu314m.setVisibility(VISIBLE);//should be visible in any ftype.
                 bi.sfu322m.setVisibility(GONE);
 //                bi.sfu325m.setVisibility(VISIBLE);//should be visible in any ftype.
-                bi.fldGrpsfu302.setVisibility(VISIBLE);
+                bi.fldgrpsfu301.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
                 bi.fldGrpsfu313.setVisibility(VISIBLE);

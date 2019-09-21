@@ -167,25 +167,25 @@ public class LabReportsActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(context, bi.slrneu, getString(R.string.slrneu))) {
                 return false;
             }
-            if (!bi.slrneu.getText().toString().matches("^(\\d{2,2}\\.\\d{1,1})$")) {
+            if (!bi.slrneu.getText().toString().matches("\\d+(\\.\\d+)*")) {
                 Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
                 bi.slrneu.requestFocus();
                 bi.slrneu.setError("Please enter correct decimal value!");
                 return false;
             }
-            if (!validatorClass.RangeTextBox(context, bi.slrneu, 1, 99, getString(R.string.slrneu), " units")) {
+            if (!validatorClass.RangeTextBox(context, bi.slrneu, 1.0, 99.0, getString(R.string.slrneu), " units")) {
                 return false;
             }
             if (!validatorClass.EmptyTextBox(context, bi.slrlym, getString(R.string.slrlym))) {
                 return false;
             }
-            if (!bi.slrlym.getText().toString().matches("^(\\d{2,2}\\.\\d{1,1})$")) {
+            if (!bi.slrlym.getText().toString().matches("\\d+(\\.\\d+)*")) {
                 Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
                 bi.slrlym.requestFocus();
                 bi.slrlym.setError("Please enter correct decimal value!");
                 return false;
             }
-            if (!validatorClass.RangeTextBox(context, bi.slrlym, 1, 99, getString(R.string.slrlym), " units")) {
+            if (!validatorClass.RangeTextBox(context, bi.slrlym, 1.0, 99.0, getString(R.string.slrlym), " units")) {
                 return false;
             }
             if (!validatorClass.EmptyTextBox(context, bi.slrpla, getString(R.string.slrpla))) {
