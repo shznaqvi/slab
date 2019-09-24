@@ -1,6 +1,5 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -25,8 +24,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.provider.ContactsContract;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -68,7 +65,6 @@ import edu.aku.hassannaqvi.slab.contracts.UCsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.get.GetChildList;
-import edu.aku.hassannaqvi.slab.get.GetFupList;
 import edu.aku.hassannaqvi.slab.get.GetUsers;
 
 import static java.lang.Thread.sleep;
@@ -149,7 +145,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     .getPackageManager()
                     .getPackageInfo("edu.aku.hassannaqvi.slab", 0)
                     .versionName;
-            txtinstalldate.setText("Ver. " + MainApp.versionName + "." + String.valueOf(MainApp.versionCode) + " \r\n( Last Updated: " + new SimpleDateFormat("dd MMM. yyyy").format(new Date(installedOn)) + " )");
+            txtinstalldate.setText("Ver. " + MainApp.versionName + "." + MainApp.versionCode + " \r\n( Last Updated: " + new SimpleDateFormat("dd MMM. yyyy").format(new Date(installedOn)) + " )");
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -280,10 +276,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
         if (sharedPref.getBoolean("flag", false)) {
 
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
-            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date()).toString()) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()).toString());
+            if (dt != new SimpleDateFormat("dd-MM-yy").format(new Date())) {
+                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
                 editor.commit();
             }
@@ -641,8 +637,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     new GetUsers(mContext).execute();
                     Toast.makeText(LoginActivity.this, "Sync Child Recruitment list", Toast.LENGTH_LONG).show();
                     new GetChildList(mContext).execute();
-                    Toast.makeText(LoginActivity.this, "Sync Followup list", Toast.LENGTH_LONG).show();
-                    new GetFupList(mContext).execute();
+                    /*Toast.makeText(LoginActivity.this, "Sync Followup list", Toast.LENGTH_LONG).show();
+                    new GetFupList(mContext).execute();*/
                 }
             });
 

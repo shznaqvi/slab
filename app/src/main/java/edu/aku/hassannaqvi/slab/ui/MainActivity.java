@@ -60,7 +60,6 @@ import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.slab.get.GetChildList;
-import edu.aku.hassannaqvi.slab.get.GetFupList;
 import edu.aku.hassannaqvi.slab.get.GetUsers;
 import edu.aku.hassannaqvi.slab.sync.SyncAllData;
 
@@ -605,8 +604,8 @@ public class MainActivity extends Activity {
                     new GetUsers(mContext).execute();
                     Toast.makeText(getApplicationContext(), "Sync Child Recruitment list", Toast.LENGTH_LONG).show();
                     new GetChildList(mContext).execute();
-                    Toast.makeText(getApplicationContext(), "Sync Followup list", Toast.LENGTH_LONG).show();
-                    new GetFupList(mContext).execute();
+                    /*Toast.makeText(getApplicationContext(), "Sync Followup list", Toast.LENGTH_LONG).show();
+                    new GetFupList(mContext).execute();*/
                 }
             });
 
