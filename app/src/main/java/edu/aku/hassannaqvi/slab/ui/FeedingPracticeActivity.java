@@ -457,7 +457,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                     bi.sfu303h.setText(null);
                     bi.sfu303d.setText(null);
                 }
-//                showhideTextBoxes();
+                showhideTextBoxes();
             }
         });
 
@@ -710,13 +710,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu322m.setVisibility(VISIBLE);
 //                bi.sfu325m.setVisibility(VISIBLE);
 //                SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
-                bi.fldgrpsfu301.setVisibility(VISIBLE);
+                /*bi.fldgrpsfu301.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
                 bi.fldGrpsfu313.setVisibility(VISIBLE);
                 bi.fldGrpsfu316.setVisibility(VISIBLE);
                 bi.fldGrpsfu319.setVisibility(VISIBLE);
-                bi.fldGrpsfu324.setVisibility(VISIBLE);
+                bi.fldGrpsfu324.setVisibility(VISIBLE);*/
                 break;
             case 3:
             case 4:
@@ -735,21 +735,22 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                 bi.sfu322m.setVisibility(GONE);
 //                bi.sfu325m.setVisibility(VISIBLE);//should be visible in any ftype.
 //                bi.sfu302.setVisibility(GONE);
-                bi.sfu305.setVisibility(GONE);
-                bi.sfu308.setVisibility(GONE);
-                bi.sfu313.setVisibility(GONE);
-                bi.sfu316.setVisibility(GONE);
-                bi.sfu319.setVisibility(GONE);
-                bi.sfu324.setVisibility(GONE);
-                //                SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
+//                bi.sfu305.setVisibility(GONE);
+//                bi.sfu308.setVisibility(GONE);
+//                bi.sfu313.setVisibility(GONE);
+//                bi.sfu316.setVisibility(GONE);
+//                bi.sfu319.setVisibility(GONE);
+//                bi.sfu324.setVisibility(GONE);
 
-                bi.fldgrpsfu301.setVisibility(VISIBLE);
+//              SHOULD BE ASKED NUMBER OF EPISODES IN ANY CASE
+
+                /*bi.fldgrpsfu301.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
                 bi.fldGrpsfu313.setVisibility(VISIBLE);
                 bi.fldGrpsfu316.setVisibility(VISIBLE);
                 bi.fldGrpsfu319.setVisibility(VISIBLE);
-                bi.fldGrpsfu324.setVisibility(VISIBLE);
+                bi.fldGrpsfu324.setVisibility(VISIBLE);*/
                 break;
             case 2:
             case 5:
@@ -768,13 +769,13 @@ public class FeedingPracticeActivity extends AppCompatActivity {
 //                bi.sfu314m.setVisibility(VISIBLE);//should be visible in any ftype.
                 bi.sfu322m.setVisibility(GONE);
 //                bi.sfu325m.setVisibility(VISIBLE);//should be visible in any ftype.
-                bi.fldgrpsfu301.setVisibility(VISIBLE);
+                /*bi.fldgrpsfu301.setVisibility(VISIBLE);
                 bi.fldGrpsfu305.setVisibility(VISIBLE);
                 bi.fldGrpsfu308.setVisibility(VISIBLE);
                 bi.fldGrpsfu313.setVisibility(VISIBLE);
                 bi.fldGrpsfu316.setVisibility(VISIBLE);
                 bi.fldGrpsfu319.setVisibility(VISIBLE);
-                bi.fldGrpsfu324.setVisibility(VISIBLE);
+                bi.fldGrpsfu324.setVisibility(VISIBLE);*/
                 break;
 
         }
