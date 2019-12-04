@@ -6,9 +6,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -31,6 +31,7 @@ import edu.aku.hassannaqvi.slab.contracts.FormsContract;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpFormBinding;
+import edu.aku.hassannaqvi.slab.other.DateUtils;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowUpFormActivity extends AppCompatActivity {
@@ -45,7 +46,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
     RecruitmentJSONModel recmodel;
     public String localMrno;
     public String localStudyID;
-    String childName;
+    String childName, lastFollowUp;
     int noofsachet;
     Context context;
     int length = 0;
@@ -69,7 +70,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         bi.sfu105.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.sfu105a){
+                if (checkedId == R.id.sfu105a) {
                     bi.sfu106.clearCheck();
                     bi.sfu106a.setEnabled(true);
                     bi.sfu106b.setEnabled(true);
@@ -77,7 +78,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     bi.sfu106d.setEnabled(false);
                     bi.sfu106e.setEnabled(false);
                     bi.sfu106f.setEnabled(false);
-                }else if(checkedId == R.id.sfu105b){
+                } else if (checkedId == R.id.sfu105b) {
                     bi.sfu106.clearCheck();
                     bi.sfu106a.setEnabled(false);
                     bi.sfu106b.setEnabled(false);
@@ -85,7 +86,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     bi.sfu106d.setEnabled(false);
                     bi.sfu106e.setEnabled(true);
                     bi.sfu106f.setEnabled(true);
-                }else if(checkedId == R.id.sfu10596){
+                } else if (checkedId == R.id.sfu10596) {
                     bi.sfu106.clearCheck();
                     bi.sfu106a.setEnabled(false);
                     bi.sfu106b.setEnabled(false);
@@ -106,9 +107,11 @@ public class FollowUpFormActivity extends AppCompatActivity {
             localMrno = bundle.getString(MainApp.MRNO_TAG);
             localStudyID = bundle.getString(MainApp.STUDYID_TAG);
             childName = bundle.getString(MainApp.CHILDNAME_TAG);
+            lastFollowUp = bundle.getString(MainApp.LASTFOLLOWUP_TAG);
             bi.sfu001.setText(localMrno);
             bi.sfu002.setText(localStudyID);
             bi.ChildName.setText(childName);
+            bi.lastFollowUp.setText(lastFollowUp);
 
             bi.sfu001.setEnabled(false);
             bi.btnCheckMrno.setVisibility(View.GONE);
@@ -176,7 +179,6 @@ public class FollowUpFormActivity extends AppCompatActivity {
         });
 
 
-
         bi.sfu106.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -185,12 +187,12 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     bi.sfu107.setText(null);
                     bi.sfu108.setText(null);
                     bi.sfu109.setText(null);
-                }  else if (i == R.id.sfu106a) {
+                } else if (i == R.id.sfu106a) {
                     bi.fldGrpsfu107.setVisibility(View.GONE);
                     bi.sfu109.setText(null);
                     bi.sfu108.setText(null);
                     bi.fldGrpsfu106.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     bi.fldGrpsfu107.setVisibility(View.VISIBLE);
                     bi.fldGrpsfu106.setVisibility(View.VISIBLE);
                 }
@@ -275,7 +277,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 //  Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
-                 MainApp.fupLocation = bi.sfu106a.isChecked() ? 1 : bi.sfu106b.isChecked() ? 2 : bi.sfu106c.isChecked() ? 3 :bi.sfu106d.isChecked() ? 4 :bi.sfu106e.isChecked() ? 5 :bi.sfu106f.isChecked() ? 6 : 0;
+                MainApp.fupLocation = bi.sfu106a.isChecked() ? 1 : bi.sfu106b.isChecked() ? 2 : bi.sfu106c.isChecked() ? 3 : bi.sfu106d.isChecked() ? 4 : bi.sfu106e.isChecked() ? 5 : bi.sfu106f.isChecked() ? 6 : 0;
               /*  Boolean defaultValue = true;
                 if (bi.sfu01c.isChecked()) {
                     defaultValue = false;
@@ -289,7 +291,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
                         .putExtra(FUPLOCATION_TAG, MainApp.fupLocation)
                         .putExtra("childName", bi.ChildName.getText().toString())
                         .putExtra("mrno", bi.sfu001.getText().toString())
-                        .putExtra("studyID", bi.sfu002.getText().toString()));
+                        .putExtra("studyID", bi.sfu002.getText().toString())
+                        .putExtra("lastFollowUp", bi.lastFollowUp.getText().toString()));
                 /*    if (!bi.sfu10.getText().toString().equals("0") && !bi.sfu10.getText().toString().equals("00")) {
                     startActivity(new Intent(context, HistoryActivity.class)
                             .putExtra(FUPLOCATION_TAG, fuplocation)
@@ -305,7 +308,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                             .putExtra("studyID", bi.sfu002.getText().toString()));
                 }*/
             } else {
-                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -389,6 +392,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
         fu.put("sfudatetime", dtToday);
         fu.put("uuid", bi.ruid.getText().toString());
         fu.put("childName", bi.ChildName.getText().toString());
+        fu.put("lastFollowUp", bi.lastFollowUp.getText().toString());
         fu.put("sfu105", bi.sfu105a.isChecked() ? "1"
                 : bi.sfu105b.isChecked() ? "2"
                 : bi.sfu10596.isChecked() ? "96"
@@ -436,6 +440,15 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     // bi.sfu002.setText(childListContract.getStudyID());
                     bi.ruid.setText(childListContract.get_ruid());
                     bi.ChildName.setText(childListContract.getChildname());
+                    bi.lastFollowUp.setText(childListContract.getLastFupDT().split("\\s+")[0]);
+
+                    Long days = DateUtils.ageInDaysByDOB(lastFollowUp);
+
+                    if (days > 6) {
+                        bi.fupNote.setVisibility(View.VISIBLE);
+                        bi.fupNote.setText("You're conducting this FollowUp after " + days + " days from Previous FollowUp");
+                    } else
+                        bi.fupNote.setVisibility(View.GONE);
 
                     //  MainApp.fetchLocal = false;
                     // }

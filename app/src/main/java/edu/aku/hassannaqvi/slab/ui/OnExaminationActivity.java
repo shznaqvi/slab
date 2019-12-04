@@ -2,8 +2,8 @@ package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
@@ -88,6 +88,7 @@ public class OnExaminationActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SupplementAdminActivity.class).putExtra(FUPLOCATION_TAG, fupLocation)
                         .putExtra("childName", childName)
                         .putExtra("mrno", localmrno)
+                        .putExtra("lastFollowUp", getIntent().getStringExtra("lastFollowUp"))
                         .putExtra("studyID", localstudyID));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -269,10 +270,6 @@ public class OnExaminationActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu411, bi.sfu411a,getString(R.string.sfu411))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu412, bi.sfu41296, bi.sfu41296x, getString(R.string.sfu412))) {
-            return false;
-        }
-
-        return true;
+        return validatorClass.EmptyRadioButton(this, bi.sfu412, bi.sfu41296, bi.sfu41296x, getString(R.string.sfu412));
     }
 }

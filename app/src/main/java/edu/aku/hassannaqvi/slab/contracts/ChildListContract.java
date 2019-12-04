@@ -20,6 +20,7 @@ public class ChildListContract {
     private String mothername = "";
     private String birthdate = "";
     private String EnrolmentDate = "";
+    private String lastFupDT = "";
 
     public ChildListContract() {
     }
@@ -32,6 +33,7 @@ public class ChildListContract {
         this.mothername = jsonObject.getString(ChildListTable.COLUMN_MOTHERNAME);
         this.birthdate = jsonObject.getString(ChildListTable.COLUMN_BIRTHDATE);
         this.EnrolmentDate = jsonObject.getString(ChildListTable.COLUMN_ENROLMENTDATE);
+        this.lastFupDT = jsonObject.getString(ChildListTable.COLUMN_LAST_FUPDT);
 
         return this;
     }
@@ -45,6 +47,7 @@ public class ChildListContract {
         this.mothername = cursor.getString(cursor.getColumnIndex(ChildListTable.COLUMN_MOTHERNAME));
         this.birthdate = cursor.getString(cursor.getColumnIndex(ChildListTable.COLUMN_BIRTHDATE));
         this.EnrolmentDate = cursor.getString(cursor.getColumnIndex(ChildListTable.COLUMN_ENROLMENTDATE));
+        this.lastFupDT = cursor.getString(cursor.getColumnIndex(ChildListTable.COLUMN_LAST_FUPDT));
         return this;
     }
 
@@ -58,6 +61,7 @@ public class ChildListContract {
         json.put(ChildListTable.COLUMN_MOTHERNAME, this.mothername == null ? JSONObject.NULL : this.mothername);
         json.put(ChildListTable.COLUMN_BIRTHDATE, this.birthdate == null ? JSONObject.NULL : this.birthdate);
         json.put(ChildListTable.COLUMN_ENROLMENTDATE, this.EnrolmentDate == null ? JSONObject.NULL : this.EnrolmentDate);
+        json.put(ChildListTable.COLUMN_LAST_FUPDT, this.lastFupDT == null ? JSONObject.NULL : this.lastFupDT);
 
 
         return json;
@@ -127,12 +131,21 @@ public class ChildListContract {
         EnrolmentDate = enrolmentDate;
     }
 
+    public String getLastFupDT() {
+        return lastFupDT;
+    }
+
+    public void setLastFupDT(String lastFupDT) {
+        this.lastFupDT = lastFupDT;
+    }
+
     public static abstract class ChildListTable implements BaseColumns {
 
         public static final String TABLE_NAME = "childlist";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN__ID = "_id";
         public static final String COLUMN__RUID = "ruid";
+        public static final String COLUMN_LAST_FUPDT = "last_fupdate";
         public static final String COLUMN_MRNO = "mrno";
         public static final String COLUMN_STUDYID = "studyid";
         public static final String COLUMN_CHILDNAME = "childname";

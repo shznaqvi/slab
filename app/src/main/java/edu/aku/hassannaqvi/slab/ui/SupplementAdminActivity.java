@@ -19,6 +19,7 @@ import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivitySupplementAdminBinding;
+import edu.aku.hassannaqvi.slab.other.DateUtils;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
@@ -27,8 +28,9 @@ public class SupplementAdminActivity extends AppCompatActivity {
     ActivitySupplementAdminBinding bi;
     DatabaseHelper db;
     public static JSONObject supAdmin;
-    String childName, localmrno, localstudyID;
+    String childName, localmrno, localstudyID, lastFollowUp;
     int fupLocation;
+    Long totalDaysFromPrvFup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +38,8 @@ public class SupplementAdminActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_supplement_admin);
         bi.setCallback(this);
         db = new DatabaseHelper(this);
-        setupView();
         gettingIntents();
+        setupView();
         ScrollView supp_scrollview = findViewById(R.id.supp_scrollview);
         validatorClass.setScrollViewFocus(supp_scrollview);
     }
@@ -46,6 +48,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
+
     TextWatcher sachetswatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -111,6 +114,11 @@ public class SupplementAdminActivity extends AppCompatActivity {
         });
         bi.sfu504.addTextChangedListener(sachetswatcher);
         bi.sfu505.addTextChangedListener(sachetswatcher);
+
+//        Calculating totalDaysFromPrvFup
+        totalDaysFromPrvFup = DateUtils.ageInDaysByDOB(lastFollowUp);
+        totalDaysFromPrvFup -= 1;
+
     }
 
     public void BtnContinue() {
@@ -130,6 +138,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
                         .putExtra("noofSachet", bi.sfu504.getText().toString())
                         .putExtra("childName", childName)
                         .putExtra("mrno", localmrno)
+                        .putExtra("lastFollowUp", lastFollowUp)
                         .putExtra("studyID", localstudyID));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -146,6 +155,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
             childName = bundle.getString("childName");
             localmrno = bundle.getString("mrno");
             localstudyID = bundle.getString("studyID");
+            lastFollowUp = bundle.getString("lastFollowUp");
         } else {
             // Do something else
             Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
@@ -235,6 +245,13 @@ public class SupplementAdminActivity extends AppCompatActivity {
             return false;
         }
         if (!validatorClass.EmptyTextBox(this, bi.sfu504, getString(R.string.sfu504))) {
+            return false;
+        }
+
+        if (Integer.valueOf(bi.sfu504.getText().toString()) < totalDaysFromPrvFup) {
+            bi.sfu504.setError("Used sachets need to be greater then or equal to " + totalDaysFromPrvFup);
+            Toast.makeText(this, "Used sachets need to be greater then or equal to " + totalDaysFromPrvFup, Toast.LENGTH_SHORT).show();
+            bi.sfu504.requestFocus();
             return false;
         }
 

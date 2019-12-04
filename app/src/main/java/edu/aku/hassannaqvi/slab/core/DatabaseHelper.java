@@ -56,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "slab.db";
     public static final String DB_NAME = DATABASE_NAME.replace(".", "_copy.");
     public static final String PROJECT_NAME = "DMU-SRCPREG";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
     private static final String SQL_CREATE_FORMS = "CREATE TABLE "
             + FormsTable.TABLE_NAME + "("
             + FormsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -139,8 +139,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             ChildListTable.COLUMN_CHILDNAME + " TEXT," +
             ChildListTable.COLUMN_MOTHERNAME + " TEXT," +
             ChildListTable.COLUMN_BIRTHDATE + " TEXT," +
-            ChildListTable.COLUMN_ENROLMENTDATE + " TEXT"
+            ChildListTable.COLUMN_ENROLMENTDATE + " TEXT," +
+            ChildListTable.COLUMN_LAST_FUPDT + " TEXT"
             + " );";
+    private static final String SQL_ALTER_CHILDLIST = "ALTER TABLE " +
+            ChildListTable.TABLE_NAME + " ADD COLUMN " +
+            ChildListTable.COLUMN_LAST_FUPDT + " TEXT";
     private static final String SQL_CREATE_LABREPORTS = "CREATE TABLE "
             + LabReportsTable.TABLE_NAME + "(" +
             LabReportsTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -284,6 +288,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 db.execSQL(SQL_ALTER_HISTORY_ROUND);
             case 4:
                 db.execSQL(SQL_CREATE_EPISODE);
+            case 5:
+                db.execSQL(SQL_ALTER_CHILDLIST);
 
         }
     }
@@ -564,6 +570,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 chl.Sync(jsonObjectch);
                 ContentValues values = new ContentValues();
                 values.put(ChildListTable.COLUMN__RUID, chl.get_ruid());
+                values.put(ChildListTable.COLUMN_LAST_FUPDT, chl.getLastFupDT());
+                values.put(ChildListTable.COLUMN_MRNO, chl.getMrNo());
                 values.put(ChildListTable.COLUMN_MRNO, chl.getMrNo());
                 values.put(ChildListTable.COLUMN_STUDYID, chl.getStudyID());
                 values.put(ChildListTable.COLUMN_CHILDNAME, chl.getChildname());
@@ -938,6 +946,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 ChildListTable.COLUMN__ID,
                 ChildListTable.COLUMN__RUID,
+                ChildListTable.COLUMN_LAST_FUPDT,
                 ChildListTable.COLUMN_MRNO,
                 ChildListTable.COLUMN_STUDYID,
                 ChildListTable.COLUMN_CHILDNAME,
@@ -985,6 +994,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
 
                 ChildListTable._ID,
+                ChildListTable.COLUMN_LAST_FUPDT,
                 ChildListTable.COLUMN__RUID,
                 ChildListTable.COLUMN_MRNO,
                 ChildListTable.COLUMN_STUDYID,
@@ -1412,6 +1422,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(ChildListTable.COLUMN__RUID, chl.get_ruid());
+        values.put(ChildListTable.COLUMN_LAST_FUPDT, chl.getLastFupDT());
         values.put(ChildListTable.COLUMN_MRNO, chl.getMrNo());
         values.put(ChildListTable.COLUMN_STUDYID, chl.getStudyID());
         values.put(ChildListTable.COLUMN_CHILDNAME, chl.getChildname());
@@ -1921,6 +1932,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 ChildListTable.COLUMN__ID,
                 ChildListTable.COLUMN__RUID,
+                ChildListTable.COLUMN_LAST_FUPDT,
                 ChildListTable.COLUMN_MRNO,
                 ChildListTable.COLUMN_STUDYID,
                 ChildListTable.COLUMN_CHILDNAME,

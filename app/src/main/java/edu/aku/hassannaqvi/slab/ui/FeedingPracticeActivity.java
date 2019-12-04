@@ -40,7 +40,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
     DatabaseHelper db;
     String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
     Boolean nextExamSec;
-    String childName, localmrno, localstudyID;
+    String childName, localmrno, localstudyID, lastFollowUp;
     int fupLocation;
     Boolean skip38;
     List<EpisodesContract> alleplist = new ArrayList<>();
@@ -382,6 +382,7 @@ public class FeedingPracticeActivity extends AppCompatActivity {
             childName = bundle.getString("childName");
             localmrno = bundle.getString("mrno");
             localstudyID = bundle.getString("studyID");
+            lastFollowUp = bundle.getString("lastFollowUp");
         } else {
             // Do something else
             Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
@@ -799,12 +800,14 @@ public class FeedingPracticeActivity extends AppCompatActivity {
                             .putExtra(FUPLOCATION_TAG, fupLocation)
                             .putExtra("childName", childName)
                             .putExtra("mrno", localmrno)
+                            .putExtra("lastFollowUp", lastFollowUp)
                             .putExtra("studyID", localstudyID));
                 else
                     startActivity(new Intent(this, OnExaminationActivity.class)
                             .putExtra(FUPLOCATION_TAG, fupLocation)
                             .putExtra("childName", childName)
                             .putExtra("mrno", localmrno)
+                            .putExtra("lastFollowUp", lastFollowUp)
                             .putExtra("studyID", localstudyID));
 
             } else {
