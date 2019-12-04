@@ -89,7 +89,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
     };
 
     private void setupView() {
-        if (MainApp.fupLocation == 1) {
+        if (MainApp.fupLocation == 1 || MainApp.fupLocation == 3) {
             bi.fldGrpsfu501.setVisibility(View.VISIBLE);
             bi.fldGrpsfu502.setVisibility(View.VISIBLE);
         } else {
@@ -231,7 +231,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
     }
 
     private boolean formValidation() {
-        if (MainApp.fupLocation == 1) {
+        if (MainApp.fupLocation == 1 || MainApp.fupLocation == 3) {
             if (!validatorClass.EmptyRadioButton(this, bi.sfu501, bi.sfu501b, getString(R.string.sfu501))) {
                 return false;
             }
@@ -248,14 +248,14 @@ public class SupplementAdminActivity extends AppCompatActivity {
             return false;
         }
 
-        if (Integer.valueOf(bi.sfu504.getText().toString()) < totalDaysFromPrvFup) {
-            bi.sfu504.setError("Used sachets need to be greater then or equal to " + totalDaysFromPrvFup);
-            Toast.makeText(this, "Used sachets need to be greater then or equal to " + totalDaysFromPrvFup, Toast.LENGTH_SHORT).show();
-            bi.sfu504.requestFocus();
-            return false;
-        }
-
         if (MainApp.fupLocation != 6) {
+
+            if (Integer.valueOf(bi.sfu504.getText().toString()) < totalDaysFromPrvFup) {
+                bi.sfu504.setError("Used sachets need to be greater then or equal to " + totalDaysFromPrvFup);
+                Toast.makeText(this, "Used sachets need to be greater then or equal to " + totalDaysFromPrvFup, Toast.LENGTH_SHORT).show();
+                bi.sfu504.requestFocus();
+                return false;
+            }
 
             if (!validatorClass.EmptyTextBox(this, bi.sfu505, getString(R.string.sfu505))) {
                 return false;

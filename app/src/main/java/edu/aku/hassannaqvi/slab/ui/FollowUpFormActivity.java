@@ -440,7 +440,8 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     // bi.sfu002.setText(childListContract.getStudyID());
                     bi.ruid.setText(childListContract.get_ruid());
                     bi.ChildName.setText(childListContract.getChildname());
-                    bi.lastFollowUp.setText(childListContract.getLastFupDT().split("\\s+")[0]);
+                    lastFollowUp = childListContract.getLastFupDT().split("\\s+")[0];
+                    bi.lastFollowUp.setText(lastFollowUp);
 
                     Long days = DateUtils.ageInDaysByDOB(lastFollowUp);
 
