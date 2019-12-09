@@ -119,6 +119,9 @@ public class SupplementAdminActivity extends AppCompatActivity {
         totalDaysFromPrvFup = DateUtils.ageInDaysByDOB(lastFollowUp);
         totalDaysFromPrvFup -= 1;
 
+        bi.sfu504.setText(String.valueOf(totalDaysFromPrvFup));
+        bi.sfu504.setEnabled(false);
+
     }
 
     public void BtnContinue() {
@@ -250,12 +253,12 @@ public class SupplementAdminActivity extends AppCompatActivity {
 
         if (MainApp.fupLocation != 6) {
 
-            if (Integer.valueOf(bi.sfu504.getText().toString()) < totalDaysFromPrvFup) {
+            /*if (Integer.valueOf(bi.sfu504.getText().toString()) < totalDaysFromPrvFup) {
                 bi.sfu504.setError("Used sachets need to be greater then or equal to " + totalDaysFromPrvFup);
                 Toast.makeText(this, "Used sachets need to be greater then or equal to " + totalDaysFromPrvFup, Toast.LENGTH_SHORT).show();
                 bi.sfu504.requestFocus();
                 return false;
-            }
+            }*/
 
             if (!validatorClass.EmptyTextBox(this, bi.sfu505, getString(R.string.sfu505))) {
                 return false;
