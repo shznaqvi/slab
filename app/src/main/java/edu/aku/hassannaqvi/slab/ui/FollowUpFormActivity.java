@@ -51,6 +51,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
     Context context;
     int length = 0;
     private static final String TAG = FollowUpFormActivity.class.getName();
+    long days;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -292,7 +293,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                         .putExtra("childName", bi.ChildName.getText().toString())
                         .putExtra("mrno", bi.sfu001.getText().toString())
                         .putExtra("studyID", bi.sfu002.getText().toString())
-                        .putExtra("lastFollowUp", bi.lastFollowUp.getText().toString()));
+                        .putExtra("lastFollowUp", days));
                 /*    if (!bi.sfu10.getText().toString().equals("0") && !bi.sfu10.getText().toString().equals("00")) {
                     startActivity(new Intent(context, HistoryActivity.class)
                             .putExtra(FUPLOCATION_TAG, fuplocation)
@@ -443,7 +444,7 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     lastFollowUp = childListContract.getLastFupDT().split("\\s+")[0];
                     bi.lastFollowUp.setText(lastFollowUp);
 
-                    Long days = DateUtils.ageInDaysByDOB(lastFollowUp);
+                    days = DateUtils.ageInDaysByDOB(lastFollowUp);
 
                     if (days > 6) {
                         bi.fupNote.setVisibility(View.VISIBLE);

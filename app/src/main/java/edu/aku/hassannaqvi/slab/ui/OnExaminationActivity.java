@@ -23,8 +23,10 @@ import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
 public class OnExaminationActivity extends AppCompatActivity {
     ActivityOnExaminationBinding bi;
     DatabaseHelper db;
-    String  childName , localmrno, localstudyID;
+    String childName, localmrno, localstudyID;
+    long lastFollowUp;
     int fupLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,7 @@ public class OnExaminationActivity extends AppCompatActivity {
             }
         });
     }
+
     private void gettingIntents() {
 
         Intent intent = getIntent();
@@ -65,6 +68,7 @@ public class OnExaminationActivity extends AppCompatActivity {
             childName = bundle.getString("childName");
             localmrno = bundle.getString("mrno");
             localstudyID = bundle.getString("studyID");
+            lastFollowUp = bundle.getLong("lastFollowUp");
         } else {
             // Do something else
             Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
@@ -88,7 +92,7 @@ public class OnExaminationActivity extends AppCompatActivity {
                 startActivity(new Intent(this, SupplementAdminActivity.class).putExtra(FUPLOCATION_TAG, fupLocation)
                         .putExtra("childName", childName)
                         .putExtra("mrno", localmrno)
-                        .putExtra("lastFollowUp", getIntent().getStringExtra("lastFollowUp"))
+                        .putExtra("lastFollowUp", lastFollowUp)
                         .putExtra("studyID", localstudyID));
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -116,20 +120,20 @@ public class OnExaminationActivity extends AppCompatActivity {
 
         // Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 //        if (formValidation()) {
-            try {
-                SaveDraft();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (UpdateDB()) {
-                //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
+        try {
+            SaveDraft();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (UpdateDB()) {
+            //     Toast.makeText(this, "Starting Ending Section", Toast.LENGTH_SHORT).show();
 
-                finish();
+            finish();
 
-                startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
-            } else {
-                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }
+            startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
+        } else {
+            Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+        }
 //        }
 
     }
@@ -138,7 +142,7 @@ public class OnExaminationActivity extends AppCompatActivity {
 
         JSONObject oe = new JSONObject();
         oe.put("sfu401", bi.sfu401.getText().toString());
-            oe.put("sfu402", bi.sfu402.getText().toString());
+        oe.put("sfu402", bi.sfu402.getText().toString());
         oe.put("sfu403", bi.sfu403.getText().toString());
 
         oe.put("sfu404", bi.sfu404a.isChecked() ? "1"
@@ -267,7 +271,7 @@ public class OnExaminationActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.sfu410, bi.sfu41096, bi.sfu41096x, getString(R.string.sfu410))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.sfu411, bi.sfu411a,getString(R.string.sfu411))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.sfu411, bi.sfu411a, getString(R.string.sfu411))) {
             return false;
         }
         return validatorClass.EmptyRadioButton(this, bi.sfu412, bi.sfu41296, bi.sfu41296x, getString(R.string.sfu412));

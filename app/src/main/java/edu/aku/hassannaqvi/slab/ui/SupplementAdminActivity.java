@@ -19,7 +19,6 @@ import edu.aku.hassannaqvi.slab.R;
 import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivitySupplementAdminBinding;
-import edu.aku.hassannaqvi.slab.other.DateUtils;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 import static edu.aku.hassannaqvi.slab.ui.FollowUpFormActivity.FUPLOCATION_TAG;
@@ -28,9 +27,9 @@ public class SupplementAdminActivity extends AppCompatActivity {
     ActivitySupplementAdminBinding bi;
     DatabaseHelper db;
     public static JSONObject supAdmin;
-    String childName, localmrno, localstudyID, lastFollowUp;
+    String childName, localmrno, localstudyID;
+    long lastFollowUp;
     int fupLocation;
-    Long totalDaysFromPrvFup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,10 +115,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
         bi.sfu505.addTextChangedListener(sachetswatcher);
 
 //        Calculating totalDaysFromPrvFup
-        totalDaysFromPrvFup = DateUtils.ageInDaysByDOB(lastFollowUp);
-        totalDaysFromPrvFup -= 1;
-
-        bi.sfu504.setText(String.valueOf(totalDaysFromPrvFup));
+        bi.sfu504.setText(String.valueOf(lastFollowUp));
         bi.sfu504.setEnabled(false);
 
     }
@@ -158,7 +154,7 @@ public class SupplementAdminActivity extends AppCompatActivity {
             childName = bundle.getString("childName");
             localmrno = bundle.getString("mrno");
             localstudyID = bundle.getString("studyID");
-            lastFollowUp = bundle.getString("lastFollowUp");
+            lastFollowUp = bundle.getLong("lastFollowUp");
         } else {
             // Do something else
             Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
