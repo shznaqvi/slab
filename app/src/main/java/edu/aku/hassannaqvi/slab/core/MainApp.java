@@ -33,7 +33,7 @@ import edu.aku.hassannaqvi.slab.ui.EndingActivity;
 
 public class MainApp extends Application {
 
-    public static final String _IP = "f38158"; // Test PHP server
+    public static final String _IP = "vcoe1.aku.edu"; // Test PHP server
     public static final Integer _PORT = 443; // Port - with colon (:)
     public static final String _HOST_URL = "http://" + MainApp._IP + "/slab/api/";
     public static final String _UPDATE_URL = "http://" + MainApp._IP + "/slab/app/app-debug.apk";

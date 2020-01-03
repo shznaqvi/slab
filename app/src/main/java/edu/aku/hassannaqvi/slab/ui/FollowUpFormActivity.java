@@ -32,6 +32,7 @@ import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
 import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.databinding.ActivityFollowUpFormBinding;
 import edu.aku.hassannaqvi.slab.other.DateUtils;
+import edu.aku.hassannaqvi.slab.validation.ClearClass;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
 public class FollowUpFormActivity extends AppCompatActivity {
@@ -170,11 +171,32 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     }
                 }
 
+                ClearClass.ClearAllFields(bi.fldGrpA, null);
+                bi.fldGrpA.setVisibility(View.GONE);
+
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
 
+
+            }
+        });
+
+        bi.sfu002.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                ClearClass.ClearAllFields(bi.fldGrpA, null);
+                bi.fldGrpA.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
 
             }
         });
