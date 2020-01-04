@@ -116,7 +116,7 @@
                     android:digits="abcdefghijklkmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:hint="@string/others"
                     android:inputType="textCapWords"
-                    android:text='@{istatus96.checked ? istatus96x.getText.toString : ""}'
+                    android:text='@{istatus96.checked ? istatus96x.getText().toString() : ""}'
                     android:visibility="@{istatus96.checked ? View.VISIBLE : View.GONE}" />
 
                 <LinearLayout

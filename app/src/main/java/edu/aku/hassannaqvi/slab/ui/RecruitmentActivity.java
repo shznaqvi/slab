@@ -3,10 +3,8 @@ package edu.aku.hassannaqvi.slab.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -16,6 +14,9 @@ import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -240,14 +241,10 @@ public class RecruitmentActivity extends AppCompatActivity {
                 return false;
             }
             if (bi.sen10b.isChecked()) {
-                if (!validatorClass.EmptyRadioButton(this, bi.sen11, bi.sen11a, getString(R.string.sen11))) {
-                    return false;
-                }
+                return validatorClass.EmptyRadioButton(this, bi.sen11, bi.sen11a, getString(R.string.sen11));
             }
         }else {
-            if (!validatorClass.EmptyRadioButton(this, bi.sen08x, bi.sen08x96, bi.sen08x96x, getString(R.string.sen08x))) {
-                return false;
-            }
+            return validatorClass.EmptyRadioButton(this, bi.sen08x, bi.sen08x96, bi.sen08x96x, getString(R.string.sen08x));
         }
         return true;
     }

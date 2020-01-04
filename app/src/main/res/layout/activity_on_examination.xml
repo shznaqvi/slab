@@ -263,7 +263,7 @@
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/others"
                     android:inputType="text"
-                    android:text='@{sfu40696.checked ? sfu40696x.getText.toString : "" }'
+                    android:text='@{sfu40696.checked ? sfu40696x.getText().toString() : "" }'
                     android:visibility='@{sfu40696.checked ? View.VISIBLE : View.GONE }' />
             </RadioGroup>
 
@@ -308,7 +308,7 @@
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/others"
                     android:inputType="text"
-                    android:text='@{sfu40796.checked ? sfu40796x.getText.toString : "" }'
+                    android:text='@{sfu40796.checked ? sfu40796x.getText().toString() : "" }'
                     android:visibility='@{sfu40796.checked ? View.VISIBLE : View.GONE }' />
             </RadioGroup>
 
@@ -377,7 +377,7 @@
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/others"
                     android:inputType="text"
-                    android:text='@{sfu40896.checked ? sfu40896x.getText.toString : "" }'
+                    android:text='@{sfu40896.checked ? sfu40896x.getText().toString() : "" }'
                     android:visibility='@{sfu40896.checked ? View.VISIBLE : View.GONE }' />
             </RadioGroup>
 
@@ -416,7 +416,7 @@
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/sfu409b"
                     android:inputType="text"
-                    android:text='@{sfu409b.checked ? sfu409bx.getText.toString : "" }'
+                    android:text='@{sfu409b.checked ? sfu409bx.getText().toString() : "" }'
                     android:visibility='@{sfu409b.checked ? View.VISIBLE : View.GONE }' />
             </RadioGroup>
 
@@ -461,7 +461,7 @@
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/others"
                     android:inputType="text"
-                    android:text='@{sfu41096.checked ? sfu41096x.getText.toString : "" }'
+                    android:text='@{sfu41096.checked ? sfu41096x.getText().toString() : "" }'
                     android:visibility='@{sfu41096.checked ? View.VISIBLE : View.GONE }' />
             </RadioGroup>
 
@@ -548,7 +548,7 @@
                     android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                     android:hint="@string/others"
                     android:inputType="text"
-                    android:text='@{sfu41296.checked ? sfu41296x.getText.toString : "" }'
+                    android:text='@{sfu41296.checked ? sfu41296x.getText().toString() : "" }'
                     android:visibility='@{sfu41296.checked ? View.VISIBLE : View.GONE }' />
             </RadioGroup>
 

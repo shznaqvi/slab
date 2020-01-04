@@ -1,6 +1,5 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -13,23 +12,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import junit.framework.Test;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import edu.aku.hassannaqvi.slab.R;
-import edu.aku.hassannaqvi.slab.core.DatabaseHelper;
-import edu.aku.hassannaqvi.slab.core.MainApp;
 import edu.aku.hassannaqvi.slab.validation.validatorClass;
 
-import static edu.aku.hassannaqvi.slab.core.MainApp.fc;
-import static edu.aku.hassannaqvi.slab.core.MainApp.hc;
 import static java.sql.Types.INTEGER;
 
 public class TestActivity extends AppCompatActivity {

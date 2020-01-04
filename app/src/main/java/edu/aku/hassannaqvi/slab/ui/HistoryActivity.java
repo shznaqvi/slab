@@ -1,16 +1,14 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.databinding.DataBindingUtil;
-import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.view.View;
+import android.provider.Settings;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -296,9 +294,7 @@ DatabaseHelper db;
                 }
             }
             if (bi.sfu508b3.isChecked()){
-                if (!validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d1, bi.sfu508d96x, getString(R.string.sfu508d))) {
-                    return false;
-                }
+                return validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d1, bi.sfu508d96x, getString(R.string.sfu508d));
             }
         }
 

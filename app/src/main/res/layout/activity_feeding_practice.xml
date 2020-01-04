@@ -193,7 +193,7 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                             android:hint="@string/sfu20396"
                             android:inputType="text"
-                            android:text='@{sfu20396.checked ? sfu20396x.getText.toString : "" }'
+                            android:text='@{sfu20396.checked ? sfu20396x.getText().toString() : "" }'
                             android:visibility='@{sfu20396.checked ? View.VISIBLE : View.GONE }' />
                     </RadioGroup>
                 </LinearLayout>
@@ -251,7 +251,7 @@
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:hint="@string/sfu20496"
                         android:inputType="text"
-                        android:text='@{sfu20496.checked ? sfu20496x.getText.toString : "" }'
+                        android:text='@{sfu20496.checked ? sfu20496x.getText().toString() : "" }'
                         android:visibility='@{sfu20496.checked ? View.VISIBLE : View.GONE }' />
                 </RadioGroup>
 
@@ -1766,7 +1766,7 @@
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz "
                         android:hint="@string/sfu33996"
                         android:inputType="text"
-                        android:text='@{sfu33996.checked ? sfu33996x.getText.toString : "" }'
+                        android:text='@{sfu33996.checked ? sfu33996x.getText().toString() : "" }'
                         android:visibility='@{sfu33996.checked ? View.VISIBLE : View.GONE }' />
 
                     <TextView
@@ -1802,7 +1802,7 @@
                         android:orientation="horizontal"
                         android:visibility='@{sfu341a.checked ? View.GONE :  View.VISIBLE}'>
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
@@ -1815,10 +1815,10 @@
                                 android:hint="@string/days"
                                 android:inputType="number"
                                 android:maxLength="2"
-                                android:text='@{sfu341a.checked ? "" : sfu341d.getText.toString }' />
-                        </android.support.design.widget.TextInputLayout>
+                                android:text='@{sfu341a.checked ? "" : sfu341d.getText().toString() }' />
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                        <android.support.design.widget.TextInputLayout
+                        <com.google.android.material.textfield.TextInputLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1">
@@ -1831,8 +1831,8 @@
                                 android:hint="@string/hours"
                                 android:inputType="number"
                                 android:maxLength="2"
-                                android:text='@{sfu341a.checked ? "" : sfu341hr.getText.toString }' />
-                        </android.support.design.widget.TextInputLayout>
+                                android:text='@{sfu341a.checked ? "" : sfu341hr.getText().toString() }' />
+                        </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                     <!--  <android.support.design.widget.TextInputLayout
                           android:layout_width="match_parent"
@@ -1844,7 +1844,7 @@
                               android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                               android:hint="@string/reason"
                               android:inputType="text"
-                              android:text='@{sfu341a.checked ? "" : sfu52reason.getText.toString }'
+                              android:text='@{sfu341a.checked ? "" : sfu52reason.getText().toString() }'
                               android:visibility='@{sfu341a.checked ? View.GONE :  View.VISIBLE}' />
                       </android.support.design.widget.TextInputLayout>-->
 
@@ -1963,7 +1963,7 @@
                     android:layout_marginTop="1dp"
                     android:focusable="false"
                     android:hint="@string/date"
-                    android:text='@{sfu344b.checked ? sfu344bx.getText.toString : "" }'
+                    android:text='@{sfu344b.checked ? sfu344bx.getText().toString() : "" }'
                     android:textColor="@android:color/black"
                     android:visibility='@{sfu344b.checked ? View.VISIBLE : View.GONE }'
                     app:dateFormat="dd-MM-yyyy" />

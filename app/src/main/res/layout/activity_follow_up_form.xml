@@ -285,7 +285,7 @@
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:hint="@string/sfu10596"
                         android:inputType="text"
-                        android:text='@{sfu10596.checked ? sfu10596x.getText.toString : "" }'
+                        android:text='@{sfu10596.checked ? sfu10596x.getText().toString() : "" }'
                         android:visibility='@{sfu10596.checked ? View.VISIBLE : View.GONE }' />
 
                     <TextView

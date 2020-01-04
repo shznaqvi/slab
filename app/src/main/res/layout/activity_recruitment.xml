@@ -535,7 +535,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/others"
                         android:inputType="text"
-                        android:text='@{sen08x96.checked ? sen08x96x.getText.toString : "" }'
+                        android:text='@{sen08x96.checked ? sen08x96x.getText().toString() : "" }'
                         android:visibility='@{sen08x96.checked ? View.VISIBLE : View.GONE }' />
                 </LinearLayout>
 

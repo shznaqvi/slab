@@ -35,8 +35,8 @@ public class MainApp extends Application {
 
     public static final String _IP = "vcoe1.aku.edu"; // Test PHP server
     public static final Integer _PORT = 443; // Port - with colon (:)
-    public static final String _HOST_URL = "http://" + MainApp._IP + "/slab/api/";
-    public static final String _UPDATE_URL = "http://" + MainApp._IP + "/slab/app/app-debug.apk";
+    public static final String _HOST_URL = "https://" + MainApp._IP + "/slab/api/";
+    public static final String _UPDATE_URL = "https://" + MainApp._IP + "/slab/app/app-debug.apk";
     public static final String MRNO_TAG = "mrno";
     public static final String STUDYID_TAG = "studyID";
     public static final String CHILDNAME_TAG = "ChildName";
