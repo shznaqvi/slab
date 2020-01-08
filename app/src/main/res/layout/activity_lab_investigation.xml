@@ -179,7 +179,7 @@
                         android:hint="@string/others"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:inputType="text"
-                        android:text='@{sli0496.checked ? sli0496x.getText.toString : "" }'
+                        android:text='@{sli0496.checked ? sli0496x.getText().toString() : "" }'
                         android:visibility='@{sli0496.checked ? View.VISIBLE : View.GONE }' />
                 </LinearLayout>
 <!--
@@ -201,7 +201,7 @@
                     android:hint="@string/sli05"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:text='@{sli0598.checked ? "" : sli05.getText.toString }'
+                    android:text='@{sli0598.checked ? "" : sli05.getText().toString() }'
                     android:visibility='@{sli0598.checked ? View.GONE : View.VISIBLE}' />
                 />
 

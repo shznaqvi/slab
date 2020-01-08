@@ -320,7 +320,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/askname"
                         android:inputType="text"
-                        android:text='@{sel0796.checked ? sel0796x.getText.toString : "" }'
+                        android:text='@{sel0796.checked ? sel0796x.getText().toString() : "" }'
                         android:visibility='@{sel0796.checked ? View.VISIBLE : View.GONE }' />
                 </RadioGroup>
             </LinearLayout>
@@ -951,7 +951,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/reason"
                     android:inputType="text"
-                    android:text='@{sel25b.checked ? sel25bx.getText.toString : "" }'
+                    android:text='@{sel25b.checked ? sel25bx.getText().toString() : "" }'
                     android:visibility='@{sel25b.checked ? View.VISIBLE : View.GONE }' />
             </LinearLayout>
 

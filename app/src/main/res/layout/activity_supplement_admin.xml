@@ -98,7 +98,7 @@
                               android:hint="@string/reason"
                               android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                               android:inputType="text"
-                              android:text='@{sfu501b.checked ? sfu501bx.getText.toString : "" }'
+                              android:text='@{sfu501b.checked ? sfu501bx.getText().toString() : "" }'
                               android:visibility='@{sfu501b.checked ? View.VISIBLE : View.GONE }' />-->
 
 
@@ -212,7 +212,7 @@
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                         android:hint="@string/others"
                         android:inputType="text"
-                        android:text='@{sfu50296.checked ? sfu50296x.getText.toString : "" }'
+                        android:text='@{sfu50296.checked ? sfu50296x.getText().toString() : "" }'
                         android:visibility='@{sfu50296.checked ? View.VISIBLE : View.GONE }' />
 
                 </LinearLayout>
@@ -325,7 +325,7 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                             android:hint="@string/others"
                             android:inputType="text"
-                            android:text='@{sfu50696.checked ? sfu50696x.getText.toString : "" }'
+                            android:text='@{sfu50696.checked ? sfu50696x.getText().toString() : "" }'
                             android:visibility='@{sfu50696.checked ? View.VISIBLE : View.GONE }' />
                     </LinearLayout>
 
@@ -372,7 +372,7 @@
                             android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                             android:hint="@string/others"
                             android:inputType="text"
-                            android:text='@{sfu50796.checked ? sfu50796x.getText.toString : "" }'
+                            android:text='@{sfu50796.checked ? sfu50796x.getText().toString() : "" }'
                             android:visibility='@{sfu50796.checked ? View.VISIBLE : View.GONE }' />
 
                     </LinearLayout>
@@ -426,7 +426,7 @@
                           android:hint="@string/others"
                           android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
                           android:inputType="text"
-                          android:text='@{sfu6996.checked ? sfu6996x.getText.toString : "" }'
+                          android:text='@{sfu6996.checked ? sfu6996x.getText().toString() : "" }'
                           android:visibility='@{sfu6996.checked ? View.VISIBLE : View.GONE }' />
                   </RadioGroup>-->
 

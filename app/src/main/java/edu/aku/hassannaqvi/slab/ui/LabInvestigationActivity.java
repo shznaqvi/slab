@@ -1,13 +1,14 @@
 package edu.aku.hassannaqvi.slab.ui;
 
 import android.content.Intent;
-import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -198,9 +199,7 @@ public class LabInvestigationActivity extends AppCompatActivity {
             if (!validatorClass.EmptyTextBox(this, bi.sli03, getString(R.string.sli03))) {
                 return false;
             }
-            if (!validatorClass.EmptyCheckBox(this, bi.sli04, bi.sli0496, bi.sli0496x, getString(R.string.sli04))) {
-                return false;
-            }
+            return validatorClass.EmptyCheckBox(this, bi.sli04, bi.sli0496, bi.sli0496x, getString(R.string.sli04));
            /* if (!bi.sli0598.isChecked()) {
                 if (!validatorClass.EmptyTextBox(this, bi.sli05, getString(R.string.sli05))) {
                     return false;
