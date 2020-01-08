@@ -1,14 +1,11 @@
 package edu.aku.hassannaqvi.slab.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -29,12 +26,13 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 
 public class HistoryActivity extends AppCompatActivity {
-ActivityHistoryBinding bi;
-DatabaseHelper db;
-    String noofSachet, childName , localmrno, localstudyID;
+    ActivityHistoryBinding bi;
+    DatabaseHelper db;
+    String noofSachet, childName, localmrno, localstudyID;
     int fuplocation;
     String dtToday;
     Boolean nextExamSec;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +49,13 @@ DatabaseHelper db;
     private void setUpView() {
         bi.ChildName.setText(childName);
 
-        bi.sfudaytext.setText("Day "+MainApp.hiCount+" (have you given the supplement)?");
+        bi.sfudaytext.setText("Day " + MainApp.hiCount + " (have you given the supplement)?");
         bi.sfu508a.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.sfu508a01){
+                if (checkedId == R.id.sfu508a01) {
                     bi.llfldgrppartial.setVisibility(VISIBLE);
-                }else {
+                } else {
                     bi.llfldgrppartial.setVisibility(GONE);
                     bi.sfu508b.clearCheck();
                 }
@@ -66,17 +64,17 @@ DatabaseHelper db;
         bi.sfu508b.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId == R.id.sfu508b1){
+                if (checkedId == R.id.sfu508b1) {
                     bi.partial.setVisibility(GONE);
                     bi.missed.setVisibility(GONE);
                     bi.sfu508c.clearCheck();
                     bi.sfu508d.clearCheck();
-                }else if(checkedId == R.id.sfu508b2){
+                } else if (checkedId == R.id.sfu508b2) {
                     bi.partial.setVisibility(VISIBLE);
                     bi.missed.setVisibility(GONE);
 //                    bi.sfu508c.clearCheck();
                     bi.sfu508d.clearCheck();
-                }else if(checkedId == R.id.sfu508b3){
+                } else if (checkedId == R.id.sfu508b3) {
                     bi.partial.setVisibility(GONE);
                     bi.missed.setVisibility(VISIBLE);
                     bi.sfu508c.clearCheck();
@@ -84,6 +82,8 @@ DatabaseHelper db;
                 }
             }
         });
+
+        bi.sfu508a01.setChecked(true);
 
 
       /*  bi.sfu11a1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -99,25 +99,26 @@ DatabaseHelper db;
             }
         });*/
     }
-   /* private void gettingIntents() {
 
-        Intent intent = getIntent();
-        if (intent.hasExtra(FollowUpFormActivity.FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
-            Bundle bundle = intent.getExtras();
-            fupLocation = bundle.getInt(FollowUpFormActivity.FUPLOCATION_TAG);
-            childName = bundle.getString("childName");
-            localmrno = bundle.getString("mrno");
-            localstudyID = bundle.getString("studyID");
-        } else {
-            // Do something else
-            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+    /* private void gettingIntents() {
 
-        }
+         Intent intent = getIntent();
+         if (intent.hasExtra(FollowUpFormActivity.FUPLOCATION_TAG) && intent.hasExtra("childName") && intent.hasExtra("mrno") && intent.hasExtra("studyID")) {
+             Bundle bundle = intent.getExtras();
+             fupLocation = bundle.getInt(FollowUpFormActivity.FUPLOCATION_TAG);
+             childName = bundle.getString("childName");
+             localmrno = bundle.getString("mrno");
+             localstudyID = bundle.getString("studyID");
+         } else {
+             // Do something else
+             Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
 
-    }*/
+         }
+
+     }*/
     @Override
     public void onBackPressed() {
-       Toast.makeText(this,"You can't go back",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 
     private void gettingIntents() {
@@ -134,6 +135,7 @@ DatabaseHelper db;
             Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
         }
     }
+
     public void BtnEnd() {
         if (formValidation()) {
             try {
@@ -152,7 +154,7 @@ DatabaseHelper db;
     }
 
     public void BtnContinue() {
-      //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
         if (formValidation()) {
             try {
                 SaveDraft();
@@ -160,7 +162,7 @@ DatabaseHelper db;
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-           //     Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+                //     Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
                 finish();
 
 
@@ -190,17 +192,16 @@ DatabaseHelper db;
                     startActivity(new Intent(this, HistoryActivity.class)
                             .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
-                            .putExtra("noofSachet",noofSachet)
-                            .putExtra("mrno",localmrno)
-                            .putExtra("studyID",localstudyID));
-                }
-                else{
+                            .putExtra("noofSachet", noofSachet)
+                            .putExtra("mrno", localmrno)
+                            .putExtra("studyID", localstudyID));
+                } else {
                     MainApp.hiCount = 1;//reset counter
                     startActivity(new Intent(this, VisitOutcome.class)
                             .putExtra(FollowUpFormActivity.FUPLOCATION_TAG, fuplocation)
                             .putExtra("childName", bi.ChildName.getText().toString())
-                            .putExtra("mrno",localmrno)
-                            .putExtra("studyID",localstudyID));
+                            .putExtra("mrno", localmrno)
+                            .putExtra("studyID", localstudyID));
                 }
 
                 //startActivity(new Intent(this, SachetActivity.class).putExtra("openExamSec", defaultValue).putExtra("childName", bi.ChildName.getText().toString()).putExtra("noofSachet",bi.sfu10.getText().toString()));
@@ -223,12 +224,10 @@ DatabaseHelper db;
         MainApp.hc.set_ID(String.valueOf(newrowid));
 
         if (newrowid != 0) {
-         //   Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            //   Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
 
             MainApp.hc.set_UID((MainApp.hc.getDeviceID() + MainApp.hc.get_ID()));
             db.updateHistoryID();
-
-
 
 
             return true;
@@ -239,7 +238,7 @@ DatabaseHelper db;
 
     }
 
-    private void SaveDraft() throws JSONException{
+    private void SaveDraft() throws JSONException {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
         MainApp.hc = new HistoryContract();
         MainApp.hc.setUser(MainApp.userName);
@@ -257,7 +256,7 @@ DatabaseHelper db;
         MainApp.hc.setNoofDays(noofSachet);
         MainApp.hc.setNoofSachet(noofSachet);
         MainApp.hc.setIsinserted("1");
-       // MainApp.hc.setround(MainApp.fc.getFupround());
+        // MainApp.hc.setround(MainApp.fc.getFupround());
         MainApp.hc.setcount(String.valueOf(MainApp.hiCount));
 
         JSONObject his = new JSONObject();
@@ -286,19 +285,17 @@ DatabaseHelper db;
         if (!validatorClass.EmptyRadioButton(this, bi.sfu508a, bi.sfu508a01, getString(R.string.sfu508a))) {
             return false;
         }
-        if(bi.sfu508a01.isChecked()){
+        if (bi.sfu508a01.isChecked()) {
             if (!validatorClass.EmptyRadioButton(this, bi.sfu508b, bi.sfu508b1, getString(R.string.sfu508b))) {
                 return false;
             }
-            if (bi.sfu508b2.isChecked()){
+            if (bi.sfu508b2.isChecked()) {
                 if (!validatorClass.EmptyRadioButton(this, bi.sfu508c, bi.sfu508c1, getString(R.string.sfu508c))) {
                     return false;
                 }
             }
-            if (bi.sfu508b3.isChecked()){
-                if (!validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d1, bi.sfu508d96x, getString(R.string.sfu508d))) {
-                    return false;
-                }
+            if (bi.sfu508b3.isChecked()) {
+                return validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d1, bi.sfu508d96x, getString(R.string.sfu508d));
             }
         }
 
