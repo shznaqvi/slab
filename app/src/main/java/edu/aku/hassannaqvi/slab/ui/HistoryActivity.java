@@ -296,7 +296,7 @@ public class HistoryActivity extends AppCompatActivity {
                 }
             }
             if (bi.sfu508b3.isChecked()) {
-                return validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d1, bi.sfu508d96x, getString(R.string.sfu508d));
+                return validatorClass.EmptyRadioButton(this, bi.sfu508d, bi.sfu508d96, bi.sfu508d96x, getString(R.string.sfu508d));
             }
         }
 

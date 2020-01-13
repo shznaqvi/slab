@@ -278,17 +278,17 @@
                             android:layout_height="wrap_content"
                             android:text="@string/others" />
 
+                        <EditText
+                            android:id="@+id/sfu508d96x"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                            android:hint="@string/others"
+                            android:inputType="text"
+                            android:text='@{sfu508d96.checked ? sfu508d96x.getText().toString() : "" }'
+                            android:visibility='@{sfu508d96.checked ? View.VISIBLE : View.GONE }' />
                     </RadioGroup>
 
-                    <EditText
-                        android:id="@+id/sfu508d96x"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:hint="@string/others"
-                        android:inputType="text"
-                        android:text='@{sfu508d96.checked ? sfu508d96x.getText().toString() : "" }'
-                        android:visibility='@{sfu508d96.checked ? View.VISIBLE : View.GONE }' />
                 </LinearLayout>
 
             </LinearLayout>
