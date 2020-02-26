@@ -468,7 +468,6 @@ public class FollowUpFormActivity extends AppCompatActivity {
                     bi.lastFollowUp.setText(lastFollowUp);
 
                     days = DateUtils.ageInDaysByDOB(lastFollowUp);
-                    days -= 1;
 
                     if (days > 6) {
                         bi.fupNote.setVisibility(View.VISIBLE);

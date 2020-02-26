@@ -47,7 +47,7 @@ public class DateUtils {
         Date today = new Date();
         Long diff = today.getTime() - dob.getTime();
         long ageInDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        return ageInDays;
+        return ageInDays + 1;
     }
 
 }
